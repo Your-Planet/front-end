@@ -4,7 +4,7 @@
 import React from "react";
 import { CssBaseline, StyledEngineProvider } from "@mui/material";
 
-const Providers = ({ children }: { children: React.ReactNode }) => {
+const StyleProviders = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<>
 			<StyledEngineProvider injectFirst>
@@ -14,4 +14,4 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
 		</>
 	);
 };
-export default Providers;
+export default StyleProviders;

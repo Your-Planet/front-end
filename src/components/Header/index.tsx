@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import LeftSide from "./LeftSide";
+import Gnb from "./Gnb";
 import Logo from "./Logo";
-import RightSide from "./RightSide";
+import GlobalMenu from "./GlobalMenu";
 import { Grid, AppBar } from "@mui/material";
 
 const Header: React.FC = () => {
@@ -11,13 +11,13 @@ const Header: React.FC = () => {
 		<AppBar className="bg-white px-5" position="fixed">
 			<Grid className="flex items-center" container>
 				<Grid item xs={4}>
-					<LeftSide />
+					<Gnb />
 				</Grid>
 				<Grid className="flex justify-center" item xs={4}>
 					<Logo />
 				</Grid>
 				<Grid className="flex justify-end" item xs={4}>
-					<RightSide />
+					<GlobalMenu />
 				</Grid>
 			</Grid>
 		</AppBar>

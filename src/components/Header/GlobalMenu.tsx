@@ -1,9 +1,7 @@
 import { StyledHeaderLink } from "@/components/Header/defines/index";
 import { Box } from "@mui/material";
 
-type Props = {};
-
-const RightSide = (props: Props) => {
+const GlobalMenu = () => {
 	return (
 		<Box>
 			<StyledHeaderLink href="/login" underline="none">
@@ -22,4 +20,4 @@ const RightSide = (props: Props) => {
 	);
 };
 
-export default RightSide;
+export default GlobalMenu;
