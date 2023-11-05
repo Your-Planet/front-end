@@ -1,6 +1,6 @@
 "use client";
 
-import { SELECTED_FONT_COLOR, StyledHeaderTab } from "@/defines/header";
+import { SELECTED_FONT_COLOR, StyledHeaderTab } from "@/components/Header/defines";
 import { Tabs } from "@mui/material";
 import Link from "next/link";
 import { useState } from "react";

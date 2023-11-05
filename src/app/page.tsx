@@ -1,8 +1,8 @@
-import { Container } from "@mui/material";
+import { Box } from "@mui/material";
 
 const Home = () => {
 	return (
-		<Container>
+		<Box>
 			<div className="w-screen h-screen" id="home">
 				Home
 			</div>
@@ -12,7 +12,7 @@ const Home = () => {
 			<div className="w-screen h-screen" id="our-team">
 				Home3
 			</div>
-		</Container>
+		</Box>
 	);
 };
 

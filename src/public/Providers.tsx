@@ -1,5 +1,6 @@
 "use client";
 
+// To use tailwind and mui together
 import React from "react";
 import { CssBaseline, StyledEngineProvider } from "@mui/material";
 

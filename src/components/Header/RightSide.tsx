@@ -1,4 +1,4 @@
-import { StyledHeaderLink } from "@/defines/header/index";
+import { StyledHeaderLink } from "@/components/Header/defines/index";
 import { Box } from "@mui/material";
 
 type Props = {};

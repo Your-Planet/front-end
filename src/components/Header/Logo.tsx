@@ -1,4 +1,4 @@
-import { StyledHeaderLogo } from "@/defines/header";
+import { StyledHeaderLogo } from "@/components/Header/defines/index";
 
 const Logo = () => {
 	return (
