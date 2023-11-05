@@ -1,3 +1,4 @@
+import NavTabs from "@/components/Header/index";
 import Providers from "@/public/Providers";
 import type { Metadata } from "next";
 import "./globals.css";
@@ -13,7 +14,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			<body>
 				<div id="__next">
 					<Providers>
-						<main>{children}</main>
+						<NavTabs />
+						<main style={{ marginTop: "72px" }}>{children}</main>
 					</Providers>
 				</div>
 			</body>

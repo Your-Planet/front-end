@@ -1,7 +1,19 @@
-import Header from "@/components/common/Header/index";
+import { Container } from "@mui/material";
 
 const Home = () => {
-	return <Header />;
+	return (
+		<Container>
+			<div className="w-screen h-screen" id="home">
+				Home
+			</div>
+			<div className="w-screen h-screen" id="our-work">
+				Home2
+			</div>
+			<div className="w-screen h-screen" id="our-team">
+				Home3
+			</div>
+		</Container>
+	);
 };
 
 export default Home;
