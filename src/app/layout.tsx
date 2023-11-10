@@ -1,8 +1,7 @@
+import Header from "@/components/Header";
+import StyleProviders from "@/public/StyleProviders";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
 	title: "Your Planet",
@@ -11,8 +10,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="en">
-			<body className={inter.className}>{children}</body>
+		<html>
+			<body>
+				<div id="__next">
+					<StyleProviders>
+						<Header />
+						<main style={{ marginTop: "72px" }}>{children}</main>
+					</StyleProviders>
+				</div>
+			</body>
 		</html>
 	);
 }
