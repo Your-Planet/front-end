@@ -1,16 +1,20 @@
-import { Box } from "@mui/material";
+"use client";
 
-const Home = () => {
+import { Element } from "react-scroll";
+import { Box } from "@mui/material";
+import { NextPage } from "next";
+
+const Home: NextPage = () => {
 	return (
 		<Box>
-			<div className="w-screen h-screen" id="home">
-				Home
+			<div className="w-screen h-screen">
+				<Element name="HOME">Home</Element>
 			</div>
-			<div className="w-screen h-screen" id="our-work">
-				Home2
+			<div className="w-screen h-screen">
+				<Element name="OUR_WORK">Work</Element>
 			</div>
-			<div className="w-screen h-screen" id="our-team">
-				Home3
+			<div className="w-screen h-screen">
+				<Element name="OUR_TEAM">Team</Element>
 			</div>
 		</Box>
 	);
