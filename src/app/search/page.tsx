@@ -3,7 +3,7 @@ import React from "react";
 type Props = {};
 
 const Search = (props: Props) => {
-	return <div>Search</div>;
+	return <div className="w-full h-screen">Search</div>;
 };
 
 export default Search;

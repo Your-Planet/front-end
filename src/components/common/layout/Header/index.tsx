@@ -9,7 +9,7 @@ import { Grid, AppBar } from "@mui/material";
 const Header: React.FC = () => {
 	return (
 		<AppBar className="bg-white px-5" position="fixed">
-			<Grid className="flex items-center" container>
+			<Grid className="flex items-center h-20" container>
 				<Grid item xs={4}>
 					<Gnb />
 				</Grid>
