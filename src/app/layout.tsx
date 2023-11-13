@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import StyleProviders from "@/public/StyleProviders";
 import type { Metadata } from "next";
 import "./globals.css";
+import "./reset.css";
 
 export const metadata: Metadata = {
 	title: "Your Planet",
