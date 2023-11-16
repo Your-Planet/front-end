@@ -5,6 +5,7 @@ import { NextPage } from "next";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { LAYOUT_MARGIN_TOP } from "@/public/defines/";
+import HomeVideo from "@/components/common/layout/Home/";
 
 const Home: NextPage = () => {
 	const homeRef = useRef<HTMLDivElement>(null);
@@ -39,7 +40,7 @@ const Home: NextPage = () => {
 		<Box>
 			<div className="w-full h-screen">
 				<section id="home" ref={homeRef}>
-					Home
+					<HomeVideo />
 				</section>
 			</div>
 			<div className="w-full h-screen">
