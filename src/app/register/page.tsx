@@ -1,4 +1,4 @@
-import SelectUserTypeView from "../../components/register/SelectMemberTypeView";
+import SelectUserTypeView from "@/components/register/SelectMemberTypeView";
 
 interface RegisterPageProps {}
 
