@@ -16,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<div id="__next">
 					<StyleProviders>
 						<Header />
-						<main style={{ marginTop: "72px" }}>{children}</main>
+						<main style={{ paddingTop: "72px", minHeight: "100%" }}>{children}</main>
 					</StyleProviders>
 				</div>
 			</body>
