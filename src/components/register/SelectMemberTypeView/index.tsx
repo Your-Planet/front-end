@@ -20,7 +20,7 @@ function SelectUserTypeView(props: SelectUserTypeViewProps) {
 				<h2 className={"text-4xl font-bold text-center"}>가입 유형 선택</h2>
 				<ButtonGroup orientation="vertical" aria-label="vertical outlined button group">
 					{Object.entries(labelByMemberForRegister).map(([key, value]) => (
-						<Button variant={"outlined"} fullWidth onClick={getHandleClick(key as MemberType)} size={"large"}>
+						<Button key={key} variant={"outlined"} fullWidth onClick={getHandleClick(key as MemberType)} size={"large"}>
 							{value}
 						</Button>
 					))}

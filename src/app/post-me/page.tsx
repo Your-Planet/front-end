@@ -3,7 +3,7 @@ import React from "react";
 type Props = {};
 
 const PostME = (props: Props) => {
-	return <div>PostME</div>;
+	return <div className="w-full h-screen">PostME</div>;
 };
 
 export default PostME;
