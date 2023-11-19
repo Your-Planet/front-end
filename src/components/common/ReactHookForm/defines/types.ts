@@ -4,4 +4,6 @@ export interface ReactHookFormProps<TFieldValues extends FieldValues = FieldValu
 	formName: FieldPath<TFieldValues>;
 	rules?: Exclude<RegisterOptions, "valueAsNumber" | "valueAsDate" | "setValueAs">;
 	validator?: (value: string) => boolean;
+	label?: string;
+	required?: boolean;
 }
