@@ -3,6 +3,7 @@ import StyledComponentsRegistry from "@/public/StyledComponentsRegistry";
 import StyleProviders from "@/public/StyleProviders";
 import type { Metadata } from "next";
 import "./globals.css";
+import "./reset.css";
 
 export const metadata: Metadata = {
 	title: "Your Planet",
@@ -17,7 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					<StyleProviders>
 						<StyledComponentsRegistry>
 							<Header />
-							<main className="mt-20">{children}</main>
+							<main className="pt-20 min-h-full">{children}</main>
 						</StyledComponentsRegistry>
 					</StyleProviders>
 				</div>
