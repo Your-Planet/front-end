@@ -6,7 +6,7 @@ export interface RegisterAuthorForm {
 	password: string;
 	name: string;
 	sex: SexType;
-	tel: number;
+	tel: string;
 	instagramId: string;
 
 	passwordConfirm: string;
