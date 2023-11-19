@@ -5,6 +5,7 @@ import { RegisterAuthorForm } from "@/defines/forms/register/author/types";
 import { FormEventHandler } from "react";
 import { Button } from "@mui/material";
 import ReactHookForm from "@/components/common/ReactHookForm";
+import { SexType } from "@/defines/member/types";
 
 export interface RegisterAuthorFormViewProps {}
 
@@ -21,7 +22,7 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 		() => {},
 	);
 
-	const { TextField } = ReactHookForm<RegisterAuthorForm>();
+	const { TextField, RadioGroup } = ReactHookForm<RegisterAuthorForm>();
 
 	return (
 		<>
@@ -39,7 +40,20 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 
 					<TextField formName={"name"} label={"이름"} />
 
-					{/*TODO @김현규 성별*/}
+					<RadioGroup<SexType>
+						label={"성별"}
+						formName={"sex"}
+						radios={[
+							{
+								label: "남",
+								value: "MALE",
+							},
+							{
+								label: "여",
+								value: "FEMALE",
+							},
+						]}
+					/>
 
 					{/*TODO @김현규 연락처 하이픈(-) 자동 붙여주기*/}
 					<TextField formName={"tel"} label={"연락처"} placeholder={"숫자만 입력하세요"} />
