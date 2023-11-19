@@ -7,14 +7,16 @@ import { Button } from "@mui/material";
 import ReactHookForm from "@/components/common/ReactHookForm";
 import { SexType } from "@/defines/member/types";
 import H2 from "@/components/common/text/H2";
-import { isNumber } from "@/utils/string";
+import { isEmail, isNumber } from "@/utils/string";
 
 export interface RegisterAuthorFormViewProps {}
 
 function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 	const {} = props;
 
-	const form = useForm<RegisterAuthorForm>();
+	const form = useForm<RegisterAuthorForm>({
+		mode: "all",
+	});
 	const { handleSubmit } = form;
 
 	const handleFormSubmit: FormEventHandler = handleSubmit(
@@ -23,6 +25,11 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 		},
 		() => {},
 	);
+
+	const getIsValidateEmail = (value: string) => {
+		if (!value || isEmail(value)) return true;
+		return "이메일 형식이 유효하지 않습니다.";
+	};
 
 	const { TextField, RadioGroup } = ReactHookForm<RegisterAuthorForm>();
 
@@ -33,7 +40,15 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 
 				<FormProvider {...form}>
 					<form onSubmit={handleFormSubmit} className={"mt-8 flex flex-col gap-8"}>
-						<TextField formName={"email"} label={"이메일"} placeholder={"abc12@naver.com"} fullWidth />
+						<TextField
+							formName={"email"}
+							label={"이메일"}
+							rules={{
+								validate: getIsValidateEmail,
+							}}
+							placeholder={"abc12@naver.com"}
+							fullWidth
+						/>
 
 						{/*TODO @김현규 비밀번호 조건*/}
 						<TextField
