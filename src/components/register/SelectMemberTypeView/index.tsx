@@ -12,7 +12,7 @@ function SelectUserTypeView(props: SelectUserTypeViewProps) {
 
 	const router = useRouter();
 
-	const getHandleClick = (memberType: MemberType) => () => router.push(`${memberType.toLowerCase()}`);
+	const getHandleClick = (memberType: MemberType) => () => router.push(`register/${memberType.toLowerCase()}`);
 
 	return (
 		<>
