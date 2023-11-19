@@ -7,6 +7,7 @@ import { useEffect, useRef } from "react";
 import { LAYOUT_MARGIN_TOP } from "@/public/defines/";
 import HomeVideo from "@/components/common/layout/Home/";
 import OurWork from "@/components/common/layout/OurWork/";
+import OurTeam from "@/components/common/layout/OurTeam/index";
 
 const Home: NextPage = () => {
 	const homeRef = useRef<HTMLDivElement>(null);
@@ -51,7 +52,7 @@ const Home: NextPage = () => {
 			</div>
 			<div className="w-full h-screen">
 				<section id="our_team" ref={ourTeamRef}>
-					Team
+					<OurTeam />
 				</section>
 			</div>
 		</Box>
