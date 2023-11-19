@@ -70,7 +70,6 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 							fullWidth
 						/>
 
-						{/*TODO @김현규 비밀번호 일치 확인*/}
 						<TextField
 							formName={"passwordConfirm"}
 							label={"비밀번호 확인"}
