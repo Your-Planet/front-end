@@ -7,6 +7,7 @@ import { Button } from "@mui/material";
 import ReactHookForm from "@/components/common/ReactHookForm";
 import { SexType } from "@/defines/member/types";
 import H2 from "@/components/common/text/H2";
+import { isNumber } from "@/utils/string";
 
 export interface RegisterAuthorFormViewProps {}
 
@@ -34,6 +35,7 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 					<form onSubmit={handleFormSubmit} className={"mt-8 flex flex-col gap-8"}>
 						<TextField formName={"email"} label={"이메일"} placeholder={"abc12@naver.com"} fullWidth />
 
+						{/*TODO @김현규 비밀번호 조건*/}
 						<TextField
 							formName={"password"}
 							label={"비밀번호"}
@@ -42,6 +44,7 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 							fullWidth
 						/>
 
+						{/*TODO @김현규 비밀번호 일치 확인*/}
 						<TextField
 							formName={"passwordConfirm"}
 							label={"비밀번호 확인"}
@@ -67,8 +70,14 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 							]}
 						/>
 
-						{/*TODO @김현규 연락처 하이픈(-) 자동 붙여주기*/}
-						<TextField formName={"tel"} label={"연락처"} placeholder={"숫자만 입력하세요"} fullWidth type={"number"} />
+						<TextField
+							formName={"tel"}
+							label={"연락처"}
+							validator={isNumber}
+							placeholder={"숫자만 입력하세요"}
+							fullWidth
+							type={"tel"}
+						/>
 
 						{/*TODO @김현규 생년월일*/}
 
