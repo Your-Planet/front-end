@@ -10,6 +10,7 @@ import {
 	RadioGroupProps,
 } from "@mui/material";
 import { getObjectAtPath } from "@/utils/object";
+import { getRequiredErrorMessage } from "@/utils/react-hook-form/rule";
 
 export interface ReactHookFormRadioGroupProps<TFieldValues extends FieldValues, RadioValue extends string | number>
 	extends ReactHookFormProps<TFieldValues>,
@@ -19,24 +20,37 @@ export interface ReactHookFormRadioGroupProps<TFieldValues extends FieldValues, 
 		value: RadioValue;
 		label?: string;
 	}[];
+	required?: boolean;
 }
 
 function ReactHookFormRadioGroup<TFieldValues extends FieldValues, RadioValue extends string | number>(
 	props: ReactHookFormRadioGroupProps<TFieldValues, RadioValue>,
 ) {
-	const { formName, rules, label, radios, ...rest } = props;
+	const { formName, rules, label, radios, required, ...rest } = props;
 
 	const {
 		formState: { errors },
 	} = useFormContext();
 
-	const { field } = useController({ name: formName, rules });
+	const { field } = useController({
+		name: formName,
+		rules: {
+			...rules,
+			required: required ? getRequiredErrorMessage() : false,
+		},
+	});
 
-	const errorMessage = getObjectAtPath(errors, formName)?.message as string;
+	const error = getObjectAtPath(errors, formName);
+	const errorMessage = (error?.message as string) ?? " ";
 
 	return (
-		<FormControl error={Boolean(errorMessage)}>
-			{label && <FormLabel id={formName}>{label}</FormLabel>}
+		<FormControl error={Boolean(error)}>
+			{label && (
+				<FormLabel id={formName}>
+					{label}
+					{required && " *"}
+				</FormLabel>
+			)}
 			<RadioGroup {...rest} {...field} aria-labelledby={formName} name={formName}>
 				{radios.map(({ label, value }) => (
 					<FormControlLabel key={value} value={value} control={<Radio />} label={label} />

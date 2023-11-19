@@ -11,3 +11,5 @@ export interface RegisterAuthorForm {
 
 	passwordConfirm: string;
 }
+
+export type WatchedRegisterAuthorForm = Partial<RegisterAuthorForm>;

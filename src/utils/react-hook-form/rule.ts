@@ -13,10 +13,6 @@ export const getLengthErrorMessage = (length: number, prefix = "") => `${prefix}
 
 export const getAlphabetLengthErrorMessage = (length: number) => `영문 ${length}자로 입력해 주세요.`;
 
-const getRequiredRule = () => ({
-	required: getRequiredErrorMessage(),
-});
-
 const getMaxLengthRule = (maxLength: number, message?: Message | ((maxLength: number) => Message)) => ({
 	maxLength: {
 		value: maxLength,
@@ -43,5 +39,12 @@ export const getEmailValidateRule = () => ({
 	validate: (value: string) => {
 		if (!value || isEmail(value)) return true;
 		return "이메일 형식이 유효하지 않습니다.";
+	},
+});
+
+export const getPasswordConfirmValidateRule = (password: string) => ({
+	validate: (value: string) => {
+		if (!password || !value || value === password) return true;
+		return "비밀번호가 일치하지 않습니다.";
 	},
 });
