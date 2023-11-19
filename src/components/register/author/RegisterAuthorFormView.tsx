@@ -8,6 +8,7 @@ import ReactHookForm from "@/components/common/ReactHookForm";
 import { SexType } from "@/defines/member/types";
 import H2 from "@/components/common/text/H2";
 import { isEmail, isNumber } from "@/utils/string";
+import { getEmailValidateRule } from "@/utils/react-hook-form/rule";
 
 export interface RegisterAuthorFormViewProps {}
 
@@ -26,11 +27,6 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 		() => {},
 	);
 
-	const getIsValidateEmail = (value: string) => {
-		if (!value || isEmail(value)) return true;
-		return "이메일 형식이 유효하지 않습니다.";
-	};
-
 	const { TextField, RadioGroup } = ReactHookForm<RegisterAuthorForm>();
 
 	return (
@@ -44,7 +40,7 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 							formName={"email"}
 							label={"이메일"}
 							rules={{
-								validate: getIsValidateEmail,
+								...getEmailValidateRule(),
 							}}
 							placeholder={"abc12@naver.com"}
 							fullWidth
