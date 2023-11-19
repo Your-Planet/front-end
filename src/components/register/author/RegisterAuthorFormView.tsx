@@ -17,6 +17,15 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 
 	const form = useForm<RegisterAuthorForm>({
 		mode: "all",
+		defaultValues: {
+			email: "",
+			password: "",
+			passwordConfirm: "",
+			name: "",
+			sex: undefined,
+			tel: "",
+			instagramId: "",
+		},
 	});
 	const { handleSubmit } = form;
 
