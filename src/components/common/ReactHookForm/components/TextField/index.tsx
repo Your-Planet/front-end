@@ -1,46 +1,22 @@
 import { TextField, TextFieldProps } from "@mui/material";
 import { ReactHookFormProps } from "@/components/common/ReactHookForm/defines/types";
-import { FieldValues, useController, useFormContext } from "react-hook-form";
-import { getObjectAtPath } from "@/utils/object";
-import { ChangeEventHandler } from "react";
-import { getRequiredErrorMessage } from "@/utils/react-hook-form/rule";
+import { FieldValues } from "react-hook-form";
+import useReactHookFormControl from "@/components/common/ReactHookForm/hooks/useReactHookFormControl";
 
 export interface ReactHookFormTextFieldProps<TFieldValues extends FieldValues>
 	extends ReactHookFormProps<TFieldValues>,
-		Omit<TextFieldProps, "onChange"> {}
+		Omit<TextFieldProps, "onChange" | "label" | "required"> {}
 
 function ReactHookFormTextField<TFieldValues extends FieldValues = FieldValues>(
 	props: ReactHookFormTextFieldProps<TFieldValues>,
 ) {
-	const { formName, rules, validator = () => true, required, label, ...rest } = props;
-
-	const {
-		formState: { errors },
-	} = useFormContext();
-
-	const {
-		field: { onChange, ...field },
-	} = useController({
-		name: formName,
-		rules: {
-			...rules,
-			required: required ? getRequiredErrorMessage() : false,
-		},
-	});
-
-	const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-		if (!validator(e.target.value)) return;
-		onChange(e);
-	};
-
-	const error = getObjectAtPath(errors, formName);
-	const errorMessage = (error?.message as string) ?? " ";
+	const { restProps, field, label, error, errorMessage, handleChange } = useReactHookFormControl(props);
 
 	return (
 		<TextField
-			{...rest}
+			{...restProps}
 			{...field}
-			label={`${label}${required ? " *" : ""}`}
+			label={label}
 			onChange={handleChange}
 			error={Boolean(error)}
 			helperText={errorMessage}
