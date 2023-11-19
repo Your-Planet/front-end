@@ -1,14 +1,14 @@
 "use client";
 
 import { FormProvider, useForm } from "react-hook-form";
-import { RegisterAuthorForm } from "@/defines/forms/register/author/types";
+import { RegisterAuthorForm, WatchedRegisterAuthorForm } from "@/defines/forms/register/author/types";
 import { FormEventHandler } from "react";
 import { Button } from "@mui/material";
 import ReactHookForm from "@/components/common/ReactHookForm";
 import { SexType } from "@/defines/member/types";
 import H2 from "@/components/common/text/H2";
-import { isEmail, isNumber } from "@/utils/string";
-import { getEmailValidateRule } from "@/utils/react-hook-form/rule";
+import { isNumber } from "@/utils/string";
+import { getEmailValidateRule, getPasswordConfirmValidateRule } from "@/utils/react-hook-form/rule";
 
 export interface RegisterAuthorFormViewProps {}
 
@@ -27,7 +27,11 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 			instagramId: "",
 		},
 	});
-	const { handleSubmit } = form;
+	const { handleSubmit, watch } = form;
+
+	const watchedValue: WatchedRegisterAuthorForm = {
+		password: watch("password"),
+	};
 
 	const handleFormSubmit: FormEventHandler = handleSubmit(
 		(data) => {
@@ -44,10 +48,11 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 				<H2>회원 가입 (작가)</H2>
 
 				<FormProvider {...form}>
-					<form onSubmit={handleFormSubmit} className={"mt-8 flex flex-col gap-8"}>
+					<form onSubmit={handleFormSubmit} className={"mt-8 flex flex-col gap-4"}>
 						<TextField
 							formName={"email"}
 							label={"이메일"}
+							required
 							rules={{
 								...getEmailValidateRule(),
 							}}
@@ -59,6 +64,7 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 						<TextField
 							formName={"password"}
 							label={"비밀번호"}
+							required
 							placeholder={"TODO @김현규 비밀번호 조건"}
 							type={"password"}
 							fullWidth
@@ -68,16 +74,21 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 						<TextField
 							formName={"passwordConfirm"}
 							label={"비밀번호 확인"}
+							required
+							rules={{
+								...getPasswordConfirmValidateRule(watchedValue.password!),
+							}}
 							placeholder={"비밀번호를 다시 한번 입력하세요"}
 							type={"password"}
 							fullWidth
 						/>
 
-						<TextField formName={"name"} label={"이름"} fullWidth />
+						<TextField formName={"name"} label={"이름"} required fullWidth />
 
 						<RadioGroup<SexType>
 							label={"성별"}
 							formName={"sex"}
+							required
 							radios={[
 								{
 									label: "남",
@@ -93,6 +104,7 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 						<TextField
 							formName={"tel"}
 							label={"연락처"}
+							required
 							validator={isNumber}
 							placeholder={"숫자만 입력하세요"}
 							fullWidth
@@ -101,9 +113,9 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 
 						{/*TODO @김현규 생년월일*/}
 
-						<TextField formName={"instagramId"} label={"인스타그램 아이디"} fullWidth />
+						<TextField formName={"instagramId"} label={"인스타그램 아이디"} required fullWidth />
 
-						<Button variant={"contained"} size={"large"} fullWidth>
+						<Button type={"submit"} variant={"contained"} size={"large"} fullWidth>
 							가입하기
 						</Button>
 					</form>
