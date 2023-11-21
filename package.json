@@ -12,11 +12,13 @@
 		"@emotion/react": "^11.11.1",
 		"@emotion/styled": "^11.11.0",
 		"@mui/material": "^5.14.16",
+		"@mui/x-date-pickers": "^6.18.1",
 		"@types/styled-components": "^5.1.30",
+		"dayjs": "^1.11.10",
 		"next": "14.0.1",
 		"react": "^18",
-		"styled-components": "^6.1.1",
-		"react-hook-form": "^7.48.2"
+		"react-hook-form": "^7.48.2",
+		"styled-components": "^6.1.1"
 	},
 	"devDependencies": {
 		"@types/node": "^20",
