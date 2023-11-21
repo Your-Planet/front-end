@@ -9,8 +9,6 @@ export type UseReactHookFormControlParams<
 	ReactHookFormComponentProps extends ReactHookFormProps<TFieldValues>,
 > = ReactHookFormComponentProps;
 
-// export interface UseReactHookFormControl {}
-
 function useReactHookFormControl<
 	TFieldValues extends FieldValues,
 	ReactHookFormComponentProps extends ReactHookFormProps<TFieldValues>,
