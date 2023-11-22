@@ -8,7 +8,7 @@ export interface RegisterAuthorForm {
 	name: string;
 	gender: GenderType | null;
 	tel: string;
-	birthDate: dayjs.Dayjs;
+	birthDate: dayjs.Dayjs | null;
 	instagramId: string;
 
 	passwordConfirm: string;

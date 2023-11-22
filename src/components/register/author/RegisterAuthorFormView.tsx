@@ -24,6 +24,7 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 			name: "",
 			gender: null,
 			tel: "",
+			birthDate: null,
 			instagramId: "",
 		},
 	});
