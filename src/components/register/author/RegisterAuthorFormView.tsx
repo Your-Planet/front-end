@@ -22,7 +22,7 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 			password: "",
 			passwordConfirm: "",
 			name: "",
-			sex: undefined,
+			gender: null,
 			tel: "",
 			instagramId: "",
 		},
@@ -86,7 +86,7 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 
 						<RadioGroup<GenderType>
 							label="성별"
-							formName="sex"
+							formName="gender"
 							required
 							radios={[
 								{

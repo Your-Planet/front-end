@@ -5,7 +5,7 @@ export interface RegisterAuthorForm {
 	email: string;
 	password: string;
 	name: string;
-	sex: GenderType;
+	gender: GenderType | null;
 	tel: string;
 	instagramId: string;
 
