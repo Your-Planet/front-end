@@ -1,7 +1,7 @@
 import { ReactHookFormProps } from "@/components/common/ReactHookForm/defines/types";
 import { FieldValues, useController, useFormContext } from "react-hook-form";
 import { getRequiredErrorMessage } from "@/utils/react-hook-form/rule";
-import { ChangeEventHandler } from "react";
+import { ChangeEvent, ChangeEventHandler } from "react";
 import { getObjectAtPath } from "@/utils/object";
 
 export type UseReactHookFormControlParams<
@@ -19,9 +19,7 @@ function useReactHookFormControl<
 		formState: { errors },
 	} = useFormContext<TFieldValues>();
 
-	const {
-		field: { onChange, ...field },
-	} = useController({
+	const { field } = useController({
 		name: formName,
 		rules: {
 			...rules,
@@ -31,7 +29,7 @@ function useReactHookFormControl<
 
 	const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
 		if (!validator(e.target.value)) return;
-		onChange(e);
+		field.onChange(e);
 	};
 
 	const error = getObjectAtPath(errors, formName);
