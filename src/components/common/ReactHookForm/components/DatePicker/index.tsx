@@ -21,7 +21,7 @@ function ReactHookFormDatePicker<TFieldValues extends FieldValues = FieldValues>
 			label={label}
 			slotProps={{
 				textField: {
-					error: error,
+					error: Boolean(error),
 					helperText: errorMessage,
 				},
 			}}
