@@ -1,7 +1,7 @@
 import { ReactHookFormProps } from "@/components/common/ReactHookForm/defines/types";
 import { FieldValues, useController, useFormContext } from "react-hook-form";
 import { getRequiredErrorMessage } from "@/utils/react-hook-form/rule";
-import { ChangeEvent, ChangeEventHandler } from "react";
+import { ChangeEventHandler } from "react";
 import { getObjectAtPath } from "@/utils/object";
 
 export type UseReactHookFormControlParams<
