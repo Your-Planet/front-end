@@ -5,7 +5,7 @@ import { RegisterAuthorForm, WatchedRegisterAuthorForm } from "@/defines/forms/r
 import { FormEventHandler } from "react";
 import { Button } from "@mui/material";
 import ReactHookForm from "@/components/common/ReactHookForm";
-import { SexType } from "@/defines/member/types";
+import { GenderType } from "@/defines/member/types";
 import H2 from "@/components/common/text/H2";
 import { isNumber } from "@/utils/string";
 import { getEmailValidateRule, getPasswordConfirmValidateRule } from "@/utils/react-hook-form/rule";
@@ -22,7 +22,7 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 			password: "",
 			passwordConfirm: "",
 			name: "",
-			sex: undefined,
+			gender: null,
 			tel: "",
 			instagramId: "",
 		},
@@ -86,9 +86,9 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 
 						<TextField formName="name" label="이름" required fullWidth />
 
-						<RadioGroup<SexType>
+						<RadioGroup<GenderType>
 							label="성별"
-							formName="sex"
+							formName="gender"
 							required
 							radios={[
 								{
