@@ -1,3 +1,5 @@
+import RegisterAuthorFormView from "@/components/register/author/RegisterAuthorFormView";
+
 export interface RegisterAuthorPageProps {}
 
 function RegisterAuthorPage(props: RegisterAuthorPageProps) {
@@ -5,7 +7,7 @@ function RegisterAuthorPage(props: RegisterAuthorPageProps) {
 
 	return (
 		<>
-			<div></div>
+			<RegisterAuthorFormView />
 		</>
 	);
 }
