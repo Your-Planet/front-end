@@ -4,5 +4,8 @@ export interface RegisterAdvertiserForm extends RegisterCommonMemberForm {
 	companyName: string;
 	businessNumber: string;
 	representativeName: string;
-	businessAddress: string;
+	businessAddress: {
+		base: string;
+		detail: string;
+	};
 }

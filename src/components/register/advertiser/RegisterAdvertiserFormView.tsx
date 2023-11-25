@@ -13,7 +13,8 @@ import {
 import { WatchedRegisterAuthorForm } from "@/defines/forms/register/author/types";
 import { REGISTER_ADVERTISER_FORM_FIELD_LENGTH } from "@/defines/forms/register/advertiser/constants";
 import { isNumber } from "@/utils/string";
-import { Button } from "@mui/material";
+import { Box, Button, FormControl, FormHelperText } from "@mui/material";
+import { getObjectAtPath } from "@/utils/object";
 
 export interface RegisterAdvertiserFormViewProps {}
 
@@ -30,11 +31,18 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 			businessNumber: "",
 			representativeName: "",
 			tel: "",
-			businessAddress: "",
+			businessAddress: {
+				base: "",
+				detail: "",
+			},
 			name: "",
 		},
 	});
-	const { handleSubmit, watch } = form;
+	const {
+		handleSubmit,
+		watch,
+		formState: { errors },
+	} = form;
 
 	const watchedValue: WatchedRegisterAuthorForm = {
 		password: watch("password"),
@@ -50,6 +58,8 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 	);
 
 	const { TextField } = ReactHookForm<RegisterAdvertiserForm>();
+
+	const addressErrorMessage = getObjectAtPath(errors, "businessAddress.base")?.message ?? " ";
 
 	return (
 		<>
@@ -95,7 +105,7 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 						<TextField formName="companyName" label="상호" required placeholder="상호를 입력하세요" fullWidth />
 
 						<TextField
-							formName="businessAddress"
+							formName="businessNumber"
 							label="사업자번호"
 							required
 							rules={{
@@ -127,7 +137,39 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 							fullWidth
 						/>
 
-						{/*TODO @김현규 주소*/}
+						<Box width="100%">
+							<FormControl fullWidth>
+								<TextField
+									formName="businessAddress.base"
+									label="사업장 주소"
+									required
+									fullWidth
+									sx={{
+										"& fieldset": {
+											borderBottomLeftRadius: 0,
+											borderBottomRightRadius: 0,
+											borderBottomColor: "transparent",
+										},
+										"& input": {
+											paddingBottom: "16px",
+										},
+									}}
+									margin="none"
+									inputProps={{ readOnly: true }}
+									hideErrorMessage
+								/>
+								<TextField
+									formName="businessAddress.detail"
+									label=""
+									placeholder="상세 주소"
+									fullWidth
+									sx={{ "& fieldset": { borderTopLeftRadius: 0, borderTopRightRadius: 0 } }}
+									margin="none"
+									hideErrorMessage
+								/>
+								<FormHelperText error>{addressErrorMessage}</FormHelperText>
+							</FormControl>
+						</Box>
 
 						<TextField formName="name" label="담당자명" required fullWidth />
 
