@@ -25,6 +25,7 @@ function ReactHookFormDatePicker<TFieldValues extends FieldValues = FieldValues>
 					helperText: errorMessage,
 				},
 			}}
+			format="YYYY/MM/DD"
 		/>
 	);
 }
