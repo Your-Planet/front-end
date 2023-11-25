@@ -10,6 +10,7 @@ const HomeVideo = () => {
 				className="flex flex-col justify-center items-center absolute text-center bottom-0 left-0 right-0 select-none w-full h-full text-3xl/3 font-bold mx-0 my-0"
 			>
 				<p>당신의 색을 온전히 보여주세요.</p>
+				<br />
 				<p>
 					나머지는 <strong className="text-4xl">Your Planet</strong> 이 할게요
 				</p>
