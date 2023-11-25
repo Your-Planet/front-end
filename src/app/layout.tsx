@@ -1,6 +1,6 @@
 import Header from "@/components/common/layout/Header";
-import StyledComponentsRegistry from "@/public/StyledComponentsRegistry";
-import StyleProviders from "@/public/StyleProviders";
+import StyledComponentsRegistry from "@/providers/StyledComponentsRegistry";
+import StyleProviders from "@/providers/StyleProviders";
 import type { Metadata } from "next";
 import "./globals.css";
 import "./reset.css";
