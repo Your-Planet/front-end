@@ -24,6 +24,7 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 			name: "",
 			gender: null,
 			tel: "",
+			birthDate: null,
 			instagramId: "",
 		},
 	});
@@ -37,10 +38,12 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 		(data) => {
 			console.log(data);
 		},
-		() => {},
+		(errors) => {
+			console.log(errors);
+		},
 	);
 
-	const { TextField, RadioGroup } = ReactHookForm<RegisterAuthorForm>();
+	const { TextField, RadioGroup, DatePicker } = ReactHookForm<RegisterAuthorForm>();
 
 	return (
 		<>
@@ -110,7 +113,7 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 							type="tel"
 						/>
 
-						{/*TODO @김현규 생년월일*/}
+						<DatePicker formName="birthDate" label="생년월일" required />
 
 						<TextField formName="instagramId" label="인스타그램 아이디" required fullWidth />
 
