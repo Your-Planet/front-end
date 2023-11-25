@@ -46,6 +46,7 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 		handleSubmit,
 		watch,
 		setValue,
+		trigger,
 		formState: { errors },
 	} = form;
 
@@ -66,6 +67,9 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 		openPostcodePopup({
 			onComplete({ address }) {
 				setValue("businessAddress.base", address);
+			},
+			onClose() {
+				trigger("businessAddress.base");
 			},
 		});
 	};
