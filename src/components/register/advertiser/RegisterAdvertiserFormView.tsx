@@ -15,11 +15,15 @@ import { REGISTER_ADVERTISER_FORM_FIELD_LENGTH } from "@/defines/forms/register/
 import { isNumber } from "@/utils/string";
 import { Box, Button, FormControl, FormHelperText } from "@mui/material";
 import { getObjectAtPath } from "@/utils/object";
+import { useDaumPostcodePopup } from "react-daum-postcode";
+import { postcodeScriptUrl } from "react-daum-postcode/lib/loadPostcode";
 
 export interface RegisterAdvertiserFormViewProps {}
 
 function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 	const {} = props;
+
+	const openPostcodePopup = useDaumPostcodePopup(postcodeScriptUrl);
 
 	const form = useForm<RegisterAdvertiserForm>({
 		mode: "all",
@@ -41,6 +45,7 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 	const {
 		handleSubmit,
 		watch,
+		setValue,
 		formState: { errors },
 	} = form;
 
@@ -57,9 +62,17 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 		},
 	);
 
-	const { TextField } = ReactHookForm<RegisterAdvertiserForm>();
+	const handleClickSearchAddress = () => {
+		openPostcodePopup({
+			onComplete({ address }) {
+				setValue("businessAddress.base", address);
+			},
+		});
+	};
 
 	const addressErrorMessage = getObjectAtPath(errors, "businessAddress.base")?.message ?? " ";
+
+	const { TextField } = ReactHookForm<RegisterAdvertiserForm>();
 
 	return (
 		<>
@@ -157,6 +170,7 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 									margin="none"
 									inputProps={{ readOnly: true }}
 									hideErrorMessage
+									onClick={handleClickSearchAddress}
 								/>
 								<TextField
 									formName="businessAddress.detail"
