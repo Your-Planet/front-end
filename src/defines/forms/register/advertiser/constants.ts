@@ -1,0 +1,5 @@
+export const REGISTER_ADVERTISER_FORM_FIELD_LENGTH = {
+	businessNumber: 10,
+};
+
+Object.freeze(REGISTER_ADVERTISER_FORM_FIELD_LENGTH);

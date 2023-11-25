@@ -60,6 +60,7 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 								...getEmailValidateRule(),
 							}}
 							placeholder="abc12@naver.com"
+							type="email"
 							fullWidth
 						/>
 
@@ -109,8 +110,8 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 							required
 							validator={isNumber}
 							placeholder="숫자만 입력하세요"
-							fullWidth
 							type="tel"
+							fullWidth
 						/>
 
 						<DatePicker formName="birthDate" label="생년월일" required />

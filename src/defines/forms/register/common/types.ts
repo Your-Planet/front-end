@@ -3,4 +3,5 @@ export interface RegisterCommonMemberForm {
 	password: string;
 	passwordConfirm: string;
 	tel: string;
+	name: string;
 }
