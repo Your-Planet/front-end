@@ -1,31 +1,37 @@
 "use client";
 
 import { FormProvider, useForm } from "react-hook-form";
-import { RegisterAuthorForm, WatchedRegisterAuthorForm } from "@/defines/forms/register/author/types";
+import { RegisterAdvertiserForm } from "@/defines/forms/register/advertiser/types";
 import { FormEventHandler } from "react";
-import { Button } from "@mui/material";
 import ReactHookForm from "@/components/common/ReactHookForm";
-import { GenderType } from "@/defines/member/types";
 import H2 from "@/components/common/text/H2";
+import {
+	getEmailValidateRule,
+	getLengthErrorMessage,
+	getPasswordConfirmValidateRule,
+} from "@/utils/react-hook-form/rule";
+import { WatchedRegisterAuthorForm } from "@/defines/forms/register/author/types";
+import { REGISTER_ADVERTISER_FORM_FIELD_LENGTH } from "@/defines/forms/register/advertiser/constants";
 import { isNumber } from "@/utils/string";
-import { getEmailValidateRule, getPasswordConfirmValidateRule } from "@/utils/react-hook-form/rule";
+import { Button } from "@mui/material";
 
-export interface RegisterAuthorFormViewProps {}
+export interface RegisterAdvertiserFormViewProps {}
 
-function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
+function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 	const {} = props;
 
-	const form = useForm<RegisterAuthorForm>({
+	const form = useForm<RegisterAdvertiserForm>({
 		mode: "all",
 		defaultValues: {
 			email: "",
 			password: "",
 			passwordConfirm: "",
-			name: "",
-			gender: null,
+			companyName: "",
+			businessNumber: "",
+			representativeName: "",
 			tel: "",
-			birthDate: null,
-			instagramId: "",
+			businessAddress: "",
+			name: "",
 		},
 	});
 	const { handleSubmit, watch } = form;
@@ -43,12 +49,12 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 		},
 	);
 
-	const { TextField, RadioGroup, DatePicker } = ReactHookForm<RegisterAuthorForm>();
+	const { TextField } = ReactHookForm<RegisterAdvertiserForm>();
 
 	return (
 		<>
 			<div className="max-w-[520px] mx-auto py-28">
-				<H2>회원 가입 (작가)</H2>
+				<H2>회원 가입 (광고주)</H2>
 
 				<FormProvider {...form}>
 					<form onSubmit={handleFormSubmit} className="mt-8 flex flex-col gap-4">
@@ -86,22 +92,29 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 							fullWidth
 						/>
 
-						<TextField formName="name" label="이름" required fullWidth />
+						<TextField formName="companyName" label="상호" required placeholder="상호를 입력하세요" fullWidth />
 
-						<RadioGroup<GenderType>
-							label="성별"
-							formName="gender"
+						<TextField
+							formName="businessAddress"
+							label="사업자번호"
 							required
-							radios={[
-								{
-									label: "남",
-									value: "MALE",
+							rules={{
+								validate(value) {
+									if (!value || value.length === REGISTER_ADVERTISER_FORM_FIELD_LENGTH.businessNumber) return true;
+									return getLengthErrorMessage(REGISTER_ADVERTISER_FORM_FIELD_LENGTH.businessNumber);
 								},
-								{
-									label: "여",
-									value: "FEMALE",
-								},
-							]}
+							}}
+							placeholder="숫자만 입력하세요"
+							fullWidth
+							type="tel"
+						/>
+
+						<TextField
+							formName="representativeName"
+							label="대표자명"
+							required
+							placeholder="대표자명을 입력하세요"
+							fullWidth
 						/>
 
 						<TextField
@@ -114,9 +127,9 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 							fullWidth
 						/>
 
-						<DatePicker formName="birthDate" label="생년월일" required />
+						{/*TODO @김현규 주소*/}
 
-						<TextField formName="instagramId" label="인스타그램 아이디" required fullWidth />
+						<TextField formName="name" label="담당자명" required fullWidth />
 
 						<Button type="submit" variant="contained" size="large" fullWidth>
 							가입하기
@@ -128,4 +141,4 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 	);
 }
 
-export default RegisterAuthorFormView;
+export default RegisterAdvertiserFormView;

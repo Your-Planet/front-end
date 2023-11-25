@@ -5,11 +5,7 @@ export interface RegisterAuthorPageProps {}
 function RegisterAuthorPage(props: RegisterAuthorPageProps) {
 	const {} = props;
 
-	return (
-		<>
-			<RegisterAuthorFormView />
-		</>
-	);
+	return <RegisterAuthorFormView />;
 }
 
 export default RegisterAuthorPage;
