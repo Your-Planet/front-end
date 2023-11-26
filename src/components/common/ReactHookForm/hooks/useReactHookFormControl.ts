@@ -13,7 +13,15 @@ function useReactHookFormControl<
 	TFieldValues extends FieldValues,
 	ReactHookFormComponentProps extends ReactHookFormProps<TFieldValues>,
 >(params: UseReactHookFormControlParams<TFieldValues, ReactHookFormComponentProps>) {
-	const { formName, rules, validator = () => true, label: originLabel, required, ...restProps } = params;
+	const {
+		formName,
+		rules,
+		validator = () => true,
+		label: originLabel,
+		required,
+		hideErrorMessage,
+		...restProps
+	} = params;
 
 	const {
 		formState: { errors },
@@ -33,7 +41,7 @@ function useReactHookFormControl<
 	};
 
 	const error = getObjectAtPath(errors, formName);
-	const errorMessage = (error?.message as string) ?? " ";
+	const errorMessage = hideErrorMessage ? "" : (error?.message as string) ?? " ";
 
 	const label = `${originLabel}${required ? " *" : ""}`;
 

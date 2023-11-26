@@ -6,4 +6,5 @@ export interface ReactHookFormProps<TFieldValues extends FieldValues = FieldValu
 	validator?: (value: string) => boolean;
 	label?: string;
 	required?: boolean;
+	hideErrorMessage?: boolean;
 }

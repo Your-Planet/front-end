@@ -13,12 +13,17 @@ import {
 import { WatchedRegisterAuthorForm } from "@/defines/forms/register/author/types";
 import { REGISTER_ADVERTISER_FORM_FIELD_LENGTH } from "@/defines/forms/register/advertiser/constants";
 import { isNumber } from "@/utils/string";
-import { Button } from "@mui/material";
+import { Box, Button, FormControl, FormHelperText } from "@mui/material";
+import { getObjectAtPath } from "@/utils/object";
+import { useDaumPostcodePopup } from "react-daum-postcode";
+import { postcodeScriptUrl } from "react-daum-postcode/lib/loadPostcode";
 
 export interface RegisterAdvertiserFormViewProps {}
 
 function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 	const {} = props;
+
+	const openPostcodePopup = useDaumPostcodePopup(postcodeScriptUrl);
 
 	const form = useForm<RegisterAdvertiserForm>({
 		mode: "all",
@@ -30,11 +35,20 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 			businessNumber: "",
 			representativeName: "",
 			tel: "",
-			businessAddress: "",
+			businessAddress: {
+				base: "",
+				detail: "",
+			},
 			name: "",
 		},
 	});
-	const { handleSubmit, watch } = form;
+	const {
+		handleSubmit,
+		watch,
+		setValue,
+		trigger,
+		formState: { errors },
+	} = form;
 
 	const watchedValue: WatchedRegisterAuthorForm = {
 		password: watch("password"),
@@ -48,6 +62,19 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 			console.log(errors);
 		},
 	);
+
+	const handleClickSearchAddress = () => {
+		openPostcodePopup({
+			onComplete({ address }) {
+				setValue("businessAddress.base", address);
+			},
+			onClose() {
+				trigger("businessAddress.base");
+			},
+		});
+	};
+
+	const addressErrorMessage = getObjectAtPath(errors, "businessAddress.base")?.message ?? " ";
 
 	const { TextField } = ReactHookForm<RegisterAdvertiserForm>();
 
@@ -95,7 +122,7 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 						<TextField formName="companyName" label="상호" required placeholder="상호를 입력하세요" fullWidth />
 
 						<TextField
-							formName="businessAddress"
+							formName="businessNumber"
 							label="사업자번호"
 							required
 							rules={{
@@ -127,7 +154,40 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 							fullWidth
 						/>
 
-						{/*TODO @김현규 주소*/}
+						<Box width="100%">
+							<FormControl fullWidth>
+								<TextField
+									formName="businessAddress.base"
+									label="사업장 주소"
+									required
+									fullWidth
+									sx={{
+										"& fieldset": {
+											borderBottomLeftRadius: 0,
+											borderBottomRightRadius: 0,
+											borderBottomColor: "transparent",
+										},
+										"& input": {
+											paddingBottom: "16px",
+										},
+									}}
+									margin="none"
+									inputProps={{ readOnly: true }}
+									hideErrorMessage
+									onClick={handleClickSearchAddress}
+								/>
+								<TextField
+									formName="businessAddress.detail"
+									label=""
+									placeholder="상세 주소"
+									fullWidth
+									sx={{ "& fieldset": { borderTopLeftRadius: 0, borderTopRightRadius: 0 } }}
+									margin="none"
+									hideErrorMessage
+								/>
+								<FormHelperText error>{addressErrorMessage}</FormHelperText>
+							</FormControl>
+						</Box>
 
 						<TextField formName="name" label="담당자명" required fullWidth />
 
