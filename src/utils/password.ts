@@ -7,26 +7,20 @@ import {
 	hasSpecial,
 	hasUpper,
 } from "@/utils/string";
-
-const PASSWORD_LENGTH = {
-	min: 8,
-	max: 20,
-};
-const COMBINED_MIN_LIMIT = 3;
-const CONTINUOUS_DIGITS_LIMIT = 3;
+import { COMBINED_MIN_LIMIT, CONTINUOUS_DIGITS_LIMIT } from "@/defines/password/constants";
 
 /**
  * 길이 제한 검사
  * @param password
  */
-export const validLength = (password: string): boolean =>
-	password.length >= PASSWORD_LENGTH.min && password.length <= PASSWORD_LENGTH.max;
+export const checkValidLength = (password: string, min: number, max: number): boolean =>
+	password.length >= min && password.length <= max;
 
 /**
  * 조합 검사
  * @param password
  */
-export const validCombination = (password: string): boolean => {
+export const checkValidCombination = (password: string): boolean => {
 	const combinationCount = [hasNumber(password), hasLower(password), hasUpper(password), hasSpecial(password)].filter(
 		(v) => v,
 	).length;
@@ -34,23 +28,25 @@ export const validCombination = (password: string): boolean => {
 	return combinationCount >= COMBINED_MIN_LIMIT;
 };
 
+const checkMinLength = (password: string, min: number): boolean => password.length >= min;
+
 /**
  * 동일 문자 연속성 검사
  * @param password
  */
-export const validSameCharContinuity = (password: string): boolean =>
-	!checkHasSameCharContinuity(password, CONTINUOUS_DIGITS_LIMIT);
+export const checkValidSameCharContinuity = (password: string): boolean =>
+	checkMinLength(password, CONTINUOUS_DIGITS_LIMIT) && !checkHasSameCharContinuity(password, CONTINUOUS_DIGITS_LIMIT);
 
 /**
  * 순차적 문자 연속성 검사
  * @param password
  */
-export const validSequenceContinuity = (password: string): boolean =>
-	!checkHasSequenceContinuity(password, CONTINUOUS_DIGITS_LIMIT);
+export const checkValidSequenceContinuity = (password: string): boolean =>
+	checkMinLength(password, CONTINUOUS_DIGITS_LIMIT) && !checkHasSequenceContinuity(password, CONTINUOUS_DIGITS_LIMIT);
 
 /**
  * 키보드 연속성 검사
  * @param password
  */
-export const validKeyboardContinuity = (password: string): boolean =>
-	!checkHasKeyboardContinuity(password, CONTINUOUS_DIGITS_LIMIT);
+export const checkValidKeyboardContinuity = (password: string): boolean =>
+	checkMinLength(password, CONTINUOUS_DIGITS_LIMIT) && !checkHasKeyboardContinuity(password, CONTINUOUS_DIGITS_LIMIT);
