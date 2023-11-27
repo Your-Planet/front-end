@@ -3,13 +3,11 @@ import { Box, Grid, Typography } from "@mui/material";
 import { FOOTER_BACKGROUND_COLOR } from "./defines/";
 import { WHITE_FONT_COLOR, FOOTER_BORDER_TOP } from "@/defines/common/constants";
 
-type Props = {};
-
-const Footer = (props: Props) => {
+const Footer = () => {
 	return (
 		<Box
 			sx={{ color: WHITE_FONT_COLOR, backgroundColor: FOOTER_BACKGROUND_COLOR }}
-			className={`w-screen h-auto flex justify-center items-center p-20 text-sm`}
+			className={`w-full h-auto flex justify-center items-center p-20 text-sm`}
 		>
 			<Grid container spacing={2}>
 				<Grid xs={6} item={true}>
