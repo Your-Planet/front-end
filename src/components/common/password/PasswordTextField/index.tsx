@@ -45,7 +45,7 @@ function PasswordTextField() {
 						validate,
 					}}
 					required
-					placeholder="TODO @김현규 비밀번호 조건"
+					placeholder="아래 조건에 맞게 비밀번호를 입력하세요"
 					type="password"
 					fullWidth
 					hideErrorMessage
