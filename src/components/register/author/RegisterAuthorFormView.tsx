@@ -1,14 +1,15 @@
 "use client";
 
 import { FormProvider, useForm } from "react-hook-form";
-import { RegisterAuthorForm, WatchedRegisterAuthorForm } from "@/defines/forms/register/author/types";
+import { RegisterAuthorForm } from "@/defines/forms/register/author/types";
 import { FormEventHandler } from "react";
 import { Button } from "@mui/material";
 import ReactHookForm from "@/components/common/ReactHookForm";
 import { GenderType } from "@/defines/member/types";
 import H2 from "@/components/common/text/H2";
 import { isNumber } from "@/utils/string";
-import { getEmailValidateRule, getPasswordConfirmValidateRule } from "@/utils/react-hook-form/rule";
+import { getEmailValidateRule } from "@/utils/react-hook-form/rule";
+import PasswordTextField from "@/components/common/password/PasswordTextField";
 
 export interface RegisterAuthorFormViewProps {}
 
@@ -29,10 +30,6 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 		},
 	});
 	const { handleSubmit, watch } = form;
-
-	const watchedValue: WatchedRegisterAuthorForm = {
-		password: watch("password"),
-	};
 
 	const handleFormSubmit: FormEventHandler = handleSubmit(
 		(data) => {
@@ -64,27 +61,7 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 							fullWidth
 						/>
 
-						{/*TODO @김현규 비밀번호 조건*/}
-						<TextField
-							formName="password"
-							label="비밀번호"
-							required
-							placeholder="TODO @김현규 비밀번호 조건"
-							type="password"
-							fullWidth
-						/>
-
-						<TextField
-							formName="passwordConfirm"
-							label="비밀번호 확인"
-							required
-							rules={{
-								...getPasswordConfirmValidateRule(watchedValue.password!),
-							}}
-							placeholder="비밀번호를 다시 한번 입력하세요"
-							type="password"
-							fullWidth
-						/>
+						<PasswordTextField />
 
 						<TextField formName="name" label="이름" required fullWidth />
 

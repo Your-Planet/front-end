@@ -5,18 +5,14 @@ import { RegisterAdvertiserForm } from "@/defines/forms/register/advertiser/type
 import { FormEventHandler } from "react";
 import ReactHookForm from "@/components/common/ReactHookForm";
 import H2 from "@/components/common/text/H2";
-import {
-	getEmailValidateRule,
-	getLengthErrorMessage,
-	getPasswordConfirmValidateRule,
-} from "@/utils/react-hook-form/rule";
-import { WatchedRegisterAuthorForm } from "@/defines/forms/register/author/types";
+import { getEmailValidateRule, getLengthErrorMessage } from "@/utils/react-hook-form/rule";
 import { REGISTER_ADVERTISER_FORM_FIELD_LENGTH } from "@/defines/forms/register/advertiser/constants";
 import { isNumber } from "@/utils/string";
 import { Box, Button, FormControl, FormHelperText } from "@mui/material";
 import { getObjectAtPath } from "@/utils/object";
 import { useDaumPostcodePopup } from "react-daum-postcode";
 import { postcodeScriptUrl } from "react-daum-postcode/lib/loadPostcode";
+import PasswordTextField from "@/components/common/password/PasswordTextField";
 
 export interface RegisterAdvertiserFormViewProps {}
 
@@ -44,15 +40,10 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 	});
 	const {
 		handleSubmit,
-		watch,
 		setValue,
 		trigger,
 		formState: { errors },
 	} = form;
-
-	const watchedValue: WatchedRegisterAuthorForm = {
-		password: watch("password"),
-	};
 
 	const handleFormSubmit: FormEventHandler = handleSubmit(
 		(data) => {
@@ -97,27 +88,7 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 							fullWidth
 						/>
 
-						{/*TODO @김현규 비밀번호 조건*/}
-						<TextField
-							formName="password"
-							label="비밀번호"
-							required
-							placeholder="TODO @김현규 비밀번호 조건"
-							type="password"
-							fullWidth
-						/>
-
-						<TextField
-							formName="passwordConfirm"
-							label="비밀번호 확인"
-							required
-							rules={{
-								...getPasswordConfirmValidateRule(watchedValue.password!),
-							}}
-							placeholder="비밀번호를 다시 한번 입력하세요"
-							type="password"
-							fullWidth
-						/>
+						<PasswordTextField />
 
 						<TextField formName="companyName" label="상호" required placeholder="상호를 입력하세요" fullWidth />
 
