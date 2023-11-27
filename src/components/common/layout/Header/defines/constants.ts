@@ -10,7 +10,7 @@ export const MIN_WIDTH = "35px";
 export const FONT_COLOR = "rgba(33, 33, 33, 0.5)";
 export const FONT_SIZE = "14px";
 
-export const SELECTED_FONT_COLOR = "#212121";
+export const SELECTED_PAGE_COLOR = "#212121";
 
 export const StyledHeaderLink = styled(Link)({
 	fontSize: FONT_SIZE,

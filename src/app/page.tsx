@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 import { NextPage } from "next";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useRef } from "react";
-import { LAYOUT_MARGIN_TOP } from "@/defines/common/constants";
+import { HEADER_HEIGHT } from "../../public/defines/index";
 import HomeVideo from "@/components/common/layout/Home/";
 import OurWork from "@/components/common/layout/OurWork/";
 import OurTeam from "@/components/common/layout/OurTeam/index";
@@ -19,19 +19,19 @@ const Home: NextPage = () => {
 		switch (sectionId) {
 			case "our_work":
 				if (ourWorkRef.current) {
-					ourWorkRef.current.style.scrollMarginTop = `${LAYOUT_MARGIN_TOP}px`;
+					ourWorkRef.current.style.scrollMarginTop = `${HEADER_HEIGHT}px`;
 					ourWorkRef.current.scrollIntoView({ behavior: "smooth" });
 				}
 				break;
 			case "our_team":
 				if (ourTeamRef.current) {
-					ourTeamRef.current.style.scrollMarginTop = `${LAYOUT_MARGIN_TOP}px`;
+					ourTeamRef.current.style.scrollMarginTop = `${HEADER_HEIGHT}px`;
 					ourTeamRef.current.scrollIntoView({ behavior: "smooth" });
 				}
 				break;
 			default:
 				if (sectionId === null && homeRef.current) {
-					homeRef.current.style.scrollMarginTop = `${LAYOUT_MARGIN_TOP}px`;
+					homeRef.current.style.scrollMarginTop = `${HEADER_HEIGHT}px`;
 					homeRef.current.scrollIntoView({ behavior: "smooth" });
 				}
 				break;
