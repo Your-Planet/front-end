@@ -1,5 +1,13 @@
 import { Message } from "react-hook-form";
 import { isEmail } from "@/utils/string";
+import {
+	checkValidCombination,
+	checkValidKeyboardContinuity,
+	checkValidLength,
+	checkValidSameCharContinuity,
+	checkValidSequenceContinuity,
+} from "@/utils/password";
+import { PASSWORD_LENGTH } from "@/defines/password/constants";
 
 export const getMaxLengthPlaceholder = (maxLength: number) => `${maxLength}자까지 입력 가능합니다.`;
 
@@ -40,6 +48,15 @@ export const getEmailValidateRule = () => ({
 		if (!value || isEmail(value)) return true;
 		return "이메일 형식이 유효하지 않습니다.";
 	},
+});
+
+export const getPasswordValidateRule = () => ({
+	validate: (value: string) =>
+		checkValidLength(value, PASSWORD_LENGTH.min, PASSWORD_LENGTH.max) &&
+		checkValidCombination(value) &&
+		checkValidSameCharContinuity(value) &&
+		checkValidSequenceContinuity(value) &&
+		checkValidKeyboardContinuity(value),
 });
 
 export const getPasswordConfirmValidateRule = (password: string) => ({

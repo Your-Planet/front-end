@@ -1,17 +1,9 @@
 "use client";
 
-import { getPasswordConfirmValidateRule } from "@/utils/react-hook-form/rule";
+import { getPasswordConfirmValidateRule, getPasswordValidateRule } from "@/utils/react-hook-form/rule";
 import ReactHookForm from "@/components/common/ReactHookForm";
 import { useFormContext } from "react-hook-form";
 import PasswordValidationMessages from "@/components/common/password/PasswordTextField/components/PasswordValidationMessages";
-import {
-	checkValidCombination,
-	checkValidKeyboardContinuity,
-	checkValidLength,
-	checkValidSameCharContinuity,
-	checkValidSequenceContinuity,
-} from "@/utils/password";
-import { PASSWORD_LENGTH } from "@/defines/password/constants";
 
 interface FormValuesIncludingPassword {
 	password: string;
@@ -25,16 +17,6 @@ function PasswordTextField() {
 
 	const password = watch("password");
 
-	const validate = (value: string) => {
-		return (
-			checkValidLength(value, PASSWORD_LENGTH.min, PASSWORD_LENGTH.max) &&
-			checkValidCombination(value) &&
-			checkValidSameCharContinuity(value) &&
-			checkValidSequenceContinuity(value) &&
-			checkValidKeyboardContinuity(value)
-		);
-	};
-
 	return (
 		<>
 			<div className="flex flex-col gap-2 mb-2">
@@ -42,7 +24,7 @@ function PasswordTextField() {
 					formName="password"
 					label="비밀번호"
 					rules={{
-						validate,
+						...getPasswordValidateRule(),
 					}}
 					required
 					placeholder="아래 조건에 맞게 비밀번호를 입력하세요"
