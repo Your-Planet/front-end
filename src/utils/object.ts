@@ -11,3 +11,15 @@ export const getObjectAtPath = <T>(obj: T, path: string) => {
 
 	return value;
 };
+
+/**
+ * 불변 객체 생성
+ * @param obj
+ */
+export const deepFreeze = <T extends Record<string, any>>(obj: T): T => {
+	if (obj && typeof obj === "object" && !Object.isFrozen(obj)) {
+		Object.freeze(obj);
+		Object.keys(obj).forEach((key) => deepFreeze(obj[key]));
+	}
+	return obj;
+};

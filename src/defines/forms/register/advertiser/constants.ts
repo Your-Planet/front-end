@@ -1,5 +1,5 @@
-export const REGISTER_ADVERTISER_FORM_FIELD_LENGTH = {
-	businessNumber: 10,
-};
+import { deepFreeze } from "@/utils/object";
 
-Object.freeze(REGISTER_ADVERTISER_FORM_FIELD_LENGTH);
+export const REGISTER_ADVERTISER_FORM_FIELD_LENGTH = deepFreeze({
+	businessNumber: 10,
+});
