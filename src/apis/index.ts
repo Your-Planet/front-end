@@ -6,6 +6,6 @@ const axiosInstance = axios.create({
 	baseURL: "http://localhost:8080",
 });
 
-export const api = {
+export const API = {
 	member: new MemberApi(axiosInstance, ""),
 };
