@@ -1,14 +1,9 @@
-import { AxiosApi, AxiosRequestFunction } from "@/defines/apis/types";
+import { AxiosRequestFunction } from "@/defines/apis/types";
 import { RegisterRequest, RegisterResponse } from "@/apis/member/models";
+import BaseApi from "@/utils/api/BaseApi";
 
-export const memberApi: AxiosApi = (axiosInstance, baseUrl) => {
-	const getUrl = (url: string) => `${baseUrl}${url}`;
-
-	const register: AxiosRequestFunction<RegisterRequest, RegisterResponse> = async (req, config) => {
-		return (await axiosInstance.post(getUrl("/register"), req, config)).data;
+export class MemberApi extends BaseApi {
+	public register: AxiosRequestFunction<RegisterRequest, RegisterResponse> = (req) => {
+		return this.axiosInstance.post(this.getUrl("/register"), req);
 	};
-
-	return {
-		register,
-	};
-};
+}
