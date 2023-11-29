@@ -1,5 +1,4 @@
 import { GenderType, MemberType } from "@/defines/member/types";
-import { ResponseEntity } from "@/defines/apis/types";
 
 export interface RegisterRequest {
 	id: string;
@@ -16,4 +15,4 @@ export interface RegisterRequest {
 	businessAddress?: string;
 }
 
-export interface RegisterResponse extends ResponseEntity<RegisterRequest> {}
+export type RegisterResponse = RegisterRequest;
