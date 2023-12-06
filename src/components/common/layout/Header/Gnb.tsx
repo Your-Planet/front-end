@@ -4,9 +4,11 @@ import { SELECTED_PAGE_COLOR, MIN_WIDTH, FONT_SIZE, FONT_COLOR, FONT_NORMAL_WEIG
 import Link from "next/link";
 import { Box } from "@mui/material";
 import styled from "styled-components";
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { PageType } from "./defines/types";
 import { HEADER_HEIGHT } from "../../../../../public/defines/index";
+import { RouteChangeListener } from "./hooks/useChangedPathname";
+import { useRouteChangeListener } from "./hooks/listener";
 
 interface StyledBoxProps {
 	selected: boolean;
@@ -37,54 +39,62 @@ const StyledLink = styled(Link)<StyledLinkProps>`
 
 const Gnb = () => {
 	const [selectedPage, setSelectedPage] = useState<PageType>("HOME");
-	const homeRef = useRef(null);
-	const ourWorkRef = useRef(null);
-	const ourTeamRef = useRef(null);
-	const searchRef = useRef(null);
-	const postRef = useRef(null);
 
 	const handleClickMenu = (newSelectedPage: PageType) => {
 		setSelectedPage(newSelectedPage);
 	};
 
+	const changedPathname = RouteChangeListener();
+
+	useEffect(() => {
+		setSelectedPage(changedPathname);
+	}, [changedPathname]);
+
 	return (
-		<Box className="flex">
-			<StyledBox selected={selectedPage === "HOME"}>
-				<StyledLink href="/" scroll={false} onClick={() => handleClickMenu("HOME")} selected={selectedPage === "HOME"}>
-					Home
-				</StyledLink>
-			</StyledBox>
-			<StyledBox selected={selectedPage === "OUR_WORK"}>
-				<StyledLink
-					href={{ pathname: "/", query: { section: "our_work" } }}
-					scroll={false}
-					onClick={() => handleClickMenu("OUR_WORK")}
-					selected={selectedPage === "OUR_WORK"}
-				>
-					Our Work
-				</StyledLink>
-			</StyledBox>
-			<StyledBox selected={selectedPage === "OUR_TEAM"}>
-				<StyledLink
-					href={{ pathname: "/", query: { section: "our_team" } }}
-					scroll={false}
-					onClick={() => handleClickMenu("OUR_TEAM")}
-					selected={selectedPage === "OUR_TEAM"}
-				>
-					Our Team
-				</StyledLink>
-			</StyledBox>
-			<StyledBox selected={selectedPage === "SEARCH"}>
-				<StyledLink href="/search" onClick={() => handleClickMenu("SEARCH")} selected={selectedPage === "SEARCH"}>
-					Search
-				</StyledLink>
-			</StyledBox>
-			<StyledBox selected={selectedPage === "POST"}>
-				<StyledLink href="/post-me" onClick={() => handleClickMenu("POST")} selected={selectedPage === "POST"}>
-					Post ME
-				</StyledLink>
-			</StyledBox>
-		</Box>
+		<>
+			<Box className="flex">
+				<StyledBox selected={selectedPage === "HOME"}>
+					<StyledLink
+						href="/"
+						scroll={false}
+						onClick={() => handleClickMenu("HOME")}
+						selected={selectedPage === "HOME"}
+					>
+						Home
+					</StyledLink>
+				</StyledBox>
+				<StyledBox selected={selectedPage === "OUR_WORK"}>
+					<StyledLink
+						href={{ pathname: "/", query: { section: "our_work" } }}
+						scroll={false}
+						onClick={() => handleClickMenu("OUR_WORK")}
+						selected={selectedPage === "OUR_WORK"}
+					>
+						Our Work
+					</StyledLink>
+				</StyledBox>
+				<StyledBox selected={selectedPage === "OUR_TEAM"}>
+					<StyledLink
+						href={{ pathname: "/", query: { section: "our_team" } }}
+						scroll={false}
+						onClick={() => handleClickMenu("OUR_TEAM")}
+						selected={selectedPage === "OUR_TEAM"}
+					>
+						Our Team
+					</StyledLink>
+				</StyledBox>
+				<StyledBox selected={selectedPage === "SEARCH"}>
+					<StyledLink href="/search" onClick={() => handleClickMenu("SEARCH")} selected={selectedPage === "SEARCH"}>
+						Search
+					</StyledLink>
+				</StyledBox>
+				<StyledBox selected={selectedPage === "POST_ME"}>
+					<StyledLink href="/post-me" onClick={() => handleClickMenu("POST_ME")} selected={selectedPage === "POST_ME"}>
+						Post ME
+					</StyledLink>
+				</StyledBox>
+			</Box>
+		</>
 	);
 };
 

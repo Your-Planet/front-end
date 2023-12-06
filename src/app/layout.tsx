@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "./reset.css";
 import DateLocalizationProvider from "@/providers/DateLocalizationProvider";
-import Footer from "@/components/common/layout/Footer/index";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
 	title: "Your Planet",
@@ -20,9 +20,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					<StyleProviders>
 						<DateLocalizationProvider>
 							<StyledComponentsRegistry>
-								<Header />
-								<main className="pt-20 min-h-full">{children}</main>
-								<Footer />
+								<Suspense fallback="Loading...">
+									<Header />
+									<main className="pt-20 min-h-full">{children}</main>
+								</Suspense>
 							</StyledComponentsRegistry>
 						</DateLocalizationProvider>
 					</StyleProviders>

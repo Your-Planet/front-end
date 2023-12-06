@@ -1,1 +1,1 @@
-export type PageType = "HOME" | "OUR_WORK" | "OUR_TEAM" | "SEARCH" | "POST";
+export type PageType = "HOME" | "OUR_WORK" | "OUR_TEAM" | "SEARCH" | "POST_ME" | null;
