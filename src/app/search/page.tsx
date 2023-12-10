@@ -1,9 +1,9 @@
 import React from "react";
-
+import Search from "@/components/Search";
 type Props = {};
 
-const Search = (props: Props) => {
-	return <div className="w-full h-full">Search</div>;
+const SearchPage = (props: Props) => {
+	return <Search />;
 };
 
-export default Search;
+export default SearchPage;
