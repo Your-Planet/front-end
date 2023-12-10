@@ -1,6 +1,13 @@
 "use client";
 
-import { SELECTED_PAGE_COLOR, MIN_WIDTH, FONT_SIZE, FONT_COLOR, FONT_NORMAL_WEIGHT, FONT_BOLD_WEIGHT } from "./defines";
+import {
+	SELECTED_PAGE_COLOR,
+	MIN_WIDTH,
+	FONT_SIZE,
+	FONT_COLOR,
+	FONT_NORMAL_WEIGHT,
+	FONT_BOLD_WEIGHT,
+} from "./defines/constants";
 import Link from "next/link";
 import { Box } from "@mui/material";
 import styled from "styled-components";
