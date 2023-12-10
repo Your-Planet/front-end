@@ -6,6 +6,7 @@ import "./globals.css";
 import "./reset.css";
 import DateLocalizationProvider from "@/providers/DateLocalizationProvider";
 import { Suspense } from "react";
+import Footer from "@/components/common/layout/Footer/index";
 
 export const metadata: Metadata = {
 	title: "Your Planet",
@@ -23,6 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 								<Suspense fallback="Loading...">
 									<Header />
 									<main className="pt-20 min-h-full">{children}</main>
+									<Footer />
 								</Suspense>
 							</StyledComponentsRegistry>
 						</DateLocalizationProvider>
