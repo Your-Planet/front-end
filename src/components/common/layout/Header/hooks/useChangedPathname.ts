@@ -3,20 +3,18 @@
 import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { PageType } from "../defines/types";
+import { useQueryState } from "next-usequerystate";
 
 export const RouteChangeListener = () => {
 	const pathname = usePathname();
-	const searchParams = useSearchParams();
+	const [queryState, _] = useQueryState("section");
 	const [changes, setChanges] = useState<PageType>(null);
 
 	useEffect(() => {
-		console.log(pathname, searchParams);
 		if (pathname === "/") {
-			const section = searchParams.get("section");
-
-			if (section === "our_work") {
+			if (queryState === "our_work") {
 				setChanges("OUR_WORK");
-			} else if (section === "our_team") {
+			} else if (queryState === "our_team") {
 				setChanges("OUR_TEAM");
 			} else {
 				setChanges("HOME");
@@ -28,7 +26,7 @@ export const RouteChangeListener = () => {
 		} else {
 			setChanges(null);
 		}
-	}, [pathname, searchParams]);
+	}, [pathname, queryState]);
 
 	return changes;
 };

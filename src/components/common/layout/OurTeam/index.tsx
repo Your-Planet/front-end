@@ -4,7 +4,7 @@ import React from "react";
 
 const OurTeam = () => {
 	return (
-		<Box className="w-full h-screen flex justify-center items-center">
+		<Box className="w-full section-height flex justify-center items-center">
 			<Box className="w-full h-full max-w-[1200px] flex flex-col justify-center ml-40 mr-40">
 				<Typography className="p-3" variant="h4">
 					Our Team

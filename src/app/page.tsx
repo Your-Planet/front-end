@@ -15,6 +15,12 @@ const Home: NextPage = () => {
 	const ourTeamRef = useRef<HTMLDivElement>(null);
 	const sectionId = useSearchParams().get("section");
 
+	const sectionRefs = {
+		home: homeRef,
+		our_work: ourWorkRef,
+		our_team: ourTeamRef,
+	};
+
 	useEffect(() => {
 		switch (sectionId) {
 			case "our_work":
@@ -36,21 +42,46 @@ const Home: NextPage = () => {
 				}
 				break;
 		}
-	}, [sectionId, homeRef, ourWorkRef, ourTeamRef]);
+
+		const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					const sectionId = entry.target.id;
+					const changedUrl = sectionId === "home" ? "/" : `/?section=${sectionId}`;
+
+					history.replaceState({ pathname: "/", section: sectionId }, "", changedUrl);
+				}
+			});
+		};
+
+		const observer = new IntersectionObserver(handleIntersection, {
+			threshold: 0.8,
+		});
+
+		Object.values(sectionRefs).forEach((sectionRef) => {
+			if (sectionRef.current) {
+				observer.observe(sectionRef.current);
+			}
+		});
+
+		return () => {
+			observer.disconnect();
+		};
+	}, [sectionId, homeRef, ourWorkRef, ourTeamRef, sectionRefs]);
 
 	return (
 		<Box>
-			<div className="w-full h-screen">
+			<div className="w-full section-height">
 				<section id="home" ref={homeRef}>
 					<HomeVideo />
 				</section>
 			</div>
-			<div className="w-full h-screen">
+			<div className="w-full section-height">
 				<section id="our_work" ref={ourWorkRef}>
 					<OurWork />
 				</section>
 			</div>
-			<div className="w-full h-screen">
+			<div className="w-full section-height">
 				<section id="our_team" ref={ourTeamRef}>
 					<OurTeam />
 				</section>
