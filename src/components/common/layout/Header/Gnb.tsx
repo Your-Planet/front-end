@@ -47,7 +47,7 @@ const Gnb = () => {
 	const changedPathname = RouteChangeListener();
 	const [selectedPage, setSelectedPage] = useState<PageType>(null);
 
-	// for scroll one page(HOME, OUR_WORK, OUR_TEAM)
+	// for scroll in one page(HOME, OUR_WORK, OUR_TEAM)
 	useEffect(() => {
 		setSelectedPage(changedPathname);
 	}, [changedPathname]);
