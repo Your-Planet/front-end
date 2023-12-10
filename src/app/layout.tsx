@@ -1,11 +1,12 @@
+import "./globals.css";
+import "./reset.css";
+import type { Metadata } from "next";
 import Header from "@/components/common/layout/Header";
 import StyledComponentsRegistry from "@/providers/StyledComponentsRegistry";
 import StyleProviders from "@/providers/StyleProviders";
-import type { Metadata } from "next";
-import "./globals.css";
-import "./reset.css";
 import DateLocalizationProvider from "@/providers/DateLocalizationProvider";
 import Footer from "@/components/common/layout/Footer/index";
+import ReactQueryClientProvider from "@/providers/ReactQueryClientProvider";
 
 export const metadata: Metadata = {
 	title: "Your Planet",
@@ -20,9 +21,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					<StyleProviders>
 						<DateLocalizationProvider>
 							<StyledComponentsRegistry>
-								<Header />
-								<main className="pt-20 min-h-full">{children}</main>
-								<Footer />
+								<ReactQueryClientProvider>
+									<Header />
+									<main className="pt-20 min-h-full">{children}</main>
+									<Footer />
+								</ReactQueryClientProvider>
 							</StyledComponentsRegistry>
 						</DateLocalizationProvider>
 					</StyleProviders>
