@@ -23,3 +23,22 @@ export const deepFreeze = <T extends Record<string, any>>(obj: T): T => {
 	}
 	return obj;
 };
+
+/**
+ * 객체 혹은 primitive 타입을 string 배열인 query key 형태로 변환
+ * @param obj
+ */
+export const object2QueryKeys = (obj?: object | number | string | boolean): string[] => {
+	if (obj === undefined) return [];
+	if (typeof obj === "number" || typeof obj === "string" || typeof obj === "boolean") return [obj.toString()];
+
+	return Object.entries(obj).map(([key, value]) => {
+		if (typeof value === "object") {
+			if (Array.isArray(value)) {
+				return `${key}:${value.join()}`;
+			}
+			return `${key}:${JSON.stringify(value)}`;
+		}
+		return `${key}:${value?.toString()}`;
+	});
+};
