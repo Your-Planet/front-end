@@ -8,5 +8,5 @@ const axiosInstance = axios.create({
 });
 
 export const API = deepFreeze({
-	member: new MemberApi(axiosInstance, ""),
+	member: new MemberApi(axiosInstance, "/member"),
 });
