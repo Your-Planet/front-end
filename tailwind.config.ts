@@ -24,7 +24,7 @@ const config: Config = {
 			},
 		},
 	},
-	plugins: [],
+	plugins: [require("tailwindcss-3d")],
 	corePlugins: {
 		preflight: false,
 	},
