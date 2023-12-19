@@ -13,6 +13,7 @@ const AuthorCard = (props: Props) => {
 					src="/images/manggom.jpeg"
 					alt="망곰"
 					fill
+					sizes="100%"
 					draggable={false}
 				/>
 			</Box>

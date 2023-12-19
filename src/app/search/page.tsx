@@ -19,11 +19,13 @@ const SearchPage = () => {
 			<Box className="w-full h-[calc(100vh-72px)] relative flex items-center p-10 box-border">
 				<Banner />
 			</Box>
-			<Box className="w-full px-12 md:px-24 lg:px-36">
-				<ScrollDownSection targetRef={genreTabsRef} />
-				<GenreTabs tabValue={tabValue} setTabValue={setTabValue} genreTabsRef={genreTabsRef} />
-				<SortOptions tabValue={tabValue} countOfCards={5} sortOption={sortOption} setSortOption={setSortOption} />
-				<MainSection />
+			<Box className="flex w-full justify-center items-center">
+				<Box className="min-w-[50%] max-w-min">
+					<ScrollDownSection targetRef={genreTabsRef} />
+					<GenreTabs tabValue={tabValue} setTabValue={setTabValue} genreTabsRef={genreTabsRef} />
+					<SortOptions tabValue={tabValue} countOfCards={5} sortOption={sortOption} setSortOption={setSortOption} />
+					<MainSection />
+				</Box>
 			</Box>
 		</>
 	);
