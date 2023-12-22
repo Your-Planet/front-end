@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import { PageType } from "./defines/types";
 import { HEADER_HEIGHT } from "../../../../../public/defines/index";
 import { RouteChangeListener } from "./hooks/useChangedPathname";
+import { usePathname } from "next/navigation";
 
 interface StyledBoxProps {
 	selected: boolean;
@@ -44,13 +45,25 @@ const StyledLink = styled(Link)<StyledLinkProps>`
 `;
 
 const Gnb = () => {
-	const changedPathname = RouteChangeListener();
+	const pathname = usePathname();
 	const [selectedPage, setSelectedPage] = useState<PageType>(null);
 
-	// for scroll in one page(HOME, OUR_WORK, OUR_TEAM)
 	useEffect(() => {
-		setSelectedPage(changedPathname);
-	}, [changedPathname]);
+		switch (pathname) {
+			case "/":
+				setSelectedPage("HOME");
+				break;
+			case "/search":
+				setSelectedPage("SEARCH");
+				break;
+			case "/post-me":
+				setSelectedPage("POST_ME");
+				break;
+			default:
+				setSelectedPage(null);
+				break;
+		}
+	}, [pathname]);
 
 	return (
 		<>
@@ -58,24 +71,6 @@ const Gnb = () => {
 				<StyledBox selected={selectedPage === "HOME"}>
 					<StyledLink href="/" scroll={false} selected={selectedPage === "HOME"}>
 						Home
-					</StyledLink>
-				</StyledBox>
-				<StyledBox selected={selectedPage === "OUR_WORK"}>
-					<StyledLink
-						href={{ pathname: "/", query: { section: "our_work" } }}
-						scroll={false}
-						selected={selectedPage === "OUR_WORK"}
-					>
-						Our Work
-					</StyledLink>
-				</StyledBox>
-				<StyledBox selected={selectedPage === "OUR_TEAM"}>
-					<StyledLink
-						href={{ pathname: "/", query: { section: "our_team" } }}
-						scroll={false}
-						selected={selectedPage === "OUR_TEAM"}
-					>
-						Our Team
 					</StyledLink>
 				</StyledBox>
 				<StyledBox selected={selectedPage === "SEARCH"}>
