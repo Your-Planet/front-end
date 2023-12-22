@@ -14,7 +14,6 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { PageType } from "./defines/types";
 import { HEADER_HEIGHT } from "../../../../../public/defines/index";
-import { RouteChangeListener } from "./hooks/useChangedPathname";
 import { usePathname } from "next/navigation";
 
 interface StyledBoxProps {
