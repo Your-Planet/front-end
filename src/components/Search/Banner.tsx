@@ -4,7 +4,7 @@ import Image from "next/image";
 import React from "react";
 import SearchButton from "./SearchButton";
 
-const Banner = () => {
+function Banner() {
 	return (
 		<>
 			<Image
@@ -23,6 +23,6 @@ const Banner = () => {
 			</Box>
 		</>
 	);
-};
+}
 
 export default Banner;

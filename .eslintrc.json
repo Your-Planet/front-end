@@ -24,7 +24,14 @@
 	"rules": {
 		"react/react-in-jsx-scope": "off",
 		"react/jsx-filename-extension": ["warn", { "extensions": [".ts", ".tsx"] }],
-		"no-useless-catch": "true",
-		"indent": ["error", 2]
+		"no-useless-catch": "off",
+		"indent": "off",
+		"react/self-closing-comp": [
+			"error",
+			{
+				"component": true,
+				"html": true
+			}
+		]
 	}
 }

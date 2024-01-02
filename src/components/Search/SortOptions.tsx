@@ -11,25 +11,24 @@ import {
 	SelectChangeEvent,
 	Typography,
 } from "@mui/material";
-import React, { useState } from "react";
-import { GenreType, SortOptionType } from "./defines/types";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import classNames from "classnames";
+import { GenreType, SortOptionType } from "./defines/types";
 
 type Props = {
 	tabValue: GenreType;
-	countOfCards: Number;
+	countOfCards: number;
 	sortOption: SortOptionType;
 	setSortOption: React.Dispatch<React.SetStateAction<SortOptionType>>;
 };
 
-const SortOptions = (props: Props) => {
+function SortOptions(props: Props) {
 	const { tabValue, countOfCards, sortOption, setSortOption } = props;
 	const [genre, setGenre] = useState<string>("전체");
 	const stringForCount = `${genre}: ${countOfCards}`;
 
 	const handleDropDownMenuChange = (event: SelectChangeEvent) => {
-		const value = event.target.value;
+		const { value } = event.target;
 
 		switch (value) {
 			case "LATEST":
@@ -78,6 +77,6 @@ const SortOptions = (props: Props) => {
 			</Box>
 		</Box>
 	);
-};
+}
 
 export default SortOptions;

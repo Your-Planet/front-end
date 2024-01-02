@@ -9,7 +9,7 @@ import { GenreType, SortOptionType } from "@/components/Search/defines/types";
 import { Box } from "@mui/material";
 import SortOptions from "@/components/Search/SortOptions";
 
-const SearchPage = () => {
+function SearchPage() {
 	const [tabValue, setTabValue] = useState<GenreType>("ALL");
 	const [sortOption, setSortOption] = useState<SortOptionType>("LATEST");
 	const genreTabsRef = useRef<HTMLDivElement>(null);
@@ -29,6 +29,6 @@ const SearchPage = () => {
 			</Box>
 		</>
 	);
-};
+}
 
 export default SearchPage;
