@@ -1,18 +1,18 @@
 "use client";
 
-import { FormProvider, useForm } from "react-hook-form";
-import { RegisterAdvertiserForm } from "@/defines/forms/register/advertiser/types";
-import { FormEventHandler } from "react";
 import ReactHookForm from "@/components/common/ReactHookForm";
+import PasswordTextField from "@/components/common/password/PasswordTextField";
 import H2 from "@/components/common/text/H2";
-import { getEmailValidateRule, getLengthErrorMessage } from "@/utils/react-hook-form/rule";
 import { REGISTER_ADVERTISER_FORM_FIELD_LENGTH } from "@/defines/forms/register/advertiser/constants";
+import { RegisterAdvertiserForm } from "@/defines/forms/register/advertiser/types";
+import { getObjectAtPath } from "@/utils/object";
+import { getEmailValidateRule, getLengthErrorMessage } from "@/utils/react-hook-form/rule";
 import { isNumber } from "@/utils/string";
 import { Box, Button, FormControl, FormHelperText } from "@mui/material";
-import { getObjectAtPath } from "@/utils/object";
+import { FormEventHandler } from "react";
 import { useDaumPostcodePopup } from "react-daum-postcode";
 import { postcodeScriptUrl } from "react-daum-postcode/lib/loadPostcode";
-import PasswordTextField from "@/components/common/password/PasswordTextField";
+import { FormProvider, useForm } from "react-hook-form";
 
 export interface RegisterAdvertiserFormViewProps {}
 

@@ -1,13 +1,13 @@
 "use client";
 
+import HomeVideo from "@/components/common/layout/Home/";
+import OurTeam from "@/components/common/layout/OurTeam/index";
+import OurWork from "@/components/common/layout/OurWork/";
+import { LAYOUT_MARGIN_TOP } from "@/defines/common/constants";
 import { Box } from "@mui/material";
 import { NextPage } from "next";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useRef } from "react";
-import { LAYOUT_MARGIN_TOP } from "@/defines/common/constants";
-import HomeVideo from "@/components/common/layout/Home/";
-import OurWork from "@/components/common/layout/OurWork/";
-import OurTeam from "@/components/common/layout/OurTeam/index";
 
 const Home: NextPage = () => {
 	const homeRef = useRef<HTMLDivElement>(null);

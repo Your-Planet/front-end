@@ -1,12 +1,12 @@
+import Footer from "@/components/common/layout/Footer/index";
+import Header from "@/components/common/layout/Header";
+import DateLocalizationProvider from "@/providers/DateLocalizationProvider";
+import ReactQueryClientProvider from "@/providers/ReactQueryClientProvider";
+import StyleProviders from "@/providers/StyleProviders";
+import StyledComponentsRegistry from "@/providers/StyledComponentsRegistry";
+import type { Metadata } from "next";
 import "./globals.css";
 import "./reset.css";
-import type { Metadata } from "next";
-import Header from "@/components/common/layout/Header";
-import StyledComponentsRegistry from "@/providers/StyledComponentsRegistry";
-import StyleProviders from "@/providers/StyleProviders";
-import DateLocalizationProvider from "@/providers/DateLocalizationProvider";
-import Footer from "@/components/common/layout/Footer/index";
-import ReactQueryClientProvider from "@/providers/ReactQueryClientProvider";
 
 export const metadata: Metadata = {
 	title: "Your Planet",

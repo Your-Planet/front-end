@@ -1,8 +1,8 @@
 "use client";
 
-import { ReactNode } from "react";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { ReactNode } from "react";
 
 export interface DateLocalizationProviderProps {
 	children: ReactNode | ReactNode[];

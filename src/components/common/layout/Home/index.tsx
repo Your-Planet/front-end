@@ -1,6 +1,6 @@
+import { WHITE_FONT_COLOR } from "@/defines/common/constants";
 import { Box } from "@mui/material";
 import { TITLE_BACKGROUND_COLOR } from "./defines/constants";
-import { WHITE_FONT_COLOR } from "@/defines/common/constants";
 
 const HomeVideo = () => {
 	return (

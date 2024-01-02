@@ -1,17 +1,17 @@
 "use client";
 
-import {
-	SELECTED_FONT_COLOR,
-	MIN_WIDTH,
-	FONT_SIZE,
-	FONT_COLOR,
-	FONT_NORMAL_WEIGHT,
-	FONT_BOLD_WEIGHT,
-} from "./defines/constants";
-import Link from "next/link";
 import { Box } from "@mui/material";
+import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import styled from "styled-components";
+import {
+	FONT_BOLD_WEIGHT,
+	FONT_COLOR,
+	FONT_NORMAL_WEIGHT,
+	FONT_SIZE,
+	MIN_WIDTH,
+	SELECTED_FONT_COLOR,
+} from "./defines/constants";
 
 interface StyledLinkProps {
 	selected: boolean;

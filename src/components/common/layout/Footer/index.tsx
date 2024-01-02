@@ -1,7 +1,6 @@
-import React from "react";
+import { FOOTER_BORDER_TOP, WHITE_FONT_COLOR } from "@/defines/common/constants";
 import { Box, Grid, Typography } from "@mui/material";
 import { FOOTER_BACKGROUND_COLOR } from "./defines/";
-import { WHITE_FONT_COLOR, FOOTER_BORDER_TOP } from "@/defines/common/constants";
 
 const Footer = () => {
 	return (
