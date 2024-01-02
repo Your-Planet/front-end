@@ -14,6 +14,7 @@ import {
 import React, { useState, useEffect } from "react";
 import classNames from "classnames";
 import { GenreType, SortOptionType } from "./defines/types";
+import { LABEL_BY_GENRE_TYPE } from "./defines/constants";
 
 type Props = {
 	tabValue: GenreType;
@@ -44,23 +45,7 @@ function SortOptions(props: Props) {
 	};
 
 	useEffect(() => {
-		switch (tabValue) {
-			case "ALL":
-				setGenre("전체");
-				break;
-			case "DAILY":
-				setGenre("일상");
-				break;
-			case "DATE":
-				setGenre("연애");
-				break;
-			case "HEALING":
-				setGenre("힐링");
-				break;
-			case "HUMOR":
-				setGenre("유머");
-				break;
-		}
+		setGenre(LABEL_BY_GENRE_TYPE[tabValue]);
 	}, [tabValue]);
 
 	return (
