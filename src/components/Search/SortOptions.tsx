@@ -1,32 +1,22 @@
 "use client";
 
-import {
-	Box,
-	Button,
-	FormControl,
-	InputLabel,
-	Menu,
-	MenuItem,
-	Select,
-	SelectChangeEvent,
-	Typography,
-} from "@mui/material";
-import React, { useState, useEffect } from "react";
-import classNames from "classnames";
+import { Box, FormControl, MenuItem, Select, SelectChangeEvent, Typography } from "@mui/material";
+import React from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { GenreType, SortOptionType } from "./defines/types";
+import { sortOptionContext } from "@/recoil/atoms/search";
+import { genreState } from "@/recoil/selectors/search";
 import { LABEL_BY_GENRE_TYPE } from "./defines/constants";
 
 type Props = {
-	tabValue: GenreType;
 	countOfCards: number;
-	sortOption: SortOptionType;
-	setSortOption: React.Dispatch<React.SetStateAction<SortOptionType>>;
 };
 
 function SortOptions(props: Props) {
-	const { tabValue, countOfCards, sortOption, setSortOption } = props;
-	const [genre, setGenre] = useState<string>("전체");
-	const stringForCount = `${genre}: ${countOfCards}`;
+	const { countOfCards } = props;
+	const [sortOption, setSortOption] = useRecoilState<SortOptionType>(sortOptionContext);
+	const genre = useRecoilValue<GenreType>(genreState);
+	const stringForCount = `${LABEL_BY_GENRE_TYPE[genre]}: ${countOfCards}`;
 
 	const handleDropDownMenuChange = (event: SelectChangeEvent) => {
 		const { value } = event.target;
@@ -43,10 +33,6 @@ function SortOptions(props: Props) {
 				break;
 		}
 	};
-
-	useEffect(() => {
-		setGenre(LABEL_BY_GENRE_TYPE[tabValue]);
-	}, [tabValue]);
 
 	return (
 		<Box className="flex">

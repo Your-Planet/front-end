@@ -7,6 +7,7 @@ import StyleProviders from "@/providers/StyleProviders";
 import DateLocalizationProvider from "@/providers/DateLocalizationProvider";
 import Footer from "@/components/common/layout/Footer/index";
 import ReactQueryClientProvider from "@/providers/ReactQueryClientProvider";
+import RecoilProvider from "@/providers/RecoilProvider";
 
 export const metadata: Metadata = {
 	title: "Your Planet",
@@ -22,9 +23,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 						<DateLocalizationProvider>
 							<StyledComponentsRegistry>
 								<ReactQueryClientProvider>
-									<Header />
-									<main className="pt-20 min-h-full">{children}</main>
-									<Footer />
+									<RecoilProvider>
+										<Header />
+										<main className="pt-20 min-h-full">{children}</main>
+										<Footer />
+									</RecoilProvider>
 								</ReactQueryClientProvider>
 							</StyledComponentsRegistry>
 						</DateLocalizationProvider>
