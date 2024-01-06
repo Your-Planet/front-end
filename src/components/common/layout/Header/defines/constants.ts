@@ -19,9 +19,13 @@ export const StyledHeaderLink = styled(Link)({
 	margin: "0 5px",
 });
 
-export const StyledHeaderLogo = styled(Link)({
+const StyledLogo = {
 	fontSize: LOGO_SIZE,
 	color: "black",
 	fontWeight: "bold",
 	textDecoration: "none",
-});
+};
+
+export const StyledLinkLogo = styled(Link)(StyledLogo);
+
+export const StyledH1Logo = styled("h1")(StyledLogo);

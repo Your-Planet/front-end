@@ -14,7 +14,7 @@ const Header: React.FC = () => {
 					<Gnb />
 				</Grid>
 				<Grid className="flex justify-center" item xs={4}>
-					<Logo />
+					<Logo href={"/"} />
 				</Grid>
 				<Grid className="flex justify-end" item xs={4}>
 					<GlobalMenu />
