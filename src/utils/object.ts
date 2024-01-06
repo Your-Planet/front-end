@@ -25,20 +25,15 @@ export const deepFreeze = <T extends Record<string, any>>(obj: T): T => {
 };
 
 /**
- * 객체 혹은 primitive 타입을 string 배열인 query key 형태로 변환
+ * 객체를 URL 파라미터로 변경
  * @param obj
  */
-export const object2QueryKeys = (obj?: object | number | string | boolean): string[] => {
-	if (obj === undefined) return [];
-	if (typeof obj === "number" || typeof obj === "string" || typeof obj === "boolean") return [obj.toString()];
+export const objectToUrlParams = (obj: object): URLSearchParams => {
+	const searchParams = new URLSearchParams();
 
-	return Object.entries(obj).map(([key, value]) => {
-		if (typeof value === "object") {
-			if (Array.isArray(value)) {
-				return `${key}:${value.join()}`;
-			}
-			return `${key}:${JSON.stringify(value)}`;
-		}
-		return `${key}:${value?.toString()}`;
+	Object.entries(obj).forEach(([k, v]) => {
+		if (v !== undefined) searchParams.append(k, v.toString());
 	});
+
+	return searchParams;
 };
