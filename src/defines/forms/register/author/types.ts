@@ -1,11 +1,6 @@
-import { GenderType } from "@/defines/member/types";
-import dayjs from "dayjs";
 import { AuthorRegisterRequest } from "@/apis/member";
+import { RegisterCommonMemberForm } from "@/defines/forms/register/common/types";
 
-export interface RegisterAuthorForm extends Omit<AuthorRegisterRequest, "gender" | "birthDate"> {
-	passwordConfirm: string;
-	gender: GenderType | null;
-	birthDate: dayjs.Dayjs | null;
-}
-
-export type WatchedRegisterAuthorForm = Partial<RegisterAuthorForm>;
+export interface RegisterAuthorForm
+	extends Omit<AuthorRegisterRequest, "genderType" | "birthDate">,
+		RegisterCommonMemberForm {}

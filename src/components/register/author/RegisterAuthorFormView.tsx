@@ -27,22 +27,23 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 			password: "",
 			passwordConfirm: "",
 			name: "",
-			gender: null,
+			genderType: null,
 			tel: "",
 			birthDate: null,
 		},
 	});
+
 	const { handleSubmit } = form;
 
 	const { mutate: mutatePostRegister } = useMutationPostAuthorRegister({});
 
 	const handleFormSubmit: FormEventHandler = handleSubmit(
-		(data) => {
+		({ genderType, birthDate, passwordConfirm, ...rest }) => {
 			mutatePostRegister(
 				{
-					...data,
-					genderType: data.genderType!,
-					birthDate: data.birthDate!.format("YYYY-mm-dd"),
+					...rest,
+					genderType: genderType!,
+					birthDate: birthDate!.format("YYYY-mm-dd"),
 					instagramAuthCode,
 				},
 				{
@@ -88,7 +89,7 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 
 						<RadioGroup<GenderType>
 							label="성별"
-							formName="gender"
+							formName="genderType"
 							required
 							radios={[
 								{
