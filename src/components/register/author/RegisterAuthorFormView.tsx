@@ -11,7 +11,9 @@ import { isNumber } from "@/utils/string";
 import { getEmailValidateRule } from "@/utils/react-hook-form/rule";
 import PasswordTextField from "@/components/common/password/PasswordTextField";
 
-export interface RegisterAuthorFormViewProps {}
+export interface RegisterAuthorFormViewProps {
+	instagramAuthCode: string;
+}
 
 function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 	const {} = props;
