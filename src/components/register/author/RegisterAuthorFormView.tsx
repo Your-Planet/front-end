@@ -10,13 +10,15 @@ import H2 from "@/components/common/text/H2";
 import { isNumber } from "@/utils/string";
 import { getEmailValidateRule } from "@/utils/react-hook-form/rule";
 import PasswordTextField from "@/components/common/password/PasswordTextField";
+import useMutationPostAuthorRegister from "@/hooks/queries/member/useMutationPostAuthorRegister";
+import { router } from "next/client";
 
 export interface RegisterAuthorFormViewProps {
 	instagramAuthCode: string;
 }
 
 function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
-	const {} = props;
+	const { instagramAuthCode } = props;
 
 	const form = useForm<RegisterAuthorForm>({
 		mode: "all",
@@ -28,14 +30,31 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 			gender: null,
 			tel: "",
 			birthDate: null,
-			instagramId: "",
 		},
 	});
-	const { handleSubmit, watch } = form;
+	const { handleSubmit } = form;
+
+	const { mutate: mutatePostRegister } = useMutationPostAuthorRegister({});
 
 	const handleFormSubmit: FormEventHandler = handleSubmit(
 		(data) => {
-			console.log(data);
+			mutatePostRegister(
+				{
+					...data,
+					genderType: data.genderType!,
+					birthDate: data.birthDate!.format("YYYY-mm-dd"),
+					instagramAuthCode,
+				},
+				{
+					onSuccess() {
+						// TODO @김현규 회원가입 성공 토스트 메시지 추가
+						router.push("/login");
+					},
+					onError() {
+						// TODO @김현규 회원가입 실패 안내 처리
+					},
+				},
+			);
 		},
 		(errors) => {
 			console.log(errors);
@@ -94,8 +113,6 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 						/>
 
 						<DatePicker formName="birthDate" label="생년월일" required />
-
-						<TextField formName="instagramId" label="인스타그램 아이디" required fullWidth />
 
 						<Button type="submit" variant="contained" size="large" fullWidth>
 							가입하기
