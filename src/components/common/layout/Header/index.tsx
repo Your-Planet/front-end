@@ -2,9 +2,9 @@
 
 import React from "react";
 import Gnb from "./Gnb";
-import Logo from "./Logo";
 import GlobalMenu from "./GlobalMenu";
 import { Grid, AppBar } from "@mui/material";
+import Logo from "@/components/common/Logo";
 
 const Header: React.FC = () => {
 	return (

@@ -1,8 +1,8 @@
 import { useRouter } from "next/navigation";
 import { Button } from "@mui/material";
-import Logo from "@/components/common/layout/Header/Logo";
 import InstagramIcon from "@/icons/InstagramIcon";
 import { getInstagramAuthUrl } from "@/utils/instagram";
+import Logo from "@/components/common/Logo";
 
 export interface InstagramAuthViewProps {}
 
