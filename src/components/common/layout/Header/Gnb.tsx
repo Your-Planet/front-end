@@ -7,13 +7,13 @@ import {
 	FONT_COLOR,
 	FONT_NORMAL_WEIGHT,
 	FONT_BOLD_WEIGHT,
+	HEADER_HEIGHT,
 } from "./defines/constants";
 import Link from "next/link";
 import { Box } from "@mui/material";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { PageType } from "./defines/types";
-import { HEADER_HEIGHT } from "../../../../../public/defines/index";
 import { usePathname } from "next/navigation";
 
 interface StyledBoxProps {

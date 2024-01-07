@@ -9,21 +9,21 @@ import OurTeam from "@/components/common/layout/OurTeam/index";
 const Home: NextPage = () => {
 	return (
 		<Box>
-			<div className="w-full section-height">
+			<Box className="w-full h-except-header">
 				<section id="home">
 					<HomeVideo />
 				</section>
-			</div>
-			<div className="w-full section-height">
+			</Box>
+			<Box className="w-full h-except-header">
 				<section id="our_work">
 					<OurWork />
 				</section>
-			</div>
-			<div className="w-full section-height">
+			</Box>
+			<Box className="w-full h-except-header">
 				<section id="our_team">
 					<OurTeam />
 				</section>
-			</div>
+			</Box>
 		</Box>
 	);
 };
