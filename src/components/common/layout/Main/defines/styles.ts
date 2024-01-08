@@ -6,4 +6,6 @@ export const StyledMain = styled("main")({
 	margin: `-${HEADER_HEIGHT}px 0 -${FOOTER_HEIGHT}px`,
 	padding: `${HEADER_HEIGHT}px 0 ${FOOTER_HEIGHT}px`,
 	minHeight: "100%",
+	display: "flex",
+	flexDirection: "column",
 });
