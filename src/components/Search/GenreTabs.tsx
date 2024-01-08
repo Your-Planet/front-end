@@ -23,8 +23,8 @@ function GenreTabs(props: Props) {
 		<Box className="flex justify-center" ref={genreTabsRef}>
 			<TabContext value={genre}>
 				<TabList onChange={handleTabsChange}>
-					{Object.entries(LABEL_BY_GENRE_TYPE).map((genre, index) => (
-						<Tab label={genre[1]} value={genre[0]} key={index} />
+					{Object.entries(LABEL_BY_GENRE_TYPE).map(([genreType, label], index) => (
+						<Tab label={label} value={genreType} key={index} />
 					))}
 				</TabList>
 			</TabContext>
