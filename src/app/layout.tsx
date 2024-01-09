@@ -7,6 +7,7 @@ import StyleProviders from "@/providers/StyleProviders";
 import DateLocalizationProvider from "@/providers/DateLocalizationProvider";
 import Footer from "@/components/common/layout/Footer/index";
 import ReactQueryClientProvider from "@/providers/ReactQueryClientProvider";
+import RecoilProvider from "@/providers/RecoilProvider";
 import { ReactNode } from "react";
 import Main from "@/components/common/layout/Main";
 
@@ -24,9 +25,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 						<DateLocalizationProvider>
 							<StyledComponentsRegistry>
 								<ReactQueryClientProvider>
-									<Header />
-									<Main>{children}</Main>
-									<Footer />
+									<RecoilProvider>
+                    <Header />
+                    <Main>{children}</Main>
+                    <Footer />
+									</RecoilProvider>
 								</ReactQueryClientProvider>
 							</StyledComponentsRegistry>
 						</DateLocalizationProvider>
