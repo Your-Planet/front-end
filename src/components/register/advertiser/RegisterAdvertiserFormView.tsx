@@ -13,6 +13,8 @@ import { getObjectAtPath } from "@/utils/object";
 import { useDaumPostcodePopup } from "react-daum-postcode";
 import { postcodeScriptUrl } from "react-daum-postcode/lib/loadPostcode";
 import PasswordTextField from "@/components/common/password/PasswordTextField";
+import useMutationPostAdvertiserRegister from "@/hooks/queries/member/useMutationPostAdvertiserRegister";
+import { router } from "next/client";
 
 export interface RegisterAdvertiserFormViewProps {}
 
@@ -38,6 +40,7 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 			name: "",
 		},
 	});
+
 	const {
 		handleSubmit,
 		setValue,
@@ -45,9 +48,27 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 		formState: { errors },
 	} = form;
 
+	const { mutate: mutatePostRegister } = useMutationPostAdvertiserRegister({});
+
 	const handleFormSubmit: FormEventHandler = handleSubmit(
-		(data) => {
-			console.log(data);
+		({ genderType, birthDate, businessAddress, passwordConfirm, ...rest }) => {
+			mutatePostRegister(
+				{
+					...rest,
+					genderType: genderType!,
+					birthDate: birthDate!.format("YYYY-mm-dd"),
+					businessAddress: `${businessAddress.base} ${businessAddress.detail}`,
+				},
+				{
+					onSuccess() {
+						// TODO @김현규 회원가입 성공 토스트 메시지 추가
+						router.push("/login");
+					},
+					onError() {
+						// TODO @김현규 회원가입 실패 안내 처리
+					},
+				},
+			);
 		},
 		(errors) => {
 			console.log(errors);

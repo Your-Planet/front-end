@@ -1,7 +1,8 @@
+import { GenderType } from "@/defines/member/types";
+import dayjs from "dayjs";
+
 export interface RegisterCommonMemberForm {
-	email: string;
-	password: string;
 	passwordConfirm: string;
-	tel: string;
-	name: string;
+	genderType: GenderType | null;
+	birthDate: dayjs.Dayjs | null;
 }
