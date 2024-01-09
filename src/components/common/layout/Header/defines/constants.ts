@@ -2,7 +2,6 @@ import { styled } from "@mui/system";
 import Link from "next/link";
 
 const TAB_HEIGHT = "72px";
-const LOGO_SIZE = "45px";
 
 export const FONT_BOLD_WEIGHT = 550;
 export const FONT_NORMAL_WEIGHT = 400;
@@ -18,11 +17,4 @@ export const StyledHeaderLink = styled(Link)({
 	color: FONT_COLOR,
 	textDecoration: "none",
 	margin: "0 5px",
-});
-
-export const StyledHeaderLogo = styled(Link)({
-	fontSize: LOGO_SIZE,
-	color: "black",
-	fontWeight: "bold",
-	textDecoration: "none",
 });

@@ -2,9 +2,9 @@
 
 import React from "react";
 import Gnb from "./Gnb";
-import Logo from "./Logo";
 import GlobalMenu from "./GlobalMenu";
 import { Grid, AppBar } from "@mui/material";
+import Logo from "@/components/common/Logo";
 
 const Header: React.FC = () => {
 	return (
@@ -14,7 +14,7 @@ const Header: React.FC = () => {
 					<Gnb />
 				</Grid>
 				<Grid className="flex justify-center" item xs={4}>
-					<Logo />
+					<Logo href={"/"} />
 				</Grid>
 				<Grid className="flex justify-end" item xs={4}>
 					<GlobalMenu />
