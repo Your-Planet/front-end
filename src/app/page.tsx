@@ -1,31 +1,31 @@
 "use client";
 
+import React, { useRef } from "react";
+import Banner from "@/components/Search/Banner";
+import ScrollDownSection from "@/components/Search/ScrollDownSection";
+import GenreTabs from "@/components/Search/GenreTabs";
+import MainSection from "@/components/Search/MainSection";
 import { Box } from "@mui/material";
-import { NextPage } from "next";
-import HomeVideo from "@/components/common/layout/Home/";
-import OurWork from "@/components/common/layout/OurWork/";
-import OurTeam from "@/components/common/layout/OurTeam/index";
+import SortOptions from "@/components/Search/SortOptions";
 
-const Home: NextPage = () => {
+function SearchPage() {
+	const genreTabsRef = useRef<HTMLDivElement>(null);
+
 	return (
-		<Box>
-			<Box className="w-full h-except-header">
-				<section id="home">
-					<HomeVideo />
-				</section>
+		<>
+			<Box className="w-full h-[calc(100vh-72px)] relative flex items-center p-10 box-border">
+				<Banner />
 			</Box>
-			<Box className="w-full h-except-header">
-				<section id="our_work">
-					<OurWork />
-				</section>
+			<Box className="flex w-full justify-center items-center">
+				<Box className="min-w-[50%] max-w-min">
+					<ScrollDownSection targetRef={genreTabsRef} />
+					<GenreTabs genreTabsRef={genreTabsRef} />
+					<SortOptions countOfCards={5} />
+					<MainSection />
+				</Box>
 			</Box>
-			<Box className="w-full h-except-header">
-				<section id="our_team">
-					<OurTeam />
-				</section>
-			</Box>
-		</Box>
+		</>
 	);
-};
+}
 
-export default Home;
+export default SearchPage;
