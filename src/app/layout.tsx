@@ -7,13 +7,15 @@ import StyleProviders from "@/providers/StyleProviders";
 import DateLocalizationProvider from "@/providers/DateLocalizationProvider";
 import Footer from "@/components/common/layout/Footer/index";
 import ReactQueryClientProvider from "@/providers/ReactQueryClientProvider";
+import { ReactNode } from "react";
+import Main from "@/components/common/layout/Main";
 
 export const metadata: Metadata = {
 	title: "Your Planet",
 	description: "Dream Your Planet",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<html>
 			<body className="overflow-x-hidden overflow-y-scroll">
@@ -23,7 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 							<StyledComponentsRegistry>
 								<ReactQueryClientProvider>
 									<Header />
-									<main className="pt-20 min-h-full">{children}</main>
+									<Main>{children}</Main>
 									<Footer />
 								</ReactQueryClientProvider>
 							</StyledComponentsRegistry>
