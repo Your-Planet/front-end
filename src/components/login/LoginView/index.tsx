@@ -4,6 +4,7 @@ import { LoginForm } from "@/components/login/LoginView/defines/types";
 import ReactHookForm from "@/components/common/ReactHookForm";
 import { Button } from "@mui/material";
 import { isEmail } from "@/utils/string";
+import Link from "next/link";
 
 export interface LoginViewProps {}
 
@@ -38,19 +39,18 @@ function LoginView(props: LoginViewProps) {
 
 	return (
 		<>
-			<div className="m-auto flex flex-col gap-12 p-8">
+			<div className="m-auto p-8">
 				<div className="text-center">
 					<Logo />
 				</div>
 
 				<FormProvider {...form}>
-					<form onSubmit={handleFormSubmit}>
+					<form onSubmit={handleFormSubmit} className="mt-12">
 						<TextField
 							formName="email"
 							label="이메일"
 							type="email"
 							fullWidth
-							margin="normal"
 							rules={{
 								validate: validateEmail,
 							}}
@@ -70,6 +70,12 @@ function LoginView(props: LoginViewProps) {
 						</Button>
 					</form>
 				</FormProvider>
+
+				<div className="text-center mt-8">
+					<Link href="/register" className="text-gray-500 no-underline">
+						회원가입
+					</Link>
+				</div>
 			</div>
 		</>
 	);
