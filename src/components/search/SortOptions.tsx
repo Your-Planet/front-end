@@ -28,8 +28,8 @@ function SortOptions(props: Props) {
 				<Typography variant="subtitle2">{stringForCount}</Typography>
 				<FormControl className="w-min" size="small">
 					<Select value={sortOption} onChange={handleDropDownMenuChange}>
-						{Object.entries(LABEL_BY_SORT_OPTION_TYPE).map((option, index) => (
-							<MenuItem value={option[0]} key={index}>
+						{Object.entries(LABEL_BY_SORT_OPTION_TYPE).map((option, _) => (
+							<MenuItem value={option[0]} key={option[0]}>
 								{option[1]}
 							</MenuItem>
 						))}
