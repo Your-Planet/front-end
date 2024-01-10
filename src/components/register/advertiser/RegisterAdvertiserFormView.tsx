@@ -14,13 +14,12 @@ import { useDaumPostcodePopup } from "react-daum-postcode";
 import { postcodeScriptUrl } from "react-daum-postcode/lib/loadPostcode";
 import PasswordTextField from "@/components/common/password/PasswordTextField";
 import useMutationPostAdvertiserRegister from "@/hooks/queries/member/useMutationPostAdvertiserRegister";
-import { useRouter } from "next/navigation";
+import { router } from "next/client";
 
 export interface RegisterAdvertiserFormViewProps {}
 
 function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 	const {} = props;
-	const router = useRouter();
 
 	const openPostcodePopup = useDaumPostcodePopup(postcodeScriptUrl);
 

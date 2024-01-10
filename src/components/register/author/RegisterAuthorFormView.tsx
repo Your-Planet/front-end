@@ -11,7 +11,7 @@ import { isNumber } from "@/utils/string";
 import { getEmailValidateRule } from "@/utils/react-hook-form/rule";
 import PasswordTextField from "@/components/common/password/PasswordTextField";
 import useMutationPostAuthorRegister from "@/hooks/queries/member/useMutationPostAuthorRegister";
-import { useRouter } from "next/navigation";
+import { router } from "next/client";
 
 export interface RegisterAuthorFormViewProps {
 	instagramAuthCode: string;
@@ -19,7 +19,6 @@ export interface RegisterAuthorFormViewProps {
 
 function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 	const { instagramAuthCode } = props;
-	const router = useRouter();
 
 	const form = useForm<RegisterAuthorForm>({
 		mode: "all",
