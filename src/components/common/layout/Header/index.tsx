@@ -1,12 +1,12 @@
 "use client";
 
 import React from "react";
+import { Grid, AppBar } from "@mui/material";
 import Gnb from "./Gnb";
 import Logo from "./Logo";
 import GlobalMenu from "./GlobalMenu";
-import { Grid, AppBar } from "@mui/material";
 
-const Header: React.FC = () => {
+function Header() {
 	return (
 		<AppBar className="bg-white px-5" position="fixed">
 			<Grid className="flex items-center h-20" container>
@@ -22,6 +22,6 @@ const Header: React.FC = () => {
 			</Grid>
 		</AppBar>
 	);
-};
+}
 
 export default Header;

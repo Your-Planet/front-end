@@ -3,9 +3,9 @@ import Image from "next/image";
 import React from "react";
 import { HEADER_HEIGHT } from "../Header/defines/constants";
 
-const OurTeam = () => {
+function OurTeam() {
 	return (
-		<Box className={`w-full h-except-header flex justify-center items-center`}>
+		<Box className="w-full h-except-header flex justify-center items-center">
 			<Box className="w-full h-full max-w-[1200px] flex flex-col justify-center ml-40 mr-40">
 				<Typography className="p-3" variant="h4">
 					Our Team
@@ -17,7 +17,7 @@ const OurTeam = () => {
 								src="/images/marketing.png"
 								alt="marketing"
 								fill
-								priority={true}
+								priority
 								sizes="(max-width: 768px) 200px, 220px"
 							/>
 						</Box>
@@ -58,6 +58,6 @@ const OurTeam = () => {
 			</Box>
 		</Box>
 	);
-};
+}
 
 export default OurTeam;

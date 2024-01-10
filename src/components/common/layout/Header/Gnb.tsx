@@ -1,5 +1,11 @@
 "use client";
 
+import Link from "next/link";
+import { Box } from "@mui/material";
+import styled from "styled-components";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { PageType } from "./defines/types";
 import {
 	SELECTED_PAGE_COLOR,
 	MIN_WIDTH,
@@ -9,12 +15,6 @@ import {
 	FONT_BOLD_WEIGHT,
 	HEADER_HEIGHT,
 } from "./defines/constants";
-import Link from "next/link";
-import { Box } from "@mui/material";
-import styled from "styled-components";
-import { useEffect, useState } from "react";
-import { PageType } from "./defines/types";
-import { usePathname } from "next/navigation";
 
 interface StyledBoxProps {
 	selected: boolean;
@@ -43,7 +43,7 @@ const StyledLink = styled(Link)<StyledLinkProps>`
 	text-decoration: none;
 `;
 
-const Gnb = () => {
+function Gnb() {
 	const pathname = usePathname();
 	const [selectedPage, setSelectedPage] = useState<PageType>(null);
 
@@ -65,26 +65,24 @@ const Gnb = () => {
 	}, [pathname]);
 
 	return (
-		<>
-			<Box className="flex">
-				<StyledBox selected={selectedPage === "HOME"}>
-					<StyledLink href="/" scroll={false} selected={selectedPage === "HOME"}>
-						Home
-					</StyledLink>
-				</StyledBox>
-				<StyledBox selected={selectedPage === "SEARCH"}>
-					<StyledLink href="/search" selected={selectedPage === "SEARCH"}>
-						Search
-					</StyledLink>
-				</StyledBox>
-				<StyledBox selected={selectedPage === "POST_ME"}>
-					<StyledLink href="/post-me" selected={selectedPage === "POST_ME"}>
-						Post ME
-					</StyledLink>
-				</StyledBox>
-			</Box>
-		</>
+		<Box className="flex">
+			<StyledBox selected={selectedPage === "HOME"}>
+				<StyledLink href="/" scroll={false} selected={selectedPage === "HOME"}>
+					Home
+				</StyledLink>
+			</StyledBox>
+			<StyledBox selected={selectedPage === "SEARCH"}>
+				<StyledLink href="/search" selected={selectedPage === "SEARCH"}>
+					Search
+				</StyledLink>
+			</StyledBox>
+			<StyledBox selected={selectedPage === "POST_ME"}>
+				<StyledLink href="/post-me" selected={selectedPage === "POST_ME"}>
+					Post ME
+				</StyledLink>
+			</StyledBox>
+		</Box>
 	);
-};
+}
 
 export default Gnb;

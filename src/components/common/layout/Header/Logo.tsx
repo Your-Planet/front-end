@@ -1,7 +1,7 @@
 import { StyledHeaderLogo } from "./defines/constants";
 
-const Logo = () => {
+function Logo() {
 	return <StyledHeaderLogo href="/">Your Planet</StyledHeaderLogo>;
-};
+}
 
 export default Logo;
