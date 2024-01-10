@@ -1,5 +1,4 @@
-import { Message } from "react-hook-form";
-import { isEmail } from "@/utils/string";
+import { PASSWORD_LENGTH } from "@/defines/password/constants";
 import {
 	checkValidCombination,
 	checkValidKeyboardContinuity,
@@ -7,7 +6,8 @@ import {
 	checkValidSameCharContinuity,
 	checkValidSequenceContinuity,
 } from "@/utils/password";
-import { PASSWORD_LENGTH } from "@/defines/password/constants";
+import { isEmail } from "@/utils/string";
+import { Message } from "react-hook-form";
 
 export const getMaxLengthPlaceholder = (maxLength: number) => `${maxLength}자까지 입력 가능합니다.`;
 

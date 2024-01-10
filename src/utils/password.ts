@@ -1,3 +1,4 @@
+import { COMBINED_MIN_LIMIT, CONTINUOUS_DIGITS_LIMIT } from "@/defines/password/constants";
 import {
 	checkHasKeyboardContinuity,
 	checkHasSameCharContinuity,
@@ -7,7 +8,6 @@ import {
 	hasSpecial,
 	hasUpper,
 } from "@/utils/string";
-import { COMBINED_MIN_LIMIT, CONTINUOUS_DIGITS_LIMIT } from "@/defines/password/constants";
 
 /**
  * 길이 제한 검사
