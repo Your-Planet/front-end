@@ -37,14 +37,12 @@ const PortfolioLinkField = () => {
 		if (links.length > DEFAULT_OF_PORTFOLIO_LINK) {
 			return (
 				<InputAdornment position="end">
-					(
 					<RemoveCircleOutlineIcon
 						className="cursor-pointer"
 						color="disabled"
 						sx={hoverStyle(links.length)}
 						onClick={() => handleDeleteInputField(index)}
 					/>
-					)
 				</InputAdornment>
 			);
 		}
