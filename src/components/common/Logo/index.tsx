@@ -6,8 +6,8 @@ interface LogoProps {
 
 const LOGO_LABEL = "Your Planet";
 
-const Logo = ({ href }: LogoProps) => {
-	return href ? <StyledLinkLogo href={href}>{LOGO_LABEL}</StyledLinkLogo> : <StyledH1Logo>{LOGO_LABEL}</StyledH1Logo>;
-};
+function Logo({ href }: LogoProps) {
+  return href ? <StyledLinkLogo href={href}>{LOGO_LABEL}</StyledLinkLogo> : <StyledH1Logo>{LOGO_LABEL}</StyledH1Logo>;
+}
 
 export default Logo;

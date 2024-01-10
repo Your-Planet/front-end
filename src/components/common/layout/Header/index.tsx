@@ -2,9 +2,9 @@
 
 import React from "react";
 import { Grid, AppBar } from "@mui/material";
+import Logo from "@/components/common/Logo";
 import Gnb from "./Gnb";
 import GlobalMenu from "./GlobalMenu";
-import Logo from "@/components/common/Logo";
 
 function Header() {
 	return (
@@ -14,7 +14,7 @@ function Header() {
 					<Gnb />
 				</Grid>
 				<Grid className="flex justify-center" item xs={4}>
-					<Logo href={"/"} />
+					<Logo href="/" />
 				</Grid>
 				<Grid className="flex justify-end" item xs={4}>
 					<GlobalMenu />

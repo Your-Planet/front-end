@@ -26,9 +26,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 							<StyledComponentsRegistry>
 								<ReactQueryClientProvider>
 									<RecoilProvider>
-                    <Header />
-                    <Main>{children}</Main>
-                    <Footer />
+										<Header />
+										<Main>{children}</Main>
+										<Footer />
 									</RecoilProvider>
 								</ReactQueryClientProvider>
 							</StyledComponentsRegistry>

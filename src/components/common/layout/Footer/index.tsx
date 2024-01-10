@@ -11,7 +11,7 @@ function Footer() {
 				backgroundColor: FOOTER_BACKGROUND_COLOR,
 				height: FOOTER_HEIGHT,
 			}}
-			className={`w-full flex justify-center items-center p-20 text-sm`}
+			className="w-full flex justify-center items-center p-20 text-sm"
 		>
 			<Grid container spacing={2}>
 				<Grid xs={6} item>
