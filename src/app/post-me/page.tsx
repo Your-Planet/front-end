@@ -1,6 +1,8 @@
 import InstagramIdField from "@/components/post_me/instagramIdField";
 import InstatoonCategory from "@/components/post_me/InstatoonCategory";
 import IntroductionField from "@/components/post_me/IntroductionField";
+import PortfolioLinkField from "@/components/post_me/PortfolioLinkField";
+import SubmitButton from "@/components/post_me/SubmitButton";
 import { Box } from "@mui/system";
 import React from "react";
 
@@ -12,6 +14,8 @@ const PostME = (props: Props) => {
 			<InstagramIdField />
 			<IntroductionField />
 			<InstatoonCategory />
+			<PortfolioLinkField />
+			<SubmitButton />
 		</Box>
 	);
 };
