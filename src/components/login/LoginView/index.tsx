@@ -6,11 +6,16 @@ import { Button } from "@mui/material";
 import { isEmail } from "@/utils/string";
 import Link from "next/link";
 import useMutationPostLogin from "@/hooks/queries/member/useMutationPostLogin";
+import { setCookie } from "@/utils/cookie";
+import { COOKIE } from "@/defines/cookie/constants";
+import { useRouter } from "next/navigation";
 
 export interface LoginViewProps {}
 
 function LoginView(props: LoginViewProps) {
 	const {} = props;
+
+	const router = useRouter();
 
 	const form = useForm<LoginForm>({
 		defaultValues: {
@@ -25,7 +30,10 @@ function LoginView(props: LoginViewProps) {
 
 	const handleFormSubmit = handleSubmit((data) => {
 		mutatePostLogin(data, {
-			onSuccess(token) {},
+			onSuccess({ data: token }) {
+				setCookie(COOKIE.accessToken, token);
+				router.push("/");
+			},
 		});
 	});
 
