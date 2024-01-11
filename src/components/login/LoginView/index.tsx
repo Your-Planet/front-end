@@ -5,6 +5,7 @@ import ReactHookForm from "@/components/common/ReactHookForm";
 import { Button } from "@mui/material";
 import { isEmail } from "@/utils/string";
 import Link from "next/link";
+import useMutationPostLogin from "@/hooks/queries/member/useMutationPostLogin";
 
 export interface LoginViewProps {}
 
@@ -20,8 +21,12 @@ function LoginView(props: LoginViewProps) {
 
 	const { handleSubmit } = form;
 
+	const { mutate: mutatePostLogin } = useMutationPostLogin({});
+
 	const handleFormSubmit = handleSubmit((data) => {
-		console.log(data);
+		mutatePostLogin(data, {
+			onSuccess(token) {},
+		});
 	});
 
 	const validateEmail = (value: string) => {
