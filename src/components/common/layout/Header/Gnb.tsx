@@ -1,20 +1,20 @@
 "use client";
 
+import { Box } from "@mui/material";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import styled from "styled-components";
 import {
-	SELECTED_PAGE_COLOR,
-	MIN_WIDTH,
-	FONT_SIZE,
+	FONT_BOLD_WEIGHT,
 	FONT_COLOR,
 	FONT_NORMAL_WEIGHT,
-	FONT_BOLD_WEIGHT,
+	FONT_SIZE,
 	HEADER_HEIGHT,
+	MIN_WIDTH,
+	SELECTED_PAGE_COLOR,
 } from "./defines/constants";
-import Link from "next/link";
-import { Box } from "@mui/material";
-import styled from "styled-components";
-import { useEffect, useState } from "react";
 import { PageType } from "./defines/types";
-import { usePathname } from "next/navigation";
 
 interface StyledBoxProps {
 	selected: boolean;

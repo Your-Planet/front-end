@@ -1,5 +1,5 @@
-import { FieldValues } from "react-hook-form";
 import { ReactHookFormProps } from "@/components/common/ReactHookForm/defines/types";
+import useReactHookFormControl from "@/components/common/ReactHookForm/hooks/useReactHookFormControl";
 import {
 	FormControl,
 	FormControlLabel,
@@ -9,7 +9,7 @@ import {
 	RadioGroup,
 	RadioGroupProps,
 } from "@mui/material";
-import useReactHookFormControl from "@/components/common/ReactHookForm/hooks/useReactHookFormControl";
+import { FieldValues } from "react-hook-form";
 
 export interface ReactHookFormRadioGroupProps<TFieldValues extends FieldValues, RadioValue extends string | number>
 	extends ReactHookFormProps<TFieldValues>,

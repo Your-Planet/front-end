@@ -1,7 +1,5 @@
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
-import React from "react";
-import { HEADER_HEIGHT } from "../Header/defines/constants";
 
 const OurTeam = () => {
 	return (

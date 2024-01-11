@@ -1,5 +1,5 @@
-import { StyledHeaderLink } from "./defines/constants";
 import { Box } from "@mui/material";
+import { StyledHeaderLink } from "./defines/constants";
 
 const GlobalMenu = () => {
 	return (

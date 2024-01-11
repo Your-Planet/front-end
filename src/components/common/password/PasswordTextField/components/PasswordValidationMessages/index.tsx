@@ -1,5 +1,6 @@
 "use client";
 
+import { COMBINED_MIN_LIMIT, CONTINUOUS_DIGITS_LIMIT, PASSWORD_LENGTH } from "@/defines/password/constants";
 import {
 	checkValidCombination,
 	checkValidKeyboardContinuity,
@@ -8,7 +9,6 @@ import {
 	checkValidSequenceContinuity,
 } from "@/utils/password";
 import classNames from "classnames";
-import { COMBINED_MIN_LIMIT, CONTINUOUS_DIGITS_LIMIT, PASSWORD_LENGTH } from "@/defines/password/constants";
 
 export interface IndexProps {
 	password: string;
