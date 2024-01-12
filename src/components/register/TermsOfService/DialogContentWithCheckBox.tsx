@@ -1,19 +1,50 @@
+import { tosCheckedContext } from "@/recoil/atoms/TermsOfService";
 import { Box, Checkbox, DialogContent, TextField, Typography } from "@mui/material";
+import { useRecoilState } from "recoil";
+import { tosCheckedStateType, tosLabel } from "./defines/types";
 
 type Props = {
+	label: tosLabel;
 	content: string;
 	tosText?: string;
 	required?: boolean;
 };
 
 function DialogContentWithCheckBox(props: Props) {
-	const { content, tosText, required } = props;
+	const { label, content, tosText, required } = props;
 
 	const textFieldInputProps = {
 		style: {
 			fontSize: 14,
 			color: "gray",
 		},
+	};
+
+	const [tosState, setTosState] = useRecoilState<tosCheckedStateType>(tosCheckedContext);
+
+	const handleChange = () => {
+		if (label === "ALL") {
+			if (!tosState.ALL) {
+				setTosState({
+					ALL: true,
+					REQUIRED: true,
+					PERSONAL_INFORMATION: true,
+					SHOPPING_INFORMATION_RECEIPT: true,
+				});
+			} else {
+				setTosState({
+					ALL: false,
+					REQUIRED: false,
+					PERSONAL_INFORMATION: false,
+					SHOPPING_INFORMATION_RECEIPT: false,
+				});
+			}
+		} else {
+			setTosState({
+				...tosState,
+				[label]: !tosState[label],
+			});
+		}
 	};
 
 	return (
@@ -28,7 +59,7 @@ function DialogContentWithCheckBox(props: Props) {
 					) : (
 						<Typography variant="body2">{content}</Typography>
 					)}
-					<Checkbox />
+					<Checkbox checked={tosState[label]} onChange={handleChange} />
 				</Box>
 			</DialogContent>
 			{tosText && (

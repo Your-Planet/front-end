@@ -5,7 +5,6 @@ import { labelByMemberForRegister } from "@/defines/member/constants";
 import { MemberType } from "@/defines/member/types";
 import { tosOpenContext } from "@/recoil/atoms/TermsOfService";
 import { Button, ButtonGroup } from "@mui/material";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
 import TermsOfService from "../TermsOfService/index";
@@ -15,7 +14,6 @@ export interface SelectUserTypeViewProps {}
 function SelectUserTypeView(props: SelectUserTypeViewProps) {
 	const {} = props;
 
-	const router = useRouter();
 	const [tosOpen, setTosOpen] = useRecoilState<boolean>(tosOpenContext);
 	const [selectedMember, setSelectedMember] = useState<MemberType | null>(null);
 
@@ -42,7 +40,6 @@ function SelectUserTypeView(props: SelectUserTypeViewProps) {
 					))}
 				</ButtonGroup>
 				{tosOpen && <TermsOfService selectedMember={selectedMember} />}
-				
 			</div>
 		</>
 	);

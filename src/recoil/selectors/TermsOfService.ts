@@ -1,11 +1,11 @@
 import { selector } from "recoil";
-import { tosOpenContext } from "../atoms/TermsOfService";
+import { tosCheckedContext } from "../atoms/TermsOfService";
 
-export const tosOpenState = selector({
-	key: "tosOpenState",
+export const tosCheckedState = selector({
+	key: "tosCheckedState",
 	get: ({ get }) => {
-		const open = get(tosOpenContext);
+		const checked = get(tosCheckedContext);
 
-		return open;
+		return checked;
 	},
 });
