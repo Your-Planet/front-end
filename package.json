@@ -11,6 +11,7 @@
 	"dependencies": {
 		"@emotion/react": "^11.11.3",
 		"@emotion/styled": "^11.11.0",
+		"@mui/lab": "^5.0.0-alpha.159",
 		"@mui/icons-material": "^5.15.2",
 		"@mui/material": "^5.15.2",
 		"@mui/x-date-pickers": "^6.18.1",
@@ -49,6 +50,7 @@
 		"prettier": "^3.0.3",
 		"prettier-plugin-organize-imports": "^3.2.4",
 		"tailwindcss": "^3.3.5",
+		"tailwindcss-3d": "^1.0.4",
 		"typescript": "^5"
 	}
 }
