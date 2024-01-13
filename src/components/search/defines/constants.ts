@@ -1,5 +1,5 @@
 import { deepFreeze } from "@/utils/object";
-import { GenreType, GenreInfo, SortOptionInfo, SortOptionType } from "./types";
+import { GenreInfo, GenreType, SortOptionInfo, SortOptionType } from "./types";
 
 export const LABEL_BY_GENRE_TYPE: Record<GenreType, GenreInfo> = deepFreeze({
 	ALL: "전체",

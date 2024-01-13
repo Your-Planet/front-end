@@ -3,13 +3,13 @@
 import ReactHookForm from "@/components/common/ReactHookForm";
 import PasswordTextField from "@/components/common/password/PasswordTextField";
 import H2 from "@/components/common/text/H2";
+import useRegisterForm from "@/components/register/form/hooks/useRegisterForm";
 import { RegisterAuthorForm } from "@/defines/forms/register/author/types";
 import { GenderType } from "@/defines/member/types";
 import useMutationPostAuthorRegister from "@/hooks/queries/member/useMutationPostAuthorRegister";
 import { getEmailValidateRule } from "@/utils/react-hook-form/rule";
 import { isNumber } from "@/utils/string";
 import { Button } from "@mui/material";
-import { useRouter } from "next/navigation";
 import { FormEventHandler } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
@@ -19,7 +19,6 @@ export interface RegisterAuthorFormViewProps {
 
 function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 	const { instagramAuthCode } = props;
-	const router = useRouter();
 
 	const form = useForm<RegisterAuthorForm>({
 		mode: "all",
@@ -38,30 +37,23 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 
 	const { mutate: mutatePostRegister } = useMutationPostAuthorRegister({});
 
-	const handleFormSubmit: FormEventHandler = handleSubmit(
-		({ genderType, birthDate, passwordConfirm, ...rest }) => {
-			mutatePostRegister(
-				{
-					...rest,
-					genderType: genderType!,
-					birthDate: birthDate!.format("YYYY-mm-dd"),
-					instagramAuthCode,
-				},
-				{
-					onSuccess() {
-						// TODO @김현규 회원가입 성공 토스트 메시지 추가
-						router.push("/login");
-					},
-					onError() {
-						// TODO @김현규 회원가입 실패 안내 처리
-					},
-				},
-			);
-		},
-		(errors) => {
-			console.log(errors);
-		},
-	);
+	const { handleSuccessRegister, handleFailRegister } = useRegisterForm();
+
+	const handleFormSubmit: FormEventHandler = handleSubmit(({ genderType, birthDate, passwordConfirm, ...rest }) => {
+		mutatePostRegister(
+			{
+				...rest,
+				genderType: genderType!,
+				birthDate: birthDate!.format("YYYY-mm-dd"),
+				instagramAuthCode,
+				memberType: "AUTHOR",
+			},
+			{
+				onSuccess: handleSuccessRegister,
+				onError: handleFailRegister,
+			},
+		);
+	});
 
 	const { TextField, RadioGroup, DatePicker } = ReactHookForm<RegisterAuthorForm>();
 
