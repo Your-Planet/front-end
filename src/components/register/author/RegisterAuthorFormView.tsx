@@ -1,17 +1,17 @@
 "use client";
 
-import { FormProvider, useForm } from "react-hook-form";
-import { RegisterAuthorForm } from "@/defines/forms/register/author/types";
-import { FormEventHandler } from "react";
-import { Button } from "@mui/material";
 import ReactHookForm from "@/components/common/ReactHookForm";
-import { GenderType } from "@/defines/member/types";
-import H2 from "@/components/common/text/H2";
-import { isNumber } from "@/utils/string";
-import { getEmailValidateRule } from "@/utils/react-hook-form/rule";
 import PasswordTextField from "@/components/common/password/PasswordTextField";
+import H2 from "@/components/common/text/H2";
+import { RegisterAuthorForm } from "@/defines/forms/register/author/types";
+import { GenderType } from "@/defines/member/types";
 import useMutationPostAuthorRegister from "@/hooks/queries/member/useMutationPostAuthorRegister";
+import { getEmailValidateRule } from "@/utils/react-hook-form/rule";
+import { isNumber } from "@/utils/string";
+import { Button } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { FormEventHandler } from "react";
+import { FormProvider, useForm } from "react-hook-form";
 
 export interface RegisterAuthorFormViewProps {
 	instagramAuthCode: string;

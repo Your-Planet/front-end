@@ -1,10 +1,9 @@
 "use client";
 
-import React from "react";
-import { Grid, AppBar } from "@mui/material";
 import Logo from "@/components/common/Logo";
-import Gnb from "./Gnb";
+import { AppBar, Grid } from "@mui/material";
 import GlobalMenu from "./GlobalMenu";
+import Gnb from "./Gnb";
 
 function Header() {
 	return (

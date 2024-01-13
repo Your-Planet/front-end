@@ -1,7 +1,6 @@
-import { Box } from "@mui/material";
 import { WHITE_FONT_COLOR } from "@/defines/common/constants";
+import { Box } from "@mui/material";
 import { TITLE_BACKGROUND_COLOR } from "./defines/constants";
-import { HEADER_HEIGHT } from "../Header/defines/constants";
 
 function HomeVideo() {
 	return (

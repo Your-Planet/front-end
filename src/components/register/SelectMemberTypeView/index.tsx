@@ -1,10 +1,10 @@
 "use client";
 
-import { Button, ButtonGroup } from "@mui/material";
-import { MemberType } from "@/defines/member/types";
-import { labelByMemberForRegister } from "@/defines/member/constants";
-import { useRouter } from "next/navigation";
 import H2 from "@/components/common/text/H2";
+import { labelByMemberForRegister } from "@/defines/member/constants";
+import { MemberType } from "@/defines/member/types";
+import { Button, ButtonGroup } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 export interface SelectUserTypeViewProps {}
 

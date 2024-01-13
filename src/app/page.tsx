@@ -1,9 +1,9 @@
 "use client";
 
-import { Box } from "@mui/material";
 import HomeVideo from "@/components/common/layout/Home/";
-import OurWork from "@/components/common/layout/OurWork/";
 import OurTeam from "@/components/common/layout/OurTeam/index";
+import OurWork from "@/components/common/layout/OurWork/";
+import { Box } from "@mui/material";
 
 function Home() {
 	return (
