@@ -49,7 +49,7 @@ function DialogContentWithCheckBox(props: Props) {
 			fontSize: 14,
 			color: "gray",
 		},
-		spellCheck: "false",
+		spellCheck: false,
 	};
 
 	const [tosState, setTosState] = useRecoilState<tosCheckedStateType>(tosCheckedContext);
