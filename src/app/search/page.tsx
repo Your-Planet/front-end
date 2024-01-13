@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useRef } from "react";
 import Banner from "@/components/search/Banner";
-import ScrollDownSection from "@/components/search/ScrollDownSection";
 import GenreTabs from "@/components/search/GenreTabs";
 import MainSection from "@/components/search/MainSection";
-import { Box } from "@mui/material";
+import ScrollDownSection from "@/components/search/ScrollDownSection";
 import SortOptions from "@/components/search/SortOptions";
+import { Box } from "@mui/material";
+import { useRef } from "react";
 
 function SearchPage() {
 	const genreTabsRef = useRef<HTMLDivElement>(null);

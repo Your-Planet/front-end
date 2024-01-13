@@ -1,10 +1,10 @@
 "use client";
 
+import HomeVideo from "@/components/common/layout/Home/";
+import OurTeam from "@/components/common/layout/OurTeam/index";
+import OurWork from "@/components/common/layout/OurWork/";
 import { Box } from "@mui/material";
 import { NextPage } from "next";
-import HomeVideo from "@/components/common/layout/Home/";
-import OurWork from "@/components/common/layout/OurWork/";
-import OurTeam from "@/components/common/layout/OurTeam/index";
 
 const Home: NextPage = () => {
 	return (

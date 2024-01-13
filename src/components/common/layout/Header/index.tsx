@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
-import Gnb from "./Gnb";
-import GlobalMenu from "./GlobalMenu";
-import { Grid, AppBar } from "@mui/material";
 import Logo from "@/components/common/Logo";
+import { AppBar, Grid } from "@mui/material";
+import React from "react";
+import GlobalMenu from "./GlobalMenu";
+import Gnb from "./Gnb";
 
 const Header: React.FC = () => {
 	return (
