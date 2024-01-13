@@ -1,12 +1,11 @@
 "use client";
 
-import { PRIMARY_COLOR } from "@/defines/common/constants";
+import { DEFAULT_OF_PORTFOLIO_LINK, LIMIT_OF_PORTFOLIO_LINK, PRIMARY_COLOR } from "@/defines/common/constants";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import { Box, InputAdornment, Link, TextField, Typography } from "@mui/material";
 import { useCallback, useState } from "react";
-import { DEFAULT_OF_PORTFOLIO_LINK, LIMIT_OF_PORTFOLIO_LINK } from "../../defines/common/constants";
 import HelpIcon from "../common/HelpIcon/index";
 import { hoverStyle } from "./defines/styles";
 
