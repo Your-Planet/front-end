@@ -10,11 +10,7 @@ export interface MainProps {
 function Main(props: MainProps) {
 	const { children } = props;
 
-	return (
-		<>
-			<StyledMain>{children}</StyledMain>
-		</>
-	);
+	return <StyledMain>{children}</StyledMain>;
 }
 
 export default Main;

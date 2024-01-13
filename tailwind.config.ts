@@ -17,9 +17,14 @@ const config: Config = {
 			height: {
 				"except-header": `calc(100vh - ${HEADER_HEIGHT}px)`,
 			},
+			keyframes: {
+				wheel: {
+					to: { opacity: "0", top: "50px" },
+				},
+			},
 		},
 	},
-	plugins: [],
+	plugins: [require("tailwindcss-3d")],
 	corePlugins: {
 		preflight: false,
 	},
