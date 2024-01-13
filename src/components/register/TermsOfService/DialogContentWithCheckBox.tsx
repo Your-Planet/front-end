@@ -72,40 +72,38 @@ function DialogContentWithCheckBox(props: Props) {
 	};
 
 	return (
-		<>
-			<DialogContent className="overflow-y-visible px-0 py-1 ">
-				<Accordion>
-					<Box className="flex justify-between items-center">
-						{required ? (
-							<AccordionSummary>
-								<Typography variant="body2">{content}</Typography>
-								<Typography className="ml-1 text-red-500 text-sm">(필수)</Typography>
-							</AccordionSummary>
-						) : optional ? (
-							<AccordionSummary>
-								<Typography variant="body2">{content}</Typography>
-								<Typography className="ml-1 text-gray-500 text-sm">(선택)</Typography>
-							</AccordionSummary>
-						) : (
+		<DialogContent className="overflow-y-visible px-0 py-1 ">
+			<Accordion>
+				<Box className="flex justify-between items-center">
+					{required ? (
+						<AccordionSummary>
 							<Typography variant="body2">{content}</Typography>
-						)}
-						<Checkbox checked={tosState[label]} onChange={handleChange} />
-					</Box>
-					{tosText && (
-						<AccordionDetails>
-							<TextField
-								className="read-only:bg-gray-100"
-								multiline
-								fullWidth
-								maxRows={7}
-								defaultValue={tosText}
-								inputProps={textFieldInputProps}
-							/>
-						</AccordionDetails>
+							<Typography className="ml-1 text-red-500 text-sm">(필수)</Typography>
+						</AccordionSummary>
+					) : optional ? (
+						<AccordionSummary>
+							<Typography variant="body2">{content}</Typography>
+							<Typography className="ml-1 text-gray-500 text-sm">(선택)</Typography>
+						</AccordionSummary>
+					) : (
+						<Typography variant="body2">{content}</Typography>
 					)}
-				</Accordion>
-			</DialogContent>
-		</>
+					<Checkbox checked={tosState[label]} onChange={handleChange} />
+				</Box>
+				{tosText && (
+					<AccordionDetails>
+						<TextField
+							className="read-only:bg-gray-100"
+							multiline
+							fullWidth
+							maxRows={7}
+							defaultValue={tosText}
+							inputProps={textFieldInputProps}
+						/>
+					</AccordionDetails>
+				)}
+			</Accordion>
+		</DialogContent>
 	);
 }
 

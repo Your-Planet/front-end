@@ -1,7 +1,7 @@
 "use client";
 
-import { ReactNode } from "react";
 import { StyledMain } from "@/components/common/layout/Main/defines/styles";
+import { ReactNode } from "react";
 
 export interface MainProps {
 	children: ReactNode;

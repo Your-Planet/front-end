@@ -21,7 +21,7 @@ const modalInnerBoxStyle = {
 	alignItems: "center",
 };
 
-const SubmitButton = () => {
+function SubmitButton() {
 	const [open, setOpen] = useState<boolean>(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
@@ -48,6 +48,6 @@ const SubmitButton = () => {
 			</Dialog>
 		</Box>
 	);
-};
+}
 
 export default SubmitButton;

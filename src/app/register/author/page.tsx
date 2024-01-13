@@ -1,8 +1,8 @@
 "use client";
 
+import InstagramAuthView from "@/components/register/author/InstagramAuthView";
 import RegisterAuthorFormView from "@/components/register/author/RegisterAuthorFormView";
 import { useSearchParams } from "next/navigation";
-import InstagramAuthView from "@/components/register/author/InstagramAuthView";
 
 export interface RegisterAuthorPageProps {}
 

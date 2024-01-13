@@ -1,5 +1,5 @@
-import { atom } from "recoil";
 import { GenreType, SortOptionType } from "@/components/search/defines/types";
+import { atom } from "recoil";
 
 export const genreContext = atom<GenreType>({
 	key: "Genre",

@@ -1,17 +1,16 @@
 "use client";
 
-import { PRIMARY_COLOR } from "@/defines/common/constants";
+import { DEFAULT_OF_PORTFOLIO_LINK, LIMIT_OF_PORTFOLIO_LINK, PRIMARY_COLOR } from "@/defines/common/constants";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import { Box, InputAdornment, Link, TextField, Typography } from "@mui/material";
 import { useCallback, useState } from "react";
-import { DEFAULT_OF_PORTFOLIO_LINK, LIMIT_OF_PORTFOLIO_LINK } from "../../defines/common/constants";
 import HelpIcon from "../common/HelpIcon/index";
 import { hoverStyle } from "./defines/styles";
 
-const PortfolioLinkField = () => {
-	const [links, setLinks] = useState<Array<String>>(Array.from({ length: DEFAULT_OF_PORTFOLIO_LINK }, () => ""));
+function PortfolioLinkField() {
+	const [links, setLinks] = useState<Array<string>>(Array.from({ length: DEFAULT_OF_PORTFOLIO_LINK }, () => ""));
 
 	const handleChangeInput = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, index: number) => {
 		const link = event.target.value;
@@ -33,7 +32,7 @@ const PortfolioLinkField = () => {
 		[links],
 	);
 
-	const ConditionalInputAdornment = (index: number) => {
+	function ConditionalInputAdornment(index: number) {
 		if (links.length > DEFAULT_OF_PORTFOLIO_LINK) {
 			return (
 				<InputAdornment position="end">
@@ -52,7 +51,7 @@ const PortfolioLinkField = () => {
 				<RemoveCircleOutlineIcon className="cursor-default" color="disabled" />
 			</InputAdornment>
 		);
-	};
+	}
 
 	return (
 		<Box className="flex flex-col w-[50vw] py-5">
@@ -104,6 +103,6 @@ const PortfolioLinkField = () => {
 			))}
 		</Box>
 	);
-};
+}
 
 export default PortfolioLinkField;

@@ -1,11 +1,10 @@
 "use client";
 
-import { Box, Tab } from "@mui/material";
-import { TabContext, TabList } from "@mui/lab";
-import { LABEL_BY_GENRE_TYPE } from "./defines/constants";
-import { useRecoilState } from "recoil";
-import { GenreType } from "./defines/types";
 import { genreContext } from "@/recoil/atoms/search";
+import { TabContext, TabList } from "@mui/lab";
+import { useRecoilState } from "recoil";
+import { LABEL_BY_GENRE_TYPE } from "./defines/constants";
+import { GenreType } from "./defines/types";
 
 type Props = {
 	genreTabsRef: React.RefObject<HTMLDivElement>;

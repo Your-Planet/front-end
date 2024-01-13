@@ -1,12 +1,10 @@
 "use client";
 
-import { Box, FormControl, MenuItem, Select, SelectChangeEvent, Typography } from "@mui/material";
-import React from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { GenreType, SortOptionType } from "./defines/types";
 import { sortOptionContext } from "@/recoil/atoms/search";
 import { genreState } from "@/recoil/selectors/search";
-import { LABEL_BY_GENRE_TYPE, LABEL_BY_SORT_OPTION_TYPE } from "./defines/constants";
+import { Box, FormControl, MenuItem, Select, SelectChangeEvent, Typography } from "@mui/material";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { GenreType, SortOptionType } from "./defines/types";
 
 type Props = {
 	countOfCards: number;
