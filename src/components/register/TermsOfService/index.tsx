@@ -12,7 +12,7 @@ import { useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import DialogContentWithCheckBox from "./DialogContentWithCheckBox";
 import { FALSE_TOS_CHECKED_STATE } from "./defines/constants";
-import { snackbarStateType, tosCheckedStateType } from "./defines/types";
+import { SnackbarStateType, TosCheckedStateType } from "./defines/types";
 
 type Props = {
 	selectedMember: MemberType | null;
@@ -21,13 +21,13 @@ type Props = {
 function TermsOfService({ selectedMember }: Props) {
 	const router = useRouter();
 	const [tosOpen, setTosOpen] = useRecoilState<boolean>(tosOpenContext);
-	const [_, setTosState] = useRecoilState<tosCheckedStateType>(tosCheckedContext);
-	const [snackbarState, setSnackbarState] = useState<snackbarStateType>({
+	const [_, setTosState] = useRecoilState<TosCheckedStateType>(tosCheckedContext);
+	const [snackbarState, setSnackbarState] = useState<SnackbarStateType>({
 		snackbarOpen: false,
 		vertical: "top",
 		horizontal: "center",
 	});
-	const tosCheckedStates = useRecoilValue<tosCheckedStateType>(tosCheckedState);
+	const tosCheckedStates = useRecoilValue<TosCheckedStateType>(tosCheckedState);
 	const { snackbarOpen, vertical, horizontal } = snackbarState;
 
 	const handleOpenSnackbar = () => {

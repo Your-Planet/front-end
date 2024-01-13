@@ -6,10 +6,10 @@ import MuiAccordionSummary, { AccordionSummaryProps } from "@mui/material/Accord
 import { styled } from "@mui/material/styles";
 import { useRecoilState } from "recoil";
 import { FALSE_TOS_CHECKED_STATE, TRUE_TOS_CHECKED_STATE } from "./defines/constants";
-import { tosCheckedStateType, tosLabel } from "./defines/types";
+import { TosCheckedStateType, TosLabel } from "./defines/types";
 
 type Props = {
-	label: tosLabel;
+	label: TosLabel;
 	content: string;
 	tosText?: string;
 	required?: boolean;
@@ -48,11 +48,11 @@ function DialogContentWithCheckBox(props: Props) {
 		style: {
 			fontSize: 14,
 			color: "gray",
+			spellCheck: "false",
 		},
-		spellCheck: "false",
 	};
 
-	const [tosState, setTosState] = useRecoilState<tosCheckedStateType>(tosCheckedContext);
+	const [tosState, setTosState] = useRecoilState<TosCheckedStateType>(tosCheckedContext);
 
 	const handleChange = () => {
 		// FIX_ME: 인스타 인증 화면에서 뒤로가기 시 체크 상태 그대로 유지됨

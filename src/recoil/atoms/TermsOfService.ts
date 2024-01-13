@@ -1,4 +1,4 @@
-import { tosCheckedStateType } from "@/components/register/TermsOfService/defines/types";
+import { TosCheckedStateType } from "@/components/register/TermsOfService/defines/types";
 import { atom } from "recoil";
 
 export const tosOpenContext = atom<boolean>({
@@ -6,7 +6,7 @@ export const tosOpenContext = atom<boolean>({
 	default: false,
 });
 
-export const tosCheckedContext = atom<tosCheckedStateType>({
+export const tosCheckedContext = atom<TosCheckedStateType>({
 	key: "tosChecked",
 	default: {
 		ALL: false,

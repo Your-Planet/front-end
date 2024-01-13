@@ -2,6 +2,7 @@
 
 import { genreContext } from "@/recoil/atoms/search";
 import { TabContext, TabList } from "@mui/lab";
+import { Box, Tab } from "@mui/material";
 import { useRecoilState } from "recoil";
 import { LABEL_BY_GENRE_TYPE } from "./defines/constants";
 import { GenreType } from "./defines/types";

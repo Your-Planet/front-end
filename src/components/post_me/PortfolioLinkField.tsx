@@ -9,8 +9,8 @@ import { useCallback, useState } from "react";
 import HelpIcon from "../common/HelpIcon/index";
 import { hoverStyle } from "./defines/styles";
 
-function PortfolioLinkField() {
-	const [links, setLinks] = useState<Array<string>>(Array.from({ length: DEFAULT_OF_PORTFOLIO_LINK }, () => ""));
+const PortfolioLinkField = () => {
+	const [links, setLinks] = useState<Array<String>>(Array.from({ length: DEFAULT_OF_PORTFOLIO_LINK }, () => ""));
 
 	const handleChangeInput = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, index: number) => {
 		const link = event.target.value;
@@ -32,7 +32,7 @@ function PortfolioLinkField() {
 		[links],
 	);
 
-	function ConditionalInputAdornment(index: number) {
+	const ConditionalInputAdornment = (index: number) => {
 		if (links.length > DEFAULT_OF_PORTFOLIO_LINK) {
 			return (
 				<InputAdornment position="end">
@@ -51,7 +51,7 @@ function PortfolioLinkField() {
 				<RemoveCircleOutlineIcon className="cursor-default" color="disabled" />
 			</InputAdornment>
 		);
-	}
+	};
 
 	return (
 		<Box className="flex flex-col w-[50vw] py-5">
@@ -103,6 +103,6 @@ function PortfolioLinkField() {
 			))}
 		</Box>
 	);
-}
+};
 
 export default PortfolioLinkField;
