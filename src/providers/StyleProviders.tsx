@@ -12,12 +12,11 @@ const StyleProviders = ({ children }: { children: ReactNode }) => {
 	});
 
 	return (
-		<>
-			<StyledEngineProvider injectFirst>
-				<CssBaseline />
-				<ThemeProvider theme={theme}>{children}</ThemeProvider>
-			</StyledEngineProvider>
-		</>
+		<StyledEngineProvider injectFirst>
+			<CssBaseline />
+			<ThemeProvider theme={theme}>{children}</ThemeProvider>
+		</StyledEngineProvider>
 	);
 };
+
 export default StyleProviders;
