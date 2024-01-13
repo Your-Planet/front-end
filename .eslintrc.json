@@ -22,10 +22,10 @@
 		"prettier"
 	],
 	"rules": {
-		"react/react-in-jsx-scope": "warn",
+		"react/react-in-jsx-scope": "off",
 		"react/jsx-filename-extension": ["warn", { "extensions": [".ts", ".tsx"] }],
 		"no-useless-catch": "error",
-		"indent": "warn",
+		"indent": "off",
 		"react/self-closing-comp": [
 			"error",
 			{
@@ -37,10 +37,10 @@
 		"@typescript-eslint/ban-types": "warn",
 		"@typescript-eslint/no-explicit-any": "warn",
 		"@typescript-eslint/no-shadow": "warn",
-		"@typescript-eslint/no-unused-vars": "warn",
+		"@typescript-eslint/no-unused-vars": "off",
 		"import/no-extraneous-dependencies": "warn",
 		"import/prefer-default-export": "warn",
-		"jsx-a11y/html-has-lang": "warn",
+		"jsx-a11y/html-has-lang": "off",
 		"no-bitwise": "warn",
 		"no-console": "warn",
 		"no-empty-pattern": "warn",
