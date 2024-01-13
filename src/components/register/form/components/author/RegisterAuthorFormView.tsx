@@ -44,7 +44,7 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 			{
 				...rest,
 				genderType: genderType!,
-				birthDate: birthDate!.format("YYYY-mm-dd"),
+				birthDate: birthDate!.format("YYYY-MM-DD"),
 				instagramAuthCode,
 				memberType: "AUTHOR",
 			},
