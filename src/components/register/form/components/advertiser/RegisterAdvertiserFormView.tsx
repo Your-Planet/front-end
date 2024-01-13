@@ -60,6 +60,7 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 					genderType: genderType!,
 					birthDate: birthDate!.format("YYYY-mm-dd"),
 					businessAddress: `${businessAddress.base} ${businessAddress.detail}`,
+					memberType: "ADVERTISER",
 				},
 				{
 					onSuccess: handleSuccessRegister,
