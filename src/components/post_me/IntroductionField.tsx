@@ -1,6 +1,6 @@
 import { Box, TextField } from "@mui/material";
 
-const IntroductionField = () => {
+function IntroductionField() {
 	return (
 		<Box className="flex w-[50vw] py-5">
 			<TextField
@@ -15,6 +15,6 @@ const IntroductionField = () => {
 			/>
 		</Box>
 	);
-};
+}
 
 export default IntroductionField;

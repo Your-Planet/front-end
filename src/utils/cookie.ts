@@ -1,7 +1,7 @@
-import { getCookie as readCookie, setCookie as saveCookie, deleteCookie } from "cookies-next";
+import { deleteCookie, getCookie as readCookie, setCookie as saveCookie } from "cookies-next";
+import { DefaultOptions } from "cookies-next/lib/types";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
-import { DefaultOptions } from "cookies-next/lib/types";
 
 dayjs.extend(utc);
 
