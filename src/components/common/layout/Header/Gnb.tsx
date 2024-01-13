@@ -14,6 +14,7 @@ import {
 	MIN_WIDTH,
 	SELECTED_PAGE_COLOR,
 } from "./defines/constants";
+
 import { PageType } from "./defines/types";
 
 interface StyledBoxProps {
@@ -43,7 +44,7 @@ const StyledLink = styled(Link)<StyledLinkProps>`
 	text-decoration: none;
 `;
 
-const Gnb = () => {
+function Gnb() {
 	const pathname = usePathname();
 	const [selectedPage, setSelectedPage] = useState<PageType>(null);
 
@@ -65,26 +66,24 @@ const Gnb = () => {
 	}, [pathname]);
 
 	return (
-		<>
-			<Box className="flex">
-				<StyledBox selected={selectedPage === "HOME"}>
-					<StyledLink href="/" scroll={false} selected={selectedPage === "HOME"}>
-						Home
-					</StyledLink>
-				</StyledBox>
-				<StyledBox selected={selectedPage === "SEARCH"}>
-					<StyledLink href="/search" selected={selectedPage === "SEARCH"}>
-						Search
-					</StyledLink>
-				</StyledBox>
-				<StyledBox selected={selectedPage === "POST_ME"}>
-					<StyledLink href="/post-me" selected={selectedPage === "POST_ME"}>
-						Post ME
-					</StyledLink>
-				</StyledBox>
-			</Box>
-		</>
+		<Box className="flex">
+			<StyledBox selected={selectedPage === "HOME"}>
+				<StyledLink href="/" scroll={false} selected={selectedPage === "HOME"}>
+					Home
+				</StyledLink>
+			</StyledBox>
+			<StyledBox selected={selectedPage === "SEARCH"}>
+				<StyledLink href="/search" selected={selectedPage === "SEARCH"}>
+					Search
+				</StyledLink>
+			</StyledBox>
+			<StyledBox selected={selectedPage === "POST_ME"}>
+				<StyledLink href="/post-me" selected={selectedPage === "POST_ME"}>
+					Post ME
+				</StyledLink>
+			</StyledBox>
+		</Box>
 	);
-};
+}
 
 export default Gnb;

@@ -24,7 +24,37 @@
 	"rules": {
 		"react/react-in-jsx-scope": "off",
 		"react/jsx-filename-extension": ["warn", { "extensions": [".ts", ".tsx"] }],
-		"no-useless-catch": "true",
-		"indent": ["error", 2]
+		"no-useless-catch": "error",
+		"indent": "off",
+		"react/self-closing-comp": [
+			"error",
+			{
+				"component": true,
+				"html": true
+			}
+		],
+		"@typescript-eslint/ban-ts-comment": "off",
+		"@typescript-eslint/ban-types": "off",
+		"@typescript-eslint/no-explicit-any": "off",
+		"@typescript-eslint/no-shadow": "off",
+		"@typescript-eslint/no-unused-vars": "off",
+		"import/no-extraneous-dependencies": "off",
+		"import/prefer-default-export": "off",
+		"jsx-a11y/html-has-lang": "off",
+		"no-bitwise": "off",
+		"no-console": "off",
+		"no-empty-pattern": "off",
+		"no-nested-ternary": "off",
+		"no-plusplus": "off",
+		"no-restricted-syntax": "off",
+		"no-underscore-dangle": "off",
+		"no-useless-escape": "off",
+		"react/jsx-no-useless-fragment": "off",
+		"react/jsx-props-no-spreading": "off",
+		"react/no-array-index-key": "off",
+		"react/require-default-props": "off",
+		"react/no-unstable-nested-components": "off",
+		"react/function-component-definition": "off",
+		"@typescript-eslint/naming-convention": "off"
 	}
 }

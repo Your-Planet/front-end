@@ -3,11 +3,11 @@ import InstatoonCategory from "@/components/post_me/InstatoonCategory";
 import IntroductionField from "@/components/post_me/IntroductionField";
 import PortfolioLinkField from "@/components/post_me/PortfolioLinkField";
 import SubmitButton from "@/components/post_me/SubmitButton";
-import { Box } from "@mui/system";
+import { Box } from "@mui/material";
 
 type Props = {};
 
-const PostME = (props: Props) => {
+function PostME(props: Props) {
 	return (
 		<Box className="w-full flex flex-col justify-center items-center p-10">
 			<InstagramIdField />
@@ -17,6 +17,6 @@ const PostME = (props: Props) => {
 			<SubmitButton />
 		</Box>
 	);
-};
+}
 
 export default PostME;

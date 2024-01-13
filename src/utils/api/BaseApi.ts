@@ -1,7 +1,9 @@
+import { getLeadingSlash } from "@/utils/string";
 import { AxiosInstance } from "axios";
 
 abstract class BaseApi {
 	private readonly _axiosInstance: AxiosInstance;
+
 	protected get axiosInstance(): AxiosInstance {
 		return this._axiosInstance;
 	}
@@ -14,7 +16,7 @@ abstract class BaseApi {
 	}
 
 	protected getUrl(url: string): string {
-		return `${this._baseUrl}${url}`;
+		return `${this._baseUrl}${getLeadingSlash(url)}`;
 	}
 }
 

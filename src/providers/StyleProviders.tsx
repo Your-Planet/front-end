@@ -1,17 +1,22 @@
 "use client";
 
 // To use tailwind and mui together
-import { CssBaseline, StyledEngineProvider } from "@mui/material";
+import { createTheme, CssBaseline, StyledEngineProvider, ThemeProvider } from "@mui/material";
 import { ReactNode } from "react";
 
 const StyleProviders = ({ children }: { children: ReactNode }) => {
+	const theme = createTheme({
+		typography: {
+			fontFamily: `"Pretendard-Regular"`,
+		},
+	});
+
 	return (
-		<>
-			<StyledEngineProvider injectFirst>
-				<CssBaseline />
-				{children}
-			</StyledEngineProvider>
-		</>
+		<StyledEngineProvider injectFirst>
+			<CssBaseline />
+			<ThemeProvider theme={theme}>{children}</ThemeProvider>
+		</StyledEngineProvider>
 	);
 };
+
 export default StyleProviders;

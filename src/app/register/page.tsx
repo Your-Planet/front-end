@@ -5,11 +5,7 @@ interface RegisterPageProps {}
 function RegisterPage(props: RegisterPageProps) {
 	const {} = props;
 
-	return (
-		<>
-			<SelectUserTypeView />
-		</>
-	);
+	return <SelectUserTypeView />;
 }
 
 export default RegisterPage;

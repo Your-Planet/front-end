@@ -1,4 +1,4 @@
-import RegisterAdvertiserFormView from "@/components/register/advertiser/RegisterAdvertiserFormView";
+import RegisterAdvertiserFormView from "@/components/register/form/components/advertiser/RegisterAdvertiserFormView";
 
 export interface RegisterAdvertiserPageProps {}
 

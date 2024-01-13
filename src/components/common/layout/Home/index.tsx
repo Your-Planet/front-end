@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 
-const HomeVideo = () => {
+function HomeVideo() {
 	return (
 		<section className={`w-full h-except-header relative text-center flex justify-center items-center`}>
 			<Box>
@@ -124,6 +124,6 @@ const HomeVideo = () => {
 			</Box>
 		</section>
 	);
-};
+}
 
 export default HomeVideo;
