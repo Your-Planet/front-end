@@ -4,12 +4,13 @@ import {
 	requiredTosText,
 	shoppingInformationReceiptText,
 } from "@/defines/termsOfService/constants";
-import { tosOpenContext } from "@/recoil/atoms/TermsOfService";
+import { tosCheckedContext, tosOpenContext } from "@/recoil/atoms/TermsOfService";
 import { tosCheckedState } from "@/recoil/selectors/TermsOfService";
 import { Button, Dialog, DialogActions, DialogTitle, Divider } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useRecoilState, useRecoilValue } from "recoil";
 import DialogContentWithCheckBox from "./DialogContentWithCheckBox";
+import { FALSE_TOS_CHECKED_STATE } from "./defines/constants";
 import { tosCheckedStateType } from "./defines/types";
 
 type Props = {
@@ -19,6 +20,7 @@ type Props = {
 function TermsOfService({ selectedMember }: Props) {
 	const router = useRouter();
 	const [tosOpen, setTosOpen] = useRecoilState<boolean>(tosOpenContext);
+	const [_, setTosState] = useRecoilState<tosCheckedStateType>(tosCheckedContext);
 	const tosCheckedStates = useRecoilValue<tosCheckedStateType>(tosCheckedState);
 
 	const handleCloseWithAgree = () => {
@@ -35,6 +37,7 @@ function TermsOfService({ selectedMember }: Props) {
 	};
 
 	const handleCloseWithDisagree = () => {
+		setTosState(FALSE_TOS_CHECKED_STATE);
 		setTosOpen(false);
 	};
 
