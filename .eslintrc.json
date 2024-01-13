@@ -24,7 +24,33 @@
 	"rules": {
 		"react/react-in-jsx-scope": "off",
 		"react/jsx-filename-extension": ["warn", { "extensions": [".ts", ".tsx"] }],
-		"no-useless-catch": "true",
-		"indent": ["error", 2]
+		"no-useless-catch": "error",
+		"indent": "off",
+		"react/self-closing-comp": [
+			"error",
+			{
+				"component": true,
+				"html": true
+			}
+		],
+		"@typescript-eslint/ban-ts-comment": "warn",
+		"@typescript-eslint/ban-types": "warn",
+		"@typescript-eslint/no-explicit-any": "warn",
+		"@typescript-eslint/no-shadow": "warn",
+		"@typescript-eslint/no-unused-vars": "off",
+		"import/no-extraneous-dependencies": "warn",
+		"import/prefer-default-export": "warn",
+		"jsx-a11y/html-has-lang": "off",
+		"no-bitwise": "warn",
+		"no-console": "warn",
+		"no-empty-pattern": "warn",
+		"no-nested-ternary": "warn",
+		"no-plusplus": "warn",
+		"no-restricted-syntax": "warn",
+		"no-underscore-dangle": "warn",
+		"no-useless-escape": "warn",
+		"react/jsx-no-useless-fragment": "warn",
+		"react/jsx-props-no-spreading": "warn",
+		"react/no-array-index-key": "warn"
 	}
 }

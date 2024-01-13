@@ -4,9 +4,8 @@ import HomeVideo from "@/components/common/layout/Home/";
 import OurTeam from "@/components/common/layout/OurTeam/index";
 import OurWork from "@/components/common/layout/OurWork/";
 import { Box } from "@mui/material";
-import { NextPage } from "next";
 
-const Home: NextPage = () => {
+function Home() {
 	return (
 		<Box>
 			<Box className="w-full h-except-header">
@@ -26,6 +25,6 @@ const Home: NextPage = () => {
 			</Box>
 		</Box>
 	);
-};
+}
 
 export default Home;
