@@ -137,3 +137,11 @@ export const checkHasKeyboardContinuity = (str: string, length: number) => {
 		return Boolean(~KEYBOARD.indexOf(substring) || ~KEYBOARD.indexOf(getReverseString(substring)));
 	});
 };
+
+/**
+ * "/"로 시작하는 문자열 반환
+ * @param str
+ */
+export const getLeadingSlash = (str: string) => {
+	return str.startsWith("/") ? str : `/${str}`;
+};

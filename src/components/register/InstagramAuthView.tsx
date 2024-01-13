@@ -15,7 +15,7 @@ function InstagramAuthView(props: InstagramAuthViewProps) {
 	const handleClickInstagramAuth = () => {
 		router.push(
 			getInstagramAuthUrl({
-				redirectUri: `${window.location.host}${pathname}`,
+				redirectPath: pathname,
 			}),
 		);
 	};
