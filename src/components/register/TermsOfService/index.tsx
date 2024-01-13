@@ -41,9 +41,9 @@ function TermsOfService({ selectedMember }: Props) {
 	const handleCloseWithAgree = () => {
 		if (!selectedMember) return;
 
-		const { ALL, REQUIRED, PERSONAL_INFORMATION } = tosCheckedStates;
+		const { REQUIRED, PERSONAL_INFORMATION } = tosCheckedStates;
 
-		if (ALL || (REQUIRED && PERSONAL_INFORMATION)) {
+		if (REQUIRED && PERSONAL_INFORMATION) {
 			setTosOpen(false);
 			router.push(`register/${selectedMember.toLowerCase()}`);
 		} else {
@@ -75,7 +75,6 @@ function TermsOfService({ selectedMember }: Props) {
 				<DialogTitle className="text-base px-0">약관 동의</DialogTitle>
 				<Divider className="border-b-2 border-black" />
 				<DialogContentWithCheckBox label="ALL" content="회원가입 약관에 모두 동의합니다" />
-				<Divider />
 				<DialogContentWithCheckBox label="REQUIRED" content="이용약관 동의" required tosText={requiredTosText} />
 				<DialogContentWithCheckBox
 					label="PERSONAL_INFORMATION"
@@ -86,6 +85,7 @@ function TermsOfService({ selectedMember }: Props) {
 				<DialogContentWithCheckBox
 					label="SHOPPING_INFORMATION_RECEIPT"
 					content="쇼핑정보 수집 및 이용 동의"
+					optional
 					tosText={shoppingInformationReceiptText}
 				/>
 				<DialogActions>
