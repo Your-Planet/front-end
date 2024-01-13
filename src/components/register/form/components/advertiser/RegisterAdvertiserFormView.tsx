@@ -3,6 +3,7 @@
 import ReactHookForm from "@/components/common/ReactHookForm";
 import PasswordTextField from "@/components/common/password/PasswordTextField";
 import H2 from "@/components/common/text/H2";
+import useRegisterForm from "@/components/register/form/hooks/useRegisterForm";
 import { REGISTER_ADVERTISER_FORM_FIELD_LENGTH } from "@/defines/forms/register/advertiser/constants";
 import { RegisterAdvertiserForm } from "@/defines/forms/register/advertiser/types";
 import useMutationPostAdvertiserRegister from "@/hooks/queries/member/useMutationPostAdvertiserRegister";
@@ -10,7 +11,6 @@ import { getObjectAtPath } from "@/utils/object";
 import { getEmailValidateRule, getLengthErrorMessage } from "@/utils/react-hook-form/rule";
 import { isNumber } from "@/utils/string";
 import { Box, Button, FormControl, FormHelperText } from "@mui/material";
-import { useRouter } from "next/navigation";
 import { FormEventHandler } from "react";
 import { useDaumPostcodePopup } from "react-daum-postcode";
 import { postcodeScriptUrl } from "react-daum-postcode/lib/loadPostcode";
@@ -20,7 +20,6 @@ export interface RegisterAdvertiserFormViewProps {}
 
 function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 	const {} = props;
-	const router = useRouter();
 
 	const openPostcodePopup = useDaumPostcodePopup(postcodeScriptUrl);
 
@@ -51,6 +50,8 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 
 	const { mutate: mutatePostRegister } = useMutationPostAdvertiserRegister({});
 
+	const { handleSuccessRegister, handleFailRegister } = useRegisterForm();
+
 	const handleFormSubmit: FormEventHandler = handleSubmit(
 		({ genderType, birthDate, businessAddress, passwordConfirm, ...rest }) => {
 			mutatePostRegister(
@@ -61,18 +62,10 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 					businessAddress: `${businessAddress.base} ${businessAddress.detail}`,
 				},
 				{
-					onSuccess() {
-						// TODO @김현규 회원가입 성공 토스트 메시지 추가
-						router.push("/login");
-					},
-					onError() {
-						// TODO @김현규 회원가입 실패 안내 처리
-					},
+					onSuccess: handleSuccessRegister,
+					onError: handleFailRegister,
 				},
 			);
-		},
-		(errors) => {
-			console.log(errors);
 		},
 	);
 
