@@ -2,7 +2,7 @@ import Logo from "@/components/common/Logo";
 import InstagramIcon from "@/icons/InstagramIcon";
 import { getInstagramAuthUrl } from "@/utils/instagram";
 import { Button } from "@mui/material";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export interface InstagramAuthViewProps {}
 
@@ -10,14 +10,12 @@ function InstagramAuthView(props: InstagramAuthViewProps) {
 	const {} = props;
 
 	const router = useRouter();
-	// const pathname = usePathname();
+	const pathname = usePathname();
 
 	const handleClickInstagramAuth = () => {
 		router.push(
 			getInstagramAuthUrl({
-				redirectUri: "https://www.yourplanet.co.kr/",
-				// TODO @김현규 작가 회원가입 페이지로 리다이렉트
-				// redirectUri: `${window.location.host}${pathname}`
+				redirectUri: `${window.location.host}${pathname}`,
 			}),
 		);
 	};
