@@ -2,6 +2,7 @@ import { AxiosInstance } from "axios";
 
 abstract class BaseApi {
 	private readonly _axiosInstance: AxiosInstance;
+
 	protected get axiosInstance(): AxiosInstance {
 		return this._axiosInstance;
 	}

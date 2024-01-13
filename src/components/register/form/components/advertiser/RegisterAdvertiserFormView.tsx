@@ -85,105 +85,103 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 	const { TextField } = ReactHookForm<RegisterAdvertiserForm>();
 
 	return (
-		<>
-			<div className="max-w-[520px] mx-auto py-28">
-				<H2>회원 가입 (광고주)</H2>
+		<div className="max-w-[520px] mx-auto py-28">
+			<H2>회원 가입 (광고주)</H2>
 
-				<FormProvider {...form}>
-					<form onSubmit={handleFormSubmit} className="mt-8 flex flex-col gap-4">
-						<TextField
-							formName="email"
-							label="이메일"
-							required
-							rules={{
-								...getEmailValidateRule(),
-							}}
-							placeholder="abc12@naver.com"
-							type="email"
-							fullWidth
-						/>
+			<FormProvider {...form}>
+				<form onSubmit={handleFormSubmit} className="mt-8 flex flex-col gap-4">
+					<TextField
+						formName="email"
+						label="이메일"
+						required
+						rules={{
+							...getEmailValidateRule(),
+						}}
+						placeholder="abc12@naver.com"
+						type="email"
+						fullWidth
+					/>
 
-						<PasswordTextField />
+					<PasswordTextField />
 
-						<TextField formName="companyName" label="상호" required placeholder="상호를 입력하세요" fullWidth />
+					<TextField formName="companyName" label="상호" required placeholder="상호를 입력하세요" fullWidth />
 
-						<TextField
-							formName="businessNumber"
-							label="사업자번호"
-							required
-							rules={{
-								validate(value) {
-									if (!value || value.length === REGISTER_ADVERTISER_FORM_FIELD_LENGTH.businessNumber) return true;
-									return getLengthErrorMessage(REGISTER_ADVERTISER_FORM_FIELD_LENGTH.businessNumber);
-								},
-							}}
-							placeholder="숫자만 입력하세요"
-							fullWidth
-							type="tel"
-						/>
+					<TextField
+						formName="businessNumber"
+						label="사업자번호"
+						required
+						rules={{
+							validate(value) {
+								if (!value || value.length === REGISTER_ADVERTISER_FORM_FIELD_LENGTH.businessNumber) return true;
+								return getLengthErrorMessage(REGISTER_ADVERTISER_FORM_FIELD_LENGTH.businessNumber);
+							},
+						}}
+						placeholder="숫자만 입력하세요"
+						fullWidth
+						type="tel"
+					/>
 
-						<TextField
-							formName="representativeName"
-							label="대표자명"
-							required
-							placeholder="대표자명을 입력하세요"
-							fullWidth
-						/>
+					<TextField
+						formName="representativeName"
+						label="대표자명"
+						required
+						placeholder="대표자명을 입력하세요"
+						fullWidth
+					/>
 
-						<TextField
-							formName="tel"
-							label="연락처"
-							required
-							validator={isNumber}
-							placeholder="숫자만 입력하세요"
-							type="tel"
-							fullWidth
-						/>
+					<TextField
+						formName="tel"
+						label="연락처"
+						required
+						validator={isNumber}
+						placeholder="숫자만 입력하세요"
+						type="tel"
+						fullWidth
+					/>
 
-						<Box width="100%">
-							<FormControl fullWidth>
-								<TextField
-									formName="businessAddress.base"
-									label="사업장 주소"
-									required
-									fullWidth
-									sx={{
-										"& fieldset": {
-											borderBottomLeftRadius: 0,
-											borderBottomRightRadius: 0,
-											borderBottomColor: "transparent",
-										},
-										"& input": {
-											paddingBottom: "16px",
-										},
-									}}
-									margin="none"
-									inputProps={{ readOnly: true }}
-									hideErrorMessage
-									onClick={handleClickSearchAddress}
-								/>
-								<TextField
-									formName="businessAddress.detail"
-									label=""
-									placeholder="상세 주소"
-									fullWidth
-									sx={{ "& fieldset": { borderTopLeftRadius: 0, borderTopRightRadius: 0 } }}
-									margin="none"
-									hideErrorMessage
-								/>
-								<FormHelperText error>{addressErrorMessage}</FormHelperText>
-							</FormControl>
-						</Box>
+					<Box width="100%">
+						<FormControl fullWidth>
+							<TextField
+								formName="businessAddress.base"
+								label="사업장 주소"
+								required
+								fullWidth
+								sx={{
+									"& fieldset": {
+										borderBottomLeftRadius: 0,
+										borderBottomRightRadius: 0,
+										borderBottomColor: "transparent",
+									},
+									"& input": {
+										paddingBottom: "16px",
+									},
+								}}
+								margin="none"
+								inputProps={{ readOnly: true }}
+								hideErrorMessage
+								onClick={handleClickSearchAddress}
+							/>
+							<TextField
+								formName="businessAddress.detail"
+								label=""
+								placeholder="상세 주소"
+								fullWidth
+								sx={{ "& fieldset": { borderTopLeftRadius: 0, borderTopRightRadius: 0 } }}
+								margin="none"
+								hideErrorMessage
+							/>
+							<FormHelperText error>{addressErrorMessage}</FormHelperText>
+						</FormControl>
+					</Box>
 
-						<TextField formName="name" label="담당자명" required fullWidth />
+					<TextField formName="name" label="담당자명" required fullWidth />
 
-						<Button type="submit" variant="contained" size="large" fullWidth>
-							가입하기
-						</Button>
-					</form>
-				</FormProvider>
-			</div>
-		</>
+					<Button type="submit" variant="contained" size="large" fullWidth>
+						가입하기
+					</Button>
+				</form>
+			</FormProvider>
+		</div>
 	);
 }
 
