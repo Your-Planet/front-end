@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { StyledHeaderLink } from "./defines/constants";
 
-const GlobalMenu = () => {
+function GlobalMenu() {
 	return (
 		<Box>
 			<StyledHeaderLink href="/login">Login</StyledHeaderLink>
@@ -10,6 +10,6 @@ const GlobalMenu = () => {
 			<StyledHeaderLink href="/my-page">My Page</StyledHeaderLink>
 		</Box>
 	);
-};
+}
 
 export default GlobalMenu;

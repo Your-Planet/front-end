@@ -10,6 +10,7 @@ const StyleProviders = ({ children }: { children: ReactNode }) => {
 			fontFamily: `"Pretendard-Regular"`,
 		},
 	});
+
 	return (
 		<>
 			<StyledEngineProvider injectFirst>

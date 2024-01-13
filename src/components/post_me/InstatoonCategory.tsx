@@ -4,7 +4,7 @@ import { Box, Checkbox, FormControl, FormControlLabel, FormGroup, FormHelperText
 import { useState } from "react";
 import HelpIcon from "../common/HelpIcon/index";
 
-const InstatoonCategory = () => {
+function InstatoonCategory() {
 	// TODO: search branch 머지 후 카테고리 선택 기능 수정
 	const [checked, setChecked] = useState({
 		EMPATHY: false,
@@ -32,7 +32,7 @@ const InstatoonCategory = () => {
 					<HelpIcon />
 				</Box>
 				<FormGroup className="pt-1">
-					{/* TODO: search 브랜치 머지 후 label 체크박스 수정*/}
+					{/* TODO: search 브랜치 머지 후 label 체크박스 수정 */}
 					<FormControlLabel
 						className="w-fit"
 						label="일상툰"
@@ -63,6 +63,6 @@ const InstatoonCategory = () => {
 			</FormControl>
 		</Box>
 	);
-};
+}
 
 export default InstatoonCategory;

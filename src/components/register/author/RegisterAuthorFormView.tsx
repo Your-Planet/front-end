@@ -66,63 +66,61 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 	const { TextField, RadioGroup, DatePicker } = ReactHookForm<RegisterAuthorForm>();
 
 	return (
-		<>
-			<div className="max-w-[520px] mx-auto py-28">
-				<H2>회원 가입 (작가)</H2>
+		<div className="max-w-[520px] mx-auto py-28">
+			<H2>회원 가입 (작가)</H2>
 
-				<FormProvider {...form}>
-					<form onSubmit={handleFormSubmit} className="mt-8 flex flex-col gap-4">
-						<TextField
-							formName="email"
-							label="이메일"
-							required
-							rules={{
-								...getEmailValidateRule(),
-							}}
-							placeholder="abc12@naver.com"
-							type="email"
-							fullWidth
-						/>
+			<FormProvider {...form}>
+				<form onSubmit={handleFormSubmit} className="mt-8 flex flex-col gap-4">
+					<TextField
+						formName="email"
+						label="이메일"
+						required
+						rules={{
+							...getEmailValidateRule(),
+						}}
+						placeholder="abc12@naver.com"
+						type="email"
+						fullWidth
+					/>
 
-						<PasswordTextField />
+					<PasswordTextField />
 
-						<TextField formName="name" label="이름" required fullWidth />
+					<TextField formName="name" label="이름" required fullWidth />
 
-						<RadioGroup<GenderType>
-							label="성별"
-							formName="genderType"
-							required
-							radios={[
-								{
-									label: "남",
-									value: "MALE",
-								},
-								{
-									label: "여",
-									value: "FEMALE",
-								},
-							]}
-						/>
+					<RadioGroup<GenderType>
+						label="성별"
+						formName="genderType"
+						required
+						radios={[
+							{
+								label: "남",
+								value: "MALE",
+							},
+							{
+								label: "여",
+								value: "FEMALE",
+							},
+						]}
+					/>
 
-						<TextField
-							formName="tel"
-							label="연락처"
-							required
-							validator={isNumber}
-							placeholder="숫자만 입력하세요"
-							type="tel"
-							fullWidth
-						/>
+					<TextField
+						formName="tel"
+						label="연락처"
+						required
+						validator={isNumber}
+						placeholder="숫자만 입력하세요"
+						type="tel"
+						fullWidth
+					/>
 
-						<DatePicker formName="birthDate" label="생년월일" required />
+					<DatePicker formName="birthDate" label="생년월일" required />
 
-						<Button type="submit" variant="contained" size="large" fullWidth>
-							가입하기
-						</Button>
-					</form>
-				</FormProvider>
-			</div>
-		</>
+					<Button type="submit" variant="contained" size="large" fullWidth>
+						가입하기
+					</Button>
+				</form>
+			</FormProvider>
+		</div>
 	);
 }
 

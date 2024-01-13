@@ -2,11 +2,10 @@
 
 import Logo from "@/components/common/Logo";
 import { AppBar, Grid } from "@mui/material";
-import React from "react";
 import GlobalMenu from "./GlobalMenu";
 import Gnb from "./Gnb";
 
-const Header: React.FC = () => {
+function Header() {
 	return (
 		<AppBar className="bg-white px-5" position="sticky">
 			<Grid className="flex items-center h-20" container>
@@ -14,7 +13,7 @@ const Header: React.FC = () => {
 					<Gnb />
 				</Grid>
 				<Grid className="flex justify-center" item xs={4}>
-					<Logo href={"/"} />
+					<Logo href="/" />
 				</Grid>
 				<Grid className="flex justify-end" item xs={4}>
 					<GlobalMenu />
@@ -22,6 +21,6 @@ const Header: React.FC = () => {
 			</Grid>
 		</AppBar>
 	);
-};
+}
 
 export default Header;

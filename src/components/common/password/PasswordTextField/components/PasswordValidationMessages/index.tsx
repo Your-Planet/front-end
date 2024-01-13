@@ -40,22 +40,20 @@ function PasswordValidationMessages(props: IndexProps) {
 	];
 
 	return (
-		<>
-			<ul className="flex flex-col gap-1 list-disc list-inside">
-				{validations.map(({ message, valid }, index) => (
-					<li
-						key={index}
-						className={classNames(
-							"text-sm",
-							"transition-colors",
-							valid ? ["text-blue-500", "font-semibold"] : "text-gray-400",
-						)}
-					>
-						{message}
-					</li>
-				))}
-			</ul>
-		</>
+		<ul className="flex flex-col gap-1 list-disc list-inside">
+			{validations.map(({ message, valid }, index) => (
+				<li
+					key={index}
+					className={classNames(
+						"text-sm",
+						"transition-colors",
+						valid ? ["text-blue-500", "font-semibold"] : "text-gray-400",
+					)}
+				>
+					{message}
+				</li>
+			))}
+		</ul>
 	);
 }
 
