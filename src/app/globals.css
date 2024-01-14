@@ -34,3 +34,18 @@ html > body * {
 	background-clip: content-box, border-box;
 	background-image: linear-gradient(to bottom left, #ffd600, #ff7a00, #ff0069, #d300c5, #7638fa);
 }
+
+.slick-slide {
+	width: 310px;
+	height: 310px;
+}
+
+.slick-slide img {
+	width: 310px;
+	height: 310px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+	color: black !important;
+}

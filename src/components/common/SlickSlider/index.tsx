@@ -11,29 +11,55 @@ const SlideWrapper = styled.section`
 
 interface Props {
 	children: ReactNode;
-	className?: string;
 	autoplay?: boolean | number;
 	speed?: number;
 	loop?: boolean;
 }
 
 function SlickSlider(props: Props) {
-	const { children, className, autoplay = true, speed = 300, loop = true } = props;
+	const { children, autoplay = false, speed = 300, loop = true } = props;
 
 	const settings = useMemo<Settings>(
 		() => ({
 			dots: true,
-			infinite: loop,
-			speed: speed,
-			slidesToShow: 1,
-			autoplay: Boolean(autoplay),
-			autoplaySpeed: typeof autoplay === "boolean" ? 3000 : autoplay,
+			infinite: true,
+			speed: 500,
+			slidesToShow: 4,
+			slidesToScroll: 4,
+			initialSlide: 0,
+			variableWidth: true,
+			responsive: [
+				{
+					breakpoint: 1024,
+					settings: {
+						slidesToShow: 3,
+						slidesToScroll: 3,
+						infinite: true,
+						dots: true,
+					},
+				},
+				{
+					breakpoint: 600,
+					settings: {
+						slidesToShow: 2,
+						slidesToScroll: 2,
+						initialSlide: 2,
+					},
+				},
+				{
+					breakpoint: 480,
+					settings: {
+						slidesToShow: 1,
+						slidesToScroll: 1,
+					},
+				},
+			],
 		}),
 		[autoplay, loop, speed],
 	);
 
 	return (
-		<SlideWrapper className={className}>
+		<SlideWrapper>
 			<Slider {...settings}>{children}</Slider>
 		</SlideWrapper>
 	);

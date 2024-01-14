@@ -1,44 +1,59 @@
 import SlickSlider from "@/components/common/SlickSlider/index";
-import styled from "styled-components";
+import { Box } from "@mui/material";
+import Image from "next/image";
 
 interface itemsProps {
-	item: string;
+	link: string;
 	name: string;
 }
 
-const SliderItem = styled.div`
-	width: 100%;
-	img {
-		max-width: 100%;
-		height: auto;
-	}
-`;
-
 const items: itemsProps[] = [
 	{
-		item: "http://placehold.it/1200x400",
+		link: "/images/link1.jpeg",
 		name: "이미지01",
 	},
 	{
-		item: "http://placehold.it/1200x400/ff0000",
+		link: "/images/link2.jpeg",
 		name: "이미지02",
 	},
 	{
-		item: "http://placehold.it/1200x400/00ffff",
+		link: "/images/link3.jpeg",
 		name: "이미지03",
+	},
+	{
+		link: "/images/link4.jpeg",
+		name: "이미지04",
+	},
+	{
+		link: "/images/link5.jpeg",
+		name: "이미지05",
+	},
+	{
+		link: "/images/link6.jpeg",
+		name: "이미지06",
+	},
+	{
+		link: "/images/link7.jpeg",
+		name: "이미지07",
+	},
+	{
+		link: "/images/link8.jpeg",
+		name: "이미지08",
 	},
 ];
 
-function Item() {
+function AuthorPortfolio() {
 	return (
-		<SlickSlider>
-			{items.map((item, index) => (
-				<SliderItem key={index}>
-					<img src={item.item} alt={item.name} />
-				</SliderItem>
-			))}
-		</SlickSlider>
+		<Box className="mt-3">
+			<SlickSlider>
+				{items.map((item) => (
+					<Box className="w-full h-[310px] relative" key={item.name}>
+						<Image className="px-1 box-border" src={item.link} alt={item.name} fill />
+					</Box>
+				))}
+			</SlickSlider>
+		</Box>
 	);
 }
 
-export default Item;
+export default AuthorPortfolio;
