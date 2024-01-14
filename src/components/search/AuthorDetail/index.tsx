@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Divider } from "@mui/material";
+import { Box, Button, Divider } from "@mui/material";
 import { useRecoilValue } from "recoil";
 import { selectedAuthorState } from "../../../recoil/selectors/search";
 import { SelectedAuthorType } from "../defines/types";
@@ -24,10 +24,13 @@ function AuthorDetail() {
 			<AuthorName authorName={authorName} />
 			<Box className="flex items-center">
 				<AuthorProfile />
-				<Box className="flex w-[450px] flex-col">
+				<Box className="flex w-full flex-col">
 					<AuthorInstagramId instagramId={instagramId} />
 					<AuthorIntroduction introduction={introduction} />
 					<Hashtags hashtags={hashtags} />
+					<Button className="mt-5" variant="contained" href={`/search/${instagramId}/request`}>
+						문의하기
+					</Button>
 				</Box>
 			</Box>
 			<Divider />

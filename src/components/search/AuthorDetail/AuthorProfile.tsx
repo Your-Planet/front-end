@@ -5,7 +5,7 @@ type Props = {};
 
 function AuthorProfile(props: Props) {
 	return (
-		<Box className="flex justify-center items-center w-[300px] h-[300px]">
+		<Box className="flex justify-center items-center w-[50%] h-[300px]">
 			<Box className="w-[150px] h-[150px] mt-8 rounded-full border-4 relative">
 				<Image
 					className="rounded-full border-solid border-[2px] border-gray-300"
