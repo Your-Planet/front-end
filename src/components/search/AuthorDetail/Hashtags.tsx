@@ -10,8 +10,8 @@ function Hashtags(props: Props) {
 	return (
 		<Box className="flex">
 			{hashtags.map((hashtag, index) => (
-				<Link href={`https://www.instagram.com/explore/tags/${hashtag}`} target="_blank">
-					<Typography className={`${index ? "ml-2" : ""}`} variant="body2" key={hashtag}>
+				<Link href={`https://www.instagram.com/explore/tags/${hashtag}`} target="_blank" key={hashtag}>
+					<Typography className={`${index ? "ml-2" : ""}`} variant="body2">
 						{`#${hashtag}`}
 					</Typography>
 				</Link>

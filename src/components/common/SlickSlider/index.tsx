@@ -11,13 +11,10 @@ const SlideWrapper = styled.section`
 
 interface Props {
 	children: ReactNode;
-	autoplay?: boolean | number;
-	speed?: number;
-	loop?: boolean;
 }
 
 function SlickSlider(props: Props) {
-	const { children, autoplay = false, speed = 300, loop = true } = props;
+	const { children } = props;
 
 	const settings = useMemo<Settings>(
 		() => ({
@@ -28,7 +25,7 @@ function SlickSlider(props: Props) {
 			slidesToScroll: 3,
 			initialSlide: 0,
 		}),
-		[autoplay, loop, speed],
+		[],
 	);
 
 	return (
