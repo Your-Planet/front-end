@@ -22,6 +22,8 @@ function Footer() {
 					<Box>
 						<Typography>이용약관</Typography>
 						<Typography>개인정보처리방침</Typography>
+						<Typography>크레딧</Typography>
+						{/* TODO: credit에 flaticon 저작자 표시 */}
 					</Box>
 				</Grid>
 				<Grid xs={2} item>
