@@ -34,10 +34,8 @@ const config: Config = {
 				},
 			},
 			animation: {
-				fadeIn: "fadeIn 3s ease-in-out",
-			},
-			animation: {
 				wheel: "wheel 2s infinite",
+				fadeIn: "fadeIn 3s ease-in-out",
 			},
 		},
 	},

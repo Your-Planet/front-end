@@ -47,8 +47,13 @@ function AuthorPortfolio() {
 		<Box className="mt-3">
 			<SlickSlider>
 				{items.map((item) => (
-					<Box className="w-full h-[310px] relative" key={item.name}>
-						<Image className="px-1 box-border" src={item.link} alt={item.name} fill />
+					<Box className="w-[310px] h-[310px] relative" key={item.name}>
+						<Image
+							className="rounded-xl border-solid border-[1px] border-gray-300 hover:scale-105 duration-700 hover:cursor-pointer"
+							src={item.link}
+							alt={item.name}
+							fill
+						/>
 					</Box>
 				))}
 			</SlickSlider>

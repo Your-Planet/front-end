@@ -20,7 +20,7 @@ function Search({}: Props) {
 				<Box className="min-w-[50%] max-w-min">
 					<ScrollDownSection targetRef={genreTabsRef} />
 					<GenreTabs genreTabsRef={genreTabsRef} />
-					<SortOptions countOfCards={5} />
+					<SortOptions countOfCards={1} />
 					<MainSection />
 				</Box>
 			</Box>

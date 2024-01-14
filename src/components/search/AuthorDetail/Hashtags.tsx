@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Link, Typography } from "@mui/material";
 
 type Props = {
 	hashtags: Array<string>;
@@ -10,9 +10,11 @@ function Hashtags(props: Props) {
 	return (
 		<Box className="flex">
 			{hashtags.map((hashtag, index) => (
-				<Typography className={`${index ? "ml-2" : ""}`} variant="body2" key={hashtag}>
-					{`#${hashtag}`}
-				</Typography>
+				<Link href={`https://www.instagram.com/explore/tags/${hashtag}`} target="_blank">
+					<Typography className={`${index ? "ml-2" : ""}`} variant="body2" key={hashtag}>
+						{`#${hashtag}`}
+					</Typography>
+				</Link>
 			))}
 		</Box>
 	);
