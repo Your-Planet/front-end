@@ -2,17 +2,6 @@ import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 
 function OurWork() {
-	const setting = {
-		dots: true,
-		infinite: true,
-		speed: 500,
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		arrows: false,
-		Infinity: true,
-		autoplay: true,
-	};
-
 	return (
 		<Box className="w-full h-auto relative">
 			<div className="px-[100px] h-auto">
@@ -22,6 +11,7 @@ function OurWork() {
 					</Typography>
 					<Image src="/images/hard.png" alt="hard" width={250} height={300} />
 				</div>
+
 				<div className="flex flex-col w-full h-except-header justify-center items-center">
 					<Typography className="font-bold" variant="h4">
 						복잡한 광고주와의 거래, 마케팅, 거래과정, 사후처리를 한번에
@@ -39,7 +29,7 @@ function OurWork() {
 							더 자유롭게, 더 전문적으로 성장할 수 있어요
 						</Typography>
 					</Box>
-					<Box className="relative w-[50%] h-[280px] mt-10">
+					<Box className="relative w-[30%] h-[280px] mt-10">
 						<Image src="/images/grow_up.png" alt="grow_up" fill />
 					</Box>
 				</div>
