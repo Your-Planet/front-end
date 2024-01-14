@@ -34,7 +34,7 @@ const config: Config = {
 				},
 			},
 			animation: {
-				fadeIn: "fadeIn 3s ease-in-out;",
+				fadeIn: "fadeIn 3s ease-in-out",
 			},
 		},
 	},
