@@ -1,7 +1,9 @@
+import AuthorDetail from "@/components/search/AuthorDetail/index";
+
 type Props = {};
 
-function AuthorDetail({}: Props) {
-	return <div>AuthorDetail</div>;
+function AuthorDetailPage({}: Props) {
+	return <AuthorDetail />;
 }
 
-export default AuthorDetail;
+export default AuthorDetailPage;

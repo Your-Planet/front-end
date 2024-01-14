@@ -1,18 +1,23 @@
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useRecoilState } from "recoil";
+import { selectedAuthorContext } from "../../recoil/atoms/search";
+import { SelectedAuthorType } from "./defines/types";
 
-type Props = {
-	authorName: string;
+interface Props extends SelectedAuthorType {
 	profilePictureUrl: string; // temporary. In db, url? image?
-	instagramId: string;
-};
+}
 
 function AuthorCard(props: Props) {
 	const { authorName, profilePictureUrl, instagramId } = props;
 	const router = useRouter();
+	const [_, setSelectedAuthor] = useRecoilState<SelectedAuthorType>(selectedAuthorContext);
 
-	const handleClick = () => router.push(`/search/${instagramId}`);
+	const handleClick = () => {
+		setSelectedAuthor({ authorName, instagramId });
+		router.push(`/search/${instagramId}`);
+	};
 
 	return (
 		<Box
@@ -23,7 +28,7 @@ function AuthorCard(props: Props) {
 				<Image
 					className="rounded-full border-solid border-[3px] border-[transparent]"
 					src="/images/manggom.jpeg"
-					alt={authorName}
+					alt={authorName || "undefined"}
 					fill
 					sizes="100%"
 					draggable={false}
