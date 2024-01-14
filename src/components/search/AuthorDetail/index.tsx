@@ -1,11 +1,14 @@
 "use client";
 
-import { Box, Divider, Typography } from "@mui/material";
-import Image from "next/image";
+import { Box, Divider } from "@mui/material";
 import { useRecoilValue } from "recoil";
 import { selectedAuthorState } from "../../../recoil/selectors/search";
 import { SelectedAuthorType } from "../defines/types";
 import AuthorInstagramId from "./AuthorInstagramId";
+import AuthorIntroduction from "./AuthorIntroduction";
+import AuthorName from "./AuthorName";
+import AuthorPortfolio from "./AuthorPortfolio";
+import AuthorProfile from "./AuthorProfile";
 import Hashtags from "./Hashtags";
 
 function AuthorDetail() {
@@ -18,40 +21,17 @@ function AuthorDetail() {
 	// TODO: loading 창 필요할듯. recoil-persist 사용하는데, 데이터 읽어들일 때까지 error, load 되면 ok
 	return (
 		<Box className="flex mx-20 p-20 flex-col">
-			<Box className="flex">
-				<Typography className="font-bold" variant="h5">
-					{authorName}
-				</Typography>
-			</Box>
+			<AuthorName authorName={authorName} />
 			<Box className="flex items-center">
-				{profilePictureUrl ? (
-					"image"
-				) : (
-					<Box className="flex justify-center items-center w-[300px] h-[300px]">
-						<Box className="w-[150px] h-[150px] mt-8 rounded-full border-4 relative">
-							<Image
-								className="rounded-full border-solid border-[2px] border-gray-300"
-								src="/images/manggom.jpeg"
-								alt={authorName}
-								fill
-								sizes="100%"
-								draggable={false}
-							/>
-						</Box>
-					</Box>
-				)}
+				<AuthorProfile />
 				<Box className="flex w-[450px] flex-col">
 					<AuthorInstagramId instagramId={instagramId} />
-					<Box className="flex items-center w-full h-32">
-						<Typography variant="body1" paragraph sx={{ whiteSpace: "pre-wrap" }}>
-							{introduction ? `${introduction}` : "undefined"}
-						</Typography>
-					</Box>
+					<AuthorIntroduction introduction={introduction} />
 					<Hashtags hashtags={hashtags} />
 				</Box>
 			</Box>
 			<Divider />
-			<Box className="flex flex-col"></Box>
+			<AuthorPortfolio />
 		</Box>
 	);
 }
