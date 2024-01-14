@@ -19,6 +19,7 @@
 		"@tanstack/react-query-devtools": "^5.13.4",
 		"@types/slick-carousel": "^1.6.40",
 		"@types/styled-components": "^5.1.30",
+		"animejs": "^3.2.2",
 		"axios": "^1.6.2",
 		"classnames": "^2.3.2",
 		"cookies-next": "^4.1.0",
