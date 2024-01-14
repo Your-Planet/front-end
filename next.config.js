@@ -3,7 +3,7 @@
 const SERVER_URL_BY_ENVIRONMENT = {
 	development: "http://localhost:8080",
 	test: "http://localhost:8080",
-	production: "https://port-0-back-end-1efqtf2dlr6ithdn.sel5.cloudtype.app/",
+	production: "https://port-0-back-end-1efqtf2dlr6ithdn.sel5.cloudtype.app",
 };
 
 const nextConfig = {
