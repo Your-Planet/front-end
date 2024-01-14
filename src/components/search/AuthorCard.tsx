@@ -5,17 +5,13 @@ import { useRecoilState } from "recoil";
 import { selectedAuthorContext } from "../../recoil/atoms/search";
 import { SelectedAuthorType } from "./defines/types";
 
-interface Props extends SelectedAuthorType {
-	profilePictureUrl: string; // temporary. In db, url? image?
-}
-
-function AuthorCard(props: Props) {
+function AuthorCard(props: SelectedAuthorType) {
 	const { authorName, profilePictureUrl, instagramId } = props;
 	const router = useRouter();
 	const [_, setSelectedAuthor] = useRecoilState<SelectedAuthorType>(selectedAuthorContext);
 
 	const handleClick = () => {
-		setSelectedAuthor({ authorName, instagramId });
+		setSelectedAuthor({ authorName, profilePictureUrl, instagramId });
 		router.push(`/search/${instagramId}`);
 	};
 
