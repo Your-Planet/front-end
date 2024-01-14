@@ -1,7 +1,9 @@
+import Request from "@/components/search/Request/index";
+
 type Props = {};
 
 function page({}: Props) {
-	return <div>page</div>;
+	return <Request />;
 }
 
 export default page;
