@@ -1,4 +1,4 @@
-import Request from "@/components/search/Request/index";
+import Request from "@/components/search/Request/";
 
 type Props = {};
 
