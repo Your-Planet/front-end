@@ -4,7 +4,7 @@ import Image from "next/image";
 function HomeVideo() {
 	return (
 		<section className="w-full h-except-header relative text-center flex justify-center items-center flex-col">
-			<Image src="/images/your_planet.png" alt="your planet" width={150} height={150} />
+			<Image className="animate-fadeIn" src="/images/your_planet.png" alt="your planet" width={150} height={150} />
 			<Box className="flex items-center w-[80%] h-auto">
 				<svg
 					id="eOWQlgyTpZH1"

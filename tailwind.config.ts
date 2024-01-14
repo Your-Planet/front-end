@@ -21,9 +21,24 @@ const config: Config = {
 				wheel: {
 					to: { opacity: "0", top: "50px" },
 				},
+				fadeIn: {
+					"0%": {
+						opacity: "0",
+					},
+					"50%": {
+						opacity: "0",
+					},
+					"100%": {
+						opacity: "1",
+					},
+				},
+			},
+			animation: {
+				fadeIn: "fadeIn 3s ease-in-out;",
 			},
 		},
 	},
+
 	plugins: [require("tailwindcss-3d")],
 	corePlugins: {
 		preflight: false,
