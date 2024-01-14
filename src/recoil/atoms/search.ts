@@ -17,9 +17,9 @@ export const sortOptionContext = atom<SortOptionType>({
 export const selectedAuthorContext = atom<SelectedAuthorType>({
 	key: "SelectedAuthor",
 	default: {
-		authorName: null,
-		profilePictureUrl: null,
-		instagramId: null,
+		authorName: "",
+		profilePictureUrl: "",
+		instagramId: "",
 	},
 	effects_UNSTABLE: [persistAtom],
 });
