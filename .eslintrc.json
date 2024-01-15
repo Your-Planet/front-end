@@ -55,6 +55,8 @@
 		"react/require-default-props": "off",
 		"react/no-unstable-nested-components": "off",
 		"react/function-component-definition": "off",
-		"@typescript-eslint/naming-convention": "off"
+		"@typescript-eslint/naming-convention": "off",
+		"no-alert": "off",
+		"no-param-reassign": "off"
 	}
 }
