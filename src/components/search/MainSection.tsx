@@ -9,21 +9,6 @@ function MainSection(props: Props) {
 			<Grid item xs={4}>
 				<AuthorCard authorName="망그러진곰" profilePictureUrl="" instagramId="yurang_official" />
 			</Grid>
-			<Grid item xs={4}>
-				<AuthorCard authorName="망그러진곰" profilePictureUrl="" instagramId="yurang_official" />
-			</Grid>
-			<Grid item xs={4}>
-				<AuthorCard authorName="망그러진곰" profilePictureUrl="" instagramId="yurang_official" />
-			</Grid>
-			<Grid item xs={4}>
-				<AuthorCard authorName="망그러진곰" profilePictureUrl="" instagramId="yurang_official" />
-			</Grid>
-			<Grid item xs={4}>
-				<AuthorCard authorName="망그러진곰" profilePictureUrl="" instagramId="yurang_official" />
-			</Grid>
-			<Grid item xs={4}>
-				<AuthorCard authorName="망그러진곰" profilePictureUrl="" instagramId="yurang_official" />
-			</Grid>
 		</Grid>
 	);
 }

@@ -35,6 +35,11 @@ html > body * {
 	background-image: linear-gradient(to bottom left, #ffd600, #ff7a00, #ff0069, #d300c5, #7638fa);
 }
 
+.slick-prev:before,
+.slick-next:before {
+	color: black !important;
+}
+
 #eOWQlgyTpZH7_to {
 	animation: eOWQlgyTpZH7_to__to 3000ms linear 1 normal forwards;
 }

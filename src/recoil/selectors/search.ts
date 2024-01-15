@@ -1,5 +1,5 @@
 import { selector } from "recoil";
-import { genreContext, sortOptionContext } from "../atoms/search";
+import { genreContext, selectedAuthorContext, sortOptionContext } from "../atoms/search";
 
 export const genreState = selector({
 	key: "genreState",
@@ -16,5 +16,14 @@ export const sortOptionState = selector({
 		const sortOption = get(sortOptionContext);
 
 		return sortOption;
+	},
+});
+
+export const selectedAuthorState = selector({
+	key: "selectedAuthorState",
+	get: ({ get }) => {
+		const selectedAuthor = get(selectedAuthorContext);
+
+		return selectedAuthor;
 	},
 });

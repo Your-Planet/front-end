@@ -19,7 +19,7 @@ const config: Config = {
 			},
 			keyframes: {
 				wheel: {
-					to: { opacity: "0", top: "50px" },
+					to: { opacity: "0", transform: "translateY(40px)" },
 				},
 				fadeIn: {
 					"0%": {
@@ -34,6 +34,7 @@ const config: Config = {
 				},
 			},
 			animation: {
+				wheel: "wheel 2s infinite",
 				fadeIn: "fadeIn 3s ease-in-out",
 			},
 		},
