@@ -4,23 +4,22 @@ import Image from "next/image";
 function OurWork() {
 	return (
 		<Box className="w-full h-auto relative">
-			<div className="px-[100px] h-auto">
-				<div className="flex items-center justify-evenly w-full h-except-header">
+			<Box className="px-[100px] h-auto">
+				<Box className="flex items-center justify-evenly w-full h-except-header">
 					<Typography className="font-bold" variant="h4">
 						작품에만 집중하기 어려운 작가님들을 위해
 					</Typography>
 					<Image src="/images/hard.png" alt="hard" width={250} height={300} />
-				</div>
-
-				<div className="flex flex-col w-full h-except-header justify-center items-center">
+				</Box>
+				<Box className="flex flex-col w-full h-except-header justify-center items-center">
 					<Typography className="font-bold" variant="h4">
 						복잡한 광고주와의 거래, 마케팅, 거래과정, 사후처리를 한번에
 					</Typography>
 					<Box className="relative w-[50%] h-[280px] mt-10">
 						<Image src="/images/one_queue.png" alt="one_queue" fill />
 					</Box>
-				</div>
-				<div className="flex w-full h-except-header justify-center items-center">
+				</Box>
+				<Box className="flex w-full h-except-header justify-center items-center">
 					<Box>
 						<Typography className="font-bold" variant="h4">
 							유어플래닛과 함께하면
@@ -32,8 +31,8 @@ function OurWork() {
 					<Box className="relative w-[30%] h-[280px] mt-10">
 						<Image src="/images/grow_up.png" alt="grow_up" fill />
 					</Box>
-				</div>
-			</div>
+				</Box>
+			</Box>
 		</Box>
 	);
 }

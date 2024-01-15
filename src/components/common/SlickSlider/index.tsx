@@ -1,5 +1,5 @@
-import { ReactNode, useMemo } from "react";
-import Slider, { Settings } from "react-slick";
+import { ReactNode } from "react";
+import Slider from "react-slick";
 
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
@@ -12,23 +12,7 @@ interface Props {
 function SlickSlider(props: Props) {
 	const { children, setting } = props;
 
-	const settings = useMemo<Settings>(
-		() => ({
-			dots: true,
-			infinite: true,
-			speed: 500,
-			slidesToShow: 1,
-			slidesToScroll: 1,
-			...setting,
-		}),
-		[],
-	);
-
-	return (
-		<section className="relative">
-			<Slider {...settings}>{children}</Slider>
-		</section>
-	);
+	return <Slider {...setting}>{children}</Slider>;
 }
 
 export default SlickSlider;
