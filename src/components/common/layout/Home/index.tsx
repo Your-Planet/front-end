@@ -1,11 +1,11 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 
 function HomeVideo() {
 	return (
 		<section className="w-full h-except-header relative text-center flex justify-center items-center flex-col">
 			<Image className="animate-fadeIn" src="/images/your_planet.png" alt="your planet" width={150} height={150} />
-			<Box className="flex items-center w-[80%] h-auto">
+			<Box className="flex flex-col items-center w-[80%] h-auto">
 				<svg
 					id="eOWQlgyTpZH1"
 					xmlns="http://www.w3.org/2000/svg"
@@ -501,6 +501,9 @@ function HomeVideo() {
 						</g>
 					</g>
 				</svg>
+				<Typography className="font-[900] mt-8" variant="h3">
+					온전히 나의 색에 집중
+				</Typography>
 			</Box>
 		</section>
 	);
