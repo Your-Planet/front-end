@@ -501,7 +501,7 @@ function HomeVideo() {
 						</g>
 					</g>
 				</svg>
-				<Typography className="font-[900] mt-8" variant="h3">
+				<Typography className="font-[900] mt-8 animate-fadeIn" variant="h3">
 					온전히 나의 색에 집중
 				</Typography>
 			</Box>
