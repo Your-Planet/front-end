@@ -43,9 +43,18 @@ const items: itemsProps[] = [
 ];
 
 function AuthorPortfolio() {
+	const setting = {
+		dots: true,
+		infinite: false,
+		speed: 800,
+		slidesToShow: 3,
+		slidesToScroll: 3,
+		initialSlide: 0,
+	};
+
 	return (
 		<Box className="mt-3">
-			<SlickSlider>
+			<SlickSlider setting={setting}>
 				{items.map((item) => (
 					<Box className="w-[310px] h-[310px] relative" key={item.name}>
 						<Image
