@@ -32,10 +32,19 @@ const config: Config = {
 						opacity: "1",
 					},
 				},
+				slide: {
+					"0%": {
+						transform: "translateX(0)",
+					},
+					"100%": {
+						transform: "translateX(-100%)",
+					},
+				},
 			},
 			animation: {
 				wheel: "wheel 2s infinite",
 				fadeIn: "fadeIn 3s ease-in-out",
+				slide: "slide 35s linear infinite",
 			},
 		},
 	},
