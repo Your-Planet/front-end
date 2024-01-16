@@ -49,7 +49,7 @@ const config: Config = {
 		},
 	},
 
-	plugins: [require("tailwindcss-3d")],
+	plugins: [require("tailwindcss-3d"), require("tailwindcss-animated")],
 	corePlugins: {
 		preflight: false,
 	},
