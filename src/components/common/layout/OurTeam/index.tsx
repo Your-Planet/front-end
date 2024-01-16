@@ -3,54 +3,55 @@ import Image from "next/image";
 
 function OurTeam() {
 	return (
-		<Box className="w-full h-except-header flex justify-center items-center">
-			<Box className="w-full h-full max-w-[1200px] flex flex-col justify-center ml-40 mr-40">
-				<Typography className="p-3" variant="h4">
-					Our Team
-				</Typography>
-				<Box className="w-full flex justify-center items-center pt-20">
-					<Box className="w-full h-full flex flex-col items-center">
-						<Box className="flex relative w-[220px] h-[220px]">
-							<Image
-								src="/images/marketing.png"
-								alt="marketing"
-								fill
-								priority
-								sizes="(max-width: 768px) 200px, 220px"
-							/>
+		<Box className="w-full h-auto relative">
+			<Box className="px-[100px] h-auto">
+				<Box className="flex items-center justify-center w-full h-except-header">
+					<Typography className="font-bold" variant="h4">
+						직접 경험해보세요
+					</Typography>
+				</Box>
+				<Box className="flex overflow-hidden bg-white px-[60px] py-0 whitespace-nowrap relative before:absolute before:top-0 before:w-[300px] before:h-full before:content-none before:z-10 before:left-0 after:absolute after:top-0 after:w-[300px] after:h-full after:content-none after:z-10 hover:pause mb-3">
+					<Box className="flex hover:pause animate-slide">
+						<Box className="flex flex-col p-10 bg-indigo-300 w-[260px] h-[250px] mx-2 my-0 rounded-xl">
+							<Box className="flex justify-center items-center relative w-16 h-16 rounded-full bg-white">
+								<Image src="/images/marketing.png" alt="marketing" width={50} height={50} />
+							</Box>
+							<Box className="py-8">
+								<Typography className="font-bold" variant="h4">
+									마켓팅
+								</Typography>
+							</Box>
 						</Box>
-						<Typography className="text-center mt-3" variant="h5">
-							마케팅
-						</Typography>
-					</Box>
-					<Box className="w-full h-full flex flex-col items-center">
-						<Box className="flex relative w-[220px] h-[220px]">
-							<Image
-								src="/images/product-design.png"
-								alt="product design"
-								fill
-								sizes="(max-width: 768px) 200px, 220px"
-							/>
+						<Box className="flex flex-col p-10 bg-yellow-300 w-[260px] h-[250px] mx-2 my-0 rounded-xl">
+							<Box className="flex justify-center items-center relative w-16 h-16 rounded-full bg-white">
+								<Image src="/images/business.png" alt="business" width={50} height={50} />
+							</Box>
+							<Box className="py-8">
+								<Typography className="font-bold" variant="h4">
+									거래
+								</Typography>
+							</Box>
 						</Box>
-						<Typography className="text-center mt-3" variant="h5">
-							기획
-						</Typography>
-					</Box>
-					<Box className="w-full h-full flex flex-col items-center">
-						<Box className="flex relative w-[220px] h-[220px]">
-							<Image src="/images/branding.png" alt="branding" fill sizes="(max-width: 768px) 200px, 220px" />
+						<Box className="flex flex-col p-10 bg-lime-300 w-[260px] h-[250px] mx-2 my-0 rounded-xl">
+							<Box className="flex justify-center items-center relative w-16 h-16 rounded-full bg-white">
+								<Image src="/images/process.png" alt="process" width={50} height={50} />
+							</Box>
+							<Box className="py-8">
+								<Typography className="font-bold" variant="h4">
+									대금처리
+								</Typography>
+							</Box>
 						</Box>
-						<Typography className="text-center mt-3" variant="h5">
-							브랜딩
-						</Typography>
-					</Box>
-					<Box className="w-full h-full flex flex-col items-center">
-						<Box className="flex relative w-[220px] h-[220px]">
-							<Image src="/images/data-analysis.png" alt="data analysis" fill sizes="(max-width: 768px) 200px, 220px" />
+						<Box className="flex flex-col p-10 bg-orange-300 w-[260px] h-[250px] mx-2 my-0 rounded-xl">
+							<Box className="flex justify-center items-center relative w-16 h-16 rounded-full bg-white">
+								<Image src="/images/after_service.png" alt="after_service" width={50} height={50} />
+							</Box>
+							<Box className="py-8">
+								<Typography className="font-bold" variant="h4">
+									사후관리
+								</Typography>
+							</Box>
 						</Box>
-						<Typography className="text-center mt-3" variant="h5">
-							데이터 분석
-						</Typography>
 					</Box>
 				</Box>
 			</Box>

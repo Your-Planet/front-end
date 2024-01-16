@@ -19,11 +19,36 @@ const config: Config = {
 			},
 			keyframes: {
 				wheel: {
-					to: { opacity: "0", top: "50px" },
+					to: { opacity: "0", transform: "translateY(40px)" },
 				},
+				fadeIn: {
+					"0%": {
+						opacity: "0",
+					},
+					"50%": {
+						opacity: "0",
+					},
+					"100%": {
+						opacity: "1",
+					},
+				},
+				slide: {
+					"0%": {
+						transform: "translateX(0)",
+					},
+					"100%": {
+						transform: "translateX(-100%)",
+					},
+				},
+			},
+			animation: {
+				wheel: "wheel 2s infinite",
+				fadeIn: "fadeIn 3s ease-in-out",
+				slide: "slide 35s linear infinite",
 			},
 		},
 	},
+
 	plugins: [require("tailwindcss-3d")],
 	corePlugins: {
 		preflight: false,
