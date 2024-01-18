@@ -5,14 +5,14 @@ type Props = {
 	color?: string; // tailwindcss
 };
 
-function H4Bold(props: Props) {
+function H5Bold(props: Props) {
 	const { text, color } = props;
 
 	return (
-		<Typography className={`font-bold ${color}`} variant="h4">
+		<Typography className={`font-bold ${color}`} variant="h5">
 			{text}
 		</Typography>
 	);
 }
 
-export default H4Bold;
+export default H5Bold;
