@@ -1,11 +1,12 @@
 import { Box } from "@mui/material";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import IntersectionObserverComponent from "../Observer/index";
 import Section from "./Section";
 
 function OurWork() {
-	const refSection = useRef(null);
+	const sectionRef = useRef<HTMLDivElement>(null);
 
-	const handleIntersect = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
+	const handleIntersect = (entries: IntersectionObserverEntry[]) => {
 		entries.forEach((entry) => {
 			if (entry.isIntersecting) {
 				entry.target.classList.remove("opacity-0");
@@ -15,30 +16,11 @@ function OurWork() {
 		});
 	};
 
-	useEffect(() => {
-		const options = {
-			root: null,
-			rootMargin: "0px",
-			threshold: 0.4,
-		};
-
-		const observerSection = new IntersectionObserver(handleIntersect, options);
-
-		if (refSection.current) {
-			observerSection.observe(refSection.current);
-		}
-
-		return () => {
-			if (refSection.current) {
-				observerSection.unobserve(refSection.current);
-			}
-		};
-	}, []);
-
 	return (
 		<Box className="w-full h-auto relative">
 			<Box className="px-[100px] h-auto">
-				<Section ref={refSection} />
+				<IntersectionObserverComponent targetRef={sectionRef} handleIntersect={handleIntersect} />
+				<Section ref={sectionRef} />
 			</Box>
 		</Box>
 	);

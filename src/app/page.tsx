@@ -8,7 +8,7 @@ import { Box } from "@mui/material";
 function Home() {
 	return (
 		<Box>
-			<Box className="w-full h-except-header">
+			<Box className="w-full h-auto">
 				<Slogan />
 			</Box>
 			<Box className="w-full h-auto">

@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
+import AnimatedText from "./AnimatedText";
 
 function Slogan() {
 	return (
@@ -10,59 +11,18 @@ function Slogan() {
 				alt="your planet"
 				width={150}
 				height={150}
+				priority
 			/>
 			<Box className="flex">
-				<Typography className="font-black animate-fade-left animate-duration-1000" variant="h1">
-					D
-				</Typography>
-				<Typography
-					className="font-black animate-fade-up animate-duration-1000 animate-delay-[150ms] animate-ease-linear"
-					variant="h1"
-				>
-					r
-				</Typography>
-				<Typography
-					className="font-black animate-fade-down animate-duration-1000 animate-delay-[300ms] animate-ease-linear"
-					variant="h1"
-				>
-					e
-				</Typography>
-				<Typography
-					className="font-black animate-fade-right animate-duration-1000 animate-delay-[450ms] animate-ease-linear"
-					variant="h1"
-				>
-					a
-				</Typography>
-				<Typography
-					className="font-black animate-fade-left animate-duration-1000 animate-delay-[600ms] animate-ease-linear"
-					variant="h1"
-				>
-					m
-				</Typography>
-				<Typography
-					className="ml-5 font-black animate-flip-up animate-duration-1000 animate-delay-[750ms] animate-ease-linear"
-					variant="h1"
-				>
-					Y
-				</Typography>
-				<Typography
-					className="font-black animate-flip-down animate-duration-1000 animate-delay-[900ms] animate-ease-linear"
-					variant="h1"
-				>
-					o
-				</Typography>
-				<Typography
-					className="font-black animate-flip-up animate-duration-1000 animate-delay-[1050ms] animate-ease-linear"
-					variant="h1"
-				>
-					u
-				</Typography>
-				<Typography
-					className="font-black animate-flip-down animate-duration-1000 animate-delay-[1200ms] animate-ease-linear"
-					variant="h1"
-				>
-					r
-				</Typography>
+				<AnimatedText text="D" animate="fade-left" />
+				<AnimatedText text="r" animate="fade-up" delay="150" />
+				<AnimatedText text="e" animate="fade-down" delay="300" />
+				<AnimatedText text="a" animate="fade-right" delay="450" />
+				<AnimatedText text="m" animate="fade-left" delay="600" />
+				<AnimatedText text="Y" animate="flip-up" delay="750" margin="ml-5" />
+				<AnimatedText text="o" animate="flip-down" delay="900" />
+				<AnimatedText text="u" animate="flip-up" delay="1050" />
+				<AnimatedText text="r" animate="flip-down" delay="1200" />
 				<Box className="flex animate-fade animate-duration-1000 animate-delay-[1350ms] animate-ease-linear">
 					<Typography className="ml-5 font-black text-[#b2ebc9]" variant="h1">
 						C
@@ -82,9 +42,7 @@ function Slogan() {
 				</Box>
 			</Box>
 			<Box className="flex items-center mt-3">
-				<Typography className="font-bold animate-fade-right animate-duration-1000 animate-delay-[1500ms]" variant="h4">
-					온전히 나의 색에 집중
-				</Typography>
+				<AnimatedText text="온전히 나의 색에 집중" animate="fade-right" delay="1500" variant="h4" />
 			</Box>
 		</Box>
 	);

@@ -1,13 +1,14 @@
 import { Box } from "@mui/material";
-import { cloneElement, useEffect, useRef } from "react";
+import { cloneElement, useRef } from "react";
 import H4Bold from "../../text/H4Bold";
+import IntersectionObserverComponent from "../Observer/index";
 import Card from "./Card";
 
 function OurTeam() {
-	const refBox = useRef<HTMLDivElement>(null);
-	const refSlideSection = useRef<HTMLDivElement>(null);
+	const boxRef = useRef<HTMLDivElement>(null);
+	const slideSectionRef = useRef<HTMLDivElement>(null);
 
-	const handleIntersectBox = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
+	const handleIntersectBox = (entries: IntersectionObserverEntry[]) => {
 		entries.forEach((entry) => {
 			if (entry.isIntersecting) {
 				entry.target.classList.remove("opacity-0");
@@ -17,44 +18,15 @@ function OurTeam() {
 		});
 	};
 
-	const handleIntersectSlideSection = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
+	const handleIntersectSlideSection = (entries: IntersectionObserverEntry[]) => {
 		entries.forEach((entry) => {
 			if (entry.isIntersecting) {
 				entry.target.classList.remove("opacity-0");
 				entry.target.classList.add("animate-slide");
-				entry.target.classList.add("animate-delay-[2000ms]");
+				entry.target.classList.add("animate-delay-300");
 			}
 		});
 	};
-
-	useEffect(() => {
-		const options = {
-			root: null,
-			rootMargin: "0px",
-			threshold: 0.4,
-		};
-
-		const observerBox = new IntersectionObserver(handleIntersectBox, options);
-		const observerSlideSection = new IntersectionObserver(handleIntersectSlideSection, options);
-
-		if (refBox.current) {
-			observerBox.observe(refBox.current);
-		}
-
-		if (refSlideSection.current) {
-			observerSlideSection.observe(refSlideSection.current);
-		}
-
-		return () => {
-			if (refBox.current) {
-				observerBox.unobserve(refBox.current);
-			}
-
-			if (refSlideSection.current) {
-				observerSlideSection.unobserve(refSlideSection.current);
-			}
-		};
-	}, []);
 
 	const slidingCards = () => {
 		const cards = [
@@ -94,16 +66,20 @@ function OurTeam() {
 	};
 
 	return (
-		<Box className="w-full h-auto px-[100px] relative opacity-0" ref={refBox}>
-			<Box className="flex flex-col items-center justify-center w-full h-except-header">
-				<H4Bold text="직접 경험해보세요" />
-				<Box className="flex w-full items-center overflow-hidden h-[300px] whitespace-nowrap relative before:absolute before:top-0 before:w-[30px] before:h-full before:content-[''] before:z-10 before:left-0 before:bg-gradient-to-l before:from-white/0 before:to-white after:absolute after:top-0 after:w-[30px] after:h-full after:content-[''] after:z-10 after:right-0 after:bg-gradient-to-r after:from-white/0 after:to-white hover:pause">
-					<Box className="flex hover:pause opacity-0" ref={refSlideSection}>
-						{slidingCards()}
+		<>
+			<IntersectionObserverComponent targetRef={boxRef} handleIntersect={handleIntersectBox} />
+			<Box className="w-full h-auto px-[100px] relative opacity-0 select-none" ref={boxRef}>
+				<Box className="flex flex-col items-center justify-center w-full h-except-header">
+					<H4Bold text="직접 경험해보세요" />
+					<Box className="flex w-full items-center overflow-hidden h-[300px] whitespace-nowrap relative before:absolute before:top-0 before:w-[30px] before:h-full before:content-[''] before:z-10 before:left-0 before:bg-gradient-to-l before:from-white/0 before:to-white after:absolute after:top-0 after:w-[30px] after:h-full after:content-[''] after:z-10 after:right-0 after:bg-gradient-to-r after:from-white/0 after:to-white hover:pause">
+						<IntersectionObserverComponent targetRef={slideSectionRef} handleIntersect={handleIntersectSlideSection} />
+						<Box className="flex hover:pause opacity-0" ref={slideSectionRef}>
+							{slidingCards()}
+						</Box>
 					</Box>
 				</Box>
 			</Box>
-		</Box>
+		</>
 	);
 }
 
