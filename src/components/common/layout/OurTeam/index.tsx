@@ -1,11 +1,31 @@
 import { Box } from "@mui/material";
-import { useEffect, useRef } from "react";
+import { cloneElement, useEffect, useRef } from "react";
 import H4Bold from "../../text/H4Bold";
 import Card from "./Card";
 
 function OurTeam() {
 	const refBox = useRef<HTMLDivElement>(null);
 	const refSlideSection = useRef<HTMLDivElement>(null);
+
+	const handleIntersectBox = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
+		entries.forEach((entry) => {
+			if (entry.isIntersecting) {
+				entry.target.classList.remove("opacity-0");
+				entry.target.classList.add("animate-fade-up");
+				entry.target.classList.add("animate-delay-300");
+			}
+		});
+	};
+
+	const handleIntersectSlideSection = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
+		entries.forEach((entry) => {
+			if (entry.isIntersecting) {
+				entry.target.classList.remove("opacity-0");
+				entry.target.classList.add("animate-slide");
+				entry.target.classList.add("animate-delay-[2000ms]");
+			}
+		});
+	};
 
 	useEffect(() => {
 		const options = {
@@ -36,32 +56,31 @@ function OurTeam() {
 		};
 	}, []);
 
-	const handleIntersectBox = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
-		entries.forEach((entry) => {
-			if (entry.isIntersecting) {
-				entry.target.classList.remove("opacity-0");
-				entry.target.classList.add("animate-fade-up");
-				entry.target.classList.add("animate-delay-300");
-			}
-		});
-	};
-
-	const handleIntersectSlideSection = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
-		entries.forEach((entry) => {
-			if (entry.isIntersecting) {
-				entry.target.classList.remove("opacity-0");
-				entry.target.classList.add("animate-slide");
-				entry.target.classList.add("animate-delay-300");
-			}
-		});
-	};
-
 	const slidingCards = () => {
 		const cards = [
-			<Card text="마켓팅" backgroundColor="bg-indigo-300" imageSrc="/images/marketing.png" imageAlt="marketing" />,
-			<Card text="거래" backgroundColor="bg-yellow-300" imageSrc="/images/business.png" imageAlt="business" />,
-			<Card text="대금처리" backgroundColor="bg-lime-300" imageSrc="/images/process.png" imageAlt="process" />,
 			<Card
+				key="마켓팅"
+				text="마켓팅"
+				backgroundColor="bg-indigo-300"
+				imageSrc="/images/marketing.png"
+				imageAlt="marketing"
+			/>,
+			<Card
+				key="거래"
+				text="거래"
+				backgroundColor="bg-yellow-300"
+				imageSrc="/images/business.png"
+				imageAlt="business"
+			/>,
+			<Card
+				key="대금처리"
+				text="대금처리"
+				backgroundColor="bg-lime-300"
+				imageSrc="/images/process.png"
+				imageAlt="process"
+			/>,
+			<Card
+				key="사후처리"
 				text="사후처리"
 				backgroundColor="bg-orange-300"
 				imageSrc="/images/after_service.png"
@@ -69,7 +88,9 @@ function OurTeam() {
 			/>,
 		];
 
-		return [...cards, ...cards];
+		const duplicatedCards = cards.map((card) => cloneElement(card, { key: `duplicated-${card.props.text}` }));
+
+		return [...cards, ...duplicatedCards];
 	};
 
 	return (
