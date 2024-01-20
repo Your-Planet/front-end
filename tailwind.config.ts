@@ -33,18 +33,15 @@ const config: Config = {
 					},
 				},
 				slide: {
-					"0%": {
-						transform: "translateX(0)",
-					},
-					"100%": {
-						transform: "translateX(-100%)",
+					to: {
+						transform: "translate(calc(-50% - 0.5rem))",
 					},
 				},
 			},
 			animation: {
 				wheel: "wheel 2s infinite",
 				fadeIn: "fadeIn 3s ease-in-out",
-				slide: "slide 35s linear infinite",
+				slide: "slide 25s linear infinite",
 			},
 		},
 	},
