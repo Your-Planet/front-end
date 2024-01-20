@@ -15,4 +15,6 @@ const Section = forwardRef((props, ref) => {
 	);
 });
 
+Section.displayName = "Section";
+
 export default Section;
