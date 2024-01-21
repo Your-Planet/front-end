@@ -42,7 +42,7 @@ function Slogan() {
 				</Box>
 			</Box>
 			<Box className="flex items-center mt-3">
-				<AnimatedText text="온전히 나의 색에 집중" animate="animate-fade-right" delay="3000" variant="h4" />
+				<AnimatedText text="온전히 나의 색에 집중" animate="animate-fade-right" delay="2500" variant="h4" />
 			</Box>
 		</Box>
 	);

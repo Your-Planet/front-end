@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import Image from "next/image";
-import H4Bold from "../../text/H4Bold";
+import H4 from "../../text/H4";
 
 type Props = {
 	text: string;
@@ -20,7 +20,7 @@ function Card(props: Props) {
 				<Image src={imageSrc} alt={imageAlt} width={50} height={50} priority />
 			</Box>
 			<Box className="py-8">
-				<H4Bold text={text} />
+				<H4 bold>{text}</H4>
 			</Box>
 		</Box>
 	);
