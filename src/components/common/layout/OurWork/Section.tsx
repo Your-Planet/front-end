@@ -1,8 +1,21 @@
-import { Box } from "@mui/material";
+import { Box, styled } from "@mui/material";
 import { forwardRef } from "react";
 import H4 from "../../text/H4";
 import H5 from "../../text/H5";
 import Contents from "./Contents";
+
+const StyledBox = styled(Box)`
+	display: flex;
+	width: 100%;
+	height: 400px;
+	margin-top: 1.5rem;
+	border-radius: 1.5rem;
+	background-color: #eff2ef;
+	background-image: radial-gradient(#a7afd1 1px, transparent 0);
+	background-size: 30px 30px;
+	background-position: -11px -11px;
+	opacity: 1;
+`;
 
 const Section = forwardRef((props, ref) => {
 	return (
@@ -17,9 +30,9 @@ const Section = forwardRef((props, ref) => {
 					더 자유롭게, 더 전문적으로 성장할 수 있어요
 				</H5>
 			</Box>
-			<Box className="flex w-full h-[400px] mt-6 bg-gray-100 rounded-3xl px-5">
+			<StyledBox>
 				<Contents />
-			</Box>
+			</StyledBox>
 		</Box>
 	);
 });
