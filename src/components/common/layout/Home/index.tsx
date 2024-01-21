@@ -1,23 +1,51 @@
-import { WHITE_FONT_COLOR } from "@/defines/common/constants";
-import { Box } from "@mui/material";
-import { TITLE_BACKGROUND_COLOR } from "./defines/constants";
+import { Box, Typography } from "@mui/material";
+import Image from "next/image";
+import AnimatedText from "./AnimatedText";
 
-function HomeVideo() {
+function Slogan() {
 	return (
-		<section className="w-full h-except-header relative text-center">
-			<video className="w-full h-except-header object-cover" src="/videos/home_video.mp4" autoPlay loop muted />
-			<Box
-				sx={{ color: WHITE_FONT_COLOR, backgroundColor: TITLE_BACKGROUND_COLOR }}
-				className="flex flex-col justify-center items-center absolute text-center bottom-0 left-0 right-0 select-none w-full h-full text-3xl/3 font-bold mx-0 my-0"
-			>
-				<p>당신의 색을 온전히 보여주세요.</p>
-				<br />
-				<p>
-					나머지는 <strong className="text-4xl">Your Planet</strong> 이 할게요
-				</p>
+		<Box className="w-full h-except-header relative text-center flex justify-center items-center flex-col select-none">
+			<Image
+				className="animate-jump-in animate-duration-1000 animate-delay-[4000ms]"
+				src="/images/your_planet.png"
+				alt="your planet"
+				width={150}
+				height={150}
+				priority
+			/>
+			<Box className="flex">
+				<AnimatedText text="D" animate="animate-fade-left" />
+				<AnimatedText text="r" animate="animate-fade-up" delay="100" />
+				<AnimatedText text="e" animate="animate-fade-down" delay="200" />
+				<AnimatedText text="a" animate="animate-fade-right" delay="300" />
+				<AnimatedText text="m" animate="animate-fade-left" delay="400" />
+				<AnimatedText text="Y" animate="animate-flip-up" delay="500" margin="ml-5" />
+				<AnimatedText text="o" animate="animate-flip-down" delay="600" />
+				<AnimatedText text="u" animate="animate-flip-up" delay="700" />
+				<AnimatedText text="r" animate="animate-flip-down" delay="800" />
+				<Box className="flex animate-fade animate-duration-[1500ms] animate-delay-[1500ms] animate-ease-linear">
+					<Typography className="ml-5 font-black text-[#b2ebc9]" variant="h1">
+						C
+					</Typography>
+					<Typography className="font-black text-[#f5e89d]" variant="h1">
+						O
+					</Typography>
+					<Typography className="font-black text-[#b9daf6]" variant="h1">
+						L
+					</Typography>
+					<Typography className="font-black text-[#e5adc0]" variant="h1">
+						O
+					</Typography>
+					<Typography className="font-black text-[#ffb347]" variant="h1">
+						R
+					</Typography>
+				</Box>
 			</Box>
-		</section>
+			<Box className="flex items-center mt-3">
+				<AnimatedText text="온전히 나의 색에 집중" animate="animate-fade-right" delay="2500" variant="h4" />
+			</Box>
+		</Box>
 	);
 }
 
-export default HomeVideo;
+export default Slogan;

@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 import { HEADER_HEIGHT } from "./src/components/common/layout/Header/defines/constants";
 
 const config: Config = {
@@ -8,6 +9,9 @@ const config: Config = {
 		"./src/app/**/*.{js,ts,jsx,tsx,mdx}",
 	],
 	important: true,
+	daisyui: {
+		themes: ["light"],
+	},
 	theme: {
 		extend: {
 			backgroundImage: {
@@ -19,12 +23,52 @@ const config: Config = {
 			},
 			keyframes: {
 				wheel: {
-					to: { opacity: "0", top: "50px" },
+					to: { opacity: "0", transform: "translateY(40px)" },
 				},
+				fadeIn: {
+					"0%": {
+						opacity: "0",
+					},
+					"50%": {
+						opacity: "0",
+					},
+					"100%": {
+						opacity: "1",
+					},
+				},
+				slide: {
+					to: {
+						transform: "translate(calc(-50% - 0.5rem))",
+					},
+				},
+			},
+			animation: {
+				wheel: "wheel 2s infinite",
+				fadeIn: "fadeIn 3s ease-in-out",
+				slide: "slide 25s linear infinite",
 			},
 		},
 	},
-	plugins: [require("tailwindcss-3d")],
+
+	plugins: [
+		require("tailwindcss-3d"),
+		require("tailwindcss-animated"),
+		require("daisyui"),
+		plugin(({ matchUtilities, theme }) => {
+			matchUtilities(
+				{
+					"animation-delay": (value) => {
+						return {
+							"animation-delay": value,
+						};
+					},
+				},
+				{
+					values: theme("transitionDelay"),
+				},
+			);
+		}),
+	],
 	corePlugins: {
 		preflight: false,
 	},
