@@ -1,10 +1,12 @@
 import { Box } from "@mui/material";
-import { useRef } from "react";
-import IntersectionObserverComponent from "../Observer/index";
+import { useInView } from "react-intersection-observer";
 import Section from "./Section";
 
 function OurWork() {
-	const sectionRef = useRef<HTMLDivElement>(null);
+	const [sectionRef, sectionInView] = useInView({
+		triggerOnce: true,
+		threshold: 0.4,
+	});
 
 	const handleIntersect = (entries: IntersectionObserverEntry[]) => {
 		entries.forEach((entry) => {
@@ -17,9 +19,8 @@ function OurWork() {
 	};
 
 	return (
-		<Box className="w-full h-auto relative">
+		<Box className={`w-full h-auto relative ${sectionInView ? "animate-fade-up animate-delay-300" : "opacity-0"} `}>
 			<Box className="px-[100px] h-auto">
-				<IntersectionObserverComponent targetRef={sectionRef} handleIntersect={handleIntersect} />
 				<Section ref={sectionRef} />
 			</Box>
 		</Box>

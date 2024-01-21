@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 import { HEADER_HEIGHT } from "./src/components/common/layout/Header/defines/constants";
 
 const config: Config = {
@@ -46,7 +47,24 @@ const config: Config = {
 		},
 	},
 
-	plugins: [require("tailwindcss-3d"), require("tailwindcss-animated")],
+	plugins: [
+		require("tailwindcss-3d"),
+		require("tailwindcss-animated"),
+		plugin(({ matchUtilities, theme }) => {
+			matchUtilities(
+				{
+					"animation-delay": (value) => {
+						return {
+							"animation-delay": value,
+						};
+					},
+				},
+				{
+					values: theme("transitionDelay"),
+				},
+			);
+		}),
+	],
 	corePlugins: {
 		preflight: false,
 	},

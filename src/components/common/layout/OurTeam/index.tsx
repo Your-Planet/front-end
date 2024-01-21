@@ -1,32 +1,15 @@
 import { Box } from "@mui/material";
-import { cloneElement, useRef } from "react";
+import { cloneElement } from "react";
+import { useInView } from "react-intersection-observer";
 import H4Bold from "../../text/H4Bold";
-import IntersectionObserverComponent from "../Observer/index";
 import Card from "./Card";
 
 function OurTeam() {
-	const boxRef = useRef<HTMLDivElement>(null);
-	const slideSectionRef = useRef<HTMLDivElement>(null);
-
-	const handleIntersectBox = (entries: IntersectionObserverEntry[]) => {
-		entries.forEach((entry) => {
-			if (entry.isIntersecting) {
-				entry.target.classList.remove("opacity-0");
-				entry.target.classList.add("animate-fade-up");
-				entry.target.classList.add("animate-delay-300");
-			}
-		});
+	const useInViewOption = {
+		triggerOnce: true,
+		threshold: 0.4,
 	};
-
-	const handleIntersectSlideSection = (entries: IntersectionObserverEntry[]) => {
-		entries.forEach((entry) => {
-			if (entry.isIntersecting) {
-				entry.target.classList.remove("opacity-0");
-				entry.target.classList.add("animate-slide");
-				entry.target.classList.add("animate-delay-300");
-			}
-		});
-	};
+	const [boxRef, boxInView] = useInView(useInViewOption);
 
 	const slidingCards = () => {
 		const cards = [
@@ -67,13 +50,16 @@ function OurTeam() {
 
 	return (
 		<>
-			<IntersectionObserverComponent targetRef={boxRef} handleIntersect={handleIntersectBox} />
-			<Box className="w-full h-auto px-[100px] relative opacity-0 select-none" ref={boxRef}>
+			<Box
+				className={`w-full h-screen px-[100px] relative select-none ${
+					boxInView ? "animate-fade-up animate-delay-300" : "opacity-0"
+				}`}
+				ref={boxRef}
+			>
 				<Box className="flex flex-col items-center justify-center w-full h-except-header">
 					<H4Bold text="직접 경험해보세요" />
 					<Box className="flex w-full items-center overflow-hidden h-[300px] whitespace-nowrap relative before:absolute before:top-0 before:w-[30px] before:h-full before:content-[''] before:z-10 before:left-0 before:bg-gradient-to-l before:from-white/0 before:to-white after:absolute after:top-0 after:w-[30px] after:h-full after:content-[''] after:z-10 after:right-0 after:bg-gradient-to-r after:from-white/0 after:to-white hover:pause">
-						<IntersectionObserverComponent targetRef={slideSectionRef} handleIntersect={handleIntersectSlideSection} />
-						<Box className="flex hover:pause opacity-0" ref={slideSectionRef}>
+						<Box className={`flex ${boxInView ? "" : "pause"} hover:pause animate-slide animate-delay-[1500ms]`}>
 							{slidingCards()}
 						</Box>
 					</Box>
