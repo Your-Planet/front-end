@@ -17,7 +17,7 @@ const Section = forwardRef((props, ref) => {
 					더 자유롭게, 더 전문적으로 성장할 수 있어요
 				</H5>
 			</Box>
-			<Box className="flex w-full h-[450px] mt-6 bg-gray-100 rounded-3xl px-5">
+			<Box className="flex w-full h-[400px] mt-6 bg-gray-100 rounded-3xl px-5">
 				<Contents />
 			</Box>
 		</Box>
