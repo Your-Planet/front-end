@@ -1,5 +1,5 @@
 import { deepFreeze } from "../../../../../utils/object";
-import { PageInfo, PageType } from "./types";
+import { GlobalMenuInfo, GlobalMenuType, PageInfo, PageType } from "./types";
 
 export const FONT_BOLD_WEIGHT = 550;
 export const FONT_NORMAL_WEIGHT = 400;
@@ -15,4 +15,11 @@ export const LABEL_BY_PAGE: Record<PageType, PageInfo> = deepFreeze({
 	SEARCH: "작가 찾기",
 	POST_ME: "포트폴리오 등록",
 	NULL: "NULL",
+});
+
+export const LABEL_BY_GLOBAL_MENU: Record<GlobalMenuType, GlobalMenuInfo> = deepFreeze({
+	LOG_IN: "로그인",
+	LOG_OUT: "로그아웃",
+	REGISTER: "회원가입",
+	MY_PAGE: "마이 페이지",
 });
