@@ -16,7 +16,7 @@ function SortOptions(props: Props) {
 	};
 
 	return (
-		<Box className="flex">
+		<Box className="flex items-center my-2">
 			<Box className="flex w-full justify-end items-center">
 				<FormControl className="w-min" size="small">
 					<Select value={sortOption} onChange={handleDropDownMenuChange}>

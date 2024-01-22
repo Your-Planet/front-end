@@ -60,6 +60,54 @@ function MainSection(props: Props) {
 				createdAt: new Date("2023-08-05"),
 				likes: 0,
 			},
+			{
+				authorName: "망그러진곰7",
+				profilePictureUrl: "",
+				instagramId: "yurang_official7",
+				genre: ["ALL", "HUMOR"] as GenreType[],
+				createdAt: new Date("2022-08-15"),
+				likes: 15,
+			},
+			{
+				authorName: "망그러진곰8",
+				profilePictureUrl: "",
+				instagramId: "yurang_official8",
+				genre: ["ALL", "HEALING"] as GenreType[],
+				createdAt: new Date("2022-11-28"),
+				likes: 5,
+			},
+			{
+				authorName: "망그러진곰9",
+				profilePictureUrl: "",
+				instagramId: "yurang_official9",
+				genre: ["ALL", "DAILY"] as GenreType[],
+				createdAt: new Date("2023-03-12"),
+				likes: 12,
+			},
+			{
+				authorName: "망그러진곰10",
+				profilePictureUrl: "",
+				instagramId: "yurang_official10",
+				genre: ["ALL", "HUMOR"] as GenreType[],
+				createdAt: new Date("2023-07-19"),
+				likes: 8,
+			},
+			{
+				authorName: "망그러진곰11",
+				profilePictureUrl: "",
+				instagramId: "yurang_official11",
+				genre: ["ALL", "HEALING"] as GenreType[],
+				createdAt: new Date("2022-12-05"),
+				likes: 18,
+			},
+			{
+				authorName: "망그러진곰12",
+				profilePictureUrl: "",
+				instagramId: "yurang_official12",
+				genre: ["ALL", "DAILY"] as GenreType[],
+				createdAt: new Date("2023-04-27"),
+				likes: 7,
+			},
 		];
 
 		const filteredAuthorsBySelectedTab = authors.filter((author) => author.genre.includes(selectedGenre));
@@ -94,7 +142,7 @@ function MainSection(props: Props) {
 		});
 	};
 	return (
-		<Grid className="py-10" container spacing={2} justifyContent="center" alignItems="center">
+		<Grid className="py-10" container spacing={2} justifyContent="start" alignItems="center">
 			{getAuthorCards()}
 		</Grid>
 	);
