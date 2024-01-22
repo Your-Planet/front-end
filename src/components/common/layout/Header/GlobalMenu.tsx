@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { StyledHeaderLink } from "./defines/constants";
+import { StyledHeaderLink } from "./defines/styles";
 
 function GlobalMenu() {
 	return (

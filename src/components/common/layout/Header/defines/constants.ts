@@ -1,7 +1,5 @@
-import { styled } from "@mui/system";
-import Link from "next/link";
-
-const TAB_HEIGHT = "72px";
+import { deepFreeze } from "../../../../../utils/object";
+import { PageInfo, PageType } from "./types";
 
 export const FONT_BOLD_WEIGHT = 550;
 export const FONT_NORMAL_WEIGHT = 400;
@@ -12,9 +10,9 @@ export const HEADER_HEIGHT = 80;
 
 export const SELECTED_PAGE_COLOR = "#212121";
 
-export const StyledHeaderLink = styled(Link)({
-	fontSize: FONT_SIZE,
-	color: FONT_COLOR,
-	textDecoration: "none",
-	margin: "0 5px",
+export const LABEL_BY_PAGE: Record<PageType, PageInfo> = deepFreeze({
+	HOME: "홈",
+	SEARCH: "작가 찾기",
+	POST_ME: "포트폴리오 등록",
+	NULL: "NULL",
 });
