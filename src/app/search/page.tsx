@@ -18,7 +18,7 @@ function SearchPage() {
 			<Box className="flex w-full justify-center items-center">
 				<Box className="min-w-[50%] max-w-min">
 					<GenreTabs genreTabsRef={genreTabsRef} />
-					<SortOptions countOfCards={5} />
+					<SortOptions />
 					<MainSection />
 				</Box>
 			</Box>
