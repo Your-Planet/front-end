@@ -1,7 +1,7 @@
 "use client";
 
 import { selectedGenreContext } from "@/recoil/atoms/post_me";
-import { Box, Checkbox, FormControl, FormControlLabel, FormGroup, FormHelperText, FormLabel } from "@mui/material";
+import { Box, Checkbox, FormControl, FormControlLabel, FormGroup, FormHelperText, Typography } from "@mui/material";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
 import HelpIcon from "../common/HelpIcon/index";
@@ -33,13 +33,13 @@ function InstatoonCategory() {
 		}
 	};
 
-	const error = [EMPATHY, DAILY, HUMOR, DATE, HEALING].filter((v) => v).length !== 3;
+	const error = [EMPATHY, DAILY, HUMOR, DATE, HEALING].filter((v) => v).length < 3;
 
 	return (
 		<Box className="flex flex-col w-[50vw] py-5">
-			<FormControl error={error} component="fieldset" variant="standard">
+			<FormControl error={error} variant="standard">
 				<Box className="flex items-center">
-					<FormLabel component="legend">인스타툰 카테고리</FormLabel>
+					<Typography variant="body1">인스타툰 카테고리</Typography>
 					<HelpIcon />
 				</Box>
 				<FormGroup className="pt-1">

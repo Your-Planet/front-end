@@ -1,18 +1,20 @@
 "use client";
 
 import { authorIntroductionContext } from "@/recoil/atoms/post_me";
-import { Box, TextField } from "@mui/material";
+import { FormControl, FormHelperText, TextField } from "@mui/material";
 import { useRecoilState } from "recoil";
 
 function IntroductionField() {
-	const [_, setIntroduction] = useRecoilState<string>(authorIntroductionContext);
+	const [introduction, setIntroduction] = useRecoilState<string>(authorIntroductionContext);
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setIntroduction(event.target.value);
 	};
 
+	const error = introduction.length < 10;
+
 	return (
-		<Box className="flex w-[50vw] py-5">
+		<FormControl className="flex w-[50vw] my-2" error={error}>
 			<TextField
 				label="작가 소개"
 				rows={3}
@@ -23,7 +25,8 @@ function IntroductionField() {
 				onChange={handleChange}
 				placeholder="자신을 자유롭게 소개해주세요"
 			/>
-		</Box>
+			<FormHelperText className="m-0">최소 10자 이상 입력해주세요</FormHelperText>
+		</FormControl>
 	);
 }
 

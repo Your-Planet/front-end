@@ -5,7 +5,7 @@ import { filledLinkContext } from "@/recoil/atoms/post_me";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
-import { Box, InputAdornment, Link, TextField, Typography } from "@mui/material";
+import { Box, FormControl, FormHelperText, InputAdornment, Link, TextField, Typography } from "@mui/material";
 import { useCallback, useState } from "react";
 import { useRecoilState } from "recoil";
 import HelpIcon from "../common/HelpIcon/index";
@@ -13,7 +13,7 @@ import { hoverStyle } from "./defines/styles";
 
 const PortfolioLinkField = () => {
 	const [links, setLinks] = useState<Array<string>>(Array.from({ length: DEFAULT_OF_PORTFOLIO_LINK }, () => ""));
-	const [_, setFilledLink] = useRecoilState<Array<string>>(filledLinkContext);
+	const [filledLink, setFilledLink] = useRecoilState<Array<string>>(filledLinkContext);
 
 	const handleChangeInput = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, index: number) => {
 		const link = event.target.value;
@@ -59,8 +59,10 @@ const PortfolioLinkField = () => {
 		);
 	};
 
+	const error = filledLink.length < 2;
+
 	return (
-		<Box className="flex flex-col w-[50vw] py-5">
+		<FormControl className="flex flex-col w-[50vw] py-5" error={error}>
 			<Box className="flex items-center justify-between">
 				<Box className="flex items-center">
 					<Typography variant="subtitle1">인스타툰 포트폴리오 링크</Typography>
@@ -80,9 +82,7 @@ const PortfolioLinkField = () => {
 					</Link>
 				</Box>
 			</Box>
-			<Typography color="gray" variant="caption">
-				최소 2개 이상의 링크를 등록해주세요
-			</Typography>
+			<FormHelperText className="m-0">최소 2개 이상의 링크를 등록해주세요</FormHelperText>
 			{links.map((link, index) => (
 				<Box key={index}>
 					<Box className="flex items-center">
@@ -110,7 +110,7 @@ const PortfolioLinkField = () => {
 					)}
 				</Box>
 			))}
-		</Box>
+		</FormControl>
 	);
 };
 
