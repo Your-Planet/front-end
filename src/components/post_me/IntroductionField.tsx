@@ -1,6 +1,16 @@
+"use client";
+
+import { authorIntroductionContext } from "@/recoil/atoms/post_me";
 import { Box, TextField } from "@mui/material";
+import { useRecoilState } from "recoil";
 
 function IntroductionField() {
+	const [_, setIntroduction] = useRecoilState<string>(authorIntroductionContext);
+
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setIntroduction(event.target.value);
+	};
+
 	return (
 		<Box className="flex w-[50vw] py-5">
 			<TextField
@@ -9,8 +19,8 @@ function IntroductionField() {
 				margin="normal"
 				multiline
 				fullWidth
-				required
 				InputLabelProps={{ shrink: true }}
+				onChange={handleChange}
 				placeholder="자신을 자유롭게 소개해주세요"
 			/>
 		</Box>

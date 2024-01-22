@@ -1,22 +1,28 @@
 "use client";
 
 import { DEFAULT_OF_PORTFOLIO_LINK, LIMIT_OF_PORTFOLIO_LINK, PRIMARY_COLOR } from "@/defines/common/constants";
+import { filledLinkContext } from "@/recoil/atoms/post_me";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import { Box, InputAdornment, Link, TextField, Typography } from "@mui/material";
 import { useCallback, useState } from "react";
+import { useRecoilState } from "recoil";
 import HelpIcon from "../common/HelpIcon/index";
 import { hoverStyle } from "./defines/styles";
 
 const PortfolioLinkField = () => {
-	const [links, setLinks] = useState<Array<String>>(Array.from({ length: DEFAULT_OF_PORTFOLIO_LINK }, () => ""));
+	const [links, setLinks] = useState<Array<string>>(Array.from({ length: DEFAULT_OF_PORTFOLIO_LINK }, () => ""));
+	const [_, setFilledLink] = useRecoilState<Array<string>>(filledLinkContext);
 
 	const handleChangeInput = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, index: number) => {
 		const link = event.target.value;
 		const onChangeLinks = [...links];
+
 		onChangeLinks[index] = link;
+
 		setLinks(onChangeLinks);
+		setFilledLink(onChangeLinks.filter((link) => link !== ""));
 	};
 
 	const handleAddInputField = useCallback(() => {
@@ -74,6 +80,9 @@ const PortfolioLinkField = () => {
 					</Link>
 				</Box>
 			</Box>
+			<Typography color="gray" variant="caption">
+				최소 2개 이상의 링크를 등록해주세요
+			</Typography>
 			{links.map((link, index) => (
 				<Box key={index}>
 					<Box className="flex items-center">

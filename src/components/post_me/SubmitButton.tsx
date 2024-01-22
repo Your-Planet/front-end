@@ -1,29 +1,24 @@
 "use client";
 
+import { authorIntroductionContext, filledLinkContext, selectedGenreContext } from "@/recoil/atoms/post_me";
 import { Box, Button, Dialog, DialogActions, DialogContent, Typography } from "@mui/material";
 import { useState } from "react";
-
-const modalOuterBoxStyle = {
-	position: "absolute",
-	top: "50%",
-	left: "50%",
-	transform: "translate(-50%, -50%)",
-	width: 400,
-	bgcolor: "white",
-	borderRadius: "8px",
-	boxShadow: 24,
-	textAlign: "center",
-};
-
-const modalInnerBoxStyle = {
-	display: "flex",
-	justifyContent: "space-around",
-	alignItems: "center",
-};
+import { useRecoilValue } from "recoil";
 
 function SubmitButton() {
 	const [open, setOpen] = useState<boolean>(false);
-	const handleOpen = () => setOpen(true);
+	const authorIntroduction = useRecoilValue<string>(authorIntroductionContext);
+	const selectedGenre = useRecoilValue<Set<string>>(selectedGenreContext);
+	const filledLink = useRecoilValue<Array<string>>(filledLinkContext);
+
+	const handleOpen = () => {
+		console.log(authorIntroduction, selectedGenre, filledLink);
+		if (authorIntroduction.length >= 10 && selectedGenre.size >= 3 && filledLink.length >= 2) {
+			setOpen(true);
+		} else {
+			console.log("Not filled");
+		}
+	};
 	const handleClose = () => setOpen(false);
 
 	return (
