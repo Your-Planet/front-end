@@ -59,7 +59,7 @@ const PortfolioLinkField = () => {
 		);
 	};
 
-	const error = filledLink.length < 2;
+	const error = filledLink.length < 1;
 
 	return (
 		<FormControl className="flex flex-col w-[50vw] py-5" error={error}>
@@ -82,7 +82,7 @@ const PortfolioLinkField = () => {
 					</Link>
 				</Box>
 			</Box>
-			<FormHelperText className="m-0">최소 2개 이상의 링크를 등록해주세요</FormHelperText>
+			<FormHelperText className="m-0">최소 1개 이상의 링크를 입력해주세요</FormHelperText>
 			{links.map((link, index) => (
 				<Box key={index}>
 					<Box className="flex items-center">

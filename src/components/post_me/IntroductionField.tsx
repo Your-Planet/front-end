@@ -1,13 +1,29 @@
 "use client";
 
 import { authorIntroductionContext } from "@/recoil/atoms/post_me";
-import { FormControl, FormHelperText, TextField } from "@mui/material";
+import { getAuthorIntroductionValidateRule } from "@/utils/react-hook-form/rule";
+import { FormControl, Typography } from "@mui/material";
 import { useRecoilState } from "recoil";
+import { AUTHOR_INTRODUCTION_LENGTH } from "../../defines/post_me/constants";
+import ReactHookForm from "../common/ReactHookForm/index";
+import { PostMeForm } from "./defines/types";
 
 function IntroductionField() {
 	const [introduction, setIntroduction] = useRecoilState<string>(authorIntroductionContext);
+	const { TextField } = ReactHookForm<PostMeForm>();
+	const hideAsteriskStyle = {
+		".MuiFormLabel-root, legend": {
+			width: 0,
+		},
+		".MuiFormHelperText-root": {
+			marginX: 0,
+		},
+	};
 
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+		if (event.target.value.length > AUTHOR_INTRODUCTION_LENGTH.max) {
+			// event.target.value = event.target.value.slice(0, AUTHOR_INTRODUCTION_LENGTH.max);
+		}
 		setIntroduction(event.target.value);
 	};
 
@@ -15,17 +31,24 @@ function IntroductionField() {
 
 	return (
 		<FormControl className="flex w-[50vw] my-2" error={error}>
+			<Typography>작가 소개</Typography>
 			<TextField
-				label="작가 소개"
+				formName="authorIntroduction"
+				required
+				label=""
 				rows={3}
 				margin="normal"
 				multiline
 				fullWidth
 				InputLabelProps={{ shrink: true }}
-				onChange={handleChange}
+				onInput={handleInput}
+				inputProps={{ maxLength: AUTHOR_INTRODUCTION_LENGTH.max + 1 }}
+				rules={{
+					...getAuthorIntroductionValidateRule(),
+				}}
+				sx={hideAsteriskStyle}
 				placeholder="자신을 자유롭게 소개해주세요"
 			/>
-			<FormHelperText className="m-0">최소 10자 이상 입력해주세요</FormHelperText>
 		</FormControl>
 	);
 }

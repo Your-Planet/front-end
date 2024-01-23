@@ -1,20 +1,12 @@
-import InstagramIdField from "@/components/post_me/InstagramIdField";
-import InstatoonCategory from "@/components/post_me/InstatoonCategory";
-import IntroductionField from "@/components/post_me/IntroductionField";
-import PortfolioLinkField from "@/components/post_me/PortfolioLinkField";
-import SubmitButton from "@/components/post_me/SubmitButton";
+import PostMeFormView from "@/components/post_me/PostMeFormView";
 import { Box } from "@mui/material";
 
 type Props = {};
 
 function PostME(props: Props) {
 	return (
-		<Box className="w-full flex flex-col justify-center items-center p-10">
-			<InstagramIdField />
-			<IntroductionField />
-			<InstatoonCategory />
-			<PortfolioLinkField />
-			<SubmitButton />
+		<Box className="w-full flex justify-center items-center bg-ghostwhite">
+			<PostMeFormView />
 		</Box>
 	);
 }

@@ -18,6 +18,9 @@ const config: Config = {
 				"gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
 				"gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
 			},
+			colors: {
+				ghostwhite: "#f1f2f7",
+			},
 			height: {
 				"except-header": `calc(100vh - ${HEADER_HEIGHT}px)`,
 			},
@@ -54,6 +57,7 @@ const config: Config = {
 		require("tailwindcss-3d"),
 		require("tailwindcss-animated"),
 		require("daisyui"),
+		require("tailwindcss-patterns"),
 		plugin(({ matchUtilities, theme }) => {
 			matchUtilities(
 				{

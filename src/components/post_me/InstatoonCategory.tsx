@@ -70,7 +70,7 @@ function InstatoonCategory() {
 						control={<Checkbox onChange={handleChange} size="small" checked={HEALING} name="HEALING" />}
 					/>
 				</FormGroup>
-				<FormHelperText>최대 3개를 선택해 주세요</FormHelperText>
+				<FormHelperText>최대 2개를 선택해 주세요</FormHelperText>
 			</FormControl>
 		</Box>
 	);

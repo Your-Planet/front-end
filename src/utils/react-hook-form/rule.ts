@@ -1,4 +1,5 @@
 import { PASSWORD_LENGTH } from "@/defines/password/constants";
+import { AUTHOR_INTRODUCTION_LENGTH } from "@/defines/post_me/constants";
 import {
 	checkValidCombination,
 	checkValidKeyboardContinuity,
@@ -20,6 +21,8 @@ export const getMinLengthErrorMessage = (minLength: number) => `${minLength}자 
 export const getLengthErrorMessage = (length: number, prefix = "") => `${prefix} ${length}자로 입력해 주세요.`.trim();
 
 export const getAlphabetLengthErrorMessage = (length: number) => `영문 ${length}자로 입력해 주세요.`;
+
+export const getMaxLengthInfoMessage = (maxLength: number) => `최대 ${maxLength}자 입니다.`;
 
 const getMaxLengthRule = (maxLength: number, message?: Message | ((maxLength: number) => Message)) => ({
 	maxLength: {
@@ -63,5 +66,15 @@ export const getPasswordConfirmValidateRule = (password: string) => ({
 	validate: (value: string) => {
 		if (!password || !value || value === password) return true;
 		return "비밀번호가 일치하지 않습니다.";
+	},
+});
+
+export const getAuthorIntroductionValidateRule = () => ({
+	validate: (value: string) => {
+		if (checkValidLength(value, AUTHOR_INTRODUCTION_LENGTH.min, AUTHOR_INTRODUCTION_LENGTH.max)) return true;
+		else if (value.length < AUTHOR_INTRODUCTION_LENGTH.min)
+			return getMinLengthErrorMessage(AUTHOR_INTRODUCTION_LENGTH.min);
+		else if (value.length > AUTHOR_INTRODUCTION_LENGTH.max)
+			return getMaxLengthInfoMessage(AUTHOR_INTRODUCTION_LENGTH.max);
 	},
 });
