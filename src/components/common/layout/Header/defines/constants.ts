@@ -12,7 +12,7 @@ export const SELECTED_PAGE_COLOR = "#212121";
 
 export const LABEL_BY_PAGE: Record<PageType, PageInfo> = deepFreeze({
 	HOME: "홈",
-	SEARCH: "작가 찾기",
+	SEARCH: "광고주이신가요?",
 	POST_ME: "포트폴리오 등록",
 	NULL: "NULL",
 });
