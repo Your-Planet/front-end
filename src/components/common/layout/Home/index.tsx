@@ -6,7 +6,7 @@ function Slogan() {
 	return (
 		<Box className="w-full h-except-header relative text-center flex justify-center items-center flex-col select-none">
 			<Image
-				className="animate-jump-in animate-duration-1000 animate-delay-[4000ms]"
+				className="animate-jump-in animate-duration-1000 animate-delay-[3000ms]"
 				src="/images/your_planet.png"
 				alt="your planet"
 				width={150}
