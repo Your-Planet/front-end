@@ -1,76 +1,59 @@
 "use client";
 
 import { selectedGenreContext } from "@/recoil/atoms/post_me";
-import { Box, Checkbox, FormControl, FormControlLabel, FormGroup, FormHelperText, Typography } from "@mui/material";
-import { useState } from "react";
+import { Box, FormControl, FormGroup, FormHelperText, Typography } from "@mui/material";
+import { ChangeEvent } from "react";
 import { useRecoilState } from "recoil";
+import { SELECTED_GENRE_LIMIT } from "../../defines/post_me/constants";
 import HelpIcon from "../common/HelpIcon/index";
+import { LABEL_BY_GENRE_TYPE } from "../search/defines/constants";
 import { GenreType } from "../search/defines/types";
+import GenreCheckBox from "./GenreCheckBox";
 
 function InstatoonCategory() {
-	// TODO: search branch 머지 후 카테고리 선택 기능 수정
-	const [checked, setChecked] = useState({
-		EMPATHY: false,
-		DAILY: false,
-		HUMOR: false,
-		DATE: false,
-		HEALING: false,
-	});
 	const [selectedGenre, setSelectedGenre] = useRecoilState<Set<GenreType>>(selectedGenreContext);
-	const { EMPATHY, DAILY, HUMOR, DATE, HEALING } = checked;
 
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setChecked({
-			...checked,
-			[event.target.name]: event.target.checked,
-		});
+	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+		const { checked, name } = event.target;
+		const updatedGenre = new Set(selectedGenre);
 
-		if (event.target.checked) {
-			setSelectedGenre(selectedGenre.add(event.target.name as GenreType));
+		if (checked) {
+			updatedGenre.add(name as GenreType);
 		} else {
-			selectedGenre.delete(event.target.name as GenreType);
-			setSelectedGenre(selectedGenre);
+			updatedGenre.delete(name as GenreType);
 		}
+
+		setSelectedGenre(updatedGenre);
 	};
 
-	const error = [EMPATHY, DAILY, HUMOR, DATE, HEALING].filter((v) => v).length < 3;
+	const error = selectedGenre.size > SELECTED_GENRE_LIMIT;
+	const errorMessage = `최대 ${SELECTED_GENRE_LIMIT}개를 선택해 주세요`;
 
 	return (
-		<Box className="flex flex-col w-[50vw] py-5">
-			<FormControl error={error} variant="standard">
+		<Box className="flex flex-col w-[50vw] h-fit">
+			<FormControl variant="standard" error={error}>
 				<Box className="flex items-center">
 					<Typography variant="body1">인스타툰 카테고리</Typography>
 					<HelpIcon />
 				</Box>
-				<FormGroup className="pt-1">
-					{/* TODO: search 브랜치 머지 후 label 체크박스 수정 */}
-					<FormControlLabel
-						className="w-fit"
-						label="일상툰"
-						control={<Checkbox onChange={handleChange} size="small" checked={DAILY} name="DAILY" />}
-					/>
-					<FormControlLabel
-						className="w-fit"
-						label="유머툰"
-						control={<Checkbox onChange={handleChange} size="small" checked={HUMOR} name="HUMOR" />}
-					/>
-					<FormControlLabel
-						className="w-fit"
-						label="공감툰"
-						control={<Checkbox onChange={handleChange} size="small" checked={EMPATHY} name="EMPATHY" />}
-					/>
-					<FormControlLabel
-						className="w-fit"
-						label="연애툰"
-						control={<Checkbox onChange={handleChange} size="small" checked={DATE} name="DATE" />}
-					/>
-					<FormControlLabel
-						className="w-fit"
-						label="힐링툰"
-						control={<Checkbox onChange={handleChange} size="small" checked={HEALING} name="HEALING" />}
-					/>
+				<FormGroup>
+					{Object.entries(LABEL_BY_GENRE_TYPE)
+						.filter((value) => value[0] !== "ALL")
+						.map((value) => {
+							const [genre, label] = value;
+
+							return (
+								<GenreCheckBox
+									key={genre}
+									label={label}
+									onChange={handleChange}
+									checked={selectedGenre.has(genre as GenreType)}
+									name={genre}
+								/>
+							);
+						})}
 				</FormGroup>
-				<FormHelperText>최대 2개를 선택해 주세요</FormHelperText>
+				<FormHelperText className={`${error ? "" : "opacity-0"} text-red-600`}>{errorMessage}</FormHelperText>
 			</FormControl>
 		</Box>
 	);

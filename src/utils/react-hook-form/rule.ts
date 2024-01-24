@@ -9,6 +9,8 @@ import {
 } from "@/utils/password";
 import { isEmail } from "@/utils/string";
 import { Message } from "react-hook-form";
+import { GenreType } from "../../components/search/defines/types";
+import { SELECTED_GENRE_LIMIT } from "../../defines/post_me/constants";
 
 export const getMaxLengthPlaceholder = (maxLength: number) => `${maxLength}자까지 입력 가능합니다.`;
 
@@ -22,7 +24,7 @@ export const getLengthErrorMessage = (length: number, prefix = "") => `${prefix}
 
 export const getAlphabetLengthErrorMessage = (length: number) => `영문 ${length}자로 입력해 주세요.`;
 
-export const getMaxLengthInfoMessage = (maxLength: number) => `최대 ${maxLength}자 입니다.`;
+export const getSelectGenreErrorMessage = (limit: number) => `최대 ${limit}개 선택해 주세요.`;
 
 const getMaxLengthRule = (maxLength: number, message?: Message | ((maxLength: number) => Message)) => ({
 	maxLength: {
@@ -75,6 +77,13 @@ export const getAuthorIntroductionValidateRule = () => ({
 		else if (value.length < AUTHOR_INTRODUCTION_LENGTH.min)
 			return getMinLengthErrorMessage(AUTHOR_INTRODUCTION_LENGTH.min);
 		else if (value.length > AUTHOR_INTRODUCTION_LENGTH.max)
-			return getMaxLengthInfoMessage(AUTHOR_INTRODUCTION_LENGTH.max);
+			return getMaxLengthErrorMessage(AUTHOR_INTRODUCTION_LENGTH.max);
+	},
+});
+
+export const getSelectGenreValidateRule = () => ({
+	validate: (value: Set<GenreType>) => {
+		if (value.size <= SELECTED_GENRE_LIMIT) return true;
+		return getSelectGenreErrorMessage(SELECTED_GENRE_LIMIT);
 	},
 });

@@ -9,7 +9,7 @@ import ReactHookForm from "../common/ReactHookForm/index";
 import { PostMeForm } from "./defines/types";
 
 function IntroductionField() {
-	const [introduction, setIntroduction] = useRecoilState<string>(authorIntroductionContext);
+	const [_, setIntroduction] = useRecoilState<string>(authorIntroductionContext);
 	const { TextField } = ReactHookForm<PostMeForm>();
 	const hideAsteriskStyle = {
 		".MuiFormLabel-root, legend": {
@@ -21,16 +21,11 @@ function IntroductionField() {
 	};
 
 	const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-		if (event.target.value.length > AUTHOR_INTRODUCTION_LENGTH.max) {
-			// event.target.value = event.target.value.slice(0, AUTHOR_INTRODUCTION_LENGTH.max);
-		}
 		setIntroduction(event.target.value);
 	};
 
-	const error = introduction.length < 10;
-
 	return (
-		<FormControl className="flex w-[50vw] my-2" error={error}>
+		<FormControl className="flex w-[50vw]">
 			<Typography>작가 소개</Typography>
 			<TextField
 				formName="authorIntroduction"
