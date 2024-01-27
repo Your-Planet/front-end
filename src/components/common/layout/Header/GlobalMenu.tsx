@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 import { useRecoilState } from "recoil";
 import { CookieType } from "../../../../defines/cookie/constants";
 import { loggedInContext } from "../../../../recoil/atoms/Auth";
-import { StyledHeaderLink } from "./defines/constants";
+import { StyledHeaderLink } from "./defines/styles";
 
 function GlobalMenu() {
 	const [isLoggedIn, setIsLoggedIn] = useRecoilState<CookieType>(loggedInContext);
