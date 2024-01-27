@@ -9,6 +9,9 @@ import { Button } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
+import { useRecoilState } from "recoil";
+import { CookieType } from "../../../defines/cookie/constants";
+import { loggedInContext } from "../../../recoil/atoms/Auth";
 
 export interface LoginViewProps {}
 
@@ -16,6 +19,7 @@ function LoginView(props: LoginViewProps) {
 	const {} = props;
 
 	const router = useRouter();
+	const [_, setLoggedInState] = useRecoilState<CookieType>(loggedInContext);
 
 	const form = useForm<LoginForm>({
 		defaultValues: {
@@ -32,6 +36,7 @@ function LoginView(props: LoginViewProps) {
 		mutatePostLogin(data, {
 			onSuccess({ data: token }) {
 				setCookie(COOKIE.accessToken, token);
+				setLoggedInState(token);
 				router.push("/");
 			},
 		});
