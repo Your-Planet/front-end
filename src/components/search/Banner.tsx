@@ -1,23 +1,21 @@
-import { Box, Typography } from "@mui/material";
-import Image from "next/image";
+import { Box } from "@mui/material";
+import H1 from "../common/text/H1";
+import H6 from "../common/text/H6";
 
 function Banner() {
 	return (
-		<>
-			<Image
-				className="w-full h-full object-cover z-[-1]"
-				src="/images/search-banner.png"
-				alt="search-banner"
-				fill
-				priority
-				draggable={false}
-			/>
-			<Box className="flex flex-col">
-				<Typography className="text-white cursor-default select-none" variant="h5">
-					다양한 인스타툰 작가를 찾아보세요
-				</Typography>
+		<Box className="flex w-full h-full justify-center flex-col">
+			<Box>
+				<Box className="flex animate-fade-right animate-duration-[3s]">
+					<Box className="border-t-[10px] border-solid border-t-black">
+						<H1 bold>PARTNER</H1>
+					</Box>
+				</Box>
+				<Box className="animate-fade-right animate-duration-[3s] animate-delay-1000">
+					<H6 color="text-gray-500">유어플래닛은 광고 목적에 맞게 인스타툰 통합 솔루션을 제공합니다.</H6>
+				</Box>
 			</Box>
-		</>
+		</Box>
 	);
 }
 
