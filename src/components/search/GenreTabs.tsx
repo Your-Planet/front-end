@@ -24,7 +24,7 @@ function GenreTabs(props: Props) {
 			<TabContext value={genre}>
 				<TabList onChange={handleTabsChange}>
 					{Object.entries(LABEL_BY_GENRE_TYPE).map(([genreType, label]) => (
-						<Tab label={label} value={genreType} key={genreType} />
+						<Tab className="text-lg" label={label} value={genreType} key={genreType} />
 					))}
 				</TabList>
 			</TabContext>
