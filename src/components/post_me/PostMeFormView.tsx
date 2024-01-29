@@ -38,7 +38,7 @@ function PostMeFormView(props: Props) {
 			<H2>포트폴리오 등록</H2>
 
 			<FormProvider {...form}>
-				<FormControl className="mt-8">
+				<FormControl className="mt-8 gap-4">
 					<InstagramIdField instagramId={instagramId} />
 					<IntroductionField />
 					<InstatoonCategory />

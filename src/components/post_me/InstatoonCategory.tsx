@@ -2,8 +2,8 @@
 
 import { selectedGenreContext } from "@/recoil/atoms/post_me";
 import { Box, FormControl, FormGroup, FormHelperText, Typography } from "@mui/material";
-import { ChangeEvent } from "react";
-import { useRecoilState } from "recoil";
+import { ChangeEvent, useEffect } from "react";
+import { useRecoilState, useResetRecoilState } from "recoil";
 import { SELECTED_GENRE_LIMIT } from "../../defines/post_me/constants";
 import HelpIcon from "../common/HelpIcon/index";
 import { LABEL_BY_GENRE_TYPE } from "../search/defines/constants";
@@ -12,6 +12,7 @@ import GenreCheckBox from "./GenreCheckBox";
 
 function InstatoonCategory() {
 	const [selectedGenre, setSelectedGenre] = useRecoilState<Set<GenreType>>(selectedGenreContext);
+	const resetSelectedGenre = useResetRecoilState(selectedGenreContext);
 
 	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
 		const { checked, name } = event.target;
@@ -25,6 +26,12 @@ function InstatoonCategory() {
 
 		setSelectedGenre(updatedGenre);
 	};
+
+	useEffect(() => {
+		return () => {
+			resetSelectedGenre();
+		};
+	}, [resetSelectedGenre]);
 
 	const error = selectedGenre.size > SELECTED_GENRE_LIMIT;
 	const errorMessage = `최대 ${SELECTED_GENRE_LIMIT}개를 선택해 주세요`;

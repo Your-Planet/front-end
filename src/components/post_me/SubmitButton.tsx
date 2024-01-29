@@ -12,7 +12,6 @@ function SubmitButton() {
 	const filledLink = useRecoilValue<Array<string>>(filledLinkContext);
 
 	const handleOpen = () => {
-		console.log(authorIntroduction, selectedGenre, filledLink);
 		if (authorIntroduction.length >= 10 && selectedGenre.size >= 3 && filledLink.length >= 2) {
 			setOpen(true);
 		} else {
@@ -22,7 +21,7 @@ function SubmitButton() {
 	const handleClose = () => setOpen(false);
 
 	return (
-		<Box className="flex flex-col w-[50vw] pt-5">
+		<Box className="flex flex-col w-[50vw]">
 			<Button className="my-2" type="submit" fullWidth variant="contained" onClick={handleOpen}>
 				등록하기
 			</Button>

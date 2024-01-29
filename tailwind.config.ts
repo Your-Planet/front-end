@@ -57,7 +57,6 @@ const config: Config = {
 		require("tailwindcss-3d"),
 		require("tailwindcss-animated"),
 		require("daisyui"),
-		require("tailwindcss-patterns"),
 		plugin(({ matchUtilities, theme }) => {
 			matchUtilities(
 				{

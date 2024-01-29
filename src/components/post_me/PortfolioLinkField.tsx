@@ -59,10 +59,10 @@ const PortfolioLinkField = () => {
 		);
 	};
 
-	const error = filledLink.length < 1;
+	const error = filledLink.filter((link) => link.length > 0).length < 1;
 
 	return (
-		<FormControl className="flex flex-col w-[50vw] py-5" error={error}>
+		<FormControl className="flex flex-col w-[50vw]">
 			<Box className="flex items-center justify-between">
 				<Box className="flex items-center">
 					<Typography variant="subtitle1">인스타툰 포트폴리오 링크</Typography>
@@ -82,7 +82,9 @@ const PortfolioLinkField = () => {
 					</Link>
 				</Box>
 			</Box>
-			<FormHelperText className="m-0">최소 1개 이상의 링크를 입력해주세요</FormHelperText>
+			<FormHelperText className={`${error ? "text-red-600" : ""} m-0`}>
+				최소 1개 이상의 링크를 입력해주세요
+			</FormHelperText>
 			{links.map((link, index) => (
 				<Box key={index}>
 					<Box className="flex items-center">
