@@ -9,6 +9,7 @@ import { Button } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
+import { getCookie } from "../../../utils/cookie";
 
 export interface LoginViewProps {}
 
@@ -31,7 +32,9 @@ function LoginView(props: LoginViewProps) {
 	const handleFormSubmit = handleSubmit((data) => {
 		mutatePostLogin(data, {
 			onSuccess({ data: token }) {
+				console.log(token);
 				setCookie(COOKIE.accessToken, token);
+				console.log(getCookie(COOKIE.accessToken));
 				router.push("/");
 			},
 		});
