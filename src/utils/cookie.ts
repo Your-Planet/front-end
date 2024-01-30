@@ -20,6 +20,7 @@ export const setCookie = (name: string, value: string, atExpires?: number, optio
 		expires: atExpiresDate,
 		domain: options?.domain ?? getRootDomain(globalThis?.location?.hostname ?? options?.req?.headers?.host ?? ""),
 	});
+	console.log(readCookie(name));
 };
 
 export const removeCookie = (name: string) => {
