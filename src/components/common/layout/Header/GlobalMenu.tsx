@@ -12,8 +12,6 @@ function GlobalMenu() {
 		removeCookie(COOKIE.accessToken);
 	};
 
-	console.log(jwtPayload);
-
 	return (
 		<Box>
 			{jwtPayload ? (
