@@ -3,7 +3,7 @@ import ReactHookForm from "@/components/common/ReactHookForm";
 import { LoginForm } from "@/components/login/LoginView/defines/types";
 import { COOKIE } from "@/defines/cookie/constants";
 import useMutationPostLogin from "@/hooks/queries/member/useMutationPostLogin";
-import { setCookie } from "@/utils/cookie";
+import { getCookie, setCookie } from "@/utils/cookie";
 import { isEmail } from "@/utils/string";
 import { Button } from "@mui/material";
 import Link from "next/link";
