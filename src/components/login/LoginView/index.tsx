@@ -9,7 +9,6 @@ import { Button } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
-import { getCookie } from "../../../utils/cookie";
 
 export interface LoginViewProps {}
 
