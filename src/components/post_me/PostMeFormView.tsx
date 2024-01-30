@@ -1,8 +1,11 @@
 "use client";
 
-import { Box, FormControl } from "@mui/material";
+import useMutationPostMe from "@/hooks/queries/post/useMutationPostPortfolio";
+import { Box } from "@mui/material";
+import { FormEventHandler } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import H2 from "../common/text/H2";
+import usePostMe from "../register/form/hooks/usePostMe";
 import { GenreType } from "../search/defines/types";
 import InstagramIdField from "./InstagramIdField";
 import InstatoonCategory from "./InstatoonCategory";
@@ -28,23 +31,32 @@ function PostMeFormView(props: Props) {
 
 	const {
 		handleSubmit,
-		setValue,
-		trigger,
 		formState: { errors },
 	} = form;
 
-	return (
-		<Box className="flex flex-col max-w-fit justify-center items-center px-10 py-5 bg-white my-5 rounded-lg shadow-xl">
-			<H2>포트폴리오 등록</H2>
+	const { mutate: mutatePostMe } = useMutationPostMe({});
 
+	const { handleSuccessPostMe, handleFailPostMe } = usePostMe();
+
+	const handleFormSubmit: FormEventHandler = handleSubmit((data) => {
+		mutatePostMe({ ...data }),
+			{
+				onSuccess: handleSuccessPostMe,
+				onError: handleFailPostMe,
+			};
+	});
+
+	return (
+		<Box className="flex flex-col gap-4 max-w-fit justify-center items-center px-10 py-5 bg-white my-5 rounded-lg shadow-xl">
+			<H2>포트폴리오 등록</H2>
 			<FormProvider {...form}>
-				<FormControl className="mt-8 gap-4">
+				<form className="flex flex-col gap-4 mt-8" onSubmit={handleFormSubmit}>
 					<InstagramIdField instagramId={instagramId} />
 					<IntroductionField />
 					<InstatoonCategory />
 					<PortfolioLinkField />
 					<SubmitButton />
-				</FormControl>
+				</form>
 			</FormProvider>
 		</Box>
 	);

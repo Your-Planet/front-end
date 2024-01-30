@@ -1,18 +1,34 @@
 "use client";
 
 import { selectedGenreContext } from "@/recoil/atoms/post_me";
-import { Box, FormControl, FormGroup, FormHelperText, Typography } from "@mui/material";
+import { getSelectGenreValidateRule } from "@/utils/react-hook-form/rule";
+import { Box, FormControl, FormGroup, Typography } from "@mui/material";
 import { ChangeEvent, useEffect } from "react";
 import { useRecoilState, useResetRecoilState } from "recoil";
-import { SELECTED_GENRE_LIMIT } from "../../defines/post_me/constants";
 import HelpIcon from "../common/HelpIcon/index";
+import ReactHookForm from "../common/ReactHookForm/index";
 import { LABEL_BY_GENRE_TYPE } from "../search/defines/constants";
 import { GenreType } from "../search/defines/types";
-import GenreCheckBox from "./GenreCheckBox";
+import { PostMeForm } from "./defines/types";
 
 function InstatoonCategory() {
 	const [selectedGenre, setSelectedGenre] = useRecoilState<Set<GenreType>>(selectedGenreContext);
 	const resetSelectedGenre = useResetRecoilState(selectedGenreContext);
+	const { CheckboxGroup } = ReactHookForm<PostMeForm>();
+
+	const getCheckboxes = () =>
+		Object.entries(LABEL_BY_GENRE_TYPE)
+			.filter((value) => value[0] !== "ALL")
+			.map((value) => {
+				const [genre, label] = value;
+
+				return {
+					label,
+					value: genre as GenreType,
+					checked: selectedGenre.has(genre as GenreType),
+					name: genre,
+				};
+			});
 
 	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
 		const { checked, name } = event.target;
@@ -33,34 +49,24 @@ function InstatoonCategory() {
 		};
 	}, [resetSelectedGenre]);
 
-	const error = selectedGenre.size > SELECTED_GENRE_LIMIT;
-	const errorMessage = `최대 ${SELECTED_GENRE_LIMIT}개를 선택해 주세요`;
-
 	return (
 		<Box className="flex flex-col w-[50vw] h-fit">
-			<FormControl variant="standard" error={error}>
+			<FormControl variant="standard">
 				<Box className="flex items-center">
-					<Typography variant="body1">인스타툰 카테고리</Typography>
+					<Typography>인스타툰 카테고리</Typography>
 					<HelpIcon />
 				</Box>
 				<FormGroup>
-					{Object.entries(LABEL_BY_GENRE_TYPE)
-						.filter((value) => value[0] !== "ALL")
-						.map((value) => {
-							const [genre, label] = value;
-
-							return (
-								<GenreCheckBox
-									key={genre}
-									label={label}
-									onChange={handleChange}
-									checked={selectedGenre.has(genre as GenreType)}
-									name={genre}
-								/>
-							);
-						})}
+					<CheckboxGroup<GenreType>
+						label=""
+						formName="instatoonGenre"
+						onChange={handleChange}
+						rules={{
+							...getSelectGenreValidateRule(selectedGenre),
+						}}
+						checkboxes={getCheckboxes()}
+					/>
 				</FormGroup>
-				<FormHelperText className={`${error ? "" : "opacity-0"} text-red-600`}>{errorMessage}</FormHelperText>
 			</FormControl>
 		</Box>
 	);
