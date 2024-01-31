@@ -7,7 +7,9 @@ dayjs.extend(utc);
 
 type CookieOptions = Omit<DefaultOptions, "expires">;
 
-export const getRootDomain = (url: string) => url.split(".").slice(-2).join(".");
+const URL_COMMA_COUNT = 3;
+
+export const getRootDomain = (url: string) => url.split(".").slice(-URL_COMMA_COUNT).join(".");
 
 export const getCookie = (name: string) => readCookie(name) as any;
 
