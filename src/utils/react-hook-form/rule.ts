@@ -83,12 +83,12 @@ export const getAuthorIntroductionValidateRule = () => ({
 	},
 });
 
-export const getSelectGenreValidateRule = (selectedGenre: Set<GenreType>) => ({
-	validate: (value: boolean) => {
-		const selectedGenreCount = selectedGenre.size + (value === true ? 1 : -1);
-
-		if (selectedGenreCount < SELECTED_GENRE_LIMIT.min) return getMinSelectGenreErrorMessage(SELECTED_GENRE_LIMIT.min);
-		if (selectedGenreCount <= SELECTED_GENRE_LIMIT.max) return true;
+export const getSelectGenreValidateRule = (selectedGenre: Set<GenreType>) => {
+	if (selectedGenre.size < SELECTED_GENRE_LIMIT.min) {
+		return getMinSelectGenreErrorMessage(SELECTED_GENRE_LIMIT.min);
+	} else if (selectedGenre.size > SELECTED_GENRE_LIMIT.max) {
 		return getMaxSelectGenreErrorMessage(SELECTED_GENRE_LIMIT.max);
-	},
-});
+	}
+
+	return " ";
+};

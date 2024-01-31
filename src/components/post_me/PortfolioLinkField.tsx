@@ -82,7 +82,7 @@ const PortfolioLinkField = () => {
 					</Link>
 				</Box>
 			</Box>
-			<FormHelperText className={`${error ? "text-red-600" : ""} m-0`}>
+			<FormHelperText className={`${error ? "text-red-600" : "opacity-0"} m-0`}>
 				최소 1개 이상의 링크를 입력해주세요
 			</FormHelperText>
 			{links.map((link, index) => (

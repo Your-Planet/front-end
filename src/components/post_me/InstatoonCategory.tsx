@@ -1,10 +1,10 @@
 "use client";
 
 import { selectedGenreContext } from "@/recoil/atoms/post_me";
-import { getSelectGenreValidateRule } from "@/utils/react-hook-form/rule";
-import { Box, FormControl, FormGroup, Typography } from "@mui/material";
-import { ChangeEvent, useEffect } from "react";
+import { Box, FormControl, FormGroup, FormHelperText, Typography } from "@mui/material";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useRecoilState, useResetRecoilState } from "recoil";
+import { getSelectGenreValidateRule } from "../../utils/react-hook-form/rule";
 import HelpIcon from "../common/HelpIcon/index";
 import ReactHookForm from "../common/ReactHookForm/index";
 import { LABEL_BY_GENRE_TYPE } from "../search/defines/constants";
@@ -13,6 +13,7 @@ import { PostMeForm } from "./defines/types";
 
 function InstatoonCategory() {
 	const [selectedGenre, setSelectedGenre] = useRecoilState<Set<GenreType>>(selectedGenreContext);
+	const [errorMessage, setErrorMessage] = useState<string>(" ");
 	const resetSelectedGenre = useResetRecoilState(selectedGenreContext);
 	const { CheckboxGroup } = ReactHookForm<PostMeForm>();
 
@@ -44,6 +45,10 @@ function InstatoonCategory() {
 	};
 
 	useEffect(() => {
+		setErrorMessage(getSelectGenreValidateRule(selectedGenre));
+	}, [selectedGenre]);
+
+	useEffect(() => {
 		return () => {
 			resetSelectedGenre();
 		};
@@ -61,12 +66,12 @@ function InstatoonCategory() {
 						label=""
 						formName="instatoonGenre"
 						onChange={handleChange}
-						rules={{
-							...getSelectGenreValidateRule(selectedGenre),
-						}}
 						checkboxes={getCheckboxes()}
 					/>
 				</FormGroup>
+				<Box>
+					<FormHelperText className="text-red-600 m-0">{errorMessage}</FormHelperText>
+				</Box>
 			</FormControl>
 		</Box>
 	);

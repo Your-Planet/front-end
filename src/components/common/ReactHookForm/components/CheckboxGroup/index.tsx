@@ -1,14 +1,6 @@
 import { ReactHookFormProps } from "@/components/common/ReactHookForm/defines/types";
 import useReactHookFormControl from "@/components/common/ReactHookForm/hooks/useReactHookFormControl";
-import {
-	Checkbox,
-	CheckboxProps,
-	FormControl,
-	FormControlLabel,
-	FormGroup,
-	FormHelperText,
-	FormLabel,
-} from "@mui/material";
+import { Checkbox, CheckboxProps, FormControl, FormControlLabel, FormGroup, FormLabel } from "@mui/material";
 import { FieldValues } from "react-hook-form";
 
 export interface ReactHookFormCheckboxGroupProps<
@@ -44,7 +36,6 @@ function ReactHookFormCheckboxGroup<TFieldValues extends FieldValues, CheckboxVa
 					/>
 				))}
 			</FormGroup>
-			{errorMessage && <FormHelperText className="m-0">{errorMessage}</FormHelperText>}
 		</FormControl>
 	);
 }
