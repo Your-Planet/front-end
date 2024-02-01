@@ -1,5 +1,6 @@
 "use client";
 
+import { AUTHOR_INTRODUCTION_LENGTH, PORTFOLIO_LINK_LIMIT, SELECTED_GENRE_LIMIT } from "@/defines/post_me/constants";
 import { authorIntroductionState, filledLinkState, selectedGenreState } from "@/recoil/selectors/post_me";
 import { Box, Button, Dialog, DialogActions, DialogContent, Typography } from "@mui/material";
 import { useState } from "react";
@@ -11,10 +12,24 @@ function SubmitButton() {
 	const selectedGenre = useRecoilValue<Set<string>>(selectedGenreState);
 	const filledLink = useRecoilValue<Array<string>>(filledLinkState);
 
+	const checkAuthorIntroduction = () => {
+		return (
+			AUTHOR_INTRODUCTION_LENGTH.min <= authorIntroduction.length &&
+			authorIntroduction.length <= AUTHOR_INTRODUCTION_LENGTH.max
+		);
+	};
+
+	const checkSelectedGenre = () => {
+		return SELECTED_GENRE_LIMIT.min <= selectedGenre.size && selectedGenre.size <= SELECTED_GENRE_LIMIT.max;
+	};
+
+	const checkPortfolioLinks = () => {
+		const portfolioLinkLength = filledLink.filter((link) => link.length >= 1).length;
+		return PORTFOLIO_LINK_LIMIT.min <= portfolioLinkLength && portfolioLinkLength <= PORTFOLIO_LINK_LIMIT.max;
+	};
+
 	const handleOpen = () => {
-		if (authorIntroduction.length >= 10 && selectedGenre.size >= 3 && filledLink.length >= 2) {
-			setOpen(true);
-		}
+		setOpen(checkAuthorIntroduction() && checkSelectedGenre() && checkPortfolioLinks());
 	};
 	const handleClose = () => setOpen(false);
 
