@@ -31,6 +31,7 @@ function SubmitButton() {
 	const handleOpen = () => {
 		setOpen(checkAuthorIntroduction() && checkSelectedGenre() && checkPortfolioLinks());
 	};
+
 	const handleClose = () => setOpen(false);
 
 	return (
