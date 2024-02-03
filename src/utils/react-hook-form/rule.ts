@@ -1,6 +1,6 @@
 import { GenreType } from "@/components/search/defines/types";
 import { PASSWORD_LENGTH } from "@/defines/password/constants";
-import { AUTHOR_INTRODUCTION_LENGTH } from "@/defines/post_me/constants";
+import { AUTHOR_INTRODUCTION_LENGTH, SELECTED_GENRE_LIMIT } from "@/defines/post_me/constants";
 import {
 	checkValidCombination,
 	checkValidKeyboardContinuity,
@@ -10,7 +10,6 @@ import {
 } from "@/utils/password";
 import { isEmail } from "@/utils/string";
 import { Message } from "react-hook-form";
-import { SELECTED_GENRE_LIMIT } from "../../defines/post_me/constants";
 
 export const getMaxLengthPlaceholder = (maxLength: number) => `${maxLength}자까지 입력 가능합니다.`;
 
@@ -75,18 +74,24 @@ export const getPasswordConfirmValidateRule = (password: string) => ({
 
 export const getAuthorIntroductionValidateRule = () => ({
 	validate: (value: string) => {
-		if (checkValidLength(value, AUTHOR_INTRODUCTION_LENGTH.min, AUTHOR_INTRODUCTION_LENGTH.max)) return true;
-		else if (value.length < AUTHOR_INTRODUCTION_LENGTH.min)
+		if (value.length < AUTHOR_INTRODUCTION_LENGTH.min) {
 			return getMinLengthErrorMessage(AUTHOR_INTRODUCTION_LENGTH.min);
-		else if (value.length > AUTHOR_INTRODUCTION_LENGTH.max)
+		}
+
+		if (value.length > AUTHOR_INTRODUCTION_LENGTH.max) {
 			return getMaxLengthErrorMessage(AUTHOR_INTRODUCTION_LENGTH.max);
+		}
+
+		return checkValidLength(value, AUTHOR_INTRODUCTION_LENGTH.min, AUTHOR_INTRODUCTION_LENGTH.max);
 	},
 });
 
 export const getSelectGenreValidateRule = (selectedGenre: Set<GenreType>) => {
 	if (selectedGenre.size < SELECTED_GENRE_LIMIT.min) {
 		return getMinSelectGenreErrorMessage(SELECTED_GENRE_LIMIT.min);
-	} else if (selectedGenre.size > SELECTED_GENRE_LIMIT.max) {
+	}
+
+	if (selectedGenre.size > SELECTED_GENRE_LIMIT.max) {
 		return getMaxSelectGenreErrorMessage(SELECTED_GENRE_LIMIT.max);
 	}
 

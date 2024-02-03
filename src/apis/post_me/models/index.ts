@@ -1,1 +1,1 @@
-export * from "./post_me";
+export type PostMeResponse = string;

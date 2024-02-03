@@ -22,7 +22,7 @@ function PostMeFormView(props: Props) {
 	const form = useForm<PostMeForm>({
 		mode: "all",
 		defaultValues: {
-			instagramId: instagramId,
+			instagramId,
 			authorIntroduction: "",
 			instatoonGenre: new Set<GenreType>(),
 			portfolioLinks: new Array<string>(),
@@ -39,11 +39,13 @@ function PostMeFormView(props: Props) {
 	const { handleSuccessPostMe, handleFailPostMe } = usePostMe();
 
 	const handleFormSubmit: FormEventHandler = handleSubmit((data) => {
-		mutatePostMe({ ...data }),
+		mutatePostMe(
+			{ ...data },
 			{
 				onSuccess: handleSuccessPostMe,
 				onError: handleFailPostMe,
-			};
+			},
+		);
 	});
 
 	return (

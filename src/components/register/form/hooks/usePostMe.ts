@@ -1,4 +1,4 @@
-import { PostMeResponse } from "@/apis/post_me/index";
+import { PostMeResponse } from "@/apis/post_me";
 import { ResponseEntity } from "@/defines/apis/types";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";

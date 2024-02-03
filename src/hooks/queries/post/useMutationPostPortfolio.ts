@@ -1,5 +1,6 @@
 import { API } from "@/apis";
-import { PostMeRequest, PostMeResponse } from "@/apis/post_me/index";
+import { PostMeResponse } from "@/apis/post_me";
+import { PostMeForm as PostMeRequest } from "@/components/post_me/defines/types";
 import { ResponseEntity } from "@/defines/apis/types";
 import { UseMutationParams } from "@/defines/react-query/types";
 import { UseMutationResult, useMutation } from "@tanstack/react-query";
