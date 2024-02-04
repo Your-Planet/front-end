@@ -19,9 +19,6 @@ function Gnb() {
 			case "/search":
 				setSelectedPage("SEARCH");
 				break;
-			case "/post-me":
-				setSelectedPage("POST_ME");
-				break;
 			default:
 				setSelectedPage("NULL");
 				break;
@@ -38,11 +35,6 @@ function Gnb() {
 			<StyledBox selected={selectedPage === "SEARCH"}>
 				<StyledLink href="/search" selected={selectedPage === "SEARCH"}>
 					{LABEL_BY_PAGE.SEARCH}
-				</StyledLink>
-			</StyledBox>
-			<StyledBox selected={selectedPage === "POST_ME"}>
-				<StyledLink href="/post-me" selected={selectedPage === "POST_ME"}>
-					{LABEL_BY_PAGE.POST_ME}
 				</StyledLink>
 			</StyledBox>
 		</Box>

@@ -22,4 +22,8 @@ export const LABEL_BY_GLOBAL_MENU: Record<GlobalMenuType, GlobalMenuInfo> = deep
 	LOG_OUT: "로그아웃",
 	REGISTER: "회원가입",
 	MY_PAGE: "마이 페이지",
+	EDIT_PROFILE: "회원정보 수정",
+	EDIT_PORTFOLIO: "포트폴리오 관리",
+	QNA: "문의내역",
+	DELETE_ACCOUNT: "회원탈퇴",
 });

@@ -1,5 +1,6 @@
-import { Box, styled } from "@mui/material";
+import { Box, Button, styled } from "@mui/material";
 import Link from "next/link";
+import { ERROR_COLOR } from "../../../../../defines/common/constants";
 import {
 	FONT_BOLD_WEIGHT,
 	FONT_COLOR,
@@ -23,6 +24,24 @@ export const StyledHeaderLink = styled(Link)({
 	color: FONT_COLOR,
 	textDecoration: "none",
 	margin: "0 5px",
+});
+
+export const StyledHeaderButton = styled(Button)({
+	fontSize: FONT_SIZE,
+	color: FONT_COLOR,
+	":hover": {
+		backgroundColor: "transparent",
+	},
+});
+
+export const StyledDropdownMenuItemNormal = styled(Link)({
+	fontSize: FONT_SIZE,
+	color: SELECTED_PAGE_COLOR,
+	textDecoration: "none",
+});
+
+export const StyledDropdownMenuItemError = styled(StyledDropdownMenuItemNormal)({
+	color: ERROR_COLOR,
 });
 
 export const StyledBox = styled(Box)<StyledBoxProps>`
