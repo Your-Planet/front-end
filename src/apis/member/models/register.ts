@@ -1,4 +1,4 @@
-import { GenderType, MemberType } from "@/defines/member/types";
+import { GenderType, MemberType, SubscriptionPathType } from "@/defines/member/types";
 
 interface CommonRegisterRequest {
 	email: string;
@@ -7,7 +7,7 @@ interface CommonRegisterRequest {
 	genderType: GenderType;
 	tel: string;
 	memberType: MemberType;
-	birthDate: string;
+	birthDate?: string;
 }
 
 export interface AuthorRegisterRequest extends CommonRegisterRequest {
@@ -19,6 +19,7 @@ export interface AdvertiserRegisterRequest extends CommonRegisterRequest {
 	businessNumber?: string;
 	representativeName?: string;
 	businessAddress?: string;
+	subscriptionPath?: SubscriptionPathType;
 }
 
 export type RegisterRequest = AuthorRegisterRequest | AdvertiserRegisterRequest;
