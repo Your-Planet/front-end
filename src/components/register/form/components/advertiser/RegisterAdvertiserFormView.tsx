@@ -130,16 +130,6 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 						fullWidth
 					/>
 
-					<TextField
-						formName="tel"
-						label="연락처"
-						required
-						validator={isNumber}
-						placeholder="숫자만 입력하세요"
-						type="tel"
-						fullWidth
-					/>
-
 					<Box width="100%">
 						<FormControl fullWidth>
 							<TextField
@@ -176,6 +166,18 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 					</Box>
 
 					<TextField formName="name" label="담당자명" required fullWidth />
+
+					<TextField
+						formName="tel"
+						label="연락처"
+						required
+						validator={isNumber}
+						placeholder="숫자만 입력하세요"
+						type="tel"
+						fullWidth
+					/>
+
+					{/* TODO: 가입경로 추가(인터넷 검색, 지인 소개, 인스타그램, 기타 */}
 
 					<Button type="submit" variant="contained" size="large" fullWidth>
 						가입하기
