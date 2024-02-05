@@ -4,7 +4,8 @@ import {
 	requiredTosText,
 	shoppingInformationReceiptText,
 } from "@/defines/termsOfService/constants";
-import { tosCheckedContext, tosOpenContext } from "@/recoil/atoms/TermsOfService";
+import useOpen from "@/hooks/common/useOpen";
+import { tosCheckedContext } from "@/recoil/atoms/TermsOfService";
 import { tosCheckedState } from "@/recoil/selectors/TermsOfService";
 import { Alert, Button, Dialog, DialogActions, DialogTitle, Divider, Snackbar } from "@mui/material";
 import { useRouter } from "next/navigation";
@@ -20,7 +21,6 @@ type Props = {
 
 function TermsOfService({ selectedMember }: Props) {
 	const router = useRouter();
-	const [tosOpen, setTosOpen] = useRecoilState<boolean>(tosOpenContext);
 	const [_, setTosState] = useRecoilState<TosCheckedStateType>(tosCheckedContext);
 	const [snackbarState, setSnackbarState] = useState<SnackbarStateType>({
 		snackbarOpen: false,
@@ -29,6 +29,8 @@ function TermsOfService({ selectedMember }: Props) {
 	});
 	const tosCheckedStates = useRecoilValue<TosCheckedStateType>(tosCheckedState);
 	const { snackbarOpen, vertical, horizontal } = snackbarState;
+
+	const { opened, handleClose } = useOpen(false);
 
 	const handleOpenSnackbar = () => {
 		setSnackbarState({ ...snackbarState, snackbarOpen: true });
@@ -44,7 +46,7 @@ function TermsOfService({ selectedMember }: Props) {
 		const { REQUIRED, PERSONAL_INFORMATION } = tosCheckedStates;
 
 		if (REQUIRED && PERSONAL_INFORMATION) {
-			setTosOpen(false);
+			handleClose();
 			router.push(`register/${selectedMember.toLowerCase()}`);
 		} else {
 			handleOpenSnackbar();
@@ -53,7 +55,7 @@ function TermsOfService({ selectedMember }: Props) {
 
 	const handleCloseWithDisagree = () => {
 		setTosState(FALSE_TOS_CHECKED_STATE);
-		setTosOpen(false);
+		handleClose();
 	};
 
 	const dialogStyle = {
@@ -66,7 +68,7 @@ function TermsOfService({ selectedMember }: Props) {
 		<>
 			<Dialog
 				className="min-w-[400px]"
-				open={tosOpen}
+				open={opened}
 				onClose={handleCloseWithDisagree}
 				fullWidth
 				maxWidth="md"
