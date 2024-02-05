@@ -4,7 +4,6 @@ import {
 	requiredTosText,
 	shoppingInformationReceiptText,
 } from "@/defines/termsOfService/constants";
-import useOpen from "@/hooks/common/useOpen";
 import { tosCheckedContext } from "@/recoil/atoms/TermsOfService";
 import { tosCheckedState } from "@/recoil/selectors/TermsOfService";
 import { Alert, Button, Dialog, DialogActions, DialogTitle, Divider, Snackbar } from "@mui/material";
@@ -17,9 +16,11 @@ import { SnackbarStateType, TosCheckedStateType } from "./defines/types";
 
 type Props = {
 	selectedMember: MemberType | null;
+	opened: boolean;
+	onClose: () => void;
 };
 
-function TermsOfService({ selectedMember }: Props) {
+function TermsOfService({ selectedMember, opened, onClose }: Props) {
 	const router = useRouter();
 	const [_, setTosState] = useRecoilState<TosCheckedStateType>(tosCheckedContext);
 	const [snackbarState, setSnackbarState] = useState<SnackbarStateType>({
@@ -29,8 +30,6 @@ function TermsOfService({ selectedMember }: Props) {
 	});
 	const tosCheckedStates = useRecoilValue<TosCheckedStateType>(tosCheckedState);
 	const { snackbarOpen, vertical, horizontal } = snackbarState;
-
-	const { opened, handleClose } = useOpen(false);
 
 	const handleOpenSnackbar = () => {
 		setSnackbarState({ ...snackbarState, snackbarOpen: true });
@@ -46,7 +45,7 @@ function TermsOfService({ selectedMember }: Props) {
 		const { REQUIRED, PERSONAL_INFORMATION } = tosCheckedStates;
 
 		if (REQUIRED && PERSONAL_INFORMATION) {
-			handleClose();
+			onClose();
 			router.push(`register/${selectedMember.toLowerCase()}`);
 		} else {
 			handleOpenSnackbar();
@@ -55,7 +54,7 @@ function TermsOfService({ selectedMember }: Props) {
 
 	const handleCloseWithDisagree = () => {
 		setTosState(FALSE_TOS_CHECKED_STATE);
-		handleClose();
+		onClose();
 	};
 
 	const dialogStyle = {
