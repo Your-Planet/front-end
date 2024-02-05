@@ -6,6 +6,7 @@ import H2 from "@/components/common/text/H2";
 import useRegisterForm from "@/components/register/form/hooks/useRegisterForm";
 import { REGISTER_ADVERTISER_FORM_FIELD_LENGTH } from "@/defines/forms/register/advertiser/constants";
 import { RegisterAdvertiserForm } from "@/defines/forms/register/advertiser/types";
+import { SubscriptionPathType } from "@/defines/member/types";
 import useMutationPostAdvertiserRegister from "@/hooks/queries/member/useMutationPostAdvertiserRegister";
 import { getObjectAtPath } from "@/utils/object";
 import { getEmailValidateRule, getLengthErrorMessage } from "@/utils/react-hook-form/rule";
@@ -58,7 +59,7 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 				{
 					...rest,
 					genderType: genderType!,
-					birthDate: birthDate!.format("YYYY-mm-dd"),
+					birthDate: birthDate?.format("YYYY-mm-dd"),
 					businessAddress: `${businessAddress.base} ${businessAddress.detail}`,
 					memberType: "ADVERTISER",
 				},
@@ -83,7 +84,7 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 
 	const addressErrorMessage = getObjectAtPath(errors, "businessAddress.base")?.message ?? " ";
 
-	const { TextField } = ReactHookForm<RegisterAdvertiserForm>();
+	const { TextField, RadioGroup } = ReactHookForm<RegisterAdvertiserForm>();
 
 	return (
 		<div className="max-w-[520px] mx-auto py-28">
@@ -130,16 +131,6 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 						fullWidth
 					/>
 
-					<TextField
-						formName="tel"
-						label="연락처"
-						required
-						validator={isNumber}
-						placeholder="숫자만 입력하세요"
-						type="tel"
-						fullWidth
-					/>
-
 					<Box width="100%">
 						<FormControl fullWidth>
 							<TextField
@@ -176,6 +167,40 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 					</Box>
 
 					<TextField formName="name" label="담당자명" required fullWidth />
+
+					<TextField
+						formName="tel"
+						label="연락처"
+						required
+						validator={isNumber}
+						placeholder="숫자만 입력하세요"
+						type="tel"
+						fullWidth
+					/>
+
+					{/* TODO: 가입경로 추가(인터넷 검색, 지인 소개, 인스타그램, 기타 */}
+					<RadioGroup<SubscriptionPathType>
+						label="가입경로"
+						formName="subscriptionPath"
+						radios={[
+							{
+								label: "인터넷 검색",
+								value: "SEARCH",
+							},
+							{
+								label: "지인 소개",
+								value: "RECOMMEND",
+							},
+							{
+								label: "인스타그램",
+								value: "INSTAGRAM",
+							},
+							{
+								label: "기타",
+								value: "", // TODO : input 필드로 바꾸기
+							},
+						]}
+					/>
 
 					<Button type="submit" variant="contained" size="large" fullWidth>
 						가입하기
