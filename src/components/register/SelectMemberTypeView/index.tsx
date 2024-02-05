@@ -1,24 +1,24 @@
 "use client";
 
 import H2 from "@/components/common/text/H2";
+import TermsOfService from "@/components/register/TermsOfService";
 import { labelByMemberForRegister } from "@/defines/member/constants";
 import { MemberType } from "@/defines/member/types";
-import { tosOpenContext } from "@/recoil/atoms/TermsOfService";
+import useOpen from "@/hooks/common/useOpen";
 import { Button, ButtonGroup } from "@mui/material";
 import { useState } from "react";
-import { useRecoilState } from "recoil";
-import TermsOfService from "../TermsOfService/index";
 
 export interface SelectUserTypeViewProps {}
 
 function SelectUserTypeView(props: SelectUserTypeViewProps) {
 	const {} = props;
 
-	const [tosOpen, setTosOpen] = useRecoilState<boolean>(tosOpenContext);
+	const { opened, handleOpen, handleClose } = useOpen(false);
+
 	const [selectedMember, setSelectedMember] = useState<MemberType | null>(null);
 
 	const handleClickOpenTos = (memberType: MemberType) => {
-		setTosOpen(true);
+		handleOpen();
 		setSelectedMember(memberType);
 	};
 
@@ -38,7 +38,7 @@ function SelectUserTypeView(props: SelectUserTypeViewProps) {
 					</Button>
 				))}
 			</ButtonGroup>
-			{tosOpen && <TermsOfService selectedMember={selectedMember} />}
+			{opened && <TermsOfService selectedMember={selectedMember} opened={opened} onClose={handleClose} />}
 		</div>
 	);
 }
