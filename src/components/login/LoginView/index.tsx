@@ -1,6 +1,7 @@
 import Logo from "@/components/common/Logo";
 import ReactHookForm from "@/components/common/ReactHookForm";
 import { LoginForm } from "@/components/login/LoginView/defines/types";
+import useLoginViewRedirect from "@/components/login/LoginView/hooks/useLoginViewRedirect";
 import { COOKIE } from "@/defines/cookie/constants";
 import useMutationPostLogin from "@/hooks/queries/member/useMutationPostLogin";
 import { setCookie } from "@/utils/cookie";
@@ -16,6 +17,8 @@ function LoginView(props: LoginViewProps) {
 	const {} = props;
 
 	const router = useRouter();
+
+	useLoginViewRedirect();
 
 	const form = useForm<LoginForm>({
 		defaultValues: {
