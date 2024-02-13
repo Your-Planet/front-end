@@ -1,19 +1,16 @@
 "use client";
 
 import { DEFAULT_OF_PORTFOLIO_LINK, LIMIT_OF_PORTFOLIO_LINK, PRIMARY_COLOR } from "@/defines/common/constants";
-import { filledLinkContext } from "@/recoil/atoms/post_me";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import { Box, FormControl, FormHelperText, InputAdornment, Link, TextField, Typography } from "@mui/material";
 import { useCallback, useState } from "react";
-import { useRecoilState } from "recoil";
 import HelpIcon from "../common/HelpIcon/index";
 import { hoverStyle } from "./defines/styles";
 
 const PortfolioLinkField = () => {
 	const [links, setLinks] = useState<Array<string>>(Array.from({ length: DEFAULT_OF_PORTFOLIO_LINK }, () => ""));
-	const [filledLink, setFilledLink] = useRecoilState<Array<string>>(filledLinkContext);
 
 	const handleChangeInput = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, index: number) => {
 		const link = event.target.value;
@@ -22,7 +19,6 @@ const PortfolioLinkField = () => {
 		onChangeLinks[index] = link;
 
 		setLinks(onChangeLinks);
-		setFilledLink(onChangeLinks.filter((link) => link !== ""));
 	};
 
 	const handleAddInputField = useCallback(() => {
@@ -59,7 +55,7 @@ const PortfolioLinkField = () => {
 		);
 	};
 
-	const error = filledLink.filter((link) => link.length > 0).length < 1;
+	const error = true;
 
 	return (
 		<FormControl className="flex flex-col w-[50vw]">

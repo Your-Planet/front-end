@@ -1,4 +1,4 @@
-import PostMeFormView from "@/components/post_me/PostMeFormView";
+import PostMeFormView from "@/components/post-me/PostMeFormView";
 import { Box } from "@mui/material";
 
 type Props = {};

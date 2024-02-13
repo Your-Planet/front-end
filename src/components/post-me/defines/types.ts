@@ -3,6 +3,6 @@ import { GenreType } from "@/components/search/defines/types";
 export interface PostMeForm {
 	instagramId: string;
 	authorIntroduction: string;
-	instatoonGenre: Set<GenreType>;
+	instatoonGenre: Array<GenreType>;
 	portfolioLinks: Array<string>;
 }

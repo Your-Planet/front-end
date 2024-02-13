@@ -1,15 +1,12 @@
 "use client";
 
-import { authorIntroductionContext } from "@/recoil/atoms/post_me";
 import { getAuthorIntroductionValidateRule } from "@/utils/react-hook-form/rule";
 import { FormControl, Typography } from "@mui/material";
-import { useRecoilState } from "recoil";
-import { AUTHOR_INTRODUCTION_LENGTH } from "../../defines/post_me/constants";
+import { AUTHOR_INTRODUCTION_LENGTH } from "../../defines/post-me/constants";
 import ReactHookForm from "../common/ReactHookForm/index";
 import { PostMeForm } from "./defines/types";
 
 function IntroductionField() {
-	const [_, setIntroduction] = useRecoilState<string>(authorIntroductionContext);
 	const { TextField } = ReactHookForm<PostMeForm>();
 	const hideAsteriskStyle = {
 		".MuiFormLabel-root, legend": {
@@ -18,10 +15,6 @@ function IntroductionField() {
 		".MuiFormHelperText-root": {
 			marginX: 0,
 		},
-	};
-
-	const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setIntroduction(event.target.value);
 	};
 
 	return (
@@ -36,7 +29,6 @@ function IntroductionField() {
 				multiline
 				fullWidth
 				InputLabelProps={{ shrink: true }}
-				onInput={handleInput}
 				inputProps={{ maxLength: AUTHOR_INTRODUCTION_LENGTH.max + 1 }}
 				rules={{
 					...getAuthorIntroductionValidateRule(),

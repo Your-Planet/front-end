@@ -1,5 +1,5 @@
-import { PostMeResponse } from "@/apis/post_me/models";
-import { PostMeForm as PostMeRequest } from "@/components/post_me/defines/types";
+import { PostMeResponse } from "@/apis/post-me/models/index";
+import { PostMeForm as PostMeRequest } from "@/components/post-me/defines/types";
 import { AxiosRequestFunction } from "@/defines/apis/types";
 import BaseApi from "@/utils/api/BaseApi";
 

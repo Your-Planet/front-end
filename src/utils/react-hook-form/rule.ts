@@ -1,6 +1,6 @@
 import { GenreType } from "@/components/search/defines/types";
 import { PASSWORD_LENGTH } from "@/defines/password/constants";
-import { AUTHOR_INTRODUCTION_LENGTH, SELECTED_GENRE_LIMIT } from "@/defines/post_me/constants";
+import { AUTHOR_INTRODUCTION_LENGTH, SELECTED_GENRE_LIMIT } from "@/defines/post-me/constants";
 import {
 	checkValidCombination,
 	checkValidKeyboardContinuity,

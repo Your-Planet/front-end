@@ -1,6 +1,6 @@
 import { API } from "@/apis";
-import { PostMeResponse } from "@/apis/post_me";
-import { PostMeForm as PostMeRequest } from "@/components/post_me/defines/types";
+import { PostMeResponse } from "@/apis/post-me/index";
+import { PostMeForm as PostMeRequest } from "@/components/post-me/defines/types";
 import { ResponseEntity } from "@/defines/apis/types";
 import { UseMutationParams } from "@/defines/react-query/types";
 import { UseMutationResult, useMutation } from "@tanstack/react-query";
@@ -20,7 +20,7 @@ function useMutationPostMe(params: UseMutationPostMeParams): UseMutationPostMe {
 	const { mutationOption } = params;
 
 	return useMutation({
-		mutationFn: async (req: Request) => (await API.post_me.postPortfolio(req)).data,
+		mutationFn: async (req: Request) => (await API.postMe.postPortfolio(req)).data,
 		...mutationOption,
 	});
 }

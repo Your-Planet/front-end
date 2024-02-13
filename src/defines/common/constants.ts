@@ -7,6 +7,6 @@ export const FOOTER_BORDER_TOP = "#7d7d7d";
 export const PRIMARY_COLOR = "#1976d2";
 export const ERROR_COLOR = "#f44336";
 
-// Post_me page
+// Post-me page
 export const DEFAULT_OF_PORTFOLIO_LINK = 1;
 export const LIMIT_OF_PORTFOLIO_LINK = 10;

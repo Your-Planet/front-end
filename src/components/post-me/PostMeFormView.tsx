@@ -39,6 +39,7 @@ function PostMeFormView(props: Props) {
 	const { handleSuccessPostMe, handleFailPostMe } = usePostMe();
 
 	const handleFormSubmit: FormEventHandler = handleSubmit((data) => {
+		console.log(data);
 		mutatePostMe(
 			{ ...data },
 			{
