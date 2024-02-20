@@ -14,8 +14,8 @@ function OurTeam() {
 	const slidingCards = () => {
 		const cards = [
 			<Card
-				key="마켓팅"
-				text="마켓팅"
+				key="마케팅"
+				text="마케팅"
 				backgroundColor="bg-indigo-300"
 				imageSrc="/images/marketing.png"
 				imageAlt="marketing"
