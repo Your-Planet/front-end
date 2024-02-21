@@ -12,7 +12,7 @@ import { PageType } from "./defines/types";
 function Gnb() {
 	const pathname = usePathname();
 	const { jwtPayload } = useAuthContext();
-	const [memberType, setMemberType] = useState<MemberType>(null);
+	const [memberType, setMemberType] = useState<MemberType | null>(null);
 	const [selectedPage, setSelectedPage] = useState<PageType>("HOME");
 
 	useEffect(() => {
