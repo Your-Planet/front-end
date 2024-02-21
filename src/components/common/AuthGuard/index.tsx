@@ -42,7 +42,7 @@ function AuthGuard(props: AuthGuardProps) {
 			// TODO @김현규 ErrorBoundary 작업 이후 throw 하는 방식으로 변경
 			router.push("/403");
 		}
-	}, [jwtPayload, allowedMemberTypes]);
+	}, [jwtPayload, allowedMemberTypes, disallowedMemberTypes]);
 
 	return <>{children}</>;
 }

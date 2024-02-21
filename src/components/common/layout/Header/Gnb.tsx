@@ -1,5 +1,7 @@
 "use client";
 
+import { MemberType } from "@/defines/member/types";
+import { useAuthContext } from "@/providers/AuthProvider";
 import { Box } from "@mui/material";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -9,6 +11,8 @@ import { PageType } from "./defines/types";
 
 function Gnb() {
 	const pathname = usePathname();
+	const { jwtPayload } = useAuthContext();
+	const [memberType, setMemberType] = useState<MemberType>(null);
 	const [selectedPage, setSelectedPage] = useState<PageType>("HOME");
 
 	useEffect(() => {
@@ -28,6 +32,15 @@ function Gnb() {
 		}
 	}, [pathname]);
 
+	useEffect(() => {
+		if (!jwtPayload) {
+			setMemberType(null);
+			return;
+		}
+
+		setMemberType(jwtPayload.memberType);
+	}, [jwtPayload]);
+
 	return (
 		<Box className="flex">
 			<StyledBox selected={selectedPage === "HOME"}>
@@ -35,16 +48,20 @@ function Gnb() {
 					{LABEL_BY_PAGE.HOME}
 				</StyledLink>
 			</StyledBox>
-			<StyledBox selected={selectedPage === "SEARCH"}>
-				<StyledLink href="/search" selected={selectedPage === "SEARCH"}>
-					{LABEL_BY_PAGE.SEARCH}
-				</StyledLink>
-			</StyledBox>
-			<StyledBox selected={selectedPage === "POST_ME"}>
-				<StyledLink href="/post-me" selected={selectedPage === "POST_ME"}>
-					{LABEL_BY_PAGE.POST_ME}
-				</StyledLink>
-			</StyledBox>
+			{(memberType === "ADVERTISER" || memberType === "ADMIN") && (
+				<StyledBox selected={selectedPage === "SEARCH"}>
+					<StyledLink href="/search" selected={selectedPage === "SEARCH"}>
+						{LABEL_BY_PAGE.SEARCH}
+					</StyledLink>
+				</StyledBox>
+			)}
+			{(memberType === "AUTHOR" || memberType === "ADMIN") && (
+				<StyledBox selected={selectedPage === "POST_ME"}>
+					<StyledLink href="/post-me" selected={selectedPage === "POST_ME"}>
+						{LABEL_BY_PAGE.POST_ME}
+					</StyledLink>
+				</StyledBox>
+			)}
 		</Box>
 	);
 }
