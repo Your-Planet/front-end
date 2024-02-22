@@ -32,3 +32,7 @@ html > body * {
 		"Segoe UI Symbol",
 		sans-serif;
 }
+
+* {
+	white-space: pre-wrap;
+}

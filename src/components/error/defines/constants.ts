@@ -1,10 +1,7 @@
-import { ErrorViewProps } from "@/components/error/defines/types";
+import { ErrorViewProps, PageErrorCode } from "@/components/error/defines/types";
 import { HttpStatusCode } from "axios";
 
-export const ERROR_VIEW_PROPS_BY_ERROR_CODE: Record<
-	Extract<HttpStatusCode, HttpStatusCode.Forbidden | HttpStatusCode.NotFound | HttpStatusCode.InternalServerError>,
-	ErrorViewProps
-> = {
+export const ERROR_VIEW_PROPS_BY_ERROR_CODE: Record<PageErrorCode, ErrorViewProps> = {
 	[HttpStatusCode.Forbidden]: {
 		errorCode: HttpStatusCode.Forbidden,
 		title: "접근이 거부되었습니다",
