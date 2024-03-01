@@ -1,17 +1,33 @@
 import { MemberType } from "@/defines/member/types";
 
-export type PageAccessConfig =
-	| {
-			allowedMemberTypes?: readonly MemberType[];
-			disallowedMemberTypes?: never;
-	  }
-	| {
-			disallowedMemberTypes?: readonly MemberType[];
-			allowedMemberTypes?: never;
-	  };
+export type PageAccessConfig = PageAccessAllowedOnLogin | PageAccessDisallowedOnLogin;
+
+type PageAccessAllowedOnLogin = {
+	allowedOnLogin: true;
+	disallowedOnLogin?: never;
+} & (PageAccessAllowedMemberTypes | PageAccessDisallowedMemberTypes);
+
+type PageAccessDisallowedOnLogin = {
+	allowedOnLogin?: never;
+	disallowedOnLogin: true;
+	allowedMemberTypes?: never;
+	disallowedMemberTypes?: never;
+};
+
+type PageAccessAllowedMemberTypes = {
+	allowedMemberTypes?: readonly MemberType[];
+	disallowedMemberTypes?: never;
+};
+
+type PageAccessDisallowedMemberTypes = {
+	allowedMemberTypes?: never;
+	disallowedMemberTypes?: readonly MemberType[];
+};
 
 export interface Page {
+	// 브라우저 탭에 표시되는 제목
 	title: string;
+	// UI상에서 표시되는 라벨
 	label: string;
 	accessConfig?: PageAccessConfig;
 }
@@ -23,8 +39,8 @@ export type GlobalIa = Page &
 	JoinIa &
 	DeletionIa &
 	SearchIa &
-	QuotationIa &
-	MyPageIa &
+	ProjectIa &
+	MypageIa &
 	FindIa &
 	ResetPwIa &
 	TermsIa &
@@ -38,9 +54,9 @@ type DeletionIa = Ia<"deletion", DeletionSubIa["complete"]>;
 
 type SearchIa = Ia<"search">;
 
-type QuotationIa = Ia<"quotation">;
+type ProjectIa = Ia<"project">;
 
-type MyPageIa = Ia<"myPage", MyPageSubIa["portfolio"] & MyPageSubIa["quotation-history"]>;
+type MypageIa = Ia<"mypage", MypageSubIa["portfolio"] & MypageSubIa["project-history"]>;
 
 type FindIa = Ia<"find", FindSubIa["email"] & FindSubIa["pw"]>;
 
@@ -59,9 +75,9 @@ type DeletionSubIa = {
 	complete: Ia<"complete">;
 };
 
-type MyPageSubIa = {
+type MypageSubIa = {
 	portfolio: Ia<"portfolio", Ia<"update">>;
-	["quotation-history"]: Ia<"quotation-history", Ia<"[id]">>;
+	["project-history"]: Ia<"project-history", Ia<"[id]">>;
 };
 
 type FindSubIa = {
