@@ -14,7 +14,7 @@ export interface AuthorJoinRequest extends CommonJoinRequest {
 	instagramAuthCode: string;
 }
 
-export interface AdvertiserJoinRequest extends CommonJoinRequest {
+export interface SponsorJoinRequest extends CommonJoinRequest {
 	companyName?: string;
 	businessNumber?: string;
 	representativeName?: string;
@@ -22,6 +22,6 @@ export interface AdvertiserJoinRequest extends CommonJoinRequest {
 	subscriptionPath?: SubscriptionPathType;
 }
 
-export type JoinRequest = AuthorJoinRequest | AdvertiserJoinRequest;
+export type JoinRequest = AuthorJoinRequest | SponsorJoinRequest;
 
 export type JoinResponse = JoinRequest;
