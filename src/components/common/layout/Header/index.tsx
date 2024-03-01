@@ -3,6 +3,8 @@
 import Logo from "@/components/common/Logo";
 import GlobalMenu from "@/components/common/layout/Header/components/GlobalMenu";
 import Gnb from "@/components/common/layout/Header/components/Gnb";
+import { IA } from "@/defines/ia/constants";
+import { getIaPath } from "@/utils/ia";
 import { AppBar, Grid } from "@mui/material";
 
 function Header() {
@@ -13,7 +15,7 @@ function Header() {
 					<Gnb />
 				</Grid>
 				<Grid className="flex justify-center" item xs={4}>
-					<Logo href="/" />
+					<Logo href={getIaPath(IA)} />
 				</Grid>
 				<Grid className="flex justify-end" item xs={4}>
 					<GlobalMenu />

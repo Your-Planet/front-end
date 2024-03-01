@@ -15,7 +15,7 @@ function GnbLink(props: GnbLinkProps) {
 
 	const { label } = page;
 
-	const href = getIaPath(page) ?? "#";
+	const href = getIaPath(page);
 	const pathname = usePathname();
 	const selected = pathname === href;
 

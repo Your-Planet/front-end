@@ -4,5 +4,5 @@ import { findObjectPath } from "@/utils/object";
 
 export const getIaPath = (page: PageAttributes) => {
 	if (IA === page) return "/";
-	return findObjectPath(IA, page);
+	return findObjectPath(IA, page) ?? "#";
 };
