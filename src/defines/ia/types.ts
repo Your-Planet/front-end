@@ -1,6 +1,6 @@
 import { MemberType } from "@/defines/member/types";
 
-export type GlobalIa = Page &
+export type GlobalIa = PageAttributes &
 	LoginIa &
 	JoinIa &
 	DeletionIa &
@@ -12,7 +12,8 @@ export type GlobalIa = Page &
 	TermsIa &
 	PrivacyIa;
 
-export type Ia<PageName extends string, SubIa extends Page = Page> = Page & Record<PageName, SubIa>;
+export type Ia<PageName extends string, SubIa extends PageAttributes = PageAttributes> = PageAttributes &
+	Record<PageName, SubIa>;
 
 type LoginIa = Ia<"login">;
 
@@ -53,7 +54,7 @@ type FindSubIa = {
 	pw: Ia<"pw", Ia<"complete">>;
 };
 
-export interface Page {
+export interface PageAttributes {
 	// 브라우저 탭에 표시되는 제목
 	title: string;
 	// UI상에서 표시되는 라벨
