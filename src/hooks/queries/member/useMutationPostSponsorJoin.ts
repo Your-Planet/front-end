@@ -1,21 +1,21 @@
 import { API } from "@/apis";
-import { AdvertiserJoinRequest, JoinResponse } from "@/apis/member";
+import { JoinResponse, SponsorJoinRequest } from "@/apis/member";
 import { ResponseEntity } from "@/defines/apis/types";
 import { UseMutationParams } from "@/defines/react-query/types";
 import { UseMutationResult, useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 
-type Request = AdvertiserJoinRequest;
+type Request = SponsorJoinRequest;
 
 type Response = ResponseEntity<JoinResponse>;
 
 type Error = AxiosError<Response>;
 
-export interface UseMutationPostAdvertiserJoinParams extends UseMutationParams<Response, Error, Request> {}
+export interface UseMutationPostSponsorJoinParams extends UseMutationParams<Response, Error, Request> {}
 
-export type UseMutationPostAdvertiserJoin = UseMutationResult<Response, Error, Request>;
+export type UseMutationPostSponsorJoin = UseMutationResult<Response, Error, Request>;
 
-function useMutationPostAdvertiserJoin(params: UseMutationPostAdvertiserJoinParams): UseMutationPostAdvertiserJoin {
+function useMutationPostSponsorJoin(params: UseMutationPostSponsorJoinParams): UseMutationPostSponsorJoin {
 	const { mutationOption } = params;
 
 	return useMutation({
@@ -24,4 +24,4 @@ function useMutationPostAdvertiserJoin(params: UseMutationPostAdvertiserJoinPara
 	});
 }
 
-export default useMutationPostAdvertiserJoin;
+export default useMutationPostSponsorJoin;
