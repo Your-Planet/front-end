@@ -1,6 +1,6 @@
 import { GenderType, MemberType, SubscriptionPathType } from "@/defines/member/types";
 
-interface CommonRegisterRequest {
+interface CommonJoinRequest {
 	email: string;
 	password: string;
 	name: string;
@@ -10,11 +10,11 @@ interface CommonRegisterRequest {
 	birthDate?: string;
 }
 
-export interface AuthorRegisterRequest extends CommonRegisterRequest {
+export interface AuthorJoinRequest extends CommonJoinRequest {
 	instagramAuthCode: string;
 }
 
-export interface AdvertiserRegisterRequest extends CommonRegisterRequest {
+export interface AdvertiserJoinRequest extends CommonJoinRequest {
 	companyName?: string;
 	businessNumber?: string;
 	representativeName?: string;
@@ -22,6 +22,6 @@ export interface AdvertiserRegisterRequest extends CommonRegisterRequest {
 	subscriptionPath?: SubscriptionPathType;
 }
 
-export type RegisterRequest = AuthorRegisterRequest | AdvertiserRegisterRequest;
+export type JoinRequest = AuthorJoinRequest | AdvertiserJoinRequest;
 
-export type RegisterResponse = RegisterRequest;
+export type JoinResponse = JoinRequest;

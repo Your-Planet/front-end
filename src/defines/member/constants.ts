@@ -7,7 +7,7 @@ export const labelByMember: Record<MemberType, string> = deepFreeze({
 	ADVERTISER: "광고주",
 });
 
-export const labelByMemberForRegister: Record<Exclude<MemberType, "ADMIN">, string> = deepFreeze({
+export const labelByMemberForJoin: Record<Exclude<MemberType, "ADMIN">, string> = deepFreeze({
 	AUTHOR: labelByMember.AUTHOR,
 	ADVERTISER: labelByMember.ADVERTISER,
 });
