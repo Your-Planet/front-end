@@ -87,8 +87,8 @@ function LoginView(props: LoginViewProps) {
 			</FormProvider>
 
 			<div className="text-center mt-8">
-				<Link href="/register" className="text-gray-500 no-underline">
-					회원가입
+				<Link href="/join" className="text-gray-500 no-underline">
+					계정 만들기
 				</Link>
 			</div>
 		</div>

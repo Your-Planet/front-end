@@ -1,4 +1,4 @@
-import { TosCheckedStateType } from "@/components/register/TermsOfService/defines/types";
+import { TosCheckedStateType } from "@/components/join/TermsOfService/defines/types";
 import { atom } from "recoil";
 
 export const tosCheckedContext = atom<TosCheckedStateType>({

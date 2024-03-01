@@ -3,24 +3,24 @@
 import ReactHookForm from "@/components/common/ReactHookForm";
 import PasswordTextField from "@/components/common/password/PasswordTextField";
 import H2 from "@/components/common/text/H2";
-import useRegisterForm from "@/components/register/form/hooks/useRegisterForm";
-import { RegisterAuthorForm } from "@/defines/forms/register/author/types";
+import useJoinForm from "@/components/join/form/hooks/useJoinForm";
+import { JoinAuthorForm } from "@/defines/forms/join/author/types";
 import { GenderType } from "@/defines/member/types";
-import useMutationPostAuthorRegister from "@/hooks/queries/member/useMutationPostAuthorRegister";
+import useMutationPostAuthorJoin from "@/hooks/queries/member/useMutationPostAuthorJoin";
 import { getEmailValidateRule } from "@/utils/react-hook-form/rule";
 import { isNumber } from "@/utils/string";
 import { Button } from "@mui/material";
 import { FormEventHandler } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
-export interface RegisterAuthorFormViewProps {
+export interface JoinAuthorFormViewProps {
 	instagramAuthCode: string;
 }
 
-function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
+function JoinAuthorFormView(props: JoinAuthorFormViewProps) {
 	const { instagramAuthCode } = props;
 
-	const form = useForm<RegisterAuthorForm>({
+	const form = useForm<JoinAuthorForm>({
 		mode: "all",
 		defaultValues: {
 			email: "",
@@ -35,12 +35,12 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 
 	const { handleSubmit } = form;
 
-	const { mutate: mutatePostRegister } = useMutationPostAuthorRegister({});
+	const { mutate: mutatePostJoin } = useMutationPostAuthorJoin({});
 
-	const { handleSuccessRegister, handleFailRegister } = useRegisterForm();
+	const { handleSuccessJoin, handleFailJoin } = useJoinForm();
 
 	const handleFormSubmit: FormEventHandler = handleSubmit(({ genderType, birthDate, passwordConfirm, ...rest }) => {
-		mutatePostRegister(
+		mutatePostJoin(
 			{
 				...rest,
 				genderType: genderType!,
@@ -49,13 +49,13 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 				memberType: "AUTHOR",
 			},
 			{
-				onSuccess: handleSuccessRegister,
-				onError: handleFailRegister,
+				onSuccess: handleSuccessJoin,
+				onError: handleFailJoin,
 			},
 		);
 	});
 
-	const { TextField, RadioGroup, DatePicker } = ReactHookForm<RegisterAuthorForm>();
+	const { TextField, RadioGroup, DatePicker } = ReactHookForm<JoinAuthorForm>();
 
 	return (
 		<div className="max-w-[520px] mx-auto py-28">
@@ -116,4 +116,4 @@ function RegisterAuthorFormView(props: RegisterAuthorFormViewProps) {
 	);
 }
 
-export default RegisterAuthorFormView;
+export default JoinAuthorFormView;

@@ -24,7 +24,7 @@ function GlobalMenu() {
 			) : (
 				<>
 					<StyledHeaderLink href="/login">{LABEL_BY_GLOBAL_MENU.LOG_IN}</StyledHeaderLink>
-					<StyledHeaderLink href="/register">{LABEL_BY_GLOBAL_MENU.REGISTER}</StyledHeaderLink>
+					<StyledHeaderLink href="/join">{LABEL_BY_GLOBAL_MENU.JOIN}</StyledHeaderLink>
 				</>
 			)}
 		</Box>

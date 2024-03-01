@@ -3,11 +3,11 @@
 import ReactHookForm from "@/components/common/ReactHookForm";
 import PasswordTextField from "@/components/common/password/PasswordTextField";
 import H2 from "@/components/common/text/H2";
-import useRegisterForm from "@/components/register/form/hooks/useRegisterForm";
-import { REGISTER_ADVERTISER_FORM_FIELD_LENGTH } from "@/defines/forms/register/advertiser/constants";
-import { RegisterAdvertiserForm } from "@/defines/forms/register/advertiser/types";
+import useJoinForm from "@/components/join/form/hooks/useJoinForm";
+import { JOIN_ADVERTISER_FORM_FIELD_LENGTH } from "@/defines/forms/join/advertiser/constants";
+import { JoinAdvertiserForm } from "@/defines/forms/join/advertiser/types";
 import { SubscriptionPathType } from "@/defines/member/types";
-import useMutationPostAdvertiserRegister from "@/hooks/queries/member/useMutationPostAdvertiserRegister";
+import useMutationPostAdvertiserJoin from "@/hooks/queries/member/useMutationPostAdvertiserJoin";
 import { getObjectAtPath } from "@/utils/object";
 import { getEmailValidateRule, getLengthErrorMessage } from "@/utils/react-hook-form/rule";
 import { isNumber } from "@/utils/string";
@@ -17,14 +17,14 @@ import { useDaumPostcodePopup } from "react-daum-postcode";
 import { postcodeScriptUrl } from "react-daum-postcode/lib/loadPostcode";
 import { FormProvider, useForm } from "react-hook-form";
 
-export interface RegisterAdvertiserFormViewProps {}
+export interface JoinAdvertiserFormViewProps {}
 
-function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
+function JoinAdvertiserFormView(props: JoinAdvertiserFormViewProps) {
 	const {} = props;
 
 	const openPostcodePopup = useDaumPostcodePopup(postcodeScriptUrl);
 
-	const form = useForm<RegisterAdvertiserForm>({
+	const form = useForm<JoinAdvertiserForm>({
 		mode: "all",
 		defaultValues: {
 			email: "",
@@ -49,13 +49,13 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 		formState: { errors },
 	} = form;
 
-	const { mutate: mutatePostRegister } = useMutationPostAdvertiserRegister({});
+	const { mutate: mutatePostJoin } = useMutationPostAdvertiserJoin({});
 
-	const { handleSuccessRegister, handleFailRegister } = useRegisterForm();
+	const { handleSuccessJoin, handleFailJoin } = useJoinForm();
 
 	const handleFormSubmit: FormEventHandler = handleSubmit(
 		({ genderType, birthDate, businessAddress, passwordConfirm, ...rest }) => {
-			mutatePostRegister(
+			mutatePostJoin(
 				{
 					...rest,
 					genderType: genderType!,
@@ -64,8 +64,8 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 					memberType: "ADVERTISER",
 				},
 				{
-					onSuccess: handleSuccessRegister,
-					onError: handleFailRegister,
+					onSuccess: handleSuccessJoin,
+					onError: handleFailJoin,
 				},
 			);
 		},
@@ -84,7 +84,7 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 
 	const addressErrorMessage = getObjectAtPath(errors, "businessAddress.base")?.message ?? " ";
 
-	const { TextField, RadioGroup } = ReactHookForm<RegisterAdvertiserForm>();
+	const { TextField, RadioGroup } = ReactHookForm<JoinAdvertiserForm>();
 
 	return (
 		<div className="max-w-[520px] mx-auto py-28">
@@ -113,9 +113,9 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 						label="사업자번호"
 						required
 						rules={{
-							validate(value) {
-								if (!value || value.length === REGISTER_ADVERTISER_FORM_FIELD_LENGTH.businessNumber) return true;
-								return getLengthErrorMessage(REGISTER_ADVERTISER_FORM_FIELD_LENGTH.businessNumber);
+							validate(value: string) {
+								if (!value || value.length === JOIN_ADVERTISER_FORM_FIELD_LENGTH.businessNumber) return true;
+								return getLengthErrorMessage(JOIN_ADVERTISER_FORM_FIELD_LENGTH.businessNumber);
 							},
 						}}
 						placeholder="숫자만 입력하세요"
@@ -211,4 +211,4 @@ function RegisterAdvertiserFormView(props: RegisterAdvertiserFormViewProps) {
 	);
 }
 
-export default RegisterAdvertiserFormView;
+export default JoinAdvertiserFormView;

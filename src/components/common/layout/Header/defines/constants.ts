@@ -20,6 +20,6 @@ export const LABEL_BY_PAGE: Record<PageType, PageInfo> = deepFreeze({
 export const LABEL_BY_GLOBAL_MENU: Record<GlobalMenuType, GlobalMenuInfo> = deepFreeze({
 	LOG_IN: "로그인",
 	LOG_OUT: "로그아웃",
-	REGISTER: "회원가입",
+	JOIN: "회원가입",
 	MY_PAGE: "마이 페이지",
 });
