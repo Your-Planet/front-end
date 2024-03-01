@@ -1,9 +1,9 @@
 "use client";
 
 import Logo from "@/components/common/Logo";
+import GlobalMenu from "@/components/common/layout/Header/components/GlobalMenu";
+import Gnb from "@/components/common/layout/Header/components/Gnb";
 import { AppBar, Grid } from "@mui/material";
-import GlobalMenu from "./GlobalMenu";
-import Gnb from "./Gnb";
 
 function Header() {
 	return (

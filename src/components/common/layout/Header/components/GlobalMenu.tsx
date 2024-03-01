@@ -2,8 +2,8 @@ import { COOKIE } from "@/defines/cookie/constants";
 import { useAuthContext } from "@/providers/AuthProvider";
 import { removeCookie } from "@/utils/cookie";
 import { Box } from "@mui/material";
-import { LABEL_BY_GLOBAL_MENU } from "./defines/constants";
-import { StyledHeaderLink } from "./defines/styles";
+import { LABEL_BY_GLOBAL_MENU } from "../defines/constants";
+import { StyledHeaderLink } from "../defines/styles";
 
 function GlobalMenu() {
 	const { jwtPayload } = useAuthContext();

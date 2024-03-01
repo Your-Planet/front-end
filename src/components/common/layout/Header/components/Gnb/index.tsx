@@ -3,9 +3,9 @@
 import { Box } from "@mui/material";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { LABEL_BY_PAGE } from "./defines/constants";
-import { StyledBox, StyledLink } from "./defines/styles";
-import { PageType } from "./defines/types";
+import { LABEL_BY_PAGE } from "../../defines/constants";
+import { StyledBox, StyledLink } from "../../defines/styles";
+import { PageType } from "../../defines/types";
 
 function Gnb() {
 	const pathname = usePathname();
