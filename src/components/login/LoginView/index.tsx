@@ -3,12 +3,15 @@ import { LoginForm } from "@/components/login/LoginView/defines/types";
 import useLoginViewRedirect from "@/components/login/LoginView/hooks/useLoginViewRedirect";
 import { COOKIE } from "@/defines/cookie/constants";
 import useMutationPostLogin from "@/hooks/queries/member/useMutationPostLogin";
-import { setCookie } from "@/utils/cookie";
+import { removeCookie, setCookie } from "@/utils/cookie";
 import { isEmail } from "@/utils/string";
 import { Box, Button } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import { getCookie } from "../../../utils/cookie";
 import AccountManagementPanel from "./components/AccountManagementPanel";
+import { ACCOUNT_COOKIE } from "./defines/cookie/constants";
 
 export interface LoginViewProps {}
 
@@ -23,8 +26,28 @@ function LoginView(props: LoginViewProps) {
 		defaultValues: {
 			email: "",
 			password: "",
+			isRemember: false,
 		},
 	});
+
+	// Remember email
+	const [isRemember, setIsRemember] = useState<boolean>(false);
+	const rememberUserEmail = getCookie(ACCOUNT_COOKIE.rememberUserEmail);
+	const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setIsRemember(event.target.checked);
+
+		if (event.target.checked) {
+			setCookie(ACCOUNT_COOKIE.rememberUserEmail, form.getValues("email"), ACCOUNT_COOKIE.maxAge);
+		} else {
+			removeCookie(ACCOUNT_COOKIE.rememberUserEmail);
+		}
+	};
+	const checkbox = [
+		{
+			value: "isRemember",
+			label: "아이디 기억하기",
+		},
+	];
 
 	const { handleSubmit } = form;
 
@@ -50,7 +73,14 @@ function LoginView(props: LoginViewProps) {
 		return true;
 	};
 
-	const { TextField } = ReactHookForm<LoginForm>();
+	const { TextField, CheckboxGroup } = ReactHookForm<LoginForm>();
+
+	useEffect(() => {
+		if (rememberUserEmail !== undefined) {
+			form.setValue("email", rememberUserEmail);
+			setIsRemember(true);
+		}
+	}, []);
 
 	return (
 		<Box className="m-auto p-8">
@@ -75,6 +105,7 @@ function LoginView(props: LoginViewProps) {
 							validate: validatePassword,
 						}}
 					/>
+					<CheckboxGroup formName="isRemember" checkboxes={checkbox} />
 					<Button fullWidth variant="contained" size="large" type="submit">
 						로그인
 					</Button>
