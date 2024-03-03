@@ -46,7 +46,7 @@ function TermsOfService({ selectedMember, opened, onClose }: Props) {
 
 		if (REQUIRED && PERSONAL_INFORMATION) {
 			onClose();
-			router.push(`register/${selectedMember.toLowerCase()}`);
+			router.push(`join/${selectedMember.toLowerCase()}`);
 		} else {
 			handleOpenSnackbar();
 		}
