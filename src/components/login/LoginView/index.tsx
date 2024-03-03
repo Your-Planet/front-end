@@ -3,13 +3,12 @@ import { LoginForm } from "@/components/login/LoginView/defines/types";
 import useLoginViewRedirect from "@/components/login/LoginView/hooks/useLoginViewRedirect";
 import { COOKIE } from "@/defines/cookie/constants";
 import useMutationPostLogin from "@/hooks/queries/member/useMutationPostLogin";
-import { removeCookie, setCookie } from "@/utils/cookie";
+import { getCookie, removeCookie, setCookie } from "@/utils/cookie";
 import { isEmail } from "@/utils/string";
 import { Box, Button } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { getCookie } from "../../../utils/cookie";
 import AccountManagementPanel from "./components/AccountManagementPanel";
 import { ACCOUNT_COOKIE } from "./defines/cookie/constants";
 
