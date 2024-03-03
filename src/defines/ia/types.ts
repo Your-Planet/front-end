@@ -2,6 +2,7 @@ import { MemberType } from "@/defines/member/types";
 
 export type GlobalIa = PageAttributes &
 	LoginIa &
+	LogoutIa &
 	JoinIa &
 	DeletionIa &
 	SearchIa &
@@ -16,6 +17,8 @@ export type Ia<PageName extends string, SubIa extends PageAttributes = PageAttri
 	Record<PageName, SubIa>;
 
 type LoginIa = Ia<"login">;
+
+type LogoutIa = Ia<"logout">;
 
 type JoinIa = Ia<"join", JoinSubIa["author"] & JoinSubIa["sponsor"]>;
 

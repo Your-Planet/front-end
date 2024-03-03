@@ -13,6 +13,11 @@ export const IA = deepFreeze<GlobalIa>({
 		},
 	},
 
+	logout: {
+		title: "로그아웃",
+		label: "로그아웃",
+	},
+
 	join: {
 		title: "회원가입",
 		label: "회원가입",
