@@ -2,8 +2,10 @@ import ReactHookForm from "@/components/common/ReactHookForm";
 import { LoginForm } from "@/components/login/LoginView/defines/types";
 import useLoginViewRedirect from "@/components/login/LoginView/hooks/useLoginViewRedirect";
 import { COOKIE } from "@/defines/cookie/constants";
+import { IA } from "@/defines/ia/constants";
 import useMutationPostLogin from "@/hooks/queries/member/useMutationPostLogin";
 import { getCookie, removeCookie, setCookie } from "@/utils/cookie";
+import { getIaPath } from "@/utils/ia";
 import { isEmail } from "@/utils/string";
 import { Box, Button } from "@mui/material";
 import { useRouter } from "next/navigation";
@@ -62,7 +64,7 @@ function LoginView(props: LoginViewProps) {
 					removeCookie(COOKIE.rememberUserEmail);
 				}
 
-				router.push("/");
+				router.push(getIaPath(IA));
 			},
 		});
 	});
