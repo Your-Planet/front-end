@@ -4,10 +4,10 @@ import ReactHookForm from "@/components/common/ReactHookForm";
 import PasswordTextField from "@/components/common/password/PasswordTextField";
 import H2 from "@/components/common/text/H2";
 import useJoinForm from "@/components/join/form/hooks/useJoinForm";
-import { JOIN_ADVERTISER_FORM_FIELD_LENGTH } from "@/defines/forms/join/advertiser/constants";
-import { JoinAdvertiserForm } from "@/defines/forms/join/advertiser/types";
+import { JOIN_SPONSOR_FORM_FIELD_LENGTH } from "@/defines/forms/join/sponsor/constants";
+import { JoinSponsorForm } from "@/defines/forms/join/sponsor/types";
 import { SubscriptionPathType } from "@/defines/member/types";
-import useMutationPostAdvertiserJoin from "@/hooks/queries/member/useMutationPostAdvertiserJoin";
+import useMutationPostSponsorJoin from "@/hooks/queries/member/useMutationPostSponsorJoin";
 import { getObjectAtPath } from "@/utils/object";
 import { getEmailValidateRule, getLengthErrorMessage } from "@/utils/react-hook-form/rule";
 import { isNumber } from "@/utils/string";
@@ -17,14 +17,14 @@ import { useDaumPostcodePopup } from "react-daum-postcode";
 import { postcodeScriptUrl } from "react-daum-postcode/lib/loadPostcode";
 import { FormProvider, useForm } from "react-hook-form";
 
-export interface JoinAdvertiserFormViewProps {}
+export interface JoinSponsorFormViewProps {}
 
-function JoinAdvertiserFormView(props: JoinAdvertiserFormViewProps) {
+function JoinSponsorFormView(props: JoinSponsorFormViewProps) {
 	const {} = props;
 
 	const openPostcodePopup = useDaumPostcodePopup(postcodeScriptUrl);
 
-	const form = useForm<JoinAdvertiserForm>({
+	const form = useForm<JoinSponsorForm>({
 		mode: "all",
 		defaultValues: {
 			email: "",
@@ -49,7 +49,7 @@ function JoinAdvertiserFormView(props: JoinAdvertiserFormViewProps) {
 		formState: { errors },
 	} = form;
 
-	const { mutate: mutatePostJoin } = useMutationPostAdvertiserJoin({});
+	const { mutate: mutatePostJoin } = useMutationPostSponsorJoin({});
 
 	const { handleSuccessJoin, handleFailJoin } = useJoinForm();
 
@@ -61,7 +61,7 @@ function JoinAdvertiserFormView(props: JoinAdvertiserFormViewProps) {
 					genderType: genderType!,
 					birthDate: birthDate?.format("YYYY-mm-dd"),
 					businessAddress: `${businessAddress.base} ${businessAddress.detail}`,
-					memberType: "ADVERTISER",
+					memberType: "SPONSOR",
 				},
 				{
 					onSuccess: handleSuccessJoin,
@@ -84,7 +84,7 @@ function JoinAdvertiserFormView(props: JoinAdvertiserFormViewProps) {
 
 	const addressErrorMessage = getObjectAtPath(errors, "businessAddress.base")?.message ?? " ";
 
-	const { TextField, RadioGroup } = ReactHookForm<JoinAdvertiserForm>();
+	const { TextField, RadioGroup } = ReactHookForm<JoinSponsorForm>();
 
 	return (
 		<div className="max-w-[520px] mx-auto py-28">
@@ -114,8 +114,8 @@ function JoinAdvertiserFormView(props: JoinAdvertiserFormViewProps) {
 						required
 						rules={{
 							validate(value: string) {
-								if (!value || value.length === JOIN_ADVERTISER_FORM_FIELD_LENGTH.businessNumber) return true;
-								return getLengthErrorMessage(JOIN_ADVERTISER_FORM_FIELD_LENGTH.businessNumber);
+								if (!value || value.length === JOIN_SPONSOR_FORM_FIELD_LENGTH.businessNumber) return true;
+								return getLengthErrorMessage(JOIN_SPONSOR_FORM_FIELD_LENGTH.businessNumber);
 							},
 						}}
 						placeholder="숫자만 입력하세요"
@@ -211,4 +211,4 @@ function JoinAdvertiserFormView(props: JoinAdvertiserFormViewProps) {
 	);
 }
 
-export default JoinAdvertiserFormView;
+export default JoinSponsorFormView;

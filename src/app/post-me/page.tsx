@@ -10,7 +10,7 @@ type Props = {};
 
 function PostME(props: Props) {
 	return (
-		<AuthGuard allowedMemberTypes={["ADVERTISER"]}>
+		<AuthGuard allowedMemberTypes={["SPONSOR"]}>
 			<Box className="w-full flex flex-col justify-center items-center p-10">
 				<InstagramIdField />
 				<IntroductionField />
