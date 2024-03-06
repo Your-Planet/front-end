@@ -64,6 +64,7 @@ function LoginView(props: LoginViewProps) {
 
 	const { TextField, Checkbox } = ReactHookForm<LoginFormInterface>();
 
+	// TODO @김현규 서버사이드에서 불러오기
 	useEffect(() => {
 		const storedEmail = getCookie(COOKIE.rememberUserEmail);
 
