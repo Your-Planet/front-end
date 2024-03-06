@@ -1,5 +1,3 @@
-import { Box, styled } from "@mui/material";
-import Link from "next/link";
 import {
 	FONT_BOLD_WEIGHT,
 	FONT_COLOR,
@@ -8,7 +6,9 @@ import {
 	HEADER_HEIGHT,
 	MIN_WIDTH,
 	SELECTED_PAGE_COLOR,
-} from "./constants";
+} from "@/components/common/layout/Header/defines/constants";
+import { Box, styled } from "@mui/material";
+import Link from "next/link";
 
 interface StyledBoxProps {
 	selected: boolean;
@@ -17,13 +17,6 @@ interface StyledBoxProps {
 interface StyledLinkProps {
 	selected: boolean;
 }
-
-export const StyledHeaderLink = styled(Link)({
-	fontSize: FONT_SIZE,
-	color: FONT_COLOR,
-	textDecoration: "none",
-	margin: "0 5px",
-});
 
 export const StyledBox = styled(Box)<StyledBoxProps>`
 	display: flex;

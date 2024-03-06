@@ -12,6 +12,27 @@ export const getObjectAtPath = <T>(obj: T, path: string) => {
 	return value;
 };
 
+export const findObjectPath = <T>(
+	root: Record<string, any>,
+	target: T,
+	splitter = "/",
+	path = splitter,
+): string | undefined => {
+	// eslint-disable-next-line guard-for-in,no-restricted-syntax
+	for (const key in root) {
+		const current = root[key];
+
+		if (current === target) return path + key;
+
+		if (typeof current === "object" && current !== null) {
+			const result = findObjectPath(current, target, splitter, path + key + splitter);
+			if (result) return result;
+		}
+	}
+
+	return undefined;
+};
+
 /**
  * 불변 객체 생성
  * @param obj

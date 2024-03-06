@@ -9,6 +9,7 @@ export class MemberApi extends BaseApi {
 	};
 
 	public login: AxiosRequestFunction<LoginRequest, LoginResponse> = (req) => {
-		return this.axiosInstance.post(this.getUrl("/login"), req);
+		const { email, password } = req;
+		return this.axiosInstance.post(this.getUrl("/login"), { email, password });
 	};
 }

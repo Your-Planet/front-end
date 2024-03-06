@@ -1,17 +1,23 @@
-import Logo from "@/components/common/Logo";
 import ReactHookForm from "@/components/common/ReactHookForm";
 import { LoginForm } from "@/components/login/LoginView/defines/types";
 import useLoginViewRedirect from "@/components/login/LoginView/hooks/useLoginViewRedirect";
 import { COOKIE } from "@/defines/cookie/constants";
+import { IA } from "@/defines/ia/constants";
 import useMutationPostLogin from "@/hooks/queries/member/useMutationPostLogin";
-import { setCookie } from "@/utils/cookie";
+import { getCookie, removeCookie, setCookie } from "@/utils/cookie";
+import { getIaPath } from "@/utils/ia";
 import { isEmail } from "@/utils/string";
-import { Button } from "@mui/material";
-import Link from "next/link";
+import { Box, Button } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import AccountManagementPanel from "./components/AccountManagementPanel";
 
 export interface LoginViewProps {}
+
+interface LoginFormInterface extends LoginForm {
+	isRemember: boolean;
+}
 
 function LoginView(props: LoginViewProps) {
 	const {} = props;
@@ -20,12 +26,28 @@ function LoginView(props: LoginViewProps) {
 
 	useLoginViewRedirect();
 
-	const form = useForm<LoginForm>({
+	const form = useForm<LoginFormInterface>({
 		defaultValues: {
 			email: "",
 			password: "",
+			isRemember: false,
 		},
 	});
+
+	// Remember email
+	const [isRemember, setIsRemember] = useState<boolean>(false);
+
+	const rememberUserEmail = getCookie(COOKIE.rememberUserEmail) || null;
+
+	const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setIsRemember(event.target.checked);
+	};
+
+	const checkbox = {
+		value: rememberUserEmail,
+		checkboxLabel: "이메일 기억하기",
+		checked: isRemember,
+	};
 
 	const { handleSubmit } = form;
 
@@ -35,7 +57,14 @@ function LoginView(props: LoginViewProps) {
 		mutatePostLogin(data, {
 			onSuccess({ data: token }) {
 				setCookie(COOKIE.accessToken, token);
-				router.push("/");
+
+				if (isRemember) {
+					setCookie(COOKIE.rememberUserEmail, form.getValues("email"), COOKIE.maxAge);
+				} else if (rememberUserEmail) {
+					removeCookie(COOKIE.rememberUserEmail);
+				}
+
+				router.push(getIaPath(IA));
 			},
 		});
 	});
@@ -51,14 +80,17 @@ function LoginView(props: LoginViewProps) {
 		return true;
 	};
 
-	const { TextField } = ReactHookForm<LoginForm>();
+	const { TextField, Checkbox } = ReactHookForm<LoginFormInterface>();
+
+	useEffect(() => {
+		if (rememberUserEmail !== null) {
+			form.setValue("email", rememberUserEmail);
+			setIsRemember(true);
+		}
+	}, [rememberUserEmail]);
 
 	return (
-		<div className="m-auto p-8">
-			<div className="text-center">
-				<Logo />
-			</div>
-
+		<Box className="m-auto p-8">
 			<FormProvider {...form}>
 				<form onSubmit={handleFormSubmit} className="mt-12" noValidate>
 					<TextField
@@ -80,18 +112,14 @@ function LoginView(props: LoginViewProps) {
 							validate: validatePassword,
 						}}
 					/>
+					<Checkbox formName="isRemember" checkbox={checkbox} onChange={handleCheckboxChange} />
 					<Button fullWidth variant="contained" size="large" type="submit">
 						로그인
 					</Button>
 				</form>
 			</FormProvider>
-
-			<div className="text-center mt-8">
-				<Link href="/join" className="text-gray-500 no-underline">
-					계정 만들기
-				</Link>
-			</div>
-		</div>
+			<AccountManagementPanel />
+		</Box>
 	);
 }
 
