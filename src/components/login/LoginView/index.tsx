@@ -97,7 +97,6 @@ function LoginView(props: LoginViewProps) {
 							validate: validatePassword,
 						}}
 					/>
-					{/*<Checkbox formName="isRemember" checkbox={checkbox} onChange={handleCheckboxChange} />*/}
 					<Checkbox formName="isRemember" label={"이메일 기억하기"} />
 					<Button fullWidth variant="contained" size="large" type="submit">
 						로그인
