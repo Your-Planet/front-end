@@ -1,6 +1,5 @@
 import ReactHookForm from "@/components/common/ReactHookForm";
 import { LoginForm } from "@/components/login/LoginView/defines/types";
-import useLoginViewRedirect from "@/components/login/LoginView/hooks/useLoginViewRedirect";
 import { COOKIE } from "@/defines/cookie/constants";
 import { IA } from "@/defines/ia/constants";
 import useMutationPostLogin from "@/hooks/queries/member/useMutationPostLogin";
@@ -9,7 +8,7 @@ import { getIaPath } from "@/utils/ia";
 import { isEmail } from "@/utils/string";
 import { Box, Button } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import AccountManagementPanel from "./components/AccountManagementPanel";
 
@@ -24,8 +23,6 @@ function LoginView(props: LoginViewProps) {
 
 	const router = useRouter();
 
-	useLoginViewRedirect();
-
 	const form = useForm<LoginFormInterface>({
 		defaultValues: {
 			email: "",
@@ -34,22 +31,7 @@ function LoginView(props: LoginViewProps) {
 		},
 	});
 
-	// Remember email
-	const [isRemember, setIsRemember] = useState<boolean>(false);
-
-	const rememberUserEmail = getCookie(COOKIE.rememberUserEmail) || null;
-
-	const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setIsRemember(event.target.checked);
-	};
-
-	const checkbox = {
-		value: rememberUserEmail,
-		checkboxLabel: "이메일 기억하기",
-		checked: isRemember,
-	};
-
-	const { handleSubmit } = form;
+	const { handleSubmit, setValue } = form;
 
 	const { mutate: mutatePostLogin } = useMutationPostLogin({});
 
@@ -58,9 +40,9 @@ function LoginView(props: LoginViewProps) {
 			onSuccess({ data: token }) {
 				setCookie(COOKIE.accessToken, token);
 
-				if (isRemember) {
-					setCookie(COOKIE.rememberUserEmail, form.getValues("email"), COOKIE.maxAge);
-				} else if (rememberUserEmail) {
+				if (data.isRemember) {
+					setCookie(COOKIE.rememberUserEmail, data.email, COOKIE.maxAge);
+				} else {
 					removeCookie(COOKIE.rememberUserEmail);
 				}
 
@@ -82,12 +64,15 @@ function LoginView(props: LoginViewProps) {
 
 	const { TextField, Checkbox } = ReactHookForm<LoginFormInterface>();
 
+	// TODO @김현규 서버사이드에서 불러오기
 	useEffect(() => {
-		if (rememberUserEmail !== null) {
-			form.setValue("email", rememberUserEmail);
-			setIsRemember(true);
+		const storedEmail = getCookie(COOKIE.rememberUserEmail);
+
+		if (storedEmail) {
+			setValue("email", storedEmail);
+			setValue("isRemember", true);
 		}
-	}, [rememberUserEmail]);
+	}, []);
 
 	return (
 		<Box className="m-auto p-8">
@@ -112,7 +97,7 @@ function LoginView(props: LoginViewProps) {
 							validate: validatePassword,
 						}}
 					/>
-					<Checkbox formName="isRemember" checkbox={checkbox} onChange={handleCheckboxChange} />
+					<Checkbox formName="isRemember" label={"이메일 기억하기"} />
 					<Button fullWidth variant="contained" size="large" type="submit">
 						로그인
 					</Button>
