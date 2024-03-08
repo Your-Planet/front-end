@@ -1,9 +1,7 @@
 "use client";
 
 import { COOKIE } from "@/defines/cookie/constants";
-import { IA } from "@/defines/ia/constants";
 import { removeCookie } from "@/utils/cookie";
-import { getIaPath } from "@/utils/ia";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -13,7 +11,7 @@ function LogoutPage() {
 
 	useEffect(() => {
 		removeCookie(COOKIE.accessToken);
-		router.push(getIaPath(IA.login));
+		router.refresh();
 	}, []);
 
 	return <></>;
