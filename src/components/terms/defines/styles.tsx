@@ -1,12 +1,26 @@
 import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
+import { AccordionProps } from "@mui/material";
+import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary, { AccordionSummaryProps } from "@mui/material/AccordionSummary";
 import { styled } from "@mui/material/styles";
 
-const AccordionSummary = styled((props: AccordionSummaryProps) => (
+export const Accordion = styled((props: AccordionProps) => (
+	<MuiAccordion disableGutters elevation={0} square {...props} />
+))(({ theme }) => ({
+	border: `1px solid ${theme.palette.divider}`,
+	"&:not(:last-child)": {
+		borderBottom: 0,
+	},
+	"&::before": {
+		display: "none",
+	},
+}));
+
+export const AccordionSummary = styled((props: AccordionSummaryProps) => (
 	<MuiAccordionSummary expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />} {...props} />
 ))(({ theme }) => ({
-	backgroundColor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, .05)" : "rgba(0, 0, 0, .03)",
 	flexDirection: "row-reverse",
+	padding: 0,
 	"& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
 		transform: "rotate(90deg)",
 	},

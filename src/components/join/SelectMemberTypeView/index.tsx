@@ -1,25 +1,22 @@
 "use client";
 
 import H2 from "@/components/common/text/H2";
-import TermsOfService from "@/components/join/TermsOfService";
+import { IA } from "@/defines/ia/constants";
 import { labelByMemberForJoin } from "@/defines/member/constants";
 import { MemberType } from "@/defines/member/types";
-import useOpen from "@/hooks/common/useOpen";
+import { getIaPath } from "@/utils/ia";
 import { Button, ButtonGroup } from "@mui/material";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export interface SelectUserTypeViewProps {}
 
 function SelectUserTypeView(props: SelectUserTypeViewProps) {
 	const {} = props;
 
-	const { opened, handleOpen, handleClose } = useOpen(false);
+	const router = useRouter();
 
-	const [selectedMember, setSelectedMember] = useState<MemberType | null>(null);
-
-	const handleClickOpenTos = (memberType: MemberType) => {
-		handleOpen();
-		setSelectedMember(memberType);
+	const handleClick = (memberType: MemberType) => {
+		router.push(`${getIaPath(IA.terms)}?type=${memberType}`);
 	};
 
 	return (
@@ -27,18 +24,11 @@ function SelectUserTypeView(props: SelectUserTypeViewProps) {
 			<H2>가입 유형 선택</H2>
 			<ButtonGroup orientation="vertical" aria-label="vertical outlined button group">
 				{Object.entries(labelByMemberForJoin).map(([key, value]) => (
-					<Button
-						key={key}
-						variant="outlined"
-						fullWidth
-						onClick={() => handleClickOpenTos(key as MemberType)}
-						size="large"
-					>
+					<Button key={key} variant="outlined" fullWidth onClick={() => handleClick(key as MemberType)} size="large">
 						{value}
 					</Button>
 				))}
 			</ButtonGroup>
-			{opened && <TermsOfService selectedMember={selectedMember} opened={opened} onClose={handleClose} />}
 		</div>
 	);
 }
