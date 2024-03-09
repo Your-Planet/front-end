@@ -1,5 +1,7 @@
-export const getObjectAtPath = <T>(obj: T, path: string) => {
-	const keys = path.split(".");
+export const getObjectAtPath = <T>(obj: T, path: string, splitter = ".") => {
+	if (!path || path === splitter) return obj;
+
+	const keys = path.split(splitter);
 	let value: any = obj;
 
 	for (const key of keys) {
