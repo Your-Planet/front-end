@@ -1,9 +1,9 @@
-import TermsOfService from "@/components/terms";
+import TermsView from "@/components/terms";
 
 type Props = {};
 
 function TermsPage({}: Props) {
-	return <TermsOfService />;
+	return <TermsView />;
 }
 
 export default TermsPage;

@@ -1,16 +1,75 @@
 "use client";
 
-import {
-	personalInformationTosText,
-	requiredTosText,
-	shoppingInformationReceiptText,
-} from "@/defines/termsOfService/constants";
-import { Box, Button, DialogActions, Typography } from "@mui/material";
-import DialogContentWithCheckBox from "./DialogContentWithCheckBox";
+import { IA } from "@/defines/ia/constants";
+import { personalInformationTosText, requiredTosText, shoppingInformationReceiptText } from "@/defines/terms/constants";
+import { getIaPath } from "@/utils/ia";
+import { ExpandMoreOutlined } from "@mui/icons-material";
+import { AccordionDetails, AccordionSummary, Box, Button, TextField, Typography } from "@mui/material";
+import { useRouter, useSearchParams } from "next/navigation";
+import { FormEventHandler } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import ReactHookForm from "../common/ReactHookForm";
+import { Accordion, GRAY_COLOR } from "./defines/styles";
+import { TermsForm } from "./defines/types";
 
-type Props = {};
+export interface TermsViewProps {}
 
-function TermsOfService(props: Props) {
+interface TermsFormInterface extends TermsForm {}
+
+function TermsView(props: TermsViewProps) {
+	const router = useRouter();
+	const searchParams = useSearchParams();
+
+	const form = useForm<TermsFormInterface>({
+		defaultValues: {
+			all: false,
+			termsOfService: false,
+			privacyPolicy: false,
+			shoppingInformation: false,
+		},
+	});
+
+	// TODO: Backend에서 api or column 추가 필요
+	const { handleSubmit, setValue } = form;
+
+	// const { mutate: mutatePostTerms } = useMutationPostTerms({});
+
+	const { Checkbox } = ReactHookForm<TermsFormInterface>();
+
+	const handleAllCheckboxChange = (checked: boolean) => {
+		setValue("termsOfService", checked);
+		setValue("privacyPolicy", checked);
+		setValue("shoppingInformation", checked);
+	};
+
+	const handleClickBackButton = () => {
+		router.push(getIaPath(IA.join));
+	};
+
+	const handleFormSubmit: FormEventHandler = handleSubmit(
+		({ all, termsOfService, privacyPolicy, shoppingInformation }) => {
+			const type = searchParams.get("type");
+
+			if (!(termsOfService && privacyPolicy)) {
+				console.log("필수 선택에 체크 필요!");
+				return;
+			}
+
+			if (shoppingInformation) {
+				console.log("선택 동의 완료");
+			}
+			console.log("필수 동의 완료");
+
+			if (type === "author") {
+				router.push(getIaPath(IA.join.author));
+			} else if (type === "sponsor") {
+				router.push(getIaPath(IA.join.sponsor));
+			} else {
+				console.log("타입이 없습니다");
+			}
+		},
+	);
+
 	return (
 		<>
 			<Box className="max-w-[500px] w-full flex flex-col justify-between py-7 m-auto gap-7">
@@ -23,31 +82,129 @@ function TermsOfService(props: Props) {
 					</Typography>
 				</Box>
 
-				<Box className="flex flex-col gap-5">
-					<DialogContentWithCheckBox label="ALL" content="회원가입 약관에 모두 동의합니다" />
-					<DialogContentWithCheckBox label="REQUIRED" content="이용약관 동의" required tosText={requiredTosText} />
-					<DialogContentWithCheckBox
-						label="PERSONAL_INFORMATION"
-						content="개인정보 수집 및 이용 동의"
-						required
-						tosText={personalInformationTosText}
-					/>
-					<DialogContentWithCheckBox
-						label="SHOPPING_INFORMATION_RECEIPT"
-						content="쇼핑정보 수집 및 이용 동의"
-						optional
-						tosText={shoppingInformationReceiptText}
-					/>
-					<DialogActions>
-						<Button variant="contained" color="error">
-							동의안함
-						</Button>
-						<Button variant="contained">동의</Button>
-					</DialogActions>
-				</Box>
+				<form onSubmit={handleFormSubmit} noValidate>
+					<Box className="flex flex-col gap-3">
+						<FormProvider {...form}>
+							<Accordion>
+								<AccordionSummary>
+									<Checkbox
+										sx={{ color: GRAY_COLOR }}
+										key="all"
+										formName="all"
+										label={"회원가입 약관에 모두 동의합니다."}
+										hideErrorMessage
+										onChange={(e) => handleAllCheckboxChange(e.target.checked)}
+									/>
+								</AccordionSummary>
+							</Accordion>
+
+							<Accordion disableGutters>
+								<AccordionSummary expandIcon={<ExpandMoreOutlined />}>
+									<Checkbox
+										sx={{ color: GRAY_COLOR }}
+										key="termsOfService"
+										formName="termsOfService"
+										label={"이용약관 동의"}
+										hideErrorMessage
+									/>
+								</AccordionSummary>
+								<AccordionDetails>
+									<TextField
+										variant="filled"
+										defaultValue={requiredTosText}
+										fullWidth
+										multiline
+										rows={6}
+										draggable="false"
+										focused={false}
+										hiddenLabel
+										inputProps={{
+											style: {
+												fontSize: 13,
+											},
+										}}
+									/>
+								</AccordionDetails>
+							</Accordion>
+
+							<Accordion disableGutters>
+								<AccordionSummary expandIcon={<ExpandMoreOutlined />}>
+									<Checkbox
+										sx={{ color: GRAY_COLOR }}
+										key="privacyPolicy"
+										formName="privacyPolicy"
+										label={"개인정보 수집 및 이용 동의"}
+										hideErrorMessage
+									/>
+								</AccordionSummary>
+								<AccordionDetails>
+									<TextField
+										variant="filled"
+										defaultValue={personalInformationTosText}
+										fullWidth
+										multiline
+										rows={6}
+										draggable="false"
+										focused={false}
+										hiddenLabel
+										inputProps={{
+											style: {
+												fontSize: 13,
+											},
+										}}
+									/>
+								</AccordionDetails>
+							</Accordion>
+
+							<Accordion disableGutters>
+								<AccordionSummary expandIcon={<ExpandMoreOutlined />}>
+									<Checkbox
+										sx={{ color: GRAY_COLOR }}
+										key="shoppingInformation"
+										formName="shoppingInformation"
+										label={"쇼핑정보 수집 및 이용 동의"}
+										hideErrorMessage
+									/>
+								</AccordionSummary>
+								<AccordionDetails>
+									<TextField
+										variant="filled"
+										defaultValue={shoppingInformationReceiptText}
+										fullWidth
+										multiline
+										rows={6}
+										draggable="false"
+										focused={false}
+										hiddenLabel
+										inputProps={{
+											style: {
+												fontSize: 13,
+											},
+										}}
+									/>
+								</AccordionDetails>
+							</Accordion>
+
+							<Box className="flex justify-end gap-3">
+								<Button
+									className="bg-gray-500 font-bold"
+									variant="contained"
+									size="large"
+									onClick={handleClickBackButton}
+								>
+									뒤로가기
+								</Button>
+
+								<Button className="font-bold" variant="contained" size="large" type="submit">
+									동의
+								</Button>
+							</Box>
+						</FormProvider>
+					</Box>
+				</form>
 			</Box>
 		</>
 	);
 }
 
-export default TermsOfService;
+export default TermsView;

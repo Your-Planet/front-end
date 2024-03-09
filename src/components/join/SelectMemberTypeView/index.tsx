@@ -16,7 +16,7 @@ function SelectUserTypeView(props: SelectUserTypeViewProps) {
 	const router = useRouter();
 
 	const handleClick = (memberType: MemberType) => {
-		router.push(`${getIaPath(IA.terms)}?type=${memberType}`);
+		router.push(`${getIaPath(IA.terms)}?type=${memberType.toLocaleLowerCase()}`);
 	};
 
 	return (

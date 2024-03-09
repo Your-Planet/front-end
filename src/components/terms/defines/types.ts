@@ -1,8 +1,9 @@
-export type TosLabel = "ALL" | "REQUIRED" | "PERSONAL_INFORMATION" | "SHOPPING_INFORMATION_RECEIPT";
-
-export interface TosCheckedStateType {
-	ALL: boolean;
-	REQUIRED: boolean;
-	PERSONAL_INFORMATION: boolean;
-	SHOPPING_INFORMATION_RECEIPT: boolean;
+// TODO: Terms 관련해서 backend와 상의
+export interface TermsRequest {
+	all: boolean;
+	termsOfService: boolean;
+	privacyPolicy: boolean;
+	shoppingInformation: boolean;
 }
+
+export interface TermsForm extends TermsRequest {}
