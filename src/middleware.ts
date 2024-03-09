@@ -1,6 +1,6 @@
 import { COOKIE } from "@/defines/cookie/constants";
 import { getJwtPayload } from "@/utils/auth";
-import { getIaObject, getIsAccessiblePage } from "@/utils/ia";
+import { getFallbackUrl, getIaObject, getIsAccessiblePage } from "@/utils/ia";
 import { NextRequest, NextResponse } from "next/server";
 
 export const middleware = (request: NextRequest) => {
@@ -21,8 +21,8 @@ export const middleware = (request: NextRequest) => {
 	}
 
 	if (!getIsAccessiblePage(currentIa, jwtPayload)) {
-		// TODO @김현규 접근 권한 없음 에러 페이지로 변경
-		return NextResponse.redirect(new URL("/403", request.url));
+		const fallbackUrl = getFallbackUrl(currentIa, jwtPayload);
+		return NextResponse.redirect(new URL(fallbackUrl, request.url));
 	}
 
 	return response;

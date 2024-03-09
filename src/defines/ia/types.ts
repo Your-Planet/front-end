@@ -1,3 +1,4 @@
+import { AccessTokenPayload } from "@/defines/jwt/types";
 import { MemberType } from "@/defines/member/types";
 
 export type GlobalIa = PageAttributes &
@@ -65,7 +66,9 @@ export interface PageAttributes {
 	accessConfig?: PageAccessConfig;
 }
 
-export type PageAccessConfig = PageAccessAllowedOnLogin | PageAccessDisallowedOnLogin;
+export type PageAccessConfig = (PageAccessAllowedOnLogin | PageAccessDisallowedOnLogin) & {
+	fallbackUrl?: PageAccessFallbackUrl;
+};
 
 type PageAccessAllowedOnLogin = {
 	allowedOnLogin: true;
@@ -88,3 +91,7 @@ type PageAccessDisallowedMemberTypes = {
 	allowedMemberTypes?: never;
 	disallowedMemberTypes?: readonly MemberType[];
 };
+
+type PageAccessFallbackUrl =
+	| string
+	| ((globalIa: GlobalIa, accessConfig: PageAccessConfig, jwtPayload: AccessTokenPayload | null) => string);
