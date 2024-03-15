@@ -16,15 +16,6 @@ const nextConfig = {
 			},
 		];
 	},
-	// async redirects() {
-	// 	return [
-	// 		{
-	// 			source: "/terms",
-	// 			destination: "/",
-	// 			permanent: true,
-	// 		},
-	// 	];
-	// },
 };
 
 module.exports = nextConfig;

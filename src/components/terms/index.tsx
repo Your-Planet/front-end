@@ -6,7 +6,7 @@ import { getIaPath } from "@/utils/ia";
 import { ExpandMoreOutlined } from "@mui/icons-material";
 import { AccordionDetails, AccordionSummary, Box, Button, TextField, Typography } from "@mui/material";
 import { useRouter, useSearchParams } from "next/navigation";
-import { FormEventHandler } from "react";
+import { ChangeEvent, FormEventHandler } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import ReactHookForm from "../common/ReactHookForm";
 import { Accordion, GRAY_COLOR } from "./defines/styles";
@@ -30,16 +30,20 @@ function TermsView(props: TermsViewProps) {
 	});
 
 	// TODO: Backend에서 api or column 추가 필요
-	const { handleSubmit, setValue } = form;
+	const { handleSubmit, setValue, watch } = form;
 
 	// const { mutate: mutatePostTerms } = useMutationPostTerms({});
 
 	const { Checkbox } = ReactHookForm<TermsFormInterface>();
 
-	const handleAllCheckboxChange = (checked: boolean) => {
-		setValue("termsOfService", checked);
-		setValue("privacyPolicy", checked);
-		setValue("shoppingInformation", checked);
+	const handleCheckboxAllChange = (event: ChangeEvent<HTMLInputElement>) => {
+		setValue("termsOfService", Boolean(event.target.value));
+		setValue("privacyPolicy", Boolean(event.target.value));
+		setValue("shoppingInformation", Boolean(event.target.value));
+	};
+
+	const handleCheckboxChange = () => {
+		setValue("all", watch("termsOfService") && watch("privacyPolicy") && watch("shoppingInformation"));
 	};
 
 	const handleClickBackButton = () => {
@@ -93,7 +97,7 @@ function TermsView(props: TermsViewProps) {
 										formName="all"
 										label={"회원가입 약관에 모두 동의합니다."}
 										hideErrorMessage
-										onChange={(e) => handleAllCheckboxChange(e.target.checked)}
+										rules={{ onChange: handleCheckboxAllChange }}
 									/>
 								</AccordionSummary>
 							</Accordion>
@@ -106,6 +110,7 @@ function TermsView(props: TermsViewProps) {
 										formName="termsOfService"
 										label={"이용약관 동의"}
 										hideErrorMessage
+										rules={{ onChange: handleCheckboxChange }}
 									/>
 								</AccordionSummary>
 								<AccordionDetails>
@@ -135,6 +140,7 @@ function TermsView(props: TermsViewProps) {
 										formName="privacyPolicy"
 										label={"개인정보 수집 및 이용 동의"}
 										hideErrorMessage
+										rules={{ onChange: handleCheckboxChange }}
 									/>
 								</AccordionSummary>
 								<AccordionDetails>
@@ -164,6 +170,7 @@ function TermsView(props: TermsViewProps) {
 										formName="shoppingInformation"
 										label={"쇼핑정보 수집 및 이용 동의"}
 										hideErrorMessage
+										rules={{ onChange: handleCheckboxChange }}
 									/>
 								</AccordionSummary>
 								<AccordionDetails>
