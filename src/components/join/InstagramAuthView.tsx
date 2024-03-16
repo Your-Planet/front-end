@@ -13,11 +13,7 @@ function InstagramAuthView(props: InstagramAuthViewProps) {
 	const pathname = usePathname();
 
 	const handleClickInstagramAuth = async () => {
-		router.push(
-			await getInstagramAuthUrl({
-				redirectPath: pathname,
-			}),
-		);
+		router.push(await getInstagramAuthUrl());
 	};
 
 	return (
