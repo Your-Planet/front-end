@@ -1,3 +1,5 @@
+"use client";
+
 import { getInstagramAuthUrl } from "@/app/join/author/actions";
 import Logo from "@/components/common/Logo";
 import InstagramIcon from "@/icons/InstagramIcon";

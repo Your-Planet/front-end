@@ -2,10 +2,13 @@
 
 import { API } from "@/apis";
 import { DOMAIN } from "@/defines/domain/constants";
+import { IA } from "@/defines/ia/constants";
+import { PageAttributes } from "@/defines/ia/types";
+import { getIaPath } from "@/utils/ia";
 import { objectToUrlParams } from "@/utils/object";
 import { getLeadingSlash } from "@/utils/string";
 
-const redirectUri = `${DOMAIN.yourPlanet}${getLeadingSlash("/join/author")}`;
+const getRedirectUri = (ia: PageAttributes) => `${DOMAIN.yourPlanet}${getLeadingSlash(getIaPath(ia))}`;
 
 export const getInstagramAuthUrl = async (userMedia?: boolean) => {
 	const scopes = ["user_profile"];
@@ -13,7 +16,7 @@ export const getInstagramAuthUrl = async (userMedia?: boolean) => {
 
 	const params = objectToUrlParams({
 		client_id: process.env.INSTAGRAM_CLIENT_ID,
-		redirect_uri: redirectUri,
+		redirect_uri: getRedirectUri(IA.join.author.details),
 		scope: scopes.join(),
 		response_type: "code",
 	});
@@ -22,13 +25,20 @@ export const getInstagramAuthUrl = async (userMedia?: boolean) => {
 };
 
 export const getInstagramAccessToken = async (code: string) => {
+	console.log("body", {
+		client_id: process.env.INSTAGRAM_CLIENT_ID!,
+		client_secret: process.env.INSTAGRAM_SECRET_CODE!,
+		code,
+		grant_type: "authorization_code",
+		redirect_uri: getRedirectUri(IA),
+	});
 	const { access_token, user_id } = (
 		await API.instagramAuth.accessToken({
 			client_id: process.env.INSTAGRAM_CLIENT_ID!,
 			client_secret: process.env.INSTAGRAM_SECRET_CODE!,
 			code,
 			grant_type: "authorization_code",
-			redirect_uri: redirectUri,
+			redirect_uri: getRedirectUri(IA.join.author),
 		})
 	).data;
 

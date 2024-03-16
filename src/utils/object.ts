@@ -47,10 +47,6 @@ export const deepFreeze = <T extends Record<string, any>>(obj: T): T => {
 	return obj;
 };
 
-/**
- * 객체를 URL 파라미터로 변경
- * @param obj
- */
 export const objectToUrlParams = (obj: object): URLSearchParams => {
 	const searchParams = new URLSearchParams();
 
@@ -59,4 +55,14 @@ export const objectToUrlParams = (obj: object): URLSearchParams => {
 	});
 
 	return searchParams;
+};
+
+export const objectToFormData = (obj: object): FormData => {
+	const formData = new FormData();
+
+	Object.entries(obj).forEach(([k, v]) => {
+		if (v !== undefined) formData.append(k, v.toString());
+	});
+
+	return formData;
 };
