@@ -25,13 +25,6 @@ export const getInstagramAuthUrl = async (userMedia?: boolean) => {
 };
 
 export const getInstagramAccessToken = async (code: string) => {
-	console.log("body", {
-		client_id: process.env.INSTAGRAM_CLIENT_ID!,
-		client_secret: process.env.INSTAGRAM_SECRET_CODE!,
-		code,
-		grant_type: "authorization_code",
-		redirect_uri: getRedirectUri(IA),
-	});
 	const { access_token, user_id } = (
 		await API.instagramAuth.accessToken({
 			client_id: process.env.INSTAGRAM_CLIENT_ID!,
