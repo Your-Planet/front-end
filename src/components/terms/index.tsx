@@ -65,9 +65,9 @@ function TermsView(props: TermsViewProps) {
 			console.log("필수 동의 완료");
 
 			if (type === "author") {
-				router.push(getIaPath(IA.join.author));
+				router.push(getIaPath(IA.join.author.verify));
 			} else if (type === "sponsor") {
-				router.push(getIaPath(IA.join.sponsor));
+				router.push(getIaPath(IA.join.sponsor.details));
 			} else {
 				console.log("타입이 없습니다");
 			}
