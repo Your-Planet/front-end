@@ -16,6 +16,7 @@ function ReactHookFormCheckbox<TFieldValues extends FieldValues, CheckboxValue e
 		<FormControl error={Boolean(error)}>
 			<FormControlLabel
 				control={<Checkbox {...restProps} {...field} checked={field.value} onChange={handleChange} />}
+				onClick={(e) => e.stopPropagation()}
 				label={label}
 			/>
 			{errorMessage && <FormHelperText>{errorMessage}</FormHelperText>}
