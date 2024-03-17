@@ -1,6 +1,6 @@
+import { getInstagramAuthUrl } from "@/app/join/author/actions";
 import Logo from "@/components/common/Logo";
 import InstagramIcon from "@/icons/InstagramIcon";
-import { getInstagramAuthUrl } from "@/utils/instagram";
 import { Button } from "@mui/material";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -12,9 +12,9 @@ function InstagramAuthView(props: InstagramAuthViewProps) {
 	const router = useRouter();
 	const pathname = usePathname();
 
-	const handleClickInstagramAuth = () => {
+	const handleClickInstagramAuth = async () => {
 		router.push(
-			getInstagramAuthUrl({
+			await getInstagramAuthUrl({
 				redirectPath: pathname,
 			}),
 		);
