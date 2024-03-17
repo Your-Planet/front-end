@@ -20,5 +20,5 @@ const instagramGraphAxiosInstance = axios.create({
 export const API = deepFreeze({
 	member: new MemberApi(axiosInstance, "/member"),
 	instagramAuth: new InstagramAuthApi(instagramApiAxiosInstance, "/oauth"),
-	instagramGraph: new InstagramGraphApi(instagramGraphAxiosInstance, "/me"),
+	instagramGraph: new InstagramGraphApi(instagramGraphAxiosInstance, ""),
 });

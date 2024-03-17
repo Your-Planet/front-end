@@ -9,17 +9,19 @@ type CookieOptions = Omit<DefaultOptions, "expires">;
 
 const URL_COMMA_COUNT = 3;
 
+export const getExpiresDate = (expiresSeconds?: number) => {
+	return expiresSeconds ? dayjs().utc().add(expiresSeconds, "s").toDate() : undefined;
+};
+
 export const getRootDomain = (url: string) => url.split(".").slice(-URL_COMMA_COUNT).join(".");
 
 export const getCookie = (name: string) => readCookie(name) as any;
 
 export const setCookie = (name: string, value: string, atExpires?: number, options?: CookieOptions) => {
-	const atExpiresDate = atExpires ? dayjs().utc().add(atExpires, "s").toDate() : undefined;
-
 	saveCookie(name, value, {
 		...options,
 		path: "/",
-		expires: atExpiresDate,
+		expires: getExpiresDate(atExpires),
 		domain: options?.domain ?? getRootDomain(globalThis?.location?.hostname ?? options?.req?.headers?.host ?? ""),
 	});
 };

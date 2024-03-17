@@ -6,10 +6,6 @@ import { getIaPath } from "@/utils/ia";
 import { AxiosError } from "axios";
 import { redirect } from "next/navigation";
 
-const getAccessCode = async (code: string) => {
-	return await getInstagramAccessToken(code);
-};
-
 async function JoinAuthorDetailsPage(props: PageProps) {
 	const { searchParams } = props;
 
@@ -20,16 +16,14 @@ async function JoinAuthorDetailsPage(props: PageProps) {
 	}
 
 	try {
-		const { accessToken, userId } = await getAccessCode(code);
-
-		// TODO @김현규 장기 실행 토큰 발급
+		const { accessToken, userId, expiresInSeconds } = await getInstagramAccessToken(code);
 		// TODO @김현규 인스타 아이디 가져오기
-		console.log("accessToken\n", accessToken);
-		console.log("userId\n", userId);
 	} catch (e) {
 		const error = e as AxiosError;
 		// TODO @김현규 에러 처리
-		console.log("error\n", error?.response?.data);
+		console.log("error\n", error);
+		console.log("request", error?.request);
+		console.log("response", error?.response);
 	}
 
 	return (
