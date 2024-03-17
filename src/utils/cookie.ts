@@ -1,11 +1,9 @@
+import { CookieOptions } from "@/defines/cookie/types";
 import { deleteCookie, getCookie as readCookie, setCookie as saveCookie } from "cookies-next";
-import { DefaultOptions } from "cookies-next/lib/types";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 
 dayjs.extend(utc);
-
-type CookieOptions = Omit<DefaultOptions, "expires">;
 
 const URL_COMMA_COUNT = 3;
 

@@ -1,5 +1,7 @@
 import { getInstagramAccessToken } from "@/app/join/author/actions";
+import CookieSetter from "@/components/common/CookieSetter";
 import JoinAuthorFormView from "@/components/join/form/components/author/JoinAuthorFormView";
+import { COOKIE } from "@/defines/cookie/constants";
 import { IA } from "@/defines/ia/constants";
 import { PageProps } from "@/defines/page/types";
 import { getIaPath } from "@/utils/ia";
@@ -15,8 +17,8 @@ async function JoinAuthorDetailsPage(props: PageProps) {
 		redirect(getIaPath(IA.join.author.verify));
 	}
 
+	const { accessToken, userId, expiresInSeconds } = await getInstagramAccessToken(code);
 	try {
-		const { accessToken, userId, expiresInSeconds } = await getInstagramAccessToken(code);
 		// TODO @김현규 인스타 아이디 가져오기
 	} catch (e) {
 		const error = e as AxiosError;
@@ -27,9 +29,9 @@ async function JoinAuthorDetailsPage(props: PageProps) {
 	}
 
 	return (
-		<>
+		<CookieSetter name={COOKIE.instagramAccessToken} value={accessToken} expiresAt={expiresInSeconds}>
 			<JoinAuthorFormView />
-		</>
+		</CookieSetter>
 	);
 }
 
