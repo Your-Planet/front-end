@@ -1,9 +1,6 @@
 import ReactHookFormCheckbox, {
 	ReactHookFormCheckboxProps,
 } from "@/components/common/ReactHookForm/components/Checkbox";
-import ReactHookFormCheckboxGroup, {
-	ReactHookFormCheckboxGroupProps,
-} from "@/components/common/ReactHookForm/components/CheckboxGroup";
 import ReactHookFormDatePicker, {
 	ReactHookFormDatePickerProps,
 } from "@/components/common/ReactHookForm/components/DatePicker";
@@ -25,9 +22,6 @@ const ReactHookForm = <TFieldValues extends FieldValues = FieldValues>(): {
 	Checkbox: <CheckboxValue extends string | number>(
 		props: ReactHookFormCheckboxProps<TFieldValues, CheckboxValue>,
 	) => ReactElement<ReactHookFormCheckboxProps<TFieldValues, CheckboxValue>>;
-	CheckboxGroup: <CheckboxValue extends string | number>(
-		props: ReactHookFormCheckboxGroupProps<TFieldValues, CheckboxValue>,
-	) => ReactElement<ReactHookFormCheckboxGroupProps<TFieldValues, CheckboxValue>>;
 } => {
 	return {
 		TextField: ReactHookFormTextField<TFieldValues>,
@@ -36,9 +30,6 @@ const ReactHookForm = <TFieldValues extends FieldValues = FieldValues>(): {
 		DatePicker: ReactHookFormDatePicker<TFieldValues>,
 		Checkbox: <CheckboxValue extends string | number>(props: ReactHookFormCheckboxProps<TFieldValues, CheckboxValue>) =>
 			ReactHookFormCheckbox<TFieldValues, CheckboxValue>(props),
-		CheckboxGroup: <CheckboxValue extends string | number>(
-			props: ReactHookFormCheckboxGroupProps<TFieldValues, CheckboxValue>,
-		) => ReactHookFormCheckboxGroup<TFieldValues, CheckboxValue>(props),
 	};
 };
 
