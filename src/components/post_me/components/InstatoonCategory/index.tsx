@@ -2,7 +2,7 @@
 
 import { Box, Checkbox, FormControl, FormControlLabel, FormGroup, FormHelperText, FormLabel } from "@mui/material";
 import { useState } from "react";
-import HelpIcon from "../common/HelpIcon/index";
+import HelpIcon from "../../../common/HelpIcon/index";
 
 function InstatoonCategory() {
 	// TODO: search branch 머지 후 카테고리 선택 기능 수정

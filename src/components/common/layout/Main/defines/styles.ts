@@ -1,4 +1,4 @@
-import { FOOTER_HEIGHT } from "@/components/common/layout/Footer/defines";
+import { FOOTER_HEIGHT } from "@/components/common/layout/Footer/defines/constants";
 import { HEADER_HEIGHT } from "@/components/common/layout/Header/defines/constants";
 import { styled } from "@mui/system";
 

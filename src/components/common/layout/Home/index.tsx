@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
-import AnimatedText from "./AnimatedText";
+import AnimatedText from "./components/AnimatedText.tsx";
 
 function Slogan() {
 	return (

@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
-import H1 from "../common/text/H1";
-import H6 from "../common/text/H6";
+import H1 from "../../../common/text/H1";
+import H6 from "../../../common/text/H6";
 
 function Banner() {
 	return (

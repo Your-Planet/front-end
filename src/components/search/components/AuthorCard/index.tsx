@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
-import { GenreType } from "./defines/types";
+import { GenreType } from "../../defines/types";
 
 type Props = {
 	authorName: string;

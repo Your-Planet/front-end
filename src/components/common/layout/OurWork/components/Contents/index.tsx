@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
-import H5 from "../../text/H5";
-import H6 from "../../text/H6";
-import MessageBox from "./MessageBox";
+import H5 from "../../../../text/H5";
+import H6 from "../../../../text/H6";
+import MessageBox from "../MessageBox";
 
 type Props = {};
 

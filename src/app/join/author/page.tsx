@@ -1,6 +1,6 @@
 "use client";
 
-import InstagramAuthView from "@/components/join/InstagramAuthView";
+import InstagramAuthView from "@/components/join";
 import JoinAuthorFormView from "@/components/join/form/components/author/JoinAuthorFormView";
 import { useSearchParams } from "next/navigation";
 

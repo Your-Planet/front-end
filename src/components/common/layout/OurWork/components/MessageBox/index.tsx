@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { ReactNode } from "react";
-import { ChatDirection } from "./defines/types";
+import { ChatDirection } from "../../defines/types";
 
 type Props = {
 	children: ReactNode;
