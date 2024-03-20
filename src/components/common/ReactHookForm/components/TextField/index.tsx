@@ -12,10 +12,12 @@ function ReactHookFormTextField<TFieldValues extends FieldValues = FieldValues>(
 ) {
 	const { restProps, field, label, error, errorMessage, handleChange } = useReactHookFormControl(props);
 
+	console.log(restProps);
+
 	return (
 		<TextField
-			{...restProps}
 			{...field}
+			{...restProps}
 			label={label}
 			onChange={handleChange}
 			error={Boolean(error)}
