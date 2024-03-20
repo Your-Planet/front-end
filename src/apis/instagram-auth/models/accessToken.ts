@@ -1,4 +1,4 @@
-export interface AccessTokenRequest {
+export interface ShortLivedAccessTokenRequest {
 	client_id: string;
 	client_secret: string;
 	code: string;
@@ -6,7 +6,7 @@ export interface AccessTokenRequest {
 	redirect_uri: string;
 }
 
-export interface AccessTokenResponse {
+export interface ShortLivedAccessTokenResponse {
 	access_token: string;
 	user_id: string;
 }
