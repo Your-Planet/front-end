@@ -1,8 +1,8 @@
+import AuthorCard from "@/components/search/components/AuthorCard";
+import { GenreType } from "@/components/search/defines/types";
 import { genreState, sortOptionState } from "@/recoil/selectors/search";
 import { Grid } from "@mui/material";
 import { useRecoilValue } from "recoil";
-import AuthorCard from "./AuthorCard";
-import { GenreType } from "./defines/types";
 
 type Props = {};
 

@@ -1,6 +1,6 @@
+import { ChatDirection } from "@/components/common/layout/OurWork/defines/types";
 import { Box, Typography } from "@mui/material";
 import { ReactNode } from "react";
-import { ChatDirection } from "./defines/types";
 
 type Props = {
 	children: ReactNode;

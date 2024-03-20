@@ -3,24 +3,6 @@
 import useOpen from "@/hooks/common/useOpen";
 import { Box, Button, Dialog, DialogActions, DialogContent, Typography } from "@mui/material";
 
-const modalOuterBoxStyle = {
-	position: "absolute",
-	top: "50%",
-	left: "50%",
-	transform: "translate(-50%, -50%)",
-	width: 400,
-	bgcolor: "white",
-	borderRadius: "8px",
-	boxShadow: 24,
-	textAlign: "center",
-};
-
-const modalInnerBoxStyle = {
-	display: "flex",
-	justifyContent: "space-around",
-	alignItems: "center",
-};
-
 function SubmitButton() {
 	const { opened, handleOpen, handleClose } = useOpen(false);
 

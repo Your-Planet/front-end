@@ -1,8 +1,8 @@
+import Contents from "@/components/common/layout/OurWork/components/Contents";
+import H4 from "@/components/common/text/H4";
+import H5 from "@/components/common/text/H5";
 import { Box, styled } from "@mui/material";
 import { forwardRef } from "react";
-import H4 from "../../text/H4";
-import H5 from "../../text/H5";
-import Contents from "./Contents";
 
 const StyledBox = styled(Box)`
 	display: flex;

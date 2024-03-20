@@ -1,5 +1,5 @@
+import { AnimationType } from "@/components/common/layout/Home/defines/types";
 import { Typography, TypographyOwnProps } from "@mui/material";
-import { AnimationType } from "./defines/types";
 
 interface Props extends TypographyOwnProps {
 	text: string;

@@ -1,4 +1,4 @@
-import InstagramAuthView from "@/components/join/InstagramAuthView";
+import InstagramAuthView from "@/components/join";
 
 function JoinAuthorVerifyPage() {
 	return (

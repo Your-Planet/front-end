@@ -1,4 +1,4 @@
-import { FOOTER_BACKGROUND_COLOR, FOOTER_HEIGHT } from "@/components/common/layout/Footer/defines";
+import { FOOTER_BACKGROUND_COLOR, FOOTER_HEIGHT } from "@/components/common/layout/Footer/defines/constants";
 import { FOOTER_BORDER_TOP, WHITE_FONT_COLOR } from "@/defines/common/constants";
 import { Box, Grid, Typography } from "@mui/material";
 

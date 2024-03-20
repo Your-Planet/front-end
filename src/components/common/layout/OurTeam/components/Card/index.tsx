@@ -1,6 +1,6 @@
+import H4 from "@/components/common/text/H4";
 import { Box } from "@mui/material";
 import Image from "next/image";
-import H4 from "../../text/H4";
 
 type Props = {
 	text: string;

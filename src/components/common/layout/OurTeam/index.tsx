@@ -1,8 +1,8 @@
+import Card from "@/components/common/layout/OurTeam/components/Card";
+import H4 from "@/components/common/text/H4";
 import { Box } from "@mui/material";
 import { cloneElement } from "react";
 import { useInView } from "react-intersection-observer";
-import H4 from "../../text/H4";
-import Card from "./Card";
 
 function OurTeam() {
 	const useInViewOption = {

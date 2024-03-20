@@ -1,4 +1,5 @@
 import ReactHookForm from "@/components/common/ReactHookForm";
+import AccountManagementPanel from "@/components/login/LoginView/components/AccountManagementPanel";
 import { LoginForm } from "@/components/login/LoginView/defines/types";
 import { COOKIE } from "@/defines/cookie/constants";
 import { IA } from "@/defines/ia/constants";
@@ -10,7 +11,6 @@ import { Box, Button } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import AccountManagementPanel from "./components/AccountManagementPanel";
 
 export interface LoginViewProps {}
 
