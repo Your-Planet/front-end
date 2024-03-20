@@ -27,7 +27,7 @@ export const getInstagramAuthUrl = async (userMedia?: boolean) => {
 	return `${DOMAIN.instagram.api}/oauth/authorize?${params.toString()}`;
 };
 
-export const getInstagramAccessToken = async (code: string) => {
+export const authorizeInstagram = async (code: string) => {
 	const { access_token: shortLivedAccessToken, user_id: userId } = (
 		await API.instagramAuth.shortLivedAccessToken({
 			client_id: clientId,
@@ -38,9 +38,6 @@ export const getInstagramAccessToken = async (code: string) => {
 		})
 	).data;
 
-	// TODO @김현규 로그 제거
-	console.log("shortLivedAccessToken", shortLivedAccessToken);
-
 	const { access_token: accessToken, expires_in: expiresInSeconds } = (
 		await API.instagramGraph.longLivedAccessToken({
 			access_token: shortLivedAccessToken,
@@ -48,9 +45,6 @@ export const getInstagramAccessToken = async (code: string) => {
 			grant_type: "ig_exchange_token",
 		})
 	).data;
-
-	// TODO @김현규 로그 제거
-	console.log("longLivedAccessToken", accessToken);
 
 	return {
 		accessToken,
