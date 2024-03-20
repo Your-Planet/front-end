@@ -41,7 +41,8 @@ function LoginView(props: LoginViewProps) {
 				setCookie(COOKIE.accessToken, token);
 
 				if (data.isRemember) {
-					setCookie(COOKIE.rememberUserEmail, data.email, COOKIE.maxAge);
+					// TODO @김현규 시간 단위
+					setCookie(COOKIE.rememberUserEmail, data.email, 10000);
 				} else {
 					removeCookie(COOKIE.rememberUserEmail);
 				}
