@@ -13,13 +13,7 @@ import { Button } from "@mui/material";
 import { FormEventHandler } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
-export interface JoinAuthorFormViewProps {
-	instagramAuthCode: string;
-}
-
-function JoinAuthorFormView(props: JoinAuthorFormViewProps) {
-	const { instagramAuthCode } = props;
-
+function JoinAuthorFormView() {
 	const form = useForm<JoinAuthorForm>({
 		mode: "all",
 		defaultValues: {
@@ -45,7 +39,6 @@ function JoinAuthorFormView(props: JoinAuthorFormViewProps) {
 				...rest,
 				genderType: genderType!,
 				birthDate: birthDate!.format("YYYY-MM-DD"),
-				instagramAuthCode,
 				memberType: "AUTHOR",
 			},
 			{

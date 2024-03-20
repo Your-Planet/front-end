@@ -7,7 +7,6 @@ export interface ResponseEntity<T> {
 	message: string;
 }
 
-export type AxiosRequestFunction<Req, Res> = (
-	req: Req,
-	config?: AxiosRequestConfig,
-) => Promise<AxiosResponse<ResponseEntity<Res>>>;
+export type AxiosRequestFunction<Req, Res> = (req: Req, config?: AxiosRequestConfig) => Promise<AxiosResponse<Res>>;
+
+export type AxiosRequestYourPlanetFunction<Req, Res> = AxiosRequestFunction<Req, ResponseEntity<Res>>;
