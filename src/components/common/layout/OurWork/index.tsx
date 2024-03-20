@@ -1,6 +1,6 @@
+import Section from "@/components/common/layout/OurWork/components/Section";
 import { Box } from "@mui/material";
 import { useInView } from "react-intersection-observer";
-import Section from "./components/Section";
 
 function OurWork() {
 	const [boxRef, sectionInView] = useInView({

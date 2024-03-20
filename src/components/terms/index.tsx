@@ -1,5 +1,13 @@
 "use client";
 
+import ReactHookForm from "@/components/common/ReactHookForm";
+import {
+	personalInformationTosText,
+	requiredTosText,
+	shoppingInformationReceiptText,
+} from "@/components/terms/defines/constants";
+import { Accordion, GRAY_COLOR } from "@/components/terms/defines/styles";
+import { TermsForm } from "@/components/terms/defines/types";
 import { IA } from "@/defines/ia/constants";
 import { getIaPath } from "@/utils/ia";
 import { ExpandMoreOutlined } from "@mui/icons-material";
@@ -7,10 +15,6 @@ import { AccordionDetails, AccordionSummary, Box, Button, TextField, Typography 
 import { useRouter, useSearchParams } from "next/navigation";
 import { ChangeEvent, FormEventHandler, useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import ReactHookForm from "../common/ReactHookForm";
-import { personalInformationTosText, requiredTosText, shoppingInformationReceiptText } from "./defines/constants";
-import { Accordion, GRAY_COLOR } from "./defines/styles";
-import { TermsForm } from "./defines/types";
 
 export interface TermsViewProps {}
 

@@ -1,10 +1,10 @@
 "use client";
 
+import { LABEL_BY_SORT_OPTION_TYPE } from "@/components/search/defines/constants";
+import { SortOptionType } from "@/components/search/defines/types";
 import { sortOptionContext } from "@/recoil/atoms/search";
 import { Box, FormControl, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { useRecoilState } from "recoil";
-import { LABEL_BY_SORT_OPTION_TYPE } from "../../defines/constants";
-import { SortOptionType } from "../../defines/types";
 
 type Props = {};
 
