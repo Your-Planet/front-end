@@ -24,7 +24,7 @@ async function JoinAuthorDetailsPage(props: PageProps) {
 		redirect(getIaPath(IA.join.author.verify));
 	}
 
-	const { accessToken, userId, expiresInSeconds } = await authorizeInstagram(code);
+	const { accessToken, expiresInSeconds } = await authorizeInstagram(code);
 
 	return (
 		<CookieSetter name={COOKIE.instagramAccessToken} value={accessToken} expiresAt={expiresInSeconds}>
