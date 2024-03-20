@@ -1,7 +1,6 @@
 "use client";
 
 import { IA } from "@/defines/ia/constants";
-import { personalInformationTosText, requiredTosText, shoppingInformationReceiptText } from "@/defines/terms/constants";
 import { getIaPath } from "@/utils/ia";
 import { ExpandMoreOutlined } from "@mui/icons-material";
 import { AccordionDetails, AccordionSummary, Box, Button, TextField, Typography } from "@mui/material";
@@ -9,6 +8,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { ChangeEvent, FormEventHandler, useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import ReactHookForm from "../common/ReactHookForm";
+import { personalInformationTosText, requiredTosText, shoppingInformationReceiptText } from "./defines/constants";
 import { Accordion, GRAY_COLOR } from "./defines/styles";
 import { TermsForm } from "./defines/types";
 
