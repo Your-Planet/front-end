@@ -15,7 +15,6 @@ export interface CookieSetterProps {
 
 function CookieSetter(props: CookieSetterProps) {
 	const { name, value, expiresAt, options, children } = props;
-	console.log("props", props);
 
 	useEffect(() => {
 		setCookie(name, value, expiresAt, options);
