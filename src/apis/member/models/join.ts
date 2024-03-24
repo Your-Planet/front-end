@@ -8,6 +8,9 @@ interface CommonJoinRequest {
 	tel: string;
 	memberType: MemberType;
 	birthDate?: string;
+	isTermsOfService: boolean;
+	isPrivacyPolicy: boolean;
+	isShoppingInformation: boolean;
 }
 
 export interface AuthorJoinRequest extends CommonJoinRequest {

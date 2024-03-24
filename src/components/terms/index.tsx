@@ -8,7 +8,9 @@ import {
 } from "@/components/terms/defines/constants";
 import { Accordion, GRAY_COLOR } from "@/components/terms/defines/styles";
 import { TermsForm } from "@/components/terms/defines/types";
+import { COOKIE } from "@/defines/cookie/constants";
 import { IA } from "@/defines/ia/constants";
+import { setCookie } from "@/utils/cookie";
 import { getIaPath } from "@/utils/ia";
 import { ExpandMoreOutlined } from "@mui/icons-material";
 import { AccordionDetails, AccordionSummary, Box, Button, TextField, Typography } from "@mui/material";
@@ -45,8 +47,6 @@ function TermsView(props: TermsViewProps) {
 		);
 	}, [watcherForTerms]);
 
-	// const { mutate: mutatePostTerms } = useMutationPostTerms({});
-
 	const { Checkbox } = ReactHookForm<TermsFormInterface>();
 
 	const handleCheckboxAllChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -59,29 +59,30 @@ function TermsView(props: TermsViewProps) {
 		router.push(getIaPath(IA.join));
 	};
 
-	const handleFormSubmit: FormEventHandler = handleSubmit(
-		({ all, termsOfService, privacyPolicy, shoppingInformation }) => {
-			const type = searchParams.get("type");
+	const handleFormSubmit: FormEventHandler = handleSubmit(({ termsOfService, privacyPolicy, shoppingInformation }) => {
+		const type = searchParams.get("type");
 
-			if (!(termsOfService && privacyPolicy)) {
-				console.log("필수 선택에 체크 필요!");
-				return;
-			}
+		if (!(termsOfService && privacyPolicy)) {
+			console.log("필수 선택에 체크 필요!");
+			return;
+		}
 
-			if (shoppingInformation) {
-				console.log("선택 동의 완료");
-			}
-			console.log("필수 동의 완료");
+		if (shoppingInformation) {
+			console.log("선택 동의 완료");
+		}
+		console.log("필수 동의 완료");
 
-			if (type === "author") {
-				router.push(getIaPath(IA.join.author.verify));
-			} else if (type === "sponsor") {
-				router.push(getIaPath(IA.join.sponsor.details));
-			} else {
-				console.log("타입이 없습니다");
-			}
-		},
-	);
+		setCookie(COOKIE.shoppingInformationTerm, shoppingInformation);
+
+		if (type === "author") {
+			router.push(getIaPath(IA.join.author.verify));
+		} else if (type === "sponsor") {
+			router.push(getIaPath(IA.join.sponsor));
+		} else {
+			// TODO @나은찬 예외처리(fallback?)
+			console.log("타입이 없습니다");
+		}
+	});
 
 	return (
 		<>
