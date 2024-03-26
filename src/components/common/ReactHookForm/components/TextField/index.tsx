@@ -12,8 +12,6 @@ function ReactHookFormTextField<TFieldValues extends FieldValues = FieldValues>(
 ) {
 	const { restProps, field, label, error, errorMessage, handleChange } = useReactHookFormControl(props);
 
-	console.log(restProps);
-
 	return (
 		<TextField
 			{...field}
