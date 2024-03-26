@@ -6,6 +6,10 @@ const getQueryKey = (prefixKeys: readonly string[], req?: object) => {
 
 export const QUERY_KEY = deepFreeze({
 	member: {
-		all: () => ["member"],
+		all: () => ["member"] as const,
+	},
+	instagramGraph: {
+		all: () => ["instagramGraph"] as const,
+		me: (req?: object) => getQueryKey([...QUERY_KEY.instagramGraph.all(), "me"], req),
 	},
 });
