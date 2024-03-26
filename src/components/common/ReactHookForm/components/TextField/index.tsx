@@ -14,8 +14,8 @@ function ReactHookFormTextField<TFieldValues extends FieldValues = FieldValues>(
 
 	return (
 		<TextField
-			{...restProps}
 			{...field}
+			{...restProps}
 			label={label}
 			onChange={handleChange}
 			error={Boolean(error)}
