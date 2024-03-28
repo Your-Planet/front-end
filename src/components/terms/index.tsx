@@ -62,10 +62,7 @@ function TermsView(props: TermsViewProps) {
 		const type = searchParams.get("type");
 
 		// TODO @나은찬 예외처리(fallback?) - 경고 팝업?
-		if (!(termsOfService && privacyPolicy)) {
-			console.log("필수 동의 필요");
-			return;
-		} else if (!type) {
+		if (!type) {
 			console.log("타입이 없습니다");
 			return;
 		}
@@ -108,7 +105,12 @@ function TermsView(props: TermsViewProps) {
 							</Accordion>
 
 							<Accordion disableGutters>
-								<AccordionSummary expandIcon={<ExpandMoreOutlined />}>
+								<AccordionSummary
+									classes={{
+										content: "items-center",
+									}}
+									expandIcon={<ExpandMoreOutlined />}
+								>
 									<Checkbox
 										sx={{ color: GRAY_COLOR }}
 										key="termsOfService"
@@ -116,6 +118,7 @@ function TermsView(props: TermsViewProps) {
 										label={"이용약관 동의"}
 										hideErrorMessage
 									/>
+									<Typography color="red">(필수)</Typography>
 								</AccordionSummary>
 								<AccordionDetails>
 									<TextField
@@ -137,7 +140,12 @@ function TermsView(props: TermsViewProps) {
 							</Accordion>
 
 							<Accordion disableGutters>
-								<AccordionSummary expandIcon={<ExpandMoreOutlined />}>
+								<AccordionSummary
+									classes={{
+										content: "items-center",
+									}}
+									expandIcon={<ExpandMoreOutlined />}
+								>
 									<Checkbox
 										sx={{ color: GRAY_COLOR }}
 										key="privacyPolicy"
@@ -145,6 +153,7 @@ function TermsView(props: TermsViewProps) {
 										label={"개인정보 수집 및 이용 동의"}
 										hideErrorMessage
 									/>
+									<Typography color="red">(필수)</Typography>
 								</AccordionSummary>
 								<AccordionDetails>
 									<TextField
@@ -166,7 +175,12 @@ function TermsView(props: TermsViewProps) {
 							</Accordion>
 
 							<Accordion disableGutters>
-								<AccordionSummary expandIcon={<ExpandMoreOutlined />}>
+								<AccordionSummary
+									classes={{
+										content: "items-center",
+									}}
+									expandIcon={<ExpandMoreOutlined />}
+								>
 									<Checkbox
 										sx={{ color: GRAY_COLOR }}
 										key="shoppingInformation"
@@ -174,6 +188,7 @@ function TermsView(props: TermsViewProps) {
 										label={"쇼핑정보 수집 및 이용 동의"}
 										hideErrorMessage
 									/>
+									<Typography color="cornflowerblue">(선택)</Typography>
 								</AccordionSummary>
 								<AccordionDetails>
 									<TextField
