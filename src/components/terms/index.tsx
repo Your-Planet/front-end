@@ -38,14 +38,13 @@ function TermsView(props: TermsViewProps) {
 	// TODO: Backend에서 api or column 추가 필요
 	const { handleSubmit, setValue, watch } = form;
 
-	const watcherForTerms = watch(["termsOfService", "privacyPolicy", "shoppingInformation"]);
+	const termsOfServiceWatcher = watch("termsOfService");
+	const privacyPolicyWatcher = watch("privacyPolicy");
+	const shoppingInformationWatcher = watch("shoppingInformation");
 
 	useEffect(() => {
-		setValue(
-			"all",
-			watcherForTerms.every((value) => value === true),
-		);
-	}, [watcherForTerms]);
+		setValue("all", termsOfServiceWatcher && privacyPolicyWatcher && shoppingInformationWatcher);
+	}, [termsOfServiceWatcher, privacyPolicyWatcher, shoppingInformationWatcher]);
 
 	const { Checkbox } = ReactHookForm<TermsFormInterface>();
 
@@ -197,7 +196,7 @@ function TermsView(props: TermsViewProps) {
 
 							<Box className="flex justify-end gap-3">
 								<Button
-									className="bg-gray-500 font-bold"
+									className="bg-gray-400 font-bold"
 									variant="contained"
 									size="large"
 									onClick={handleClickBackButton}
@@ -205,7 +204,13 @@ function TermsView(props: TermsViewProps) {
 									뒤로가기
 								</Button>
 
-								<Button className="font-bold" variant="contained" size="large" type="submit">
+								<Button
+									className="font-bold"
+									variant="contained"
+									size="large"
+									type="submit"
+									disabled={!(termsOfServiceWatcher && privacyPolicyWatcher)}
+								>
 									동의
 								</Button>
 							</Box>
