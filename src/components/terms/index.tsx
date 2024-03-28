@@ -62,15 +62,14 @@ function TermsView(props: TermsViewProps) {
 	const handleFormSubmit: FormEventHandler = handleSubmit(({ termsOfService, privacyPolicy, shoppingInformation }) => {
 		const type = searchParams.get("type");
 
+		// TODO @나은찬 예외처리(fallback?) - 경고 팝업?
 		if (!(termsOfService && privacyPolicy)) {
-			console.log("필수 선택에 체크 필요!");
+			console.log("필수 동의 필요");
+			return;
+		} else if (!type) {
+			console.log("타입이 없습니다");
 			return;
 		}
-
-		if (shoppingInformation) {
-			console.log("선택 동의 완료");
-		}
-		console.log("필수 동의 완료");
 
 		setCookie(COOKIE.shoppingInformationTerm, shoppingInformation);
 
@@ -78,9 +77,6 @@ function TermsView(props: TermsViewProps) {
 			router.push(getIaPath(IA.join.author.verify));
 		} else if (type === "sponsor") {
 			router.push(getIaPath(IA.join.sponsor));
-		} else {
-			// TODO @나은찬 예외처리(fallback?)
-			console.log("타입이 없습니다");
 		}
 	});
 
