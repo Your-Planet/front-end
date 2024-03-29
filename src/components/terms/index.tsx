@@ -35,7 +35,6 @@ function TermsView(props: TermsViewProps) {
 		},
 	});
 
-	// TODO: Backend에서 api or column 추가 필요
 	const { handleSubmit, setValue, watch } = form;
 
 	const termsOfServiceWatcher = watch("termsOfService");
@@ -58,7 +57,7 @@ function TermsView(props: TermsViewProps) {
 		router.push(getIaPath(IA.join));
 	};
 
-	const handleFormSubmit: FormEventHandler = handleSubmit(({ termsOfService, privacyPolicy, shoppingInformation }) => {
+	const handleFormSubmit: FormEventHandler = handleSubmit(({ shoppingInformation }) => {
 		const type = searchParams.get("type");
 
 		// TODO @나은찬 예외처리(fallback?) - 경고 팝업?
