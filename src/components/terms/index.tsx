@@ -66,7 +66,7 @@ function TermsView(props: TermsViewProps) {
 			return;
 		}
 
-		setCookie(COOKIE.shoppingInformationTerm, shoppingInformation);
+		setCookie(COOKIE.shoppingInformationTerm, shoppingInformation ? "true" : "false");
 
 		if (type === "author") {
 			router.push(getIaPath(IA.join.author.verify));

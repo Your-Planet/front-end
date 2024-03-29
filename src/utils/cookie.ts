@@ -15,7 +15,7 @@ export const getRootDomain = (url: string) => url.split(".").slice(-URL_COMMA_CO
 
 export const getCookie = (name: string) => readCookie(name) as any;
 
-export const setCookie = (name: string, value: string | boolean, atExpires?: number, options?: CookieOptions) => {
+export const setCookie = (name: string, value: string, atExpires?: number, options?: CookieOptions) => {
 	saveCookie(name, value, {
 		...options,
 		path: "/",

@@ -42,7 +42,7 @@ function JoinAuthorFormView() {
 	const { handleSuccessJoin, handleFailJoin } = useJoinForm();
 
 	const handleFormSubmit: FormEventHandler = handleSubmit(({ genderType, birthDate, passwordConfirm, ...rest }) => {
-		const shoppingInformationTerm = getCookie(COOKIE.shoppingInformationTerm);
+		const shoppingInformationTerm = getCookie(COOKIE.shoppingInformationTerm) === "true";
 
 		mutatePostJoin(
 			{

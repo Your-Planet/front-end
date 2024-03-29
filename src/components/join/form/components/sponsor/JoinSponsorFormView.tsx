@@ -61,6 +61,7 @@ function JoinSponsorFormView(props: JoinSponsorFormViewProps) {
 	const handleFormSubmit: FormEventHandler = handleSubmit(
 		({ genderType, birthDate, businessAddress, passwordConfirm, ...rest }) => {
 			const shoppingInformationTerm = getCookie(COOKIE.shoppingInformationTerm) === "true";
+
 			mutatePostJoin(
 				{
 					...rest,
