@@ -16,6 +16,7 @@ interface CommonJoinRequest {
 export interface AuthorJoinRequest extends CommonJoinRequest {
 	instagramId: string;
 	instagramUsername: string;
+	instagramAccessToken: string;
 }
 
 export interface SponsorJoinRequest extends CommonJoinRequest {

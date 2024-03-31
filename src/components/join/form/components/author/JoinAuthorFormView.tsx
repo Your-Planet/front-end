@@ -29,6 +29,7 @@ function JoinAuthorFormView() {
 			birthDate: null,
 			instagramId: "",
 			instagramUsername: "",
+			instagramAccessToken: "",
 			isTermsOfService: false,
 			isPrivacyPolicy: false,
 			isShoppingInformation: false,
@@ -40,6 +41,8 @@ function JoinAuthorFormView() {
 	const { mutate: mutatePostJoin } = useMutationPostAuthorJoin({});
 
 	const { handleSuccessJoin, handleFailJoin } = useJoinForm();
+
+	const instagramAccessToken = getCookie(COOKIE.instagramAccessToken);
 
 	const handleFormSubmit: FormEventHandler = handleSubmit(({ genderType, birthDate, passwordConfirm, ...rest }) => {
 		const shoppingInformationTerm = getCookie(COOKIE.shoppingInformationTerm) === "true";
@@ -65,10 +68,14 @@ function JoinAuthorFormView() {
 
 	const { data: instagramMe } = useQueryGetMe({
 		req: {
-			access_token: getCookie(COOKIE.instagramAccessToken),
+			access_token: instagramAccessToken,
 			fields: ["id", "username"],
 		},
 	});
+
+	useEffect(() => {
+		setValue("instagramAccessToken", instagramAccessToken);
+	}, [instagramAccessToken]);
 
 	useEffect(() => {
 		if (instagramMe) {
