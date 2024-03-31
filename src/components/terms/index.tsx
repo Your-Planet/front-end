@@ -71,7 +71,7 @@ function TermsView(props: TermsViewProps) {
 		if (type === "author") {
 			router.push(getIaPath(IA.join.author.verify));
 		} else if (type === "sponsor") {
-			router.push(getIaPath(IA.join.sponsor));
+			router.push(getIaPath(IA.join.sponsor.details));
 		}
 	});
 
