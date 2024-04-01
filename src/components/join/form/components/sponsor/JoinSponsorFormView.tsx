@@ -7,7 +7,7 @@ import useJoinForm from "@/components/join/form/hooks/useJoinForm";
 import { COOKIE } from "@/defines/cookie/constants";
 import { JOIN_SPONSOR_FORM_FIELD_LENGTH } from "@/defines/forms/join/sponsor/constants";
 import { JoinSponsorForm } from "@/defines/forms/join/sponsor/types";
-import { SubscriptionPathType } from "@/defines/member/types";
+import { GenderType, SubscriptionPathType } from "@/defines/member/types";
 import useMutationPostSponsorJoin from "@/hooks/queries/member/useMutationPostSponsorJoin";
 import { getCookie } from "@/utils/cookie";
 import { getObjectAtPath } from "@/utils/object";
@@ -94,7 +94,7 @@ function JoinSponsorFormView(props: JoinSponsorFormViewProps) {
 
 	const addressErrorMessage = getObjectAtPath(errors, "businessAddress.base")?.message ?? " ";
 
-	const { TextField, RadioGroup } = ReactHookForm<JoinSponsorForm>();
+	const { TextField, RadioGroup, DatePicker } = ReactHookForm<JoinSponsorForm>();
 
 	return (
 		<div className="max-w-[520px] mx-auto py-28">
@@ -186,6 +186,24 @@ function JoinSponsorFormView(props: JoinSponsorFormViewProps) {
 						placeholder="숫자만 입력하세요"
 						type="tel"
 						fullWidth
+					/>
+
+					<DatePicker formName="birthDate" label="생년월일" required />
+
+					<RadioGroup<GenderType>
+						label="성별"
+						formName="genderType"
+						required
+						radios={[
+							{
+								label: "남",
+								value: "MALE",
+							},
+							{
+								label: "여",
+								value: "FEMALE",
+							},
+						]}
 					/>
 
 					{/* TODO: 가입경로 추가(인터넷 검색, 지인 소개, 인스타그램, 기타 */}
