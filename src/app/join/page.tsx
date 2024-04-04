@@ -1,4 +1,4 @@
-import SelectUserTypeView from "@/components/join/SelectMemberTypeView";
+import SelectUserTypeView from "@/components/join/components/SelectMemberTypeView";
 
 interface JoinPageProps {}
 
