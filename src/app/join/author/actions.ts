@@ -34,7 +34,7 @@ export const authorizeInstagram = async (code: string) => {
 			client_secret: secretCode,
 			code,
 			grant_type: "authorization_code",
-			redirect_uri: getRedirectUri(IA.join.author),
+			redirect_uri: getRedirectUri(IA.join.author.details),
 		})
 	).data;
 
