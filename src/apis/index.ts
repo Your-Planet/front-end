@@ -21,7 +21,7 @@ const instagramGraphAxiosInstance = axios.create({
 	instance.interceptors.response.use(
 		(response) => response,
 		(error) => {
-			console.error("On Axios Response", error);
+			console.error(`On Axios Response at ${error.request.path}\n`, error.response.data);
 			return Promise.reject(error);
 		},
 	);
