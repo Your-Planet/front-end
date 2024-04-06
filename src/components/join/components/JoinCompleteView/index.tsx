@@ -1,5 +1,6 @@
 "use client";
 
+import { StyledBox } from "@/components/join/components/JoinCompleteView/defines/styles";
 import { IA } from "@/defines/ia/constants";
 import { getIaPath } from "@/utils/ia";
 import { Box, Button, Typography } from "@mui/material";
@@ -15,7 +16,7 @@ function CompleteView({}: Props) {
 	};
 
 	return (
-		<Box className="flex flex-col justify-between min-h-[230px] max-h-full max-w-[520px] m-auto">
+		<StyledBox>
 			<Box>
 				<Typography className="font-bold" variant="h4">
 					회원가입이
@@ -33,7 +34,7 @@ function CompleteView({}: Props) {
 			<Button variant="contained" onClick={handleClick} size="large" fullWidth>
 				로그인 하러가기
 			</Button>
-		</Box>
+		</StyledBox>
 	);
 }
 

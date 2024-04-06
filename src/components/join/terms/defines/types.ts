@@ -7,3 +7,11 @@ export interface TermsRequest {
 }
 
 export interface TermsForm extends TermsRequest {}
+
+export type TermsDataType = {
+	key: string;
+	formName: "all" | "termsOfService" | "privacyPolicy" | "shoppingInformation";
+	label: string;
+	required: boolean;
+	text: string;
+};

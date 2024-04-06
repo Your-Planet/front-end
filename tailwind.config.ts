@@ -9,9 +9,6 @@ const config: Config = {
 		"./src/app/**/*.{js,ts,jsx,tsx,mdx}",
 	],
 	important: true,
-	daisyui: {
-		themes: ["light"],
-	},
 	theme: {
 		extend: {
 			backgroundImage: {
@@ -53,7 +50,6 @@ const config: Config = {
 	plugins: [
 		require("tailwindcss-3d"),
 		require("tailwindcss-animated"),
-		require("daisyui"),
 		plugin(({ matchUtilities, theme }) => {
 			matchUtilities(
 				{

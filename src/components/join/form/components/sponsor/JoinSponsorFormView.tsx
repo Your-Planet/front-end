@@ -4,12 +4,11 @@ import ReactHookForm from "@/components/common/ReactHookForm";
 import PasswordTextField from "@/components/common/password/PasswordTextField";
 import H2 from "@/components/common/text/H2";
 import useJoinForm from "@/components/join/form/hooks/useJoinForm";
-import { COOKIE } from "@/defines/cookie/constants";
 import { JOIN_SPONSOR_FORM_FIELD_LENGTH } from "@/defines/forms/join/sponsor/constants";
 import { JoinSponsorForm } from "@/defines/forms/join/sponsor/types";
 import { GenderType, SubscriptionPathType } from "@/defines/member/types";
+import { shoppingInformationTerm } from "@/defines/sessionStorage/constants";
 import useMutationPostSponsorJoin from "@/hooks/queries/member/useMutationPostSponsorJoin";
-import { getCookie } from "@/utils/cookie";
 import { getObjectAtPath } from "@/utils/object";
 import { getEmailValidateRule, getLengthErrorMessage } from "@/utils/react-hook-form/rule";
 import { isNumber } from "@/utils/string";
@@ -60,7 +59,7 @@ function JoinSponsorFormView(props: JoinSponsorFormViewProps) {
 
 	const handleFormSubmit: FormEventHandler = handleSubmit(
 		({ genderType, birthDate, businessAddress, passwordConfirm, ...rest }) => {
-			const shoppingInformationTerm = getCookie(COOKIE.shoppingInformationTerm) === "true";
+			const isShoppingInformation = sessionStorage.getItem(shoppingInformationTerm) === "true";
 
 			mutatePostJoin(
 				{
@@ -71,7 +70,7 @@ function JoinSponsorFormView(props: JoinSponsorFormViewProps) {
 					memberType: "SPONSOR",
 					isTermsOfService: true,
 					isPrivacyPolicy: true,
-					isShoppingInformation: shoppingInformationTerm,
+					isShoppingInformation,
 				},
 				{
 					onSuccess: handleSuccessJoin,

@@ -1,6 +1,7 @@
+import { StyledFormControlLabel } from "@/components/common/ReactHookForm/components/Checkbox/defines/styles";
 import { ReactHookFormProps } from "@/components/common/ReactHookForm/defines/types";
 import useReactHookFormControl from "@/components/common/ReactHookForm/hooks/useReactHookFormControl";
-import { Checkbox, CheckboxProps, FormControl, FormControlLabel, FormHelperText } from "@mui/material";
+import { Checkbox, CheckboxProps, FormControl, FormHelperText } from "@mui/material";
 import { FieldValues } from "react-hook-form";
 
 export interface ReactHookFormCheckboxProps<TFieldValues extends FieldValues, CheckboxValue extends string | number>
@@ -14,8 +15,7 @@ function ReactHookFormCheckbox<TFieldValues extends FieldValues, CheckboxValue e
 
 	return (
 		<FormControl error={Boolean(error)}>
-			<FormControlLabel
-				className="mr-1"
+			<StyledFormControlLabel
 				control={<Checkbox {...restProps} {...field} checked={field.value} onChange={handleChange} />}
 				onClick={(e) => e.stopPropagation()}
 				label={label}
