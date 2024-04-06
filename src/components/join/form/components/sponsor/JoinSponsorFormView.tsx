@@ -3,6 +3,7 @@
 import ReactHookForm from "@/components/common/ReactHookForm";
 import PasswordTextField from "@/components/common/password/PasswordTextField";
 import H2 from "@/components/common/text/H2";
+import { StyledFormBox } from "@/components/join/form/components/defines/styles";
 import useJoinForm from "@/components/join/form/hooks/useJoinForm";
 import { JOIN_SPONSOR_FORM_FIELD_LENGTH } from "@/defines/forms/join/sponsor/constants";
 import { JoinSponsorForm } from "@/defines/forms/join/sponsor/types";
@@ -96,11 +97,11 @@ function JoinSponsorFormView(props: JoinSponsorFormViewProps) {
 	const { TextField, RadioGroup, DatePicker } = ReactHookForm<JoinSponsorForm>();
 
 	return (
-		<div className="max-w-[520px] mx-auto py-28">
+		<StyledFormBox>
 			<H2>회원 가입 (광고주)</H2>
 
 			<FormProvider {...form}>
-				<form onSubmit={handleFormSubmit} className="mt-8 flex flex-col gap-4">
+				<form onSubmit={handleFormSubmit} className="join-form">
 					<TextField
 						formName="email"
 						label="이메일"
@@ -234,7 +235,7 @@ function JoinSponsorFormView(props: JoinSponsorFormViewProps) {
 					</Button>
 				</form>
 			</FormProvider>
-		</div>
+		</StyledFormBox>
 	);
 }
 

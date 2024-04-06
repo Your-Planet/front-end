@@ -3,6 +3,7 @@
 import ReactHookForm from "@/components/common/ReactHookForm";
 import PasswordTextField from "@/components/common/password/PasswordTextField";
 import H2 from "@/components/common/text/H2";
+import { StyledFormBox } from "@/components/join/form/components/defines/styles";
 import useJoinForm from "@/components/join/form/hooks/useJoinForm";
 import { COOKIE } from "@/defines/cookie/constants";
 import { JoinAuthorForm } from "@/defines/forms/join/author/types";
@@ -86,11 +87,11 @@ function JoinAuthorFormView() {
 	}, [instagramMe]);
 
 	return (
-		<div className="max-w-[520px] mx-auto py-28">
+		<StyledFormBox>
 			<H2>회원 가입 (작가)</H2>
 
 			<FormProvider {...form}>
-				<form onSubmit={handleFormSubmit} className="mt-8 flex flex-col gap-4">
+				<form onSubmit={handleFormSubmit} className="join-form">
 					<TextField formName="instagramUsername" label="인스타그램 계정" fullWidth disabled />
 
 					<TextField
@@ -142,7 +143,7 @@ function JoinAuthorFormView() {
 					</Button>
 				</form>
 			</FormProvider>
-		</div>
+		</StyledFormBox>
 	);
 }
 

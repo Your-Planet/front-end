@@ -1,6 +1,5 @@
-import { AccordionProps, Box, Button, Typography } from "@mui/material";
+import { AccordionProps, Box, Button, styled } from "@mui/material";
 import MuiAccordion from "@mui/material/Accordion";
-import { styled } from "@mui/material/styles";
 
 export const GRAY_COLOR = "#d1d5da";
 
@@ -19,10 +18,6 @@ export const StyledTermsViewBox = styled(Box)`
 export const StyledFlexColumnBox = styled(Box)`
 	display: flex;
 	flex-direction: column;
-`;
-
-export const StyledTypography = styled(Typography)`
-	font-weight: 700;
 `;
 
 export const StyledFormBox = styled(StyledFlexColumnBox)`

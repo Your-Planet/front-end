@@ -1,5 +1,6 @@
 "use client";
 
+import { StyledBoldTypography } from "@/components/common/text/defines/styles";
 import { StyledBox } from "@/components/join/components/JoinCompleteView/defines/styles";
 import { IA } from "@/defines/ia/constants";
 import { getIaPath } from "@/utils/ia";
@@ -18,11 +19,11 @@ function CompleteView({}: Props) {
 	return (
 		<StyledBox>
 			<Box>
-				<Typography className="font-bold" variant="h4">
+				<StyledBoldTypography variant="h4">
 					회원가입이
 					<br />
 					완료되었습니다!
-				</Typography>
+				</StyledBoldTypography>
 			</Box>
 			<Box>
 				<Typography color="GrayText" variant="body2">

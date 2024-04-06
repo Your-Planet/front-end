@@ -1,6 +1,7 @@
 "use client";
 
 import ReactHookForm from "@/components/common/ReactHookForm";
+import { StyledBoldTypography } from "@/components/common/text/defines/styles";
 import {
 	personalInformationTosText,
 	requiredTosText,
@@ -15,7 +16,6 @@ import {
 	StyledFlexColumnBox,
 	StyledFormBox,
 	StyledTermsViewBox,
-	StyledTypography,
 } from "@/components/join/terms/defines/styles";
 import { TermsDataType, TermsForm } from "@/components/join/terms/defines/types";
 import { IA } from "@/defines/ia/constants";
@@ -142,8 +142,8 @@ function TermsView(props: TermsViewProps) {
 		<>
 			<StyledTermsViewBox>
 				<StyledFlexColumnBox>
-					<StyledTypography variant="h4">가입을 위해,</StyledTypography>
-					<StyledTypography variant="h4">약관 동의가 필요해요.</StyledTypography>
+					<StyledBoldTypography variant="h4">가입을 위해,</StyledBoldTypography>
+					<StyledBoldTypography variant="h4">약관 동의가 필요해요.</StyledBoldTypography>
 				</StyledFlexColumnBox>
 
 				<form onSubmit={handleFormSubmit} noValidate>
