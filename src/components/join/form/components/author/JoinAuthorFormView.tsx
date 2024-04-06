@@ -32,9 +32,11 @@ function JoinAuthorFormView() {
 			instagramId: "",
 			instagramUsername: "",
 			instagramAccessToken: "",
-			isTermsOfService: false,
-			isPrivacyPolicy: false,
-			isShoppingInformation: false,
+			termsInfo: {
+				isTermsOfService: false,
+				isPrivacyPolicy: false,
+				isShoppingInformation: false,
+			},
 		},
 	});
 
@@ -48,16 +50,18 @@ function JoinAuthorFormView() {
 
 	const handleFormSubmit: FormEventHandler = handleSubmit(({ genderType, birthDate, passwordConfirm, ...rest }) => {
 		const isShoppingInformation = sessionStorage.getItem(shoppingInformationTerm) === "true";
-
+		console.log(rest, genderType, birthDate, isShoppingInformation);
 		mutatePostJoin(
 			{
 				...rest,
 				genderType: genderType!,
 				birthDate: birthDate!.format("YYYY-MM-DD"),
 				memberType: "AUTHOR",
-				isTermsOfService: true,
-				isPrivacyPolicy: true,
-				isShoppingInformation,
+				termsInfo: {
+					isTermsOfService: true,
+					isPrivacyPolicy: true,
+					isShoppingInformation,
+				},
 			},
 			{
 				onSuccess: handleSuccessJoin,
