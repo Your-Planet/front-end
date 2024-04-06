@@ -50,7 +50,7 @@ function JoinAuthorFormView() {
 
 	const handleFormSubmit: FormEventHandler = handleSubmit(({ genderType, birthDate, passwordConfirm, ...rest }) => {
 		const isShoppingInformation = sessionStorage.getItem(shoppingInformationTerm) === "true";
-		console.log(rest, genderType, birthDate, isShoppingInformation);
+
 		mutatePostJoin(
 			{
 				...rest,
