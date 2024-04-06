@@ -15,7 +15,8 @@ type Props = {};
 
 function SearchPageView({}: Props) {
 	const genreTabsRef = useRef<HTMLDivElement>(null);
-	const instagramAccessToken = getCookie(COOKIE.instagramAccessToken);
+
+	const accessToken = getCookie(COOKIE.accessToken);
 
 	return (
 		<Box>
@@ -23,7 +24,7 @@ function SearchPageView({}: Props) {
 				<Banner />
 			</StyledBannerBox>
 			<StyledContainerBox>
-				{!instagramAccessToken && <BlurBox />}
+				{!accessToken && <BlurBox />}
 				<StyledInnerBox>
 					<GenreTabs genreTabsRef={genreTabsRef} />
 					<SortOptions />
