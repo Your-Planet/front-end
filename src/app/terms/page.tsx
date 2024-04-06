@@ -1,4 +1,4 @@
-import TermsView from "@/components/join/terms";
+import TermsView from "@/components/join/components/TermsView";
 
 type Props = {};
 

@@ -6,7 +6,7 @@ import {
 	personalInformationTosText,
 	requiredTosText,
 	shoppingInformationReceiptText,
-} from "@/components/join/terms/defines/constants";
+} from "@/components/join/components/TermsView/defines/constants";
 import {
 	GRAY_COLOR,
 	StyledAccordion,
@@ -16,8 +16,8 @@ import {
 	StyledFlexColumnBox,
 	StyledFormBox,
 	StyledTermsViewBox,
-} from "@/components/join/terms/defines/styles";
-import { TermsDataType, TermsForm } from "@/components/join/terms/defines/types";
+} from "@/components/join/components/TermsView/defines/styles";
+import { TermsDataType, TermsForm } from "@/components/join/components/TermsView/defines/types";
 import { IA } from "@/defines/ia/constants";
 import { shoppingInformationTerm } from "@/defines/sessionStorage/constants";
 import { getIaPath } from "@/utils/ia";
