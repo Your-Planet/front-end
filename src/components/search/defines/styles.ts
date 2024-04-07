@@ -24,17 +24,3 @@ export const StyledInnerBox = styled(Box)`
 	min-width: 50%;
 	max-width: min-content;
 `;
-
-export const StyledBlurBox = styled(Box)`
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	background-color: rgb(255 255 255 / 0.5);
-	top: 0;
-	left: 0;
-	z-index: 9999;
-	backdrop-filter: blur(12px);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-`;

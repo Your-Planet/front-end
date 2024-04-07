@@ -1,5 +1,8 @@
-import { StyledContainerBox, StyledInnerBox } from "@/components/search/components/BlurBox/defines/styles";
-import { StyledBlurBox } from "@/components/search/defines/styles";
+import {
+	StyledBlurBox,
+	StyledContainerBox,
+	StyledInnerBox,
+} from "@/components/search/components/BlurBox/defines/styles";
 import { IA } from "@/defines/ia/constants";
 import { getIaPath } from "@/utils/ia";
 import { Box, Button, Typography } from "@mui/material";
