@@ -39,3 +39,10 @@ html > body * {
 	gap: 1rem;
 	margin-top: 2rem;
 }
+
+.find-email-form {
+	display: flex;
+	flex-direction: column;
+	margin-top: 3rem;
+	gap: 1rem;
+}
