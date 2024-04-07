@@ -1,4 +1,4 @@
-import FindEmailView from "@/components/login/FindEmailView";
+import FindEmailView from "@/components/find/FindEmailView";
 
 type Props = {};
 
