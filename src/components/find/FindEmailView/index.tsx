@@ -4,7 +4,9 @@ import ReactHookForm from "@/components/common/ReactHookForm";
 import H2 from "@/components/common/text/H2";
 import { StyledBox } from "@/components/find/FindEmailView/defines/styles";
 import { FindEmailForm } from "@/defines/forms/find/email/types";
+import { IA } from "@/defines/ia/constants";
 import useMutationPostEmailFind from "@/hooks/queries/member/useMutationPostEmailFind";
+import { getIaPath } from "@/utils/ia";
 import { isNumber } from "@/utils/string";
 import { Button } from "@mui/material";
 import { useRouter } from "next/navigation";
@@ -31,9 +33,10 @@ function FindEmailView(props: Props) {
 	const handleFormSubmit = handleSubmit((data) => {
 		mutatePostFindEmail(data, {
 			onSuccess({ data }) {
-				console.log(data);
-
-				// router.push(getIaPath(IA.find.email.complete));
+				router.push(getIaPath(IA.find.email.complete));
+			},
+			onError({ response }) {
+				alert(response?.data.message);
 			},
 		});
 	});
@@ -42,6 +45,14 @@ function FindEmailView(props: Props) {
 
 	const nameWatcher = watch("name");
 	const telWatcher = watch("tel");
+
+	const validateTel = (value: string) => {
+		if (value.length >= 10) {
+			return true;
+		}
+
+		return "최소 10자리 이상이어야 합니다.";
+	};
 
 	return (
 		<StyledBox>
@@ -56,6 +67,7 @@ function FindEmailView(props: Props) {
 						label="연락처"
 						required
 						validator={isNumber}
+						rules={{ validate: validateTel }}
 						placeholder="숫자만 입력하세요"
 						type="tel"
 						fullWidth
