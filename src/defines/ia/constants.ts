@@ -35,11 +35,6 @@ export const IA = deepFreeze<GlobalIa>({
 				title: "작가 회원가입 | 회원정보 입력",
 				label: "회원정보 입력",
 			},
-
-			complete: {
-				title: "작가 회원가입 | 회원가입 완료",
-				label: "회원가입 완료",
-			},
 		},
 
 		sponsor: {
@@ -50,11 +45,11 @@ export const IA = deepFreeze<GlobalIa>({
 				title: "광고주 회원가입 | 회원정보 입력",
 				label: "회원정보 입력",
 			},
+		},
 
-			complete: {
-				title: "광고주 회원가입 | 회원가입 완료",
-				label: "회원가입 완료",
-			},
+		complete: {
+			title: "회원가입 완료",
+			label: "회원가입 완료",
 		},
 	},
 
