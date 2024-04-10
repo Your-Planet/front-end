@@ -1,9 +1,13 @@
 "use client";
 
 import Banner from "@/components/search/components/Banner";
+import BlurBox from "@/components/search/components/BlurBox";
 import GenreTabs from "@/components/search/components/GenreTabs";
 import MainSection from "@/components/search/components/MainSection";
 import SortOptions from "@/components/search/components/SortOptions";
+import { StyledBannerBox, StyledContainerBox, StyledInnerBox } from "@/components/search/defines/styles";
+import { COOKIE } from "@/defines/cookie/constants";
+import { getCookie } from "@/utils/cookie";
 import { Box } from "@mui/material";
 import { useRef } from "react";
 
@@ -12,18 +16,21 @@ type Props = {};
 function SearchPageView({}: Props) {
 	const genreTabsRef = useRef<HTMLDivElement>(null);
 
+	const accessToken = getCookie(COOKIE.accessToken);
+
 	return (
 		<Box>
-			<Box className="w-full h-[calc(100vh-72px)] relative flex items-center px-[150px] box-border bg-[#f8f8fe]">
+			<StyledBannerBox>
 				<Banner />
-			</Box>
-			<Box className="flex w-full justify-center items-center">
-				<Box className="min-w-[50%] max-w-min">
+			</StyledBannerBox>
+			<StyledContainerBox>
+				{!accessToken && <BlurBox />}
+				<StyledInnerBox>
 					<GenreTabs genreTabsRef={genreTabsRef} />
 					<SortOptions />
 					<MainSection />
-				</Box>
-			</Box>
+				</StyledInnerBox>
+			</StyledContainerBox>
 		</Box>
 	);
 }
