@@ -41,9 +41,11 @@ function JoinSponsorFormView(props: JoinSponsorFormViewProps) {
 				detail: "",
 			},
 			name: "",
-			isTermsOfService: false,
-			isPrivacyPolicy: false,
-			isShoppingInformation: false,
+			termsInfo: {
+				isTermsOfService: false,
+				isPrivacyPolicy: false,
+				isShoppingInformation: false,
+			},
 		},
 	});
 
@@ -69,9 +71,11 @@ function JoinSponsorFormView(props: JoinSponsorFormViewProps) {
 					birthDate: birthDate?.format("YYYY-mm-dd"),
 					businessAddress: `${businessAddress.base} ${businessAddress.detail}`,
 					memberType: "SPONSOR",
-					isTermsOfService: true,
-					isPrivacyPolicy: true,
-					isShoppingInformation,
+					termsInfo: {
+						isTermsOfService: true,
+						isPrivacyPolicy: true,
+						isShoppingInformation,
+					},
 				},
 				{
 					onSuccess: handleSuccessJoin,

@@ -1,3 +1,4 @@
+import { TermsInfoType } from "@/defines/forms/join/common/types";
 import { GenderType, MemberType, SubscriptionPathType } from "@/defines/member/types";
 
 interface CommonJoinRequest {
@@ -8,10 +9,7 @@ interface CommonJoinRequest {
 	tel: string;
 	memberType: MemberType;
 	birthDate?: string;
-	// TODO: @나은찬 back-end에서 객체로 수정 후 refactoring
-	isTermsOfService: boolean;
-	isPrivacyPolicy: boolean;
-	isShoppingInformation: boolean;
+	termsInfo: TermsInfoType;
 }
 
 export interface AuthorJoinRequest extends CommonJoinRequest {

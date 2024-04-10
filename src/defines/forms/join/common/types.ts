@@ -6,3 +6,9 @@ export interface JoinCommonMemberForm {
 	genderType: GenderType | null;
 	birthDate: dayjs.Dayjs | null;
 }
+
+export type TermsInfoType = {
+	isTermsOfService: boolean;
+	isPrivacyPolicy: boolean;
+	isShoppingInformation: boolean;
+};

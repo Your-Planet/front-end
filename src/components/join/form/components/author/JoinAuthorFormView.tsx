@@ -32,9 +32,11 @@ function JoinAuthorFormView() {
 			instagramId: "",
 			instagramUsername: "",
 			instagramAccessToken: "",
-			isTermsOfService: false,
-			isPrivacyPolicy: false,
-			isShoppingInformation: false,
+			termsInfo: {
+				isTermsOfService: false,
+				isPrivacyPolicy: false,
+				isShoppingInformation: false,
+			},
 		},
 	});
 
@@ -55,9 +57,11 @@ function JoinAuthorFormView() {
 				genderType: genderType!,
 				birthDate: birthDate!.format("YYYY-MM-DD"),
 				memberType: "AUTHOR",
-				isTermsOfService: true,
-				isPrivacyPolicy: true,
-				isShoppingInformation,
+				termsInfo: {
+					isTermsOfService: true,
+					isPrivacyPolicy: true,
+					isShoppingInformation,
+				},
 			},
 			{
 				onSuccess: handleSuccessJoin,
