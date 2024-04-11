@@ -17,6 +17,16 @@ const instagramGraphAxiosInstance = axios.create({
 	baseURL: DOMAIN.instagram.graph,
 });
 
+[axiosInstance, instagramApiAxiosInstance, instagramGraphAxiosInstance].forEach((instance) => {
+	instance.interceptors.response.use(
+		(response) => response,
+		(error) => {
+			console.error(`On Axios Response at ${error.request.path}\n`, error.response.data);
+			return Promise.reject(error);
+		},
+	);
+});
+
 export const API = deepFreeze({
 	member: new MemberApi(axiosInstance, "/member"),
 	instagramAuth: new InstagramAuthApi(instagramApiAxiosInstance, "/oauth"),
