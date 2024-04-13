@@ -5,6 +5,7 @@ import H2 from "@/components/common/text/H2";
 import { StyledBoxInFind, StyledFormInFind } from "@/components/find/components/defines/styles";
 import { FindEmailForm } from "@/defines/forms/find/email/types";
 import { IA } from "@/defines/ia/constants";
+import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";
 import useMutationPostEmailFind from "@/hooks/queries/member/useMutationPostEmailFind";
 import { getIaPath } from "@/utils/ia";
 import { getMinLengthRule } from "@/utils/react-hook-form/rule";
@@ -34,6 +35,7 @@ function FindEmailView(props: Props) {
 	const handleFormSubmit = handleSubmit((data) => {
 		mutatePostFindEmail(data, {
 			onSuccess({ data }) {
+				sessionStorage.setItem(SESSION_STORAGE.foundEmail, data);
 				router.push(getIaPath(IA.find.email.complete));
 			},
 			onError({ response }) {
