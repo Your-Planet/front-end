@@ -2,6 +2,7 @@
 
 import ReactHookForm from "@/components/common/ReactHookForm";
 import H2 from "@/components/common/text/H2";
+import { foundEmail } from "@/components/find/defines/constants";
 import { StyledBox } from "@/components/find/defines/styles";
 import { FindEmailForm } from "@/defines/forms/find/email/types";
 import { IA } from "@/defines/ia/constants";
@@ -33,6 +34,7 @@ function FindEmailView(props: Props) {
 	const handleFormSubmit = handleSubmit((data) => {
 		mutatePostFindEmail(data, {
 			onSuccess({ data }) {
+				sessionStorage.setItem(foundEmail, data);
 				router.push(getIaPath(IA.find.email.complete));
 			},
 			onError({ response }) {

@@ -1,4 +1,4 @@
-import CompleteFindEmail from "@/components/find/CompleteFindEmail";
+import CompleteFindEmail from "@/components/find/components/CompleteFindEmail";
 
 type Props = {};
 
