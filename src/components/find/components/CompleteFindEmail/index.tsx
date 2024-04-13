@@ -29,10 +29,12 @@ function CompleteFindEmail({}: Props) {
 	}, []);
 
 	const handleClickBackButton = () => {
+		sessionStorage.removeItem(foundEmail);
 		router.push(getIaPath(IA.find.pw));
 	};
 
 	const handleClickLoginButton = () => {
+		sessionStorage.removeItem(foundEmail);
 		router.push(getIaPath(IA.login));
 	};
 
