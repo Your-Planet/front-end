@@ -2,7 +2,7 @@
 
 import ReactHookForm from "@/components/common/ReactHookForm";
 import H2 from "@/components/common/text/H2";
-import { StyledBox } from "@/components/find/FindEmailView/defines/styles";
+import { StyledBox } from "@/components/find/defines/styles";
 import { FindEmailForm } from "@/defines/forms/find/email/types";
 import { IA } from "@/defines/ia/constants";
 import useMutationPostEmailFind from "@/hooks/queries/member/useMutationPostEmailFind";

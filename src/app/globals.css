@@ -46,3 +46,10 @@ html > body * {
 	margin-top: 3rem;
 	gap: 1rem;
 }
+
+.complete-find-email-box {
+	display: flex;
+	flex-direction: column;
+	margin-top: 3rem;
+	gap: 1.5rem;
+}
