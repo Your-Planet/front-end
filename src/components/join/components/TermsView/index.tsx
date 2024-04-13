@@ -8,7 +8,6 @@ import {
 	shoppingInformationReceiptText,
 } from "@/components/join/components/TermsView/defines/constants";
 import {
-	GRAY_COLOR,
 	StyledAccordion,
 	StyledBackButton,
 	StyledButton,
@@ -18,6 +17,7 @@ import {
 	StyledTermsViewBox,
 } from "@/components/join/components/TermsView/defines/styles";
 import { TermsDataType, TermsForm } from "@/components/join/components/TermsView/defines/types";
+import { GRAY_COLOR } from "@/defines/common/styles";
 import { IA } from "@/defines/ia/constants";
 import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";
 import { getIaPath } from "@/utils/ia";
