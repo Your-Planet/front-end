@@ -8,7 +8,7 @@ import useJoinForm from "@/components/join/form/hooks/useJoinForm";
 import { COOKIE } from "@/defines/cookie/constants";
 import { JoinAuthorForm } from "@/defines/forms/join/author/types";
 import { GenderType } from "@/defines/member/types";
-import { shoppingInformationTerm } from "@/defines/sessionStorage/constants";
+import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";
 import useQueryGetMe from "@/hooks/queries/instagram-graph/useQueryGetMe";
 import useMutationPostAuthorJoin from "@/hooks/queries/member/useMutationPostAuthorJoin";
 import { getCookie } from "@/utils/cookie";
@@ -49,7 +49,7 @@ function JoinAuthorFormView() {
 	const instagramAccessToken = getCookie(COOKIE.instagramAccessToken);
 
 	const handleFormSubmit: FormEventHandler = handleSubmit(({ genderType, birthDate, passwordConfirm, ...rest }) => {
-		const isShoppingInformation = sessionStorage.getItem(shoppingInformationTerm) === "true";
+		const isShoppingInformation = sessionStorage.getItem(SESSION_STORAGE.shoppingInformationTerm) === "true";
 
 		mutatePostJoin(
 			{

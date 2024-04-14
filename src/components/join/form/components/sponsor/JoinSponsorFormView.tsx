@@ -8,7 +8,7 @@ import useJoinForm from "@/components/join/form/hooks/useJoinForm";
 import { JOIN_SPONSOR_FORM_FIELD_LENGTH } from "@/defines/forms/join/sponsor/constants";
 import { JoinSponsorForm } from "@/defines/forms/join/sponsor/types";
 import { GenderType, SubscriptionPathType } from "@/defines/member/types";
-import { shoppingInformationTerm } from "@/defines/sessionStorage/constants";
+import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";
 import useMutationPostSponsorJoin from "@/hooks/queries/member/useMutationPostSponsorJoin";
 import { getObjectAtPath } from "@/utils/object";
 import { getEmailValidateRule, getLengthErrorMessage } from "@/utils/react-hook-form/rule";
@@ -62,7 +62,7 @@ function JoinSponsorFormView(props: JoinSponsorFormViewProps) {
 
 	const handleFormSubmit: FormEventHandler = handleSubmit(
 		({ genderType, birthDate, businessAddress, passwordConfirm, ...rest }) => {
-			const isShoppingInformation = sessionStorage.getItem(shoppingInformationTerm) === "true";
+			const isShoppingInformation = sessionStorage.getItem(SESSION_STORAGE.shoppingInformationTerm) === "true";
 
 			mutatePostJoin(
 				{

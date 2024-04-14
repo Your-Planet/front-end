@@ -2,10 +2,10 @@
 
 import ReactHookForm from "@/components/common/ReactHookForm";
 import H2 from "@/components/common/text/H2";
-import { foundEmail } from "@/components/find/defines/constants";
-import { StyledBox } from "@/components/find/defines/styles";
+import { StyledBoxInFind } from "@/components/find/defines/styles";
 import { FindEmailForm } from "@/defines/forms/find/email/types";
 import { IA } from "@/defines/ia/constants";
+import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";
 import useMutationPostEmailFind from "@/hooks/queries/member/useMutationPostEmailFind";
 import { getIaPath } from "@/utils/ia";
 import { isNumber } from "@/utils/string";
@@ -34,7 +34,7 @@ function FindEmailView(props: Props) {
 	const handleFormSubmit = handleSubmit((data) => {
 		mutatePostFindEmail(data, {
 			onSuccess({ data }) {
-				sessionStorage.setItem(foundEmail, data);
+				sessionStorage.setItem(SESSION_STORAGE.foundEmail, data);
 				router.push(getIaPath(IA.find.email.complete));
 			},
 			onError({ response }) {
@@ -57,7 +57,7 @@ function FindEmailView(props: Props) {
 	};
 
 	return (
-		<StyledBox>
+		<StyledBoxInFind>
 			<H2>이메일 찾기</H2>
 
 			<FormProvider {...form}>
@@ -80,7 +80,7 @@ function FindEmailView(props: Props) {
 					</Button>
 				</form>
 			</FormProvider>
-		</StyledBox>
+		</StyledBoxInFind>
 	);
 }
 
