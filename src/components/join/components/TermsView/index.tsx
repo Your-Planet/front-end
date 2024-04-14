@@ -146,7 +146,7 @@ function TermsView(props: TermsViewProps) {
 							<StyledAccordion>
 								<AccordionSummary>
 									<Checkbox
-										sx={{ color: GRAY_COLOR }}
+										sx={{ color: "gray" }}
 										key="all"
 										formName="all"
 										label={"회원가입 약관에 모두 동의합니다."}
