@@ -19,7 +19,7 @@ import {
 } from "@/components/join/components/TermsView/defines/styles";
 import { TermsDataType, TermsForm } from "@/components/join/components/TermsView/defines/types";
 import { IA } from "@/defines/ia/constants";
-import { shoppingInformationTerm } from "@/defines/sessionStorage/constants";
+import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";
 import { getIaPath } from "@/utils/ia";
 import { ExpandMoreOutlined } from "@mui/icons-material";
 import { AccordionDetails, AccordionSummary, TextField, Typography } from "@mui/material";
@@ -99,7 +99,7 @@ function TermsView(props: TermsViewProps) {
 			return;
 		}
 
-		sessionStorage.setItem(shoppingInformationTerm, shoppingInformation ? "true" : "false");
+		sessionStorage.setItem(SESSION_STORAGE.shoppingInformationTerm, shoppingInformation ? "true" : "false");
 
 		if (type === "author") {
 			router.push(getIaPath(IA.join.author.verify));

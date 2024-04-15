@@ -1,1 +1,4 @@
-export const shoppingInformationTerm = "SHOPPING_INFORMATION_TERM";
+export const SESSION_STORAGE = {
+	shoppingInformationTerm: "SHOPPING_INFORMATION_TERM",
+	foundEmail: "FOUND_EMAIL",
+};
