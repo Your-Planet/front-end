@@ -1,5 +1,12 @@
 import { Box, styled } from "@mui/material";
 
+export const StyledFormBoxInFind = styled(Box)`
+	display: flex;
+	flex-direction: column;
+	margin-top: 3rem;
+	gap: 1rem;
+`;
+
 export const StyledBoxInFind = styled(Box)`
 	width: 100%;
 	min-width: 300px;
