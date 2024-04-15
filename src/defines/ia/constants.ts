@@ -86,17 +86,26 @@ export const IA = deepFreeze<GlobalIa>({
 			allowedOnLogin: true,
 		},
 
-		portfolio: {
-			title: "포트폴리오",
-			label: "포트폴리오",
+		studio: {
+			title: "작가 스튜디오",
+			label: "작가 스튜디오",
 			accessConfig: {
 				allowedOnLogin: true,
 				allowedMemberTypes: ["AUTHOR"],
 			},
 
-			update: {
-				title: "포트폴리오 | 수정",
-				label: "포트폴리오 수정",
+			profile: {
+				title: "작가 스튜디오 | 프로필",
+				label: "프로필 설정",
+				accessConfig: {
+					allowedOnLogin: true,
+					allowedMemberTypes: ["AUTHOR"],
+				},
+			},
+
+			price: {
+				title: "작가 스튜디오 | 가격",
+				label: "가격 설정",
 				accessConfig: {
 					allowedOnLogin: true,
 					allowedMemberTypes: ["AUTHOR"],
