@@ -3,7 +3,7 @@
 import ReactHookForm from "@/components/common/ReactHookForm";
 import PasswordTextField from "@/components/common/password/PasswordTextField";
 import H2 from "@/components/common/text/H2";
-import { StyledFormBox } from "@/components/join/form/components/defines/styles";
+import { StyledBoxInJoin, StyledFormBoxInJoin } from "@/components/join/form/components/defines/styles";
 import useJoinForm from "@/components/join/form/hooks/useJoinForm";
 import { COOKIE } from "@/defines/cookie/constants";
 import { JoinAuthorForm } from "@/defines/forms/join/author/types";
@@ -91,63 +91,65 @@ function JoinAuthorFormView() {
 	}, [instagramMe]);
 
 	return (
-		<StyledFormBox>
+		<StyledBoxInJoin>
 			<H2>회원 가입 (작가)</H2>
 
 			<FormProvider {...form}>
 				<form onSubmit={handleFormSubmit} className="join-form">
-					<TextField formName="instagramUsername" label="인스타그램 계정" fullWidth disabled />
+					<StyledFormBoxInJoin>
+						<TextField formName="instagramUsername" label="인스타그램 계정" fullWidth disabled />
 
-					<TextField
-						formName="email"
-						label="이메일"
-						required
-						rules={{
-							...getEmailValidateRule(),
-						}}
-						placeholder="abc12@naver.com"
-						type="email"
-						fullWidth
-					/>
+						<TextField
+							formName="email"
+							label="이메일"
+							required
+							rules={{
+								...getEmailValidateRule(),
+							}}
+							placeholder="abc12@naver.com"
+							type="email"
+							fullWidth
+						/>
 
-					<PasswordTextField />
+						<PasswordTextField />
 
-					<TextField formName="name" label="이름" required fullWidth />
+						<TextField formName="name" label="이름" required fullWidth />
 
-					<RadioGroup<GenderType>
-						label="성별"
-						formName="genderType"
-						required
-						radios={[
-							{
-								label: "남",
-								value: "MALE",
-							},
-							{
-								label: "여",
-								value: "FEMALE",
-							},
-						]}
-					/>
+						<RadioGroup<GenderType>
+							label="성별"
+							formName="genderType"
+							required
+							radios={[
+								{
+									label: "남",
+									value: "MALE",
+								},
+								{
+									label: "여",
+									value: "FEMALE",
+								},
+							]}
+						/>
 
-					<TextField
-						formName="tel"
-						label="연락처"
-						required
-						validator={isNumber}
-						placeholder="숫자만 입력하세요"
-						type="tel"
-						fullWidth
-					/>
+						<TextField
+							formName="tel"
+							label="연락처"
+							required
+							validator={isNumber}
+							placeholder="숫자만 입력하세요"
+							type="tel"
+							fullWidth
+						/>
 
-					<DatePicker formName="birthDate" label="생년월일" required />
+						<DatePicker formName="birthDate" label="생년월일" required />
 
-					<Button type="submit" variant="contained" size="large" fullWidth>
-						가입하기
-					</Button>
+						<Button type="submit" variant="contained" size="large" fullWidth>
+							가입하기
+						</Button>
+					</StyledFormBoxInJoin>
 				</form>
 			</FormProvider>
-		</StyledFormBox>
+		</StyledBoxInJoin>
 	);
 }
 
