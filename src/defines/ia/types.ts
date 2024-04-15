@@ -29,7 +29,7 @@ type SearchIa = Ia<"search">;
 
 type ProjectIa = Ia<"project">;
 
-type MypageIa = Ia<"mypage", MypageSubIa["portfolio"] & MypageSubIa["project-history"]>;
+type MypageIa = Ia<"mypage", MypageSubIa["studio"] & MypageSubIa["project-history"]>;
 
 type FindIa = Ia<"find", FindSubIa["email"] & FindSubIa["pw"]>;
 
@@ -50,7 +50,7 @@ type DeletionSubIa = {
 };
 
 type MypageSubIa = {
-	portfolio: Ia<"portfolio", Ia<"update">>;
+	studio: Ia<"studio", Ia<"profile" | "price">>;
 	["project-history"]: Ia<"project-history", Ia<"[id]">>;
 };
 
