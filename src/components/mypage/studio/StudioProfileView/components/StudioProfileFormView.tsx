@@ -1,16 +1,57 @@
-import { FormProvider, useForm } from "react-hook-form";
+"use client";
+
+import ReactHookForm from "@/components/common/ReactHookForm";
+import { StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
+import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
+import { TextField as ReadOnlyTextField } from "@mui/material";
+import { FormEventHandler } from "react";
+import { useForm } from "react-hook-form";
 
 export interface StudioProfileFormViewProps {}
 
 function StudioProfileFormView(props: StudioProfileFormViewProps) {
 	const {} = props;
 
-	const form = useForm({});
+	const { TextField, Checkbox } = ReactHookForm<StudioProfileForm>();
+
+	const form = useForm<StudioProfileForm>({
+		mode: "all",
+		defaultValues: {
+			name: "",
+			description: "",
+			category: {
+				DAILY_LIFE: false,
+				EXERCISE: false,
+				FASHION: false,
+				PARENTING: false,
+				BEAUTY: false,
+				ECONOMY: false,
+				SELF_IMPROVEMENT: false,
+				EMPATHY: false,
+				INVESTMENT: false,
+				HUMOR: false,
+				TRAVEL: false,
+				TIPS: false,
+				ROMANCE: false,
+				MARRIAGE: false,
+				HEALING: false,
+			},
+			portfolioLinks: [],
+		},
+	});
+
+	const { handleSubmit } = form;
+
+	const handleFormSubmit: FormEventHandler = handleSubmit(() => {});
 
 	return (
-		<FormProvider {...form}>
-			<form></form>
-		</FormProvider>
+		<StudioFormView title={"프로필 설정"} useFormReturn={form} onSubmit={handleFormSubmit}>
+			<ReadOnlyTextField label="인스타그램 계정" disabled helperText=" " />
+
+			<TextField formName="name" label="인스타툰 네임" required />
+
+			<TextField formName="description" label="인스타툰 소개" required multiline rows={5} />
+		</StudioFormView>
 	);
 }
 
