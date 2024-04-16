@@ -2,11 +2,16 @@
 
 import H2 from "@/components/common/text/H2";
 import {
+	StyledBoxInFind,
+	StyledButtonBoxInFind,
+	StyledFormBoxInFind,
+} from "@/components/find/components/defines/styles";
+import {
 	EmailInputProps,
 	StyledEmailBox,
 	StyledEmailInput,
 } from "@/components/find/components/FindEmailComplete/defines/styles";
-import { StyledBoxInFind, StyledButtonBoxInFind, StyledFormBoxInFind } from "@/components/find/defines/styles";
+
 import { IA } from "@/defines/ia/constants";
 import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";
 import { getIaPath } from "@/utils/ia";

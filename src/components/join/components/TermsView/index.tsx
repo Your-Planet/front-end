@@ -17,7 +17,6 @@ import {
 	StyledTermsViewBox,
 } from "@/components/join/components/TermsView/defines/styles";
 import { TermsDataType, TermsForm } from "@/components/join/components/TermsView/defines/types";
-import { GRAY_COLOR } from "@/defines/common/styles";
 import { IA } from "@/defines/ia/constants";
 import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";
 import { getIaPath } from "@/utils/ia";
@@ -112,7 +111,7 @@ function TermsView(props: TermsViewProps) {
 		return termsData.map(({ key, formName, label, required, text }) => (
 			<StyledAccordion key={key} disableGutters>
 				<AccordionSummary classes={{ content: "items-center" }} expandIcon={<ExpandMoreOutlined />}>
-					<Checkbox sx={{ color: GRAY_COLOR }} key={key} formName={formName} label={label} hideErrorMessage />
+					<Checkbox key={key} formName={formName} label={label} hideErrorMessage />
 					<Typography color={required ? "red" : "cornflowerblue"}>{required ? "(필수)" : "(선택)"}</Typography>
 				</AccordionSummary>
 				<AccordionDetails>
