@@ -1,11 +1,7 @@
 "use client";
 
 import H2 from "@/components/common/text/H2";
-import {
-	StyledBoxInFind,
-	StyledButtonBoxInFind,
-	StyledFormBoxInFind,
-} from "@/components/find/components/defines/styles";
+import { StyledBoxInFind, StyledButtonBoxInFind, StyledFormInFind } from "@/components/find/components/defines/styles";
 import {
 	EmailInputProps,
 	StyledEmailBox,
@@ -16,7 +12,6 @@ import { IA } from "@/defines/ia/constants";
 import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";
 import { getIaPath } from "@/utils/ia";
 import { Button } from "@mui/material";
-import { grey } from "@mui/material/colors";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -25,7 +20,6 @@ type Props = {};
 function FindEmailComplete({}: Props) {
 	const [email, setEmail] = useState<string | null>(null);
 	const router = useRouter();
-	const hoverGray = grey[600];
 
 	useEffect(() => {
 		// @TODO: 나은찬 세션 만료 시간 필요
@@ -47,7 +41,7 @@ function FindEmailComplete({}: Props) {
 		<StyledBoxInFind>
 			<H2>고객님의 이메일 정보입니다.</H2>
 
-			<StyledFormBoxInFind>
+			<StyledFormInFind>
 				<StyledEmailBox>
 					<StyledEmailInput readOnly disableUnderline fullWidth value={email} inputProps={{ ...EmailInputProps }} />
 				</StyledEmailBox>
@@ -60,7 +54,7 @@ function FindEmailComplete({}: Props) {
 						로그인 화면으로 돌아가기
 					</Button>
 				</StyledButtonBoxInFind>
-			</StyledFormBoxInFind>
+			</StyledFormInFind>
 		</StyledBoxInFind>
 	);
 }

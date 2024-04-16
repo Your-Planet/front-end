@@ -9,8 +9,6 @@ import {
 } from "@/components/join/components/TermsView/defines/constants";
 import {
 	StyledAccordion,
-	StyledBackButton,
-	StyledButton,
 	StyledButtonBox,
 	StyledFlexColumnBox,
 	StyledFormBox,
@@ -21,7 +19,7 @@ import { IA } from "@/defines/ia/constants";
 import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";
 import { getIaPath } from "@/utils/ia";
 import { ExpandMoreOutlined } from "@mui/icons-material";
-import { AccordionDetails, AccordionSummary, TextField, Typography } from "@mui/material";
+import { AccordionDetails, AccordionSummary, Button, TextField, Typography } from "@mui/material";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ChangeEvent, FormEventHandler, useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -158,18 +156,18 @@ function TermsView(props: TermsViewProps) {
 							{getTerms()}
 
 							<StyledButtonBox>
-								<StyledBackButton variant="contained" size="large" onClick={handleClickBackButton}>
+								<Button variant="outlined" size="large" onClick={handleClickBackButton}>
 									뒤로가기
-								</StyledBackButton>
+								</Button>
 
-								<StyledButton
+								<Button
 									variant="contained"
 									size="large"
 									type="submit"
 									disabled={!(termsOfServiceWatcher && privacyPolicyWatcher)}
 								>
 									동의
-								</StyledButton>
+								</Button>
 							</StyledButtonBox>
 						</FormProvider>
 					</StyledFormBox>

@@ -1,5 +1,4 @@
-import { BACK_BUTTON_BACKGROUND_COLOR, GRAY_COLOR } from "@/defines/common/styles";
-import { AccordionProps, Box, Button, styled } from "@mui/material";
+import { AccordionProps, Box, styled } from "@mui/material";
 import MuiAccordion from "@mui/material/Accordion";
 
 export const StyledTermsViewBox = styled(Box)`
@@ -26,7 +25,7 @@ export const StyledFormBox = styled(StyledFlexColumnBox)`
 export const StyledAccordion = styled((props: AccordionProps) => (
 	<MuiAccordion disableGutters elevation={0} square {...props} />
 ))(() => ({
-	border: `1px solid ${GRAY_COLOR}`,
+	border: `1px solid gray`,
 	"&::before": {
 		display: "none",
 	},
@@ -36,12 +35,4 @@ export const StyledAccordion = styled((props: AccordionProps) => (
 export const StyledButtonBox = styled(StyledFormBox)`
 	flex-direction: row;
 	justify-content: end;
-`;
-
-export const StyledButton = styled(Button)`
-	font-weight: 700;
-`;
-
-export const StyledBackButton = styled(StyledButton)`
-	background-color: ${BACK_BUTTON_BACKGROUND_COLOR} !important;
 `;
