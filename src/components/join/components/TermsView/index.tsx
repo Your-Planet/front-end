@@ -112,13 +112,7 @@ function TermsView(props: TermsViewProps) {
 		return termsData.map(({ key, formName, label, required, text }) => (
 			<StyledAccordion key={key} disableGutters>
 				<AccordionSummary classes={{ content: "items-center" }} expandIcon={<ExpandMoreOutlined />}>
-					<Checkbox
-						sx={{ color: required ? GRAY_COLOR : "" }}
-						key={key}
-						formName={formName}
-						label={label}
-						hideErrorMessage
-					/>
+					<Checkbox sx={{ color: GRAY_COLOR }} key={key} formName={formName} label={label} hideErrorMessage />
 					<Typography color={required ? "red" : "cornflowerblue"}>{required ? "(필수)" : "(선택)"}</Typography>
 				</AccordionSummary>
 				<AccordionDetails>

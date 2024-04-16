@@ -8,7 +8,7 @@ export const StyledBoxInFind = styled(Box)`
 	padding: 2rem;
 `;
 
-export const StyledFormBoxInFind = styled(Box)`
+export const StyledFormInFind = styled("form")`
 	display: flex;
 	flex-direction: column;
 	margin-top: 3rem;

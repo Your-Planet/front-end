@@ -8,7 +8,7 @@ export const StyledBoxInJoin = styled(Box)`
 	padding-bottom: 7rem;
 `;
 
-export const StyledFormBoxInJoin = styled(Box)`
+export const StyledFormInJoin = styled("form")`
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
