@@ -57,7 +57,7 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 			<FormLabel required>인스타툰 카테고리</FormLabel>
 			<Grid container spacing={1}>
 				{Object.entries(INSTATOON_CATEGORY_NAME_BY_TYPE).map(([instatoonCategoryType, label]) => (
-					<Grid item xs={3}>
+					<Grid item xs={3} key={instatoonCategoryType}>
 						<Checkbox
 							formName={`category.${instatoonCategoryType as InstatoonCategoryType}`}
 							label={label}
