@@ -32,7 +32,7 @@ const getMaxLengthRule = (maxLength: number, message?: Message | ((maxLength: nu
 	},
 });
 
-const getMinLengthRule = (minLength: number, message?: Message | ((minLength: number) => Message)) => ({
+export const getMinLengthRule = (minLength: number, message?: Message | ((minLength: number) => Message)) => ({
 	minLength: {
 		value: minLength,
 		message: message

@@ -7,6 +7,7 @@ import { FindEmailForm } from "@/defines/forms/find/email/types";
 import { IA } from "@/defines/ia/constants";
 import useMutationPostEmailFind from "@/hooks/queries/member/useMutationPostEmailFind";
 import { getIaPath } from "@/utils/ia";
+import { getMinLengthRule } from "@/utils/react-hook-form/rule";
 import { isNumber } from "@/utils/string";
 import { Button } from "@mui/material";
 import { useRouter } from "next/navigation";
@@ -43,16 +44,7 @@ function FindEmailView(props: Props) {
 
 	const { TextField } = ReactHookForm<FindEmailForm>();
 
-	const nameWatcher = watch("name");
-	const telWatcher = watch("tel");
-
-	const validateTel = (value: string) => {
-		if (value.length >= 10) {
-			return true;
-		}
-
-		return "최소 10자리 이상이어야 합니다.";
-	};
+	const [name, tel] = watch(["name", "tel"]);
 
 	return (
 		<StyledBoxInFind>
@@ -68,13 +60,13 @@ function FindEmailView(props: Props) {
 							label="연락처"
 							required
 							validator={isNumber}
-							rules={{ validate: validateTel }}
+							rules={{ ...getMinLengthRule(10) }}
 							placeholder="숫자만 입력하세요"
 							type="tel"
 							fullWidth
 						/>
 
-						<Button fullWidth variant="contained" size="large" type="submit" disabled={!(nameWatcher && telWatcher)}>
+						<Button fullWidth variant="contained" size="large" type="submit" disabled={!(name && tel)}>
 							다음
 						</Button>
 					</StyledFormBoxInFind>
