@@ -1,9 +1,9 @@
-import FindEmailComplete from "@/components/find/components/FindEmailComplete";
+import FindEmailCompleteView from "@/components/find/components/FindEmailCompleteView";
 
 type Props = {};
 
 function FindEmailCompletePage({}: Props) {
-	return <FindEmailComplete />;
+	return <FindEmailCompleteView />;
 }
 
 export default FindEmailCompletePage;

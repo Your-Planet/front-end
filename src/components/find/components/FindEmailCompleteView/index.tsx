@@ -6,7 +6,7 @@ import {
 	EmailInputProps,
 	StyledEmailBox,
 	StyledEmailInput,
-} from "@/components/find/components/FindEmailComplete/defines/styles";
+} from "@/components/find/components/FindEmailCompleteView/defines/styles";
 
 import { IA } from "@/defines/ia/constants";
 import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";
@@ -17,7 +17,7 @@ import { useEffect, useState } from "react";
 
 type Props = {};
 
-function FindEmailComplete({}: Props) {
+function FindEmailCompleteView({}: Props) {
 	const [email, setEmail] = useState<string | null>(null);
 	const router = useRouter();
 
@@ -59,4 +59,4 @@ function FindEmailComplete({}: Props) {
 	);
 }
 
-export default FindEmailComplete;
+export default FindEmailCompleteView;
