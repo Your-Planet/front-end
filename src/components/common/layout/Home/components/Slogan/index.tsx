@@ -8,6 +8,7 @@ import { Box, Typography } from "@mui/material";
 import { StyledTextBoxInSlogan } from "./defines/styles";
 
 function Slogan() {
+	// TODO @나은찬 : animation은 디자인 이후에 수정 필요
 	return (
 		<StyledContainerInSlogan>
 			<StyledImageInSlogan src="/images/your_planet.png" alt="your planet" width={150} height={150} priority />
