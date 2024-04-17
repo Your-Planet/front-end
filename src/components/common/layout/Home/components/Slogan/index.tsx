@@ -3,9 +3,9 @@ import {
 	StyledContainerInSlogan,
 	StyledFlexBoxInSlogan,
 	StyledImageInSlogan,
+	StyledTextBoxInSlogan,
 } from "@/components/common/layout/Home/components/Slogan/defines/styles";
 import { Box, Typography } from "@mui/material";
-import { StyledTextBoxInSlogan } from "./defines/styles";
 
 function Slogan() {
 	// TODO @나은찬 : animation은 디자인 이후에 수정 필요
