@@ -1,24 +1,7 @@
-"use client";
-
-import Slogan from "@/components/common/layout/Home/";
-import OurTeam from "@/components/common/layout/OurTeam/index";
-import OurWork from "@/components/common/layout/OurWork/";
-import { Box } from "@mui/material";
+import HomeView from "@/components/common/layout/Home/";
 
 function Home() {
-	return (
-		<Box>
-			<Box className="w-full h-auto">
-				<Slogan />
-			</Box>
-			<Box className="w-full h-auto">
-				<OurWork />
-			</Box>
-			<Box className="w-full h-auto">
-				<OurTeam />
-			</Box>
-		</Box>
-	);
+	return <HomeView />;
 }
 
 export default Home;

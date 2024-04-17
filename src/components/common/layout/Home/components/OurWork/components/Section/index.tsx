@@ -1,4 +1,4 @@
-import Contents from "@/components/common/layout/OurWork/components/Contents";
+import Contents from "@/components/common/layout/Home/components/OurWork/components/Contents";
 import H4 from "@/components/common/text/H4";
 import H5 from "@/components/common/text/H5";
 import { Box, styled } from "@mui/material";
