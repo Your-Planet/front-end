@@ -1,0 +1,16 @@
+export type InstatoonCategoryType =
+	| "DAILY_LIFE"
+	| "EXERCISE"
+	| "FASHION"
+	| "PARENTING"
+	| "BEAUTY"
+	| "ECONOMY"
+	| "SELF_IMPROVEMENT"
+	| "EMPATHY"
+	| "INVESTMENT"
+	| "HUMOR"
+	| "TRAVEL"
+	| "TIPS"
+	| "ROMANCE"
+	| "MARRIAGE"
+	| "HEALING";
