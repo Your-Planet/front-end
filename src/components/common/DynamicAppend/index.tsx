@@ -30,7 +30,7 @@ function DynamicAppend<TFieldValues extends FieldValues>(props: DynamicAppendPro
 		name: formName,
 	});
 
-	const getHandleClickAppend = (index: number) => () => {
+	const getHandleClickAppend = () => () => {
 		append(defaultValue);
 	};
 
@@ -48,8 +48,8 @@ function DynamicAppend<TFieldValues extends FieldValues>(props: DynamicAppendPro
 		<Stack>
 			{label && <FormLabel required={required}>{label}</FormLabel>}
 			<Stack spacing={1} sx={{ marginTop: "6px" }}>
-				{fields.map((_, index) => (
-					<Grid container key={index} gap={"10px"}>
+				{fields.map(({ id }, index) => (
+					<Grid container key={id} gap={"6px"}>
 						<Grid xs>
 							{component({
 								index,
@@ -62,7 +62,7 @@ function DynamicAppend<TFieldValues extends FieldValues>(props: DynamicAppendPro
 								disabled={Boolean(disabled)}
 								appendable={getAppendable(index)}
 								removable={removable}
-								onClickAppend={getHandleClickAppend(index)}
+								onClickAppend={getHandleClickAppend()}
 								onClickRemove={getHandleClickRemove(index)}
 							/>
 						</Grid>
