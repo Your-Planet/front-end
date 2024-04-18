@@ -32,10 +32,3 @@ html > body * {
 		"Segoe UI Symbol",
 		sans-serif;
 }
-
-.join-form {
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
-	margin-top: 2rem;
-}

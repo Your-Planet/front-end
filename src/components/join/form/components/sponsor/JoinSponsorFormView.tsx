@@ -3,12 +3,12 @@
 import ReactHookForm from "@/components/common/ReactHookForm";
 import PasswordTextField from "@/components/common/password/PasswordTextField";
 import H2 from "@/components/common/text/H2";
-import { StyledFormBox } from "@/components/join/form/components/defines/styles";
+import { StyledBoxInJoin, StyledFormInJoin } from "@/components/join/form/components/defines/styles";
 import useJoinForm from "@/components/join/form/hooks/useJoinForm";
 import { JOIN_SPONSOR_FORM_FIELD_LENGTH } from "@/defines/forms/join/sponsor/constants";
 import { JoinSponsorForm } from "@/defines/forms/join/sponsor/types";
 import { GenderType, SubscriptionPathType } from "@/defines/member/types";
-import { shoppingInformationTerm } from "@/defines/sessionStorage/constants";
+import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";
 import useMutationPostSponsorJoin from "@/hooks/queries/member/useMutationPostSponsorJoin";
 import { getObjectAtPath } from "@/utils/object";
 import { getEmailValidateRule, getLengthErrorMessage } from "@/utils/react-hook-form/rule";
@@ -62,7 +62,7 @@ function JoinSponsorFormView(props: JoinSponsorFormViewProps) {
 
 	const handleFormSubmit: FormEventHandler = handleSubmit(
 		({ genderType, birthDate, businessAddress, passwordConfirm, ...rest }) => {
-			const isShoppingInformation = sessionStorage.getItem(shoppingInformationTerm) === "true";
+			const isShoppingInformation = sessionStorage.getItem(SESSION_STORAGE.shoppingInformationTerm) === "true";
 
 			mutatePostJoin(
 				{
@@ -101,11 +101,11 @@ function JoinSponsorFormView(props: JoinSponsorFormViewProps) {
 	const { TextField, RadioGroup, DatePicker } = ReactHookForm<JoinSponsorForm>();
 
 	return (
-		<StyledFormBox>
+		<StyledBoxInJoin>
 			<H2>회원 가입 (광고주)</H2>
 
 			<FormProvider {...form}>
-				<form onSubmit={handleFormSubmit} className="join-form">
+				<StyledFormInJoin onSubmit={handleFormSubmit} className="join-form">
 					<TextField
 						formName="email"
 						label="이메일"
@@ -237,9 +237,9 @@ function JoinSponsorFormView(props: JoinSponsorFormViewProps) {
 					<Button type="submit" variant="contained" size="large" fullWidth>
 						가입하기
 					</Button>
-				</form>
+				</StyledFormInJoin>
 			</FormProvider>
-		</StyledFormBox>
+		</StyledBoxInJoin>
 	);
 }
 

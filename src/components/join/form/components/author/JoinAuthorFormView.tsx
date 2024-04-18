@@ -3,12 +3,12 @@
 import ReactHookForm from "@/components/common/ReactHookForm";
 import PasswordTextField from "@/components/common/password/PasswordTextField";
 import H2 from "@/components/common/text/H2";
-import { StyledFormBox } from "@/components/join/form/components/defines/styles";
+import { StyledBoxInJoin, StyledFormInJoin } from "@/components/join/form/components/defines/styles";
 import useJoinForm from "@/components/join/form/hooks/useJoinForm";
 import { COOKIE } from "@/defines/cookie/constants";
 import { JoinAuthorForm } from "@/defines/forms/join/author/types";
 import { GenderType } from "@/defines/member/types";
-import { shoppingInformationTerm } from "@/defines/sessionStorage/constants";
+import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";
 import useQueryGetMe from "@/hooks/queries/instagram-graph/useQueryGetMe";
 import useMutationPostAuthorJoin from "@/hooks/queries/member/useMutationPostAuthorJoin";
 import { getCookie } from "@/utils/cookie";
@@ -49,7 +49,7 @@ function JoinAuthorFormView() {
 	const instagramAccessToken = getCookie(COOKIE.instagramAccessToken);
 
 	const handleFormSubmit: FormEventHandler = handleSubmit(({ genderType, birthDate, passwordConfirm, ...rest }) => {
-		const isShoppingInformation = sessionStorage.getItem(shoppingInformationTerm) === "true";
+		const isShoppingInformation = sessionStorage.getItem(SESSION_STORAGE.shoppingInformationTerm) === "true";
 
 		mutatePostJoin(
 			{
@@ -91,11 +91,11 @@ function JoinAuthorFormView() {
 	}, [instagramMe]);
 
 	return (
-		<StyledFormBox>
+		<StyledBoxInJoin>
 			<H2>회원 가입 (작가)</H2>
 
 			<FormProvider {...form}>
-				<form onSubmit={handleFormSubmit} className="join-form">
+				<StyledFormInJoin onSubmit={handleFormSubmit}>
 					<TextField formName="instagramUsername" label="인스타그램 계정" fullWidth disabled />
 
 					<TextField
@@ -145,9 +145,9 @@ function JoinAuthorFormView() {
 					<Button type="submit" variant="contained" size="large" fullWidth>
 						가입하기
 					</Button>
-				</form>
+				</StyledFormInJoin>
 			</FormProvider>
-		</StyledFormBox>
+		</StyledBoxInJoin>
 	);
 }
 
