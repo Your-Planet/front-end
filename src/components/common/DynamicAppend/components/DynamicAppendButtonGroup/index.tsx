@@ -19,10 +19,10 @@ function DynamicAppendButtonGroup(props: DynamicAppendButtonGroupProps) {
 	return (
 		<Grid container spacing={1} margin={0} gap={"4px"}>
 			<Grid>
-				<DynamicRemoveButton display={removable} disabled={disabled} onClick={onClickRemove} />
+				<DynamicRemoveButton disabled={removable || disabled} onClick={onClickRemove} />
 			</Grid>
 			<Grid>
-				<DynamicAppendButton display={appendable} disabled={disabled} onClick={onClickAppend} />
+				<DynamicAppendButton disabled={appendable || disabled} onClick={onClickAppend} />
 			</Grid>
 		</Grid>
 	);
