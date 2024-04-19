@@ -14,3 +14,9 @@ export const StyledFormInFind = styled("form")`
 	margin-top: 3rem;
 	gap: 1rem;
 `;
+
+export const StyledButtonBoxInFind = styled(Box)`
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+`;
