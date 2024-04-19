@@ -2,11 +2,15 @@
 
 import DynamicAppend from "@/components/common/DynamicAppend";
 import ReactHookForm from "@/components/common/ReactHookForm";
-import { DEFAULT_PORTFOLIO_LINK } from "@/components/mypage/studio/StudioProfileView/defines/constants";
+import {
+	DEFAULT_PORTFOLIO_LINK,
+	STUDIO_PROFILE_FORM_LENGTH,
+} from "@/components/mypage/studio/StudioProfileView/defines/constants";
 import { StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
 import { INSTATOON_CATEGORY_NAME_BY_TYPE } from "@/defines/instatoon-category/constants";
 import { InstatoonCategoryType } from "@/defines/instatoon-category/types";
+import { getMaxLengthRule, getMinLengthRule } from "@/utils/react-hook-form/rule";
 import { FormLabel, Grid, TextField as ReadOnlyTextField, Stack } from "@mui/material";
 import { FormEventHandler } from "react";
 import { useForm } from "react-hook-form";
@@ -52,9 +56,24 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 		<StudioFormView title={"프로필 설정"} useFormReturn={form} onSubmit={handleFormSubmit}>
 			<ReadOnlyTextField label="인스타그램 계정" disabled helperText=" " />
 
-			<TextField formName="name" label="인스타툰 네임" required />
+			<TextField
+				formName="name"
+				label="인스타툰 네임"
+				required
+				rules={getMaxLengthRule(STUDIO_PROFILE_FORM_LENGTH.name.max)}
+			/>
 
-			<TextField formName="description" label="인스타툰 소개" required multiline rows={5} />
+			<TextField
+				formName="description"
+				label="인스타툰 소개"
+				required
+				multiline
+				rows={6}
+				rules={{
+					...getMinLengthRule(STUDIO_PROFILE_FORM_LENGTH.description.min),
+					...getMaxLengthRule(STUDIO_PROFILE_FORM_LENGTH.description.max),
+				}}
+			/>
 
 			<Stack>
 				<FormLabel required>인스타툰 카테고리</FormLabel>
