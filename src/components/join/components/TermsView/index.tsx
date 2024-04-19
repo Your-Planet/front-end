@@ -8,10 +8,7 @@ import {
 	shoppingInformationReceiptText,
 } from "@/components/join/components/TermsView/defines/constants";
 import {
-	GRAY_COLOR,
 	StyledAccordion,
-	StyledBackButton,
-	StyledButton,
 	StyledButtonBox,
 	StyledFlexColumnBox,
 	StyledFormBox,
@@ -22,7 +19,7 @@ import { IA } from "@/defines/ia/constants";
 import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";
 import { getIaPath } from "@/utils/ia";
 import { ExpandMoreOutlined } from "@mui/icons-material";
-import { AccordionDetails, AccordionSummary, TextField, Typography } from "@mui/material";
+import { AccordionDetails, AccordionSummary, Button, TextField, Typography } from "@mui/material";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ChangeEvent, FormEventHandler, useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -112,7 +109,7 @@ function TermsView(props: TermsViewProps) {
 		return termsData.map(({ key, formName, label, required, text }) => (
 			<StyledAccordion key={key} disableGutters>
 				<AccordionSummary classes={{ content: "items-center" }} expandIcon={<ExpandMoreOutlined />}>
-					<Checkbox sx={{ color: GRAY_COLOR }} key={key} formName={formName} label={label} hideErrorMessage />
+					<Checkbox key={key} formName={formName} label={label} hideErrorMessage />
 					<Typography color={required ? "red" : "cornflowerblue"}>{required ? "(필수)" : "(선택)"}</Typography>
 				</AccordionSummary>
 				<AccordionDetails>
@@ -146,7 +143,7 @@ function TermsView(props: TermsViewProps) {
 							<StyledAccordion>
 								<AccordionSummary>
 									<Checkbox
-										sx={{ color: GRAY_COLOR }}
+										sx={{ color: "gray" }}
 										key="all"
 										formName="all"
 										label={"회원가입 약관에 모두 동의합니다."}
@@ -159,18 +156,18 @@ function TermsView(props: TermsViewProps) {
 							{getTerms()}
 
 							<StyledButtonBox>
-								<StyledBackButton variant="contained" size="large" onClick={handleClickBackButton}>
+								<Button variant="outlined" size="large" onClick={handleClickBackButton}>
 									뒤로가기
-								</StyledBackButton>
+								</Button>
 
-								<StyledButton
+								<Button
 									variant="contained"
 									size="large"
 									type="submit"
 									disabled={!(termsOfServiceWatcher && privacyPolicyWatcher)}
 								>
 									동의
-								</StyledButton>
+								</Button>
 							</StyledButtonBox>
 						</FormProvider>
 					</StyledFormBox>
