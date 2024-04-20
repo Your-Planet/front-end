@@ -35,7 +35,7 @@ function FindPasswordView(props: Props) {
 	const handleFormSubmit = handleSubmit((data) => {
 		mutatePostFindPassword(data, {
 			onSuccess({ data }) {
-				router.push(getIaPath(IA.find.pw.complete));
+				router.push(getIaPath(IA["reset-pw"]));
 			},
 			onError({ response }) {
 				alert(response?.data.message);
