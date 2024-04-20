@@ -18,7 +18,7 @@ type Props = {};
 
 interface FindPasswordFormInterface extends FindPasswordForm {}
 
-function FindPasswordView(props: Props) {
+function ResetPasswordView(props: Props) {
 	const router = useRouter();
 
 	const form = useForm<FindPasswordFormInterface>({
@@ -88,4 +88,4 @@ function FindPasswordView(props: Props) {
 	);
 }
 
-export default FindPasswordView;
+export default ResetPasswordView;

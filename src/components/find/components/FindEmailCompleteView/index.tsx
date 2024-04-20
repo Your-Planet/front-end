@@ -1,7 +1,8 @@
 "use client";
 
+import { StyledCentralBox } from "@/components/common/CentralBox/defines/styles";
 import H2 from "@/components/common/text/H2";
-import { StyledBoxInFind, StyledButtonBoxInFind, StyledFormInFind } from "@/components/find/components/defines/styles";
+import { StyledButtonBoxInFind, StyledFormInFind } from "@/components/find/components/defines/styles";
 import {
 	EmailInputProps,
 	StyledEmailBox,
@@ -38,7 +39,7 @@ function FindEmailCompleteView({}: Props) {
 	};
 
 	return (
-		<StyledBoxInFind>
+		<StyledCentralBox>
 			<H2>고객님의 이메일 정보입니다.</H2>
 
 			<StyledFormInFind>
@@ -55,7 +56,7 @@ function FindEmailCompleteView({}: Props) {
 					</Button>
 				</StyledButtonBoxInFind>
 			</StyledFormInFind>
-		</StyledBoxInFind>
+		</StyledCentralBox>
 	);
 }
 
