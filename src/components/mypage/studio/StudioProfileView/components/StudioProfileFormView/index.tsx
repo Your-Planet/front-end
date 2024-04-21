@@ -1,11 +1,13 @@
 "use client";
 
+import DynamicAppend from "@/components/common/DynamicAppend";
 import ReactHookForm from "@/components/common/ReactHookForm";
+import { DEFAULT_PORTFOLIO_LINK } from "@/components/mypage/studio/StudioProfileView/defines/constants";
 import { StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
 import { INSTATOON_CATEGORY_NAME_BY_TYPE } from "@/defines/instatoon-category/constants";
 import { InstatoonCategoryType } from "@/defines/instatoon-category/types";
-import { FormLabel, Grid, TextField as ReadOnlyTextField } from "@mui/material";
+import { FormLabel, Grid, TextField as ReadOnlyTextField, Stack } from "@mui/material";
 import { FormEventHandler } from "react";
 import { useForm } from "react-hook-form";
 
@@ -38,7 +40,7 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 				MARRIAGE: false,
 				HEALING: false,
 			},
-			portfolioLinks: [],
+			portfolioLinks: [DEFAULT_PORTFOLIO_LINK],
 		},
 	});
 
@@ -54,18 +56,29 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 
 			<TextField formName="description" label="인스타툰 소개" required multiline rows={5} />
 
-			<FormLabel required>인스타툰 카테고리</FormLabel>
-			<Grid container spacing={1}>
-				{Object.entries(INSTATOON_CATEGORY_NAME_BY_TYPE).map(([instatoonCategoryType, label]) => (
-					<Grid item xs={3} key={instatoonCategoryType}>
-						<Checkbox
-							formName={`category.${instatoonCategoryType as InstatoonCategoryType}`}
-							label={label}
-							hideErrorMessage
-						/>
-					</Grid>
-				))}
-			</Grid>
+			<Stack>
+				<FormLabel required>인스타툰 카테고리</FormLabel>
+				<Grid container spacing={1}>
+					{Object.entries(INSTATOON_CATEGORY_NAME_BY_TYPE).map(([instatoonCategoryType, label]) => (
+						<Grid item xs={3} key={instatoonCategoryType}>
+							<Checkbox
+								formName={`category.${instatoonCategoryType as InstatoonCategoryType}`}
+								label={label}
+								hideErrorMessage
+							/>
+						</Grid>
+					))}
+				</Grid>
+			</Stack>
+
+			<DynamicAppend<StudioProfileForm>
+				label="포트폴리오 링크"
+				formName="portfolioLinks"
+				component={({ index }) => <TextField formName={`portfolioLinks.${index}.content`} label="" fullWidth />}
+				maxCount={10}
+				defaultValue={DEFAULT_PORTFOLIO_LINK}
+				required
+			/>
 		</StudioFormView>
 	);
 }
