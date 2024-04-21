@@ -1,11 +1,13 @@
 "use client";
 
-import { StyledCentralBox } from "@/components/common/CentralBox/defines/styles";
 import ReactHookForm from "@/components/common/ReactHookForm";
 import H2 from "@/components/common/text/H2";
-import { StyledFormInFind } from "@/components/find/components/defines/styles";
+
+import CentralBox from "@/components/common/CentralBox";
+import { StyledForm } from "@/components/common/StyledForm/defines/styles";
 import { FindPasswordForm } from "@/defines/forms/find/password/types";
 import { IA } from "@/defines/ia/constants";
+import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";
 import useMutationPostPasswordFind from "@/hooks/queries/member/useMutationPostPasswordFind";
 import { getIaPath } from "@/utils/ia";
 import { getEmailValidateRule, getMinLengthRule } from "@/utils/react-hook-form/rule";
@@ -36,6 +38,15 @@ function FindPasswordView(props: Props) {
 	const handleFormSubmit = handleSubmit((data) => {
 		mutatePostFindPassword(data, {
 			onSuccess({ data }) {
+				// is it right?
+				sessionStorage.setItem(
+					SESSION_STORAGE.resetPassword,
+					JSON.stringify({
+						name,
+						email,
+						tel,
+					}),
+				);
 				router.push(getIaPath(IA["reset-pw"]));
 			},
 			onError({ response }) {
@@ -49,11 +60,11 @@ function FindPasswordView(props: Props) {
 	const [name, email, tel] = watch(["name", "email", "tel"]);
 
 	return (
-		<StyledCentralBox>
+		<CentralBox>
 			<H2>비밀번호 찾기</H2>
 
 			<FormProvider {...form}>
-				<StyledFormInFind onSubmit={handleFormSubmit} noValidate>
+				<StyledForm onSubmit={handleFormSubmit} noValidate>
 					<TextField formName="name" label="이름" required fullWidth />
 
 					<TextField
@@ -82,9 +93,9 @@ function FindPasswordView(props: Props) {
 					<Button fullWidth variant="contained" size="large" type="submit" disabled={!(name && email && tel)}>
 						다음
 					</Button>
-				</StyledFormInFind>
+				</StyledForm>
 			</FormProvider>
-		</StyledCentralBox>
+		</CentralBox>
 	);
 }
 

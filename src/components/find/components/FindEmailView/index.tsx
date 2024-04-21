@@ -1,9 +1,9 @@
 "use client";
 
-import { StyledCentralBox } from "@/components/common/CentralBox/defines/styles";
+import CentralBox from "@/components/common/CentralBox";
 import ReactHookForm from "@/components/common/ReactHookForm";
+import { StyledForm } from "@/components/common/StyledForm/defines/styles";
 import H2 from "@/components/common/text/H2";
-import { StyledFormInFind } from "@/components/find/components/defines/styles";
 import { FindEmailForm } from "@/defines/forms/find/email/types";
 import { IA } from "@/defines/ia/constants";
 import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";
@@ -50,11 +50,11 @@ function FindEmailView(props: Props) {
 	const [name, tel] = watch(["name", "tel"]);
 
 	return (
-		<StyledCentralBox>
+		<CentralBox>
 			<H2>이메일 찾기</H2>
 
 			<FormProvider {...form}>
-				<StyledFormInFind onSubmit={handleFormSubmit} noValidate>
+				<StyledForm onSubmit={handleFormSubmit} noValidate>
 					<TextField formName="name" label="이름" required fullWidth />
 
 					<TextField
@@ -71,9 +71,9 @@ function FindEmailView(props: Props) {
 					<Button fullWidth variant="contained" size="large" type="submit" disabled={!(name && tel)}>
 						다음
 					</Button>
-				</StyledFormInFind>
+				</StyledForm>
 			</FormProvider>
-		</StyledCentralBox>
+		</CentralBox>
 	);
 }
 

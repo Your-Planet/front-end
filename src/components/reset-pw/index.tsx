@@ -1,42 +1,49 @@
 "use client";
 
-import { StyledCentralBox } from "@/components/common/CentralBox/defines/styles";
-import ReactHookForm from "@/components/common/ReactHookForm";
+import CentralBox from "@/components/common/CentralBox";
+import PasswordTextField from "@/components/common/password/PasswordTextField";
+import { StyledForm } from "@/components/common/StyledForm/defines/styles";
 import H2 from "@/components/common/text/H2";
-import { StyledFormInFind } from "@/components/find/components/defines/styles";
-import { FindPasswordForm } from "@/defines/forms/find/password/types";
+import { ResetPasswordForm } from "@/defines/forms/reset-pw/types";
 import { IA } from "@/defines/ia/constants";
-import useMutationPostPasswordFind from "@/hooks/queries/member/useMutationPostPasswordFind";
+import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";
+import useMutationPostPasswordReset from "@/hooks/queries/member/useMutationPostPasswordReset";
 import { getIaPath } from "@/utils/ia";
-import { getEmailValidateRule, getMinLengthRule } from "@/utils/react-hook-form/rule";
-import { isNumber } from "@/utils/string";
 import { Button } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 
-type Props = {};
+type Props = {
+	resetPasswordForm: ResetPasswordForm;
+};
 
-interface FindPasswordFormInterface extends FindPasswordForm {}
+interface ResetPasswordFormInterface extends ResetPasswordForm {}
 
 function ResetPasswordView(props: Props) {
+	const { resetPasswordForm } = props;
 	const router = useRouter();
 
-	const form = useForm<FindPasswordFormInterface>({
+	const form = useForm<ResetPasswordFormInterface>({
 		defaultValues: {
-			name: "",
-			email: "",
-			tel: "",
+			...resetPasswordForm,
 		},
 	});
 
-	const { handleSubmit, watch } = form;
+	const { handleSubmit, watch, setValue } = form;
 
-	const { mutate: mutatePostFindPassword } = useMutationPostPasswordFind({});
+	const { mutate: mutatePostResetPassword } = useMutationPostPasswordReset({});
+
+	const handleClickSubmitButton = () => {
+		setValue("name", resetPasswordForm.name);
+		setValue("email", resetPasswordForm.email);
+		setValue("tel", resetPasswordForm.tel);
+	};
 
 	const handleFormSubmit = handleSubmit((data) => {
-		mutatePostFindPassword(data, {
+		mutatePostResetPassword(data, {
 			onSuccess({ data }) {
-				router.push(getIaPath(IA["reset-pw"]));
+				sessionStorage.removeItem(SESSION_STORAGE.resetPassword);
+				router.push(getIaPath(IA.find.pw.complete));
 			},
 			onError({ response }) {
 				alert(response?.data.message);
@@ -44,47 +51,29 @@ function ResetPasswordView(props: Props) {
 		});
 	});
 
-	const { TextField } = ReactHookForm<FindPasswordForm>();
-
-	const [name, email, tel] = watch(["name", "email", "tel"]);
+	const [password, passwordConfirm] = watch(["password", "passwordConfirm"]);
 
 	return (
-		<StyledCentralBox>
-			<H2>비밀번호 찾기</H2>
+		<CentralBox>
+			<H2>비밀번호 재설정</H2>
 
 			<FormProvider {...form}>
-				<StyledFormInFind onSubmit={handleFormSubmit} noValidate>
-					<TextField formName="name" label="이름" required fullWidth />
+				<StyledForm onSubmit={handleFormSubmit} noValidate>
+					<PasswordTextField />
 
-					<TextField
-						formName="email"
-						label="이메일"
-						rules={{
-							...getEmailValidateRule(),
-						}}
-						placeholder="abc12@naver.com"
-						type="email"
-						required
+					<Button
 						fullWidth
-					/>
-
-					<TextField
-						formName="tel"
-						label="연락처"
-						required
-						validator={isNumber}
-						rules={{ ...getMinLengthRule(10) }}
-						placeholder="숫자만 입력하세요"
-						type="tel"
-						fullWidth
-					/>
-
-					<Button fullWidth variant="contained" size="large" type="submit" disabled={!(name && email && tel)}>
+						variant="contained"
+						size="large"
+						type="submit"
+						onClick={handleClickSubmitButton}
+						disabled={!(password && passwordConfirm)}
+					>
 						다음
 					</Button>
-				</StyledFormInFind>
+				</StyledForm>
 			</FormProvider>
-		</StyledCentralBox>
+		</CentralBox>
 	);
 }
 
