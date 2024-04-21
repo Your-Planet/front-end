@@ -35,6 +35,10 @@ function FindPasswordView(props: Props) {
 
 	const { mutate: mutatePostFindPassword } = useMutationPostPasswordFind({});
 
+	const { TextField } = ReactHookForm<FindPasswordForm>();
+
+	const [name, email, tel] = watch(["name", "email", "tel"]);
+
 	const handleFormSubmit = handleSubmit((data) => {
 		mutatePostFindPassword(data, {
 			onSuccess({ data }) {
@@ -54,10 +58,6 @@ function FindPasswordView(props: Props) {
 			},
 		});
 	});
-
-	const { TextField } = ReactHookForm<FindPasswordForm>();
-
-	const [name, email, tel] = watch(["name", "email", "tel"]);
 
 	return (
 		<CentralBox>
