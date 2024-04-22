@@ -63,17 +63,19 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 		const { length } = Object.values(category).filter(Boolean);
 
 		if (length < STUDIO_PROFILE_FORM_LENGTH.category.min) {
-			return setError("category", {
+			setError("category", {
 				type: "min",
 				message: "인스타툰 카테고리를 1개 이상 선택해주세요.",
 			});
+			return;
 		}
 
 		if (length > STUDIO_PROFILE_FORM_LENGTH.category.max) {
-			return setError("category", {
+			setError("category", {
 				type: "max",
 				message: "인스타툰 카테고리는 최대 5개까지 선택 가능합니다.",
 			});
+			return;
 		}
 
 		if (errors.category) {
