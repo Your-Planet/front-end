@@ -28,14 +28,6 @@ export class MemberApi extends BaseApi {
 	};
 
 	public resetPassword: AxiosRequestYourPlanetFunction<ResetPasswordRequest, ResetPasswordResponse> = (req) => {
-		// is it right?
-		const refineReq = {
-			name: req.name,
-			email: req.email,
-			tel: req.tel,
-			newPassword: req.password,
-		};
-
-		return this.axiosInstance.post(this.getUrl("/reset-password"), refineReq);
+		return this.axiosInstance.post(this.getUrl("/reset-password"), req);
 	};
 }

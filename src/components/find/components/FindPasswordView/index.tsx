@@ -4,7 +4,8 @@ import ReactHookForm from "@/components/common/ReactHookForm";
 import H2 from "@/components/common/text/H2";
 
 import CentralBox from "@/components/common/CentralBox";
-import { StyledForm } from "@/components/common/StyledForm/defines/styles";
+
+import { StyledFormInFind } from "@/components/find/components/defines/styles";
 import { FindPasswordForm } from "@/defines/forms/find/password/types";
 import { IA } from "@/defines/ia/constants";
 import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";
@@ -64,7 +65,7 @@ function FindPasswordView(props: Props) {
 			<H2>비밀번호 찾기</H2>
 
 			<FormProvider {...form}>
-				<StyledForm onSubmit={handleFormSubmit} noValidate>
+				<StyledFormInFind onSubmit={handleFormSubmit} noValidate>
 					<TextField formName="name" label="이름" required fullWidth />
 
 					<TextField
@@ -93,7 +94,7 @@ function FindPasswordView(props: Props) {
 					<Button fullWidth variant="contained" size="large" type="submit" disabled={!(name && email && tel)}>
 						다음
 					</Button>
-				</StyledForm>
+				</StyledFormInFind>
 			</FormProvider>
 		</CentralBox>
 	);

@@ -2,8 +2,7 @@ export interface ResetPasswordRequest {
 	name: string;
 	email: string;
 	tel: string;
-	password: string;
-	passwordConfirm: string;
+	newPassword: string;
 }
 
 export type ResetPasswordResponse = string;

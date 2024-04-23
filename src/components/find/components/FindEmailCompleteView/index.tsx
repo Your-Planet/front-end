@@ -1,9 +1,8 @@
 "use client";
 
 import CentralBox from "@/components/common/CentralBox";
-import { StyledForm } from "@/components/common/StyledForm/defines/styles";
 import H2 from "@/components/common/text/H2";
-import { StyledButtonBoxInFind } from "@/components/find/components/defines/styles";
+import { StyledButtonBoxInFind, StyledFormInFind } from "@/components/find/components/defines/styles";
 import {
 	EmailInputProps,
 	StyledEmailBox,
@@ -43,7 +42,7 @@ function FindEmailCompleteView({}: Props) {
 		<CentralBox>
 			<H2>고객님의 이메일 정보입니다.</H2>
 
-			<StyledForm>
+			<StyledFormInFind>
 				<StyledEmailBox>
 					<StyledEmailInput readOnly disableUnderline fullWidth value={email} inputProps={{ ...EmailInputProps }} />
 				</StyledEmailBox>
@@ -56,7 +55,7 @@ function FindEmailCompleteView({}: Props) {
 						로그인 화면으로 돌아가기
 					</Button>
 				</StyledButtonBoxInFind>
-			</StyledForm>
+			</StyledFormInFind>
 		</CentralBox>
 	);
 }

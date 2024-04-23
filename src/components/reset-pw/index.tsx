@@ -2,8 +2,9 @@
 
 import CentralBox from "@/components/common/CentralBox";
 import PasswordTextField from "@/components/common/password/PasswordTextField";
-import { StyledForm } from "@/components/common/StyledForm/defines/styles";
+
 import H2 from "@/components/common/text/H2";
+import { StyledFormInFind } from "@/components/find/components/defines/styles";
 import { ResetPasswordForm } from "@/defines/forms/reset-pw/types";
 import { IA } from "@/defines/ia/constants";
 import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";
@@ -17,7 +18,10 @@ type Props = {
 	resetPasswordForm: ResetPasswordForm;
 };
 
-interface ResetPasswordFormInterface extends ResetPasswordForm {}
+interface ResetPasswordFormInterface extends ResetPasswordForm {
+	password: string;
+	passwordConfirm: string;
+}
 
 function ResetPasswordView(props: Props) {
 	const { resetPasswordForm } = props;
@@ -26,29 +30,31 @@ function ResetPasswordView(props: Props) {
 	const form = useForm<ResetPasswordFormInterface>({
 		defaultValues: {
 			...resetPasswordForm,
+			password: "",
+			passwordConfirm: "",
 		},
 	});
 
-	const { handleSubmit, watch, setValue } = form;
+	const { handleSubmit, watch } = form;
 
 	const { mutate: mutatePostResetPassword } = useMutationPostPasswordReset({});
 
-	const handleClickSubmitButton = () => {
-		setValue("name", resetPasswordForm.name);
-		setValue("email", resetPasswordForm.email);
-		setValue("tel", resetPasswordForm.tel);
-	};
-
 	const handleFormSubmit = handleSubmit((data) => {
-		mutatePostResetPassword(data, {
-			onSuccess({ data }) {
-				sessionStorage.removeItem(SESSION_STORAGE.resetPassword);
-				router.push(getIaPath(IA.find.pw.complete));
+		mutatePostResetPassword(
+			{
+				...resetPasswordForm,
+				newPassword: password,
 			},
-			onError({ response }) {
-				alert(response?.data.message);
+			{
+				onSuccess() {
+					sessionStorage.removeItem(SESSION_STORAGE.resetPassword);
+					router.push(getIaPath(IA.find.pw.complete));
+				},
+				onError({ response }) {
+					alert(response?.data.message);
+				},
 			},
-		});
+		);
 	});
 
 	const [password, passwordConfirm] = watch(["password", "passwordConfirm"]);
@@ -58,20 +64,13 @@ function ResetPasswordView(props: Props) {
 			<H2>비밀번호 재설정</H2>
 
 			<FormProvider {...form}>
-				<StyledForm onSubmit={handleFormSubmit} noValidate>
+				<StyledFormInFind onSubmit={handleFormSubmit} noValidate>
 					<PasswordTextField />
 
-					<Button
-						fullWidth
-						variant="contained"
-						size="large"
-						type="submit"
-						onClick={handleClickSubmitButton}
-						disabled={!(password && passwordConfirm)}
-					>
+					<Button fullWidth variant="contained" size="large" type="submit" disabled={!(password && passwordConfirm)}>
 						다음
 					</Button>
-				</StyledForm>
+				</StyledFormInFind>
 			</FormProvider>
 		</CentralBox>
 	);

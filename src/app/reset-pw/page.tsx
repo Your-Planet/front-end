@@ -15,8 +15,7 @@ function ResetPasswordPage({}: Props) {
 		name: "",
 		email: "",
 		tel: "",
-		password: "",
-		passwordConfirm: "",
+		newPassword: "",
 	});
 
 	useEffect(() => {
@@ -35,8 +34,7 @@ function ResetPasswordPage({}: Props) {
 			name,
 			email,
 			tel,
-			password: "",
-			passwordConfirm: "",
+			newPassword: "",
 		});
 	}, []);
 
