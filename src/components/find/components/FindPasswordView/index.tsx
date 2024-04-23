@@ -37,6 +37,7 @@ function FindPasswordView(props: Props) {
 			onSuccess({ data }) {
 				router.push(getIaPath(IA["reset-pw"]));
 			},
+			// TODO: @나은찬 mui alert 대체
 			onError({ response }) {
 				alert(response?.data.message);
 			},
