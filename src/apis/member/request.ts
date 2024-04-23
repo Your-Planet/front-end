@@ -14,6 +14,6 @@ export class MemberApi extends BaseApi {
 	};
 
 	public findEmail: AxiosRequestYourPlanetFunction<FindEmailRequest, FindEmailResponse> = (req) => {
-		return this.axiosInstance.post(this.getUrl("/find-id"), req);
+		return this.axiosInstance.post(this.getUrl("/find-email"), req);
 	};
 }
