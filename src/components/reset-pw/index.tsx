@@ -39,6 +39,8 @@ function ResetPasswordView(props: Props) {
 
 	const { mutate: mutatePostResetPassword } = useMutationPostPasswordReset({});
 
+	const [password, passwordConfirm] = watch(["password", "passwordConfirm"]);
+
 	const handleFormSubmit = handleSubmit((data) => {
 		mutatePostResetPassword(
 			{
@@ -56,8 +58,6 @@ function ResetPasswordView(props: Props) {
 			},
 		);
 	});
-
-	const [password, passwordConfirm] = watch(["password", "passwordConfirm"]);
 
 	return (
 		<CentralBox>
