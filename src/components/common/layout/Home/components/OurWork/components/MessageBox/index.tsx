@@ -1,4 +1,4 @@
-import { ChatDirection } from "@/components/common/layout/OurWork/defines/types";
+import { ChatDirection } from "@/components/common/layout/Home/components/OurWork/defines/types";
 import { Box, Typography } from "@mui/material";
 import { ReactNode } from "react";
 

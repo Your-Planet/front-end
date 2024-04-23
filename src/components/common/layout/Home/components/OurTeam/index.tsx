@@ -1,4 +1,4 @@
-import Card from "@/components/common/layout/OurTeam/components/Card";
+import Card from "@/components/common/layout/Home/components/OurTeam/components/Card";
 import H4 from "@/components/common/text/H4";
 import { Box } from "@mui/material";
 import { cloneElement } from "react";

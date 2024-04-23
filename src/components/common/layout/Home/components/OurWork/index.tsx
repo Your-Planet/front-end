@@ -1,4 +1,4 @@
-import Section from "@/components/common/layout/OurWork/components/Section";
+import Section from "@/components/common/layout/Home/components/OurWork/components/Section";
 import { Box } from "@mui/material";
 import { useInView } from "react-intersection-observer";
 

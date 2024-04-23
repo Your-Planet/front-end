@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<html>
-			<body className="overflow-x-hidden overflow-y-scroll">
+			<body>
 				<div id="__next">
 					<StyleProviders>
 						<DateLocalizationProvider>
