@@ -38,6 +38,7 @@ function FindEmailView(props: Props) {
 				sessionStorage.setItem(SESSION_STORAGE.foundEmail, data);
 				router.push(getIaPath(IA.find.email.complete));
 			},
+			// TODO: @나은찬 mui alert 대체
 			onError({ response }) {
 				alert(response?.data.message);
 			},
