@@ -1,11 +1,7 @@
 import { JoinRequest, JoinResponse } from "@/apis/member/models";
-import {
-	FindEmailRequest,
-	FindEmailResponse,
-	FindPasswordRequest,
-	FindPasswordResponse,
-} from "@/apis/member/models/find";
+import { FindEmailRequest, FindEmailResponse } from "@/apis/member/models/find";
 import { LoginRequest, LoginResponse } from "@/apis/member/models/login";
+import { ValidateMemberRequest, ValidateMemberResponse } from "@/apis/member/models/validate";
 import { AxiosRequestYourPlanetFunction } from "@/defines/apis/types";
 import BaseApi from "@/utils/api/BaseApi";
 
@@ -22,7 +18,7 @@ export class MemberApi extends BaseApi {
 		return this.axiosInstance.post(this.getUrl("/find-id"), req);
 	};
 
-	public findPassword: AxiosRequestYourPlanetFunction<FindPasswordRequest, FindPasswordResponse> = (req) => {
+	public validateMember: AxiosRequestYourPlanetFunction<ValidateMemberRequest, ValidateMemberResponse> = (req) => {
 		return this.axiosInstance.post(this.getUrl("/validation"), req);
 	};
 }

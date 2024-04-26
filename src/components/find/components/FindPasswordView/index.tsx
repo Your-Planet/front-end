@@ -3,9 +3,9 @@
 import ReactHookForm from "@/components/common/ReactHookForm";
 import H2 from "@/components/common/text/H2";
 import { StyledBoxInFind, StyledFormInFind } from "@/components/find/components/defines/styles";
-import { FindPasswordForm } from "@/defines/forms/find/password/types";
+import { ValidateMemberForm } from "@/defines/forms/find/password/types";
 import { IA } from "@/defines/ia/constants";
-import useMutationPostPasswordFind from "@/hooks/queries/member/useMutationPostPasswordFind";
+import useMutationPostPasswordFind from "@/hooks/queries/member/useMutationPostValidateMember";
 import { getIaPath } from "@/utils/ia";
 import { getEmailValidateRule, getMinLengthRule } from "@/utils/react-hook-form/rule";
 import { isNumber } from "@/utils/string";
@@ -15,12 +15,12 @@ import { FormProvider, useForm } from "react-hook-form";
 
 type Props = {};
 
-interface FindPasswordFormInterface extends FindPasswordForm {}
+interface ValidateMemberInterface extends ValidateMemberForm {}
 
 function FindPasswordView(props: Props) {
 	const router = useRouter();
 
-	const form = useForm<FindPasswordFormInterface>({
+	const form = useForm<ValidateMemberInterface>({
 		defaultValues: {
 			name: "",
 			email: "",
@@ -44,7 +44,7 @@ function FindPasswordView(props: Props) {
 		});
 	});
 
-	const { TextField } = ReactHookForm<FindPasswordForm>();
+	const { TextField } = ReactHookForm<ValidateMemberForm>();
 
 	const [name, email, tel] = watch(["name", "email", "tel"]);
 

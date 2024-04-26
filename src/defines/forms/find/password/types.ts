@@ -1,3 +1,3 @@
-import { FindPasswordRequest } from "@/apis/member/models/find";
+import { ValidateMemberRequest } from "@/apis/member/models/validate";
 
-export interface FindPasswordForm extends FindPasswordRequest {}
+export interface ValidateMemberForm extends ValidateMemberRequest {}
