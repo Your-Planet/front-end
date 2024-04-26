@@ -1,15 +1,13 @@
 "use client";
 
+import CentralBox from "@/components/common/CentralBox";
 import ReactHookForm from "@/components/common/ReactHookForm";
 import H2 from "@/components/common/text/H2";
-
-import CentralBox from "@/components/common/CentralBox";
-
 import { StyledFormInFind } from "@/components/find/components/defines/styles";
-import { FindPasswordForm } from "@/defines/forms/find/password/types";
+import { ValidateMemberForm } from "@/defines/forms/find/password/types";
 import { IA } from "@/defines/ia/constants";
 import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";
-import useMutationPostPasswordFind from "@/hooks/queries/member/useMutationPostPasswordFind";
+import useMutationPostPasswordFind from "@/hooks/queries/member/useMutationPostValidateMember";
 import { getIaPath } from "@/utils/ia";
 import { getEmailValidateRule, getMinLengthRule } from "@/utils/react-hook-form/rule";
 import { isNumber } from "@/utils/string";
@@ -19,12 +17,12 @@ import { FormProvider, useForm } from "react-hook-form";
 
 type Props = {};
 
-interface FindPasswordFormInterface extends FindPasswordForm {}
+interface ValidateMemberInterface extends ValidateMemberForm {}
 
 function FindPasswordView(props: Props) {
 	const router = useRouter();
 
-	const form = useForm<FindPasswordFormInterface>({
+	const form = useForm<ValidateMemberInterface>({
 		defaultValues: {
 			name: "",
 			email: "",
@@ -36,7 +34,7 @@ function FindPasswordView(props: Props) {
 
 	const { mutate: mutatePostFindPassword } = useMutationPostPasswordFind({});
 
-	const { TextField } = ReactHookForm<FindPasswordForm>();
+	const { TextField } = ReactHookForm<ValidateMemberForm>();
 
 	const [name, email, tel] = watch(["name", "email", "tel"]);
 
@@ -54,6 +52,7 @@ function FindPasswordView(props: Props) {
 				);
 				router.push(getIaPath(IA["reset-pw"]));
 			},
+			// TODO: @나은찬 mui alert 대체
 			onError({ response }) {
 				alert(response?.data.message);
 			},
