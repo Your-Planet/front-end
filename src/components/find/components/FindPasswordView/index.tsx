@@ -41,7 +41,6 @@ function FindPasswordView(props: Props) {
 	const handleFormSubmit = handleSubmit((data) => {
 		mutatePostFindPassword(data, {
 			onSuccess({ data }) {
-				// is it right?
 				sessionStorage.setItem(
 					SESSION_STORAGE.resetPassword,
 					JSON.stringify({

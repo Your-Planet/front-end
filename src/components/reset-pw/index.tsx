@@ -44,7 +44,7 @@ function ResetPasswordView(props: Props) {
 	const handleFormSubmit = handleSubmit((data) => {
 		mutatePostResetPassword(
 			{
-				...resetPasswordForm,
+				...data,
 				newPassword: password,
 			},
 			{

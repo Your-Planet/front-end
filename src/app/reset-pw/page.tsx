@@ -11,18 +11,13 @@ type Props = {};
 function ResetPasswordPage({}: Props) {
 	const router = useRouter();
 
-	const [resetPasswordForm, setResetPasswordForm] = useState<ResetPasswordRequest>({
-		name: "",
-		email: "",
-		tel: "",
-		newPassword: "",
-	});
+	const [resetPasswordForm, setResetPasswordForm] = useState<ResetPasswordRequest | null>(null);
 
 	useEffect(() => {
 		const json = sessionStorage.getItem(SESSION_STORAGE.resetPassword) as string;
 
 		if (!json) {
-			// how to?
+			// TODO: @naeunchan fallback?
 			alert("올바르지 않은 접근입니다.");
 			router.push("/403");
 			return;
@@ -38,7 +33,8 @@ function ResetPasswordPage({}: Props) {
 		});
 	}, []);
 
-	return <ResetPasswordView resetPasswordForm={resetPasswordForm} />;
+	// TODO: @naeunchan loading?
+	return resetPasswordForm && <ResetPasswordView resetPasswordForm={resetPasswordForm} />;
 }
 
 export default ResetPasswordPage;
