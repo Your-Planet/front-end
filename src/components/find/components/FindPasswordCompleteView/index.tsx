@@ -1,15 +1,18 @@
 "use client";
 
 import CentralBox from "@/components/common/CentralBox";
-import H2 from "@/components/common/text/H2";
 import { StyledBoxInFindPasswordComplete } from "@/components/find/components/FindPasswordCompleteView/defines/styles";
 import { IA } from "@/defines/ia/constants";
 import { getIaPath } from "@/utils/ia";
 
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 
 type Props = {};
+
+const sx = {
+	fontWeight: "bold",
+};
 
 function FindPasswordCompleteView({}: Props) {
 	const router = useRouter();
@@ -22,8 +25,12 @@ function FindPasswordCompleteView({}: Props) {
 		<CentralBox>
 			<StyledBoxInFindPasswordComplete>
 				<Box>
-					<H2>새로운 비밀번호</H2>
-					<H2>설정이 완료되었어요.</H2>
+					<Typography variant="h4" sx={{ ...sx }}>
+						새로운 비밀번호
+					</Typography>
+					<Typography variant="h4" sx={{ ...sx }}>
+						설정이 완료되었어요.
+					</Typography>
 				</Box>
 
 				<Button fullWidth variant="contained" size="large" onClick={handleClick}>
