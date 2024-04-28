@@ -3,12 +3,11 @@
 import ReactHookForm from "@/components/common/ReactHookForm";
 import H2 from "@/components/common/text/H2";
 import { StyledBoxInFind, StyledFormInFind } from "@/components/find/components/defines/styles";
-import { FindEmailForm } from "@/defines/forms/find/email/types";
+import { ValidateMemberForm } from "@/defines/forms/find/password/types";
 import { IA } from "@/defines/ia/constants";
-import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";
-import useMutationPostEmailFind from "@/hooks/queries/member/useMutationPostEmailFind";
+import useMutationPostPasswordFind from "@/hooks/queries/member/useMutationPostValidateMember";
 import { getIaPath } from "@/utils/ia";
-import { getMinLengthRule } from "@/utils/react-hook-form/rule";
+import { getEmailValidateRule, getMinLengthRule } from "@/utils/react-hook-form/rule";
 import { isNumber } from "@/utils/string";
 import { Button } from "@mui/material";
 import { useRouter } from "next/navigation";
@@ -16,27 +15,27 @@ import { FormProvider, useForm } from "react-hook-form";
 
 type Props = {};
 
-interface FindEmailFormInterface extends FindEmailForm {}
+interface ValidateMemberInterface extends ValidateMemberForm {}
 
-function FindEmailView(props: Props) {
+function FindPasswordView(props: Props) {
 	const router = useRouter();
 
-	const form = useForm<FindEmailFormInterface>({
+	const form = useForm<ValidateMemberInterface>({
 		defaultValues: {
 			name: "",
+			email: "",
 			tel: "",
 		},
 	});
 
 	const { handleSubmit, watch } = form;
 
-	const { mutate: mutatePostFindEmail } = useMutationPostEmailFind({});
+	const { mutate: mutatePostFindPassword } = useMutationPostPasswordFind({});
 
 	const handleFormSubmit = handleSubmit((data) => {
-		mutatePostFindEmail(data, {
+		mutatePostFindPassword(data, {
 			onSuccess({ data }) {
-				sessionStorage.setItem(SESSION_STORAGE.foundEmail, data);
-				router.push(getIaPath(IA.find.email.complete));
+				router.push(getIaPath(IA["reset-pw"]));
 			},
 			// TODO: @나은찬 mui alert 대체
 			onError({ response }) {
@@ -45,17 +44,29 @@ function FindEmailView(props: Props) {
 		});
 	});
 
-	const { TextField } = ReactHookForm<FindEmailForm>();
+	const { TextField } = ReactHookForm<ValidateMemberForm>();
 
-	const [name, tel] = watch(["name", "tel"]);
+	const [name, email, tel] = watch(["name", "email", "tel"]);
 
 	return (
 		<StyledBoxInFind>
-			<H2>이메일 찾기</H2>
+			<H2>비밀번호 찾기</H2>
 
 			<FormProvider {...form}>
 				<StyledFormInFind onSubmit={handleFormSubmit} noValidate>
 					<TextField formName="name" label="이름" required fullWidth />
+
+					<TextField
+						formName="email"
+						label="이메일"
+						rules={{
+							...getEmailValidateRule(),
+						}}
+						placeholder="abc12@naver.com"
+						type="email"
+						required
+						fullWidth
+					/>
 
 					<TextField
 						formName="tel"
@@ -68,7 +79,7 @@ function FindEmailView(props: Props) {
 						fullWidth
 					/>
 
-					<Button fullWidth variant="contained" size="large" type="submit" disabled={!(name && tel)}>
+					<Button fullWidth variant="contained" size="large" type="submit" disabled={!(name && email && tel)}>
 						다음
 					</Button>
 				</StyledFormInFind>
@@ -77,4 +88,4 @@ function FindEmailView(props: Props) {
 	);
 }
 
-export default FindEmailView;
+export default FindPasswordView;
