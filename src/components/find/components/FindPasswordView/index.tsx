@@ -1,10 +1,12 @@
 "use client";
 
+import CentralBox from "@/components/common/CentralBox";
 import ReactHookForm from "@/components/common/ReactHookForm";
 import H2 from "@/components/common/text/H2";
-import { StyledBoxInFind, StyledFormInFind } from "@/components/find/components/defines/styles";
+import { StyledFormInFind } from "@/components/find/components/defines/styles";
 import { ValidateMemberForm } from "@/defines/forms/find/password/types";
 import { IA } from "@/defines/ia/constants";
+import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";
 import useMutationPostPasswordFind from "@/hooks/queries/member/useMutationPostValidateMember";
 import { getIaPath } from "@/utils/ia";
 import { getEmailValidateRule, getMinLengthRule } from "@/utils/react-hook-form/rule";
@@ -32,9 +34,21 @@ function FindPasswordView(props: Props) {
 
 	const { mutate: mutatePostFindPassword } = useMutationPostPasswordFind({});
 
+	const { TextField } = ReactHookForm<ValidateMemberForm>();
+
+	const [name, email, tel] = watch(["name", "email", "tel"]);
+
 	const handleFormSubmit = handleSubmit((data) => {
 		mutatePostFindPassword(data, {
 			onSuccess({ data }) {
+				sessionStorage.setItem(
+					SESSION_STORAGE.resetPassword,
+					JSON.stringify({
+						name,
+						email,
+						tel,
+					}),
+				);
 				router.push(getIaPath(IA["reset-pw"]));
 			},
 			// TODO: @나은찬 mui alert 대체
@@ -44,12 +58,8 @@ function FindPasswordView(props: Props) {
 		});
 	});
 
-	const { TextField } = ReactHookForm<ValidateMemberForm>();
-
-	const [name, email, tel] = watch(["name", "email", "tel"]);
-
 	return (
-		<StyledBoxInFind>
+		<CentralBox>
 			<H2>비밀번호 찾기</H2>
 
 			<FormProvider {...form}>
@@ -84,7 +94,7 @@ function FindPasswordView(props: Props) {
 					</Button>
 				</StyledFormInFind>
 			</FormProvider>
-		</StyledBoxInFind>
+		</CentralBox>
 	);
 }
 
