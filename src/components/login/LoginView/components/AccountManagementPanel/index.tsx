@@ -5,7 +5,7 @@ import Link from "next/link";
 
 function AccountManagementPanel() {
 	return (
-		<Box className="flex justify-center items-center text-center mt-8 gap-5">
+		<Box className="flex justify-center items-center text-center gap-5">
 			<Link href={getIaPath(IA.find.email)} className="text-gray-500 no-underline">
 				{IA.find.email.label}
 			</Link>
