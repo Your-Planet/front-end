@@ -12,7 +12,7 @@ const nextConfig = {
 		return [
 			{
 				source: "/api/:path*",
-				destination: `${SERVER_URL_BY_ENVIRONMENT["production"]}/:path*`,
+				destination: `${SERVER_URL_BY_ENVIRONMENT[process.env.NODE_ENV]}/:path*`,
 			},
 		];
 	},
