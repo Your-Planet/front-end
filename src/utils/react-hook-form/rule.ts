@@ -21,7 +21,7 @@ export const getLengthErrorMessage = (length: number, prefix = "") => `${prefix}
 
 export const getAlphabetLengthErrorMessage = (length: number) => `영문 ${length}자로 입력해 주세요.`;
 
-const getMaxLengthRule = (maxLength: number, message?: Message | ((maxLength: number) => Message)) => ({
+export const getMaxLengthRule = (maxLength: number, message?: Message | ((maxLength: number) => Message)) => ({
 	maxLength: {
 		value: maxLength,
 		message: message
