@@ -1,9 +1,15 @@
 import ReactHookFormCheckbox, {
 	ReactHookFormCheckboxProps,
 } from "@/components/common/ReactHookForm/components/Checkbox";
+import ReactHookFormCounterField, {
+	ReactHookFormCounterFieldProps,
+} from "@/components/common/ReactHookForm/components/CounterField";
 import ReactHookFormDatePicker, {
 	ReactHookFormDatePickerProps,
 } from "@/components/common/ReactHookForm/components/DatePicker";
+import ReactHookFormDropdown, {
+	ReactHookFormDropdownProps,
+} from "@/components/common/ReactHookForm/components/Dropdown";
 import ReactHookFormRadioGroup, {
 	ReactHookFormRadioGroupProps,
 } from "@/components/common/ReactHookForm/components/RadioGroup";
@@ -22,6 +28,10 @@ const ReactHookForm = <TFieldValues extends FieldValues = FieldValues>(): {
 	Checkbox: <CheckboxValue extends string | number>(
 		props: ReactHookFormCheckboxProps<TFieldValues, CheckboxValue>,
 	) => ReactElement<ReactHookFormCheckboxProps<TFieldValues, CheckboxValue>>;
+	CounterField: JSXElementConstructor<ReactHookFormCounterFieldProps<TFieldValues>>;
+	DropdownMenu: <MenuItemValue extends string | number>(
+		props: ReactHookFormDropdownProps<TFieldValues, MenuItemValue>,
+	) => ReactElement<ReactHookFormDropdownProps<TFieldValues, MenuItemValue>>;
 } => {
 	return {
 		TextField: ReactHookFormTextField<TFieldValues>,
@@ -30,6 +40,10 @@ const ReactHookForm = <TFieldValues extends FieldValues = FieldValues>(): {
 		DatePicker: ReactHookFormDatePicker<TFieldValues>,
 		Checkbox: <CheckboxValue extends string | number>(props: ReactHookFormCheckboxProps<TFieldValues, CheckboxValue>) =>
 			ReactHookFormCheckbox<TFieldValues, CheckboxValue>(props),
+		CounterField: ReactHookFormCounterField<TFieldValues>,
+		DropdownMenu: <MenuItemValue extends string | number>(
+			props: ReactHookFormDropdownProps<TFieldValues, MenuItemValue>,
+		) => ReactHookFormDropdown<TFieldValues, MenuItemValue>(props),
 	};
 };
 
