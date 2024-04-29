@@ -46,7 +46,17 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 			<Typography variant="h5">서비스</Typography>
 
 			<TextField formName="service.price" label="금액 (VAT 포함)" required />
-			<CounterField formName="service.workingDays" label="작업 기간" value={1} min={1} max={30} required fullWidth />
+			<CounterField
+				formName="service.workingDays"
+				label="작업 기간"
+				value={1}
+				min={1}
+				max={30}
+				InputProps={{ readOnly: true }}
+				inputProps={{ ...inputPropsInCounterField }}
+				required
+				fullWidth
+			/>
 			<CounterField
 				formName="service.defaultCuts"
 				label="기본 컷 수"
@@ -54,6 +64,7 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 				min={1}
 				max={10}
 				InputProps={{ readOnly: true }}
+				inputProps={{ ...inputPropsInCounterField }}
 				required
 				fullWidth
 			/>
@@ -63,6 +74,7 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 				value={1}
 				min={1}
 				max={30}
+				InputProps={{ readOnly: true }}
 				inputProps={{ ...inputPropsInCounterField }}
 				required
 				fullWidth
