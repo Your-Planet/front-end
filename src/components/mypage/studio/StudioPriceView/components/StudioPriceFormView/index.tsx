@@ -15,7 +15,7 @@ import {
 	getWorkingDaysMaxRule,
 	getWorkingDaysMinRule,
 } from "@/components/mypage/studio/StudioPriceView/defines/rule";
-import { StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
+import { RadioProvisionType, StudioPriceFormType } from "@/components/mypage/studio/StudioPriceView/defines/types";
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
 import { isNumber } from "@/utils/string";
 import { InputAdornment, Typography } from "@mui/material";
@@ -28,12 +28,27 @@ const counterFieldSx = {
 	input: { textAlign: "center" },
 };
 
+const radioProvisionTypeArr: RadioProvisionType[] = [
+	{
+		value: "NONE",
+		label: "미제공",
+	},
+	{
+		value: "DEFAULT",
+		label: "기본 제공",
+	},
+	{
+		value: "ADDITIONAL",
+		label: "추가 제공",
+	},
+];
+
 function StudioPriceFormView(props: StudioPriceFormViewProps) {
 	const {} = props;
 
-	const { TextField, Select } = ReactHookForm<StudioPriceForm>();
+	const { TextField, Select } = ReactHookForm<StudioPriceFormType>();
 
-	const form = useForm<StudioPriceForm>({
+	const form = useForm<StudioPriceFormType>({
 		mode: "all",
 		defaultValues: {
 			service: {

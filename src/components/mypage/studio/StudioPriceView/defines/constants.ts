@@ -1,8 +1,9 @@
 import {
 	PostDurationMonthType,
+	ProvisionType,
 	ServiceForm,
 	ServiceLimits,
-	StudioPriceForm,
+	StudioPriceFormType,
 } from "@/components/mypage/studio/StudioPriceView/defines/types";
 import { deepFreeze } from "@/utils/object";
 
@@ -14,6 +15,12 @@ export const LABEL_BY_POST_DURATION_MONTH_TYPE: Record<PostDurationMonthType, st
 	OVER_A_YEAR: "12개월 이상",
 });
 
+export const LABEL_BY_PROVISION_TYPE: Record<ProvisionType, string> = deepFreeze({
+	NONE: "미제공",
+	DEFAULT: "기본 제공",
+	ADDITIONAL: "추가 제공",
+});
+
 export const POST_DURATION_MONTH_ITEMS: { value: PostDurationMonthType; label: string }[] = Object.keys(
 	LABEL_BY_POST_DURATION_MONTH_TYPE,
 ).map((key) => ({
@@ -21,7 +28,10 @@ export const POST_DURATION_MONTH_ITEMS: { value: PostDurationMonthType; label: s
 	label: LABEL_BY_POST_DURATION_MONTH_TYPE[key as PostDurationMonthType],
 }));
 
-export const STUDIO_PRICE_FORM_LIMITS: Record<keyof Pick<StudioPriceForm, "service">, ServiceLimits<ServiceForm>> = {
+export const STUDIO_PRICE_FORM_LIMITS: Record<
+	keyof Pick<StudioPriceFormType, "service">,
+	ServiceLimits<ServiceForm>
+> = {
 	service: {
 		price: { min: 1000, max: 9999990 },
 		workingDays: { min: 1, max: 30 },
