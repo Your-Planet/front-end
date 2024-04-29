@@ -1,22 +1,23 @@
 import { API } from "@/apis";
-import { MemberDetailRequest, MemberDetailResponse } from "@/apis/member";
+import { JoinResponse, MemberDetailRequest, MemberDetailResponse } from "@/apis/member";
 import { ResponseEntity } from "@/defines/apis/types";
 import { QUERY_KEY } from "@/defines/react-query/constants";
 import { UseQueryParams } from "@/defines/react-query/types";
-import { useQuery, UseQueryResult } from "@tanstack/react-query";
+import { UseQueryResult, useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 
 type Request = MemberDetailRequest;
 
-type Response = ResponseEntity<MemberDetailResponse>;
+type Response<T extends JoinResponse> = ResponseEntity<MemberDetailResponse<T>>;
 
-type Error = AxiosError<Response>;
+type Error<T extends JoinResponse> = AxiosError<Response<T>>;
 
-export interface UseQueryGetDetailParams extends UseQueryParams<Response, Error, Request> {}
+export interface UseQueryGetDetailParams<T extends JoinResponse>
+	extends UseQueryParams<Response<T>, Error<T>, Request> {}
 
-export type UseQueryGetDetail = UseQueryResult<Response, Error>;
+export type UseQueryGetDetail<T extends JoinResponse> = UseQueryResult<Response<T>, Error<T>>;
 
-function useQueryGetDetail(params: UseQueryGetDetailParams): UseQueryGetDetail {
+function useQueryGetDetail<T extends JoinResponse>(params: UseQueryGetDetailParams<T>): UseQueryGetDetail<T> {
 	const { queryOption } = params;
 
 	return useQuery({

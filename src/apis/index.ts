@@ -2,7 +2,9 @@ import { InstagramAuthApi } from "@/apis/instagram-auth";
 import { InstagramGraphApi } from "@/apis/instagram-graph";
 import { MemberApi } from "@/apis/member";
 import { HTTP_HEADER } from "@/defines/apis/constants";
+import { COOKIE } from "@/defines/cookie/constants";
 import { DOMAIN } from "@/defines/domain/constants";
+import { getCookie } from "@/utils/cookie";
 import { deepFreeze } from "@/utils/object";
 import axios from "axios";
 
@@ -19,7 +21,7 @@ const instagramGraphAxiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use((config) => {
-	const accessToken = localStorage.getItem("accessToken");
+	const accessToken = getCookie(COOKIE.accessToken);
 
 	const newConfig = {
 		...config,

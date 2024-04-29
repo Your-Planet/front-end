@@ -2,6 +2,7 @@
 
 import DynamicAppend from "@/components/common/DynamicAppend";
 import ReactHookForm from "@/components/common/ReactHookForm";
+import InstagramUserNameTextField from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/components/InstagramUserNameTextField";
 import {
 	DEFAULT_PORTFOLIO_LINK,
 	STUDIO_PROFILE_FORM_LENGTH,
@@ -11,7 +12,7 @@ import StudioFormView from "@/components/mypage/studio/components/StudioFormView
 import { INSTATOON_CATEGORY_NAME_BY_TYPE } from "@/defines/instatoon-category/constants";
 import { InstatoonCategoryType } from "@/defines/instatoon-category/types";
 import { getMaxLengthRule, getMinLengthRule } from "@/utils/react-hook-form/rule";
-import { FormHelperText, FormLabel, Grid, TextField as ReadOnlyTextField, Stack } from "@mui/material";
+import { FormHelperText, FormLabel, Grid, Stack } from "@mui/material";
 import { FormEventHandler } from "react";
 import { useForm } from "react-hook-form";
 
@@ -85,7 +86,8 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 
 	return (
 		<StudioFormView title={"프로필 설정"} useFormReturn={form} onSubmit={handleFormSubmit}>
-			<ReadOnlyTextField label="인스타그램 계정" disabled helperText=" " />
+			{/*<ReadOnlyTextField label="인스타그램 계정" disabled helperText=" " />*/}
+			<InstagramUserNameTextField />
 
 			<TextField
 				formName="name"
