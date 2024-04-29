@@ -1,5 +1,5 @@
 import { API } from "@/apis";
-import { JoinResponse, MemberDetailRequest, MemberDetailResponse } from "@/apis/member";
+import { MemberDetailRequest, MemberDetailResponse } from "@/apis/member";
 import { ResponseEntity } from "@/defines/apis/types";
 import { QUERY_KEY } from "@/defines/react-query/constants";
 import { UseQueryParams } from "@/defines/react-query/types";
@@ -8,16 +8,15 @@ import { AxiosError } from "axios";
 
 type Request = MemberDetailRequest;
 
-type Response<T extends JoinResponse> = ResponseEntity<MemberDetailResponse<T>>;
+type Response = ResponseEntity<MemberDetailResponse>;
 
-type Error<T extends JoinResponse> = AxiosError<Response<T>>;
+type Error = AxiosError<Response>;
 
-export interface UseQueryGetDetailParams<T extends JoinResponse>
-	extends UseQueryParams<Response<T>, Error<T>, Request> {}
+export interface UseQueryGetDetailParams extends UseQueryParams<Response, Error, Request> {}
 
-export type UseQueryGetDetail<T extends JoinResponse> = UseQueryResult<Response<T>, Error<T>>;
+export type UseQueryGetDetail = UseQueryResult<Response, Error>;
 
-function useQueryGetDetail<T extends JoinResponse>(params: UseQueryGetDetailParams<T>): UseQueryGetDetail<T> {
+function useQueryGetDetail(params: UseQueryGetDetailParams): UseQueryGetDetail {
 	const { queryOption } = params;
 
 	return useQuery({

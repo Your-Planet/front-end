@@ -86,7 +86,6 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 
 	return (
 		<StudioFormView title={"프로필 설정"} useFormReturn={form} onSubmit={handleFormSubmit}>
-			{/*<ReadOnlyTextField label="인스타그램 계정" disabled helperText=" " />*/}
 			<InstagramUserNameTextField />
 
 			<TextField

@@ -1,6 +1,6 @@
 "use client";
 
-import { AuthorJoinRequest } from "@/apis/member";
+import { AuthorDetailResponse } from "@/apis/member";
 import useOpen from "@/hooks/common/useOpen";
 import useQueryGetDetail from "@/hooks/queries/member/useQueryGetDetail";
 import { Alert, Snackbar, TextField } from "@mui/material";
@@ -11,12 +11,14 @@ export interface InstagramUserNameTextFieldProps {}
 function InstagramUserNameTextField(props: InstagramUserNameTextFieldProps) {
 	const {} = props;
 
-	const { data: { data: memberInfo } = {}, isError } = useQueryGetDetail<AuthorJoinRequest>({
+	const { data: { data } = {}, isError } = useQueryGetDetail({
 		req: undefined,
 		queryOption: {
 			refetchOnWindowFocus: false,
 		},
 	});
+
+	const memberInfo = data as AuthorDetailResponse;
 
 	const { opened: isErrorOpened, handleOpen: handleOpenError, handleClose: handleCloseError } = useOpen();
 

@@ -1,5 +1,9 @@
-import { JoinResponse } from "@/apis/member";
+import { AuthorJoinRequest, SponsorJoinRequest } from "@/apis/member/models/join";
 
 export type MemberDetailRequest = void;
 
-export type MemberDetailResponse<T extends JoinResponse> = T;
+export type AuthorDetailResponse = Omit<AuthorJoinRequest, "password">;
+
+export type SponsorDetailResponse = Omit<SponsorJoinRequest, "password">;
+
+export type MemberDetailResponse = AuthorDetailResponse | SponsorDetailResponse;
