@@ -39,7 +39,7 @@ function ReactHookFormCounterField<TFieldValues extends FieldValues = FieldValue
 				<Button onClick={handleClickDecreaseButton} disabled={value === min}>
 					<RemoveIcon fontSize="small" />
 				</Button>
-				<TextField {...restProps} {...field} />
+				<TextField {...restProps} {...field} value={value} />
 				<Button onClick={handleClickIncreaseButton} disabled={value === max}>
 					<AddIcon fontSize="small" />
 				</Button>

@@ -1,7 +1,6 @@
 "use client";
 
 import ReactHookForm from "@/components/common/ReactHookForm";
-import { inputPropsInCounterField } from "@/components/common/ReactHookForm/components/CounterField/defines/styles";
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
 import {
 	labelByPostDurationMonthType,
@@ -17,6 +16,10 @@ const getMenuItems = () => {
 	return Object.entries(labelByPostDurationMonthType).map((month) => {
 		return { value: month[0], label: month[1] };
 	});
+};
+
+const counterFieldSx = {
+	input: { textAlign: "center" },
 };
 
 function StudioPriceFormView(props: StudioPriceFormViewProps) {
@@ -52,8 +55,8 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 				value={1}
 				min={1}
 				max={30}
+				sx={{ ...counterFieldSx }}
 				InputProps={{ readOnly: true }}
-				inputProps={{ ...inputPropsInCounterField }}
 				required
 				fullWidth
 			/>
@@ -63,8 +66,8 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 				value={1}
 				min={1}
 				max={10}
+				sx={{ ...counterFieldSx }}
 				InputProps={{ readOnly: true }}
-				inputProps={{ ...inputPropsInCounterField }}
 				required
 				fullWidth
 			/>
@@ -74,8 +77,8 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 				value={1}
 				min={1}
 				max={30}
+				sx={{ ...counterFieldSx }}
 				InputProps={{ readOnly: true }}
-				inputProps={{ ...inputPropsInCounterField }}
 				required
 				fullWidth
 			/>
