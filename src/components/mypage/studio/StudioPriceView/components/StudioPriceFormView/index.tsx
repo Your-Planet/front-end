@@ -1,6 +1,7 @@
 "use client";
 
 import ReactHookForm from "@/components/common/ReactHookForm";
+import { inputPropsInCounterField } from "@/components/common/ReactHookForm/components/CounterField/defines/styles";
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
 import {
 	labelByPostDurationMonthType,
@@ -46,13 +47,23 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 
 			<TextField formName="service.price" label="금액 (VAT 포함)" required />
 			<CounterField formName="service.workingDays" label="작업 기간" value={1} min={1} max={30} required fullWidth />
-			<CounterField formName="service.defaultCuts" label="기본 컷 수" value={1} min={1} max={10} required fullWidth />
+			<CounterField
+				formName="service.defaultCuts"
+				label="기본 컷 수"
+				value={1}
+				min={1}
+				max={10}
+				InputProps={{ readOnly: true }}
+				required
+				fullWidth
+			/>
 			<CounterField
 				formName="service.modificationCount"
 				label="기본 수정 횟수"
 				value={1}
 				min={1}
 				max={30}
+				inputProps={{ ...inputPropsInCounterField }}
 				required
 				fullWidth
 			/>

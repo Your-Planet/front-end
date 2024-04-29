@@ -1,5 +1,4 @@
 import {
-	inputPropsInCounterField,
 	StyledBoxInCounterField,
 	sxInputLabelInCounterField,
 } from "@/components/common/ReactHookForm/components/CounterField/defines/styles";
@@ -40,12 +39,7 @@ function ReactHookFormCounterField<TFieldValues extends FieldValues = FieldValue
 				<Button onClick={handleClickDecreaseButton} disabled={value === min}>
 					<RemoveIcon fontSize="small" />
 				</Button>
-				<TextField
-					{...field}
-					{...restProps}
-					InputProps={{ readOnly: true }}
-					inputProps={{ ...inputPropsInCounterField }}
-				/>
+				<TextField {...restProps} {...field} />
 				<Button onClick={handleClickIncreaseButton} disabled={value === max}>
 					<AddIcon fontSize="small" />
 				</Button>
