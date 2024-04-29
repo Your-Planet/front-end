@@ -43,7 +43,6 @@ function ReactHookFormCounterField<TFieldValues extends FieldValues = FieldValue
 				<TextField
 					{...field}
 					{...restProps}
-					value={value}
 					InputProps={{ readOnly: true }}
 					inputProps={{ ...inputPropsInCounterField }}
 				/>
