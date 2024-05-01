@@ -21,7 +21,7 @@ export interface StudioProfileFormViewProps {}
 function StudioProfileFormView(props: StudioProfileFormViewProps) {
 	const {} = props;
 
-	const { TextField, Checkbox } = ReactHookForm<StudioProfileForm>();
+	const { TextField } = ReactHookForm<StudioProfileForm>();
 
 	const form = useForm<StudioProfileForm>({
 		mode: "all",
@@ -56,7 +56,7 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 	const handleFormSubmit: FormEventHandler = handleSubmit(async (data) => {
 		const categoryToCategories = (category: Record<InstatoonCategoryType, boolean>): InstatoonCategoryType[] => {
 			return Object.entries(category)
-				.filter(([categoryType, checked]) => checked)
+				.filter(([_, checked]) => checked)
 				.map(([categoryType]) => categoryType as InstatoonCategoryType);
 		};
 
