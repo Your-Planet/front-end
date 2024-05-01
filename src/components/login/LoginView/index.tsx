@@ -35,12 +35,12 @@ function LoginView(props: LoginViewProps) {
 
 	const { mutate: mutatePostLogin } = useMutationPostLogin({});
 
-	const handleFormSubmit = handleSubmit((data) => {
+	const handleFormSubmit = handleSubmit(({ isRemember, ...data }) => {
 		mutatePostLogin(data, {
 			onSuccess({ data: token }) {
 				setCookie(COOKIE.accessToken, token);
 
-				if (data.isRemember) {
+				if (isRemember) {
 					// TODO @김현규 시간 단위
 					setCookie(COOKIE.rememberUserEmail, data.email, 10000);
 				} else {
