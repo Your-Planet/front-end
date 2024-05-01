@@ -3,13 +3,14 @@ import AccountManagementPanel from "@/components/login/LoginView/components/Acco
 import { LoginForm } from "@/components/login/LoginView/defines/types";
 import { COOKIE } from "@/defines/cookie/constants";
 import { IA } from "@/defines/ia/constants";
+import useOpen from "@/hooks/common/useOpen";
 import useMutationPostLogin from "@/hooks/queries/member/useMutationPostLogin";
 import { getCookie, removeCookie, setCookie } from "@/utils/cookie";
 import { getIaPath } from "@/utils/ia";
 import { isEmail } from "@/utils/string";
-import { Box, Button } from "@mui/material";
+import { Alert, Box, Button, Stack } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
 export interface LoginViewProps {}
@@ -31,6 +32,10 @@ function LoginView(props: LoginViewProps) {
 		},
 	});
 
+	const { opened: hasAlert, handleOpen: handleOpenAlert, handleClose: handleCloseAlert } = useOpen();
+
+	const [serverErrorMessage, setServerErrorMessage] = useState<string>();
+
 	const { handleSubmit, setValue } = form;
 
 	const { mutate: mutatePostLogin } = useMutationPostLogin({});
@@ -48,6 +53,10 @@ function LoginView(props: LoginViewProps) {
 				}
 
 				router.push(getIaPath(IA));
+			},
+			onError(error) {
+				setServerErrorMessage(error?.response?.data.message);
+				handleOpenAlert();
 			},
 		});
 	});
@@ -77,34 +86,45 @@ function LoginView(props: LoginViewProps) {
 
 	return (
 		<Box className="m-auto p-8">
-			<FormProvider {...form}>
-				<form onSubmit={handleFormSubmit} className="mt-12" noValidate>
-					<TextField
-						formName="email"
-						label="이메일"
-						type="email"
-						fullWidth
-						rules={{
-							validate: validateEmail,
-						}}
-					/>
-					<TextField
-						formName="password"
-						label="비밀번호"
-						type="password"
-						fullWidth
-						margin="normal"
-						rules={{
-							validate: validatePassword,
-						}}
-					/>
-					<Checkbox formName="isRemember" label={"이메일 기억하기"} />
-					<Button fullWidth variant="contained" size="large" type="submit">
-						로그인
-					</Button>
-				</form>
-			</FormProvider>
-			<AccountManagementPanel />
+			<Stack spacing={"32px"} position={"relative"}>
+				<FormProvider {...form}>
+					<form onSubmit={handleFormSubmit} noValidate>
+						<TextField
+							formName="email"
+							label="이메일"
+							type="email"
+							fullWidth
+							rules={{
+								validate: validateEmail,
+							}}
+						/>
+						<TextField
+							formName="password"
+							label="비밀번호"
+							type="password"
+							fullWidth
+							margin="normal"
+							rules={{
+								validate: validatePassword,
+							}}
+						/>
+						<Checkbox formName="isRemember" label={"이메일 기억하기"} />
+						<Button fullWidth variant="contained" size="large" type="submit">
+							로그인
+						</Button>
+					</form>
+				</FormProvider>
+
+				<AccountManagementPanel />
+
+				<Box position={"absolute"} top={"100%"} width={"100%"}>
+					{hasAlert && (
+						<Alert severity={"error"} onClose={handleCloseAlert}>
+							{serverErrorMessage}
+						</Alert>
+					)}
+				</Box>
+			</Stack>
 		</Box>
 	);
 }
