@@ -1,6 +1,7 @@
 import { InstagramAuthApi } from "@/apis/instagram-auth";
 import { InstagramGraphApi } from "@/apis/instagram-graph";
 import { MemberApi } from "@/apis/member";
+import { StudioApi } from "@/apis/studio";
 import { HTTP_HEADER } from "@/defines/apis/constants";
 import { COOKIE } from "@/defines/cookie/constants";
 import { DOMAIN } from "@/defines/domain/constants";
@@ -48,6 +49,7 @@ axiosInstance.interceptors.request.use((config) => {
 
 export const API = deepFreeze({
 	member: new MemberApi(axiosInstance, "/member"),
+	studio: new StudioApi(axiosInstance, "/studio"),
 	instagramAuth: new InstagramAuthApi(instagramApiAxiosInstance, "/oauth"),
 	instagramGraph: new InstagramGraphApi(instagramGraphAxiosInstance, ""),
 });
