@@ -3,7 +3,7 @@ import useReactHookFormControl from "@/components/common/ReactHookForm/hooks/use
 import { FormControl, FormHelperText, InputLabel, MenuItem, Select, SelectProps } from "@mui/material";
 import { FieldValues } from "react-hook-form";
 
-export interface ReactHookFormDropdownProps<TFieldValues extends FieldValues, MenuItemValue extends string | number>
+export interface ReactHookFormSelectProps<TFieldValues extends FieldValues, MenuItemValue extends string | number>
 	extends ReactHookFormProps<TFieldValues>,
 		Omit<SelectProps, "label" | "required"> {
 	items: {
@@ -12,8 +12,8 @@ export interface ReactHookFormDropdownProps<TFieldValues extends FieldValues, Me
 	}[];
 }
 
-function ReactHookFormDropdown<TFieldValues extends FieldValues, MenuItemValue extends string | number>(
-	props: ReactHookFormDropdownProps<TFieldValues, MenuItemValue>,
+function ReactHookFormSelect<TFieldValues extends FieldValues, MenuItemValue extends string | number>(
+	props: ReactHookFormSelectProps<TFieldValues, MenuItemValue>,
 ) {
 	const { items } = props;
 	const { restProps, field, label, error, errorMessage } = useReactHookFormControl(props);
@@ -33,4 +33,4 @@ function ReactHookFormDropdown<TFieldValues extends FieldValues, MenuItemValue e
 	);
 }
 
-export default ReactHookFormDropdown;
+export default ReactHookFormSelect;

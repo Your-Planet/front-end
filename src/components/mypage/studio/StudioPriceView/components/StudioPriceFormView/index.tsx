@@ -1,22 +1,28 @@
 "use client";
 
 import ReactHookForm from "@/components/common/ReactHookForm";
-import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
 import {
-	labelByPostDurationMonthType,
-	StudioPriceForm,
-} from "@/components/mypage/studio/StudioPriceView/defines/types";
-import { Typography } from "@mui/material";
+	PostDurationMonthItems,
+	STUDIO_PRICE_FORM_LIMITS,
+} from "@/components/mypage/studio/StudioPriceView/defines/constants";
+import {
+	getDefaultCutsMaxRule,
+	getDefaultCutsMinRule,
+	getModificationCountMaxRule,
+	getModificationCountMinRule,
+	getPriceMaxRule,
+	getPriceMinRule,
+	getWorkingDaysMaxRule,
+	getWorkingDaysMinRule,
+} from "@/components/mypage/studio/StudioPriceView/defines/rules";
+import { StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
+import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
+import { isNumber } from "@/utils/string";
+import { InputAdornment, Typography } from "@mui/material";
 import { FormEventHandler } from "react";
 import { useForm } from "react-hook-form";
 
 export interface StudioPriceFormViewProps {}
-
-const getMenuItems = () => {
-	return Object.entries(labelByPostDurationMonthType).map((month) => {
-		return { value: month[0], label: month[1] };
-	});
-};
 
 const counterFieldSx = {
 	input: { textAlign: "center" },
@@ -25,7 +31,7 @@ const counterFieldSx = {
 function StudioPriceFormView(props: StudioPriceFormViewProps) {
 	const {} = props;
 
-	const { TextField, CounterField, DropdownMenu } = ReactHookForm<StudioPriceForm>();
+	const { TextField, Select } = ReactHookForm<StudioPriceForm>();
 
 	const form = useForm<StudioPriceForm>({
 		mode: "all",
@@ -48,41 +54,77 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 		<StudioFormView title={"가격 설정"} useFormReturn={form} onSubmit={handleFormSubmit}>
 			<Typography variant="h5">서비스</Typography>
 
-			<TextField formName="service.price" label="금액 (VAT 포함)" required />
-			<CounterField
+			<TextField
+				formName="service.price"
+				label="금액 (VAT 포함)"
+				required
+				validator={isNumber}
+				rules={{
+					...getPriceMinRule(),
+					...getPriceMaxRule(),
+				}}
+				InputProps={{
+					endAdornment: <InputAdornment position="end">원</InputAdornment>,
+				}}
+			/>
+			<TextField
 				formName="service.workingDays"
 				label="작업 기간"
-				value={1}
-				min={1}
-				max={30}
+				type="number"
+				InputProps={{
+					endAdornment: <InputAdornment position="end">일</InputAdornment>,
+					inputProps: {
+						min: STUDIO_PRICE_FORM_LIMITS.service.workingDays.min,
+						max: STUDIO_PRICE_FORM_LIMITS.service.workingDays.max,
+					},
+				}}
+				rules={{
+					...getWorkingDaysMinRule(),
+					...getWorkingDaysMaxRule(),
+				}}
 				sx={{ ...counterFieldSx }}
-				InputProps={{ readOnly: true }}
 				required
 				fullWidth
 			/>
-			<CounterField
+			<TextField
 				formName="service.defaultCuts"
 				label="기본 컷 수"
-				value={1}
-				min={1}
-				max={10}
+				type="number"
+				InputProps={{
+					endAdornment: <InputAdornment position="end">장</InputAdornment>,
+					inputProps: {
+						min: STUDIO_PRICE_FORM_LIMITS.service.defaultCuts.min,
+						max: STUDIO_PRICE_FORM_LIMITS.service.defaultCuts.max,
+					},
+				}}
+				rules={{
+					...getDefaultCutsMinRule(),
+					...getDefaultCutsMaxRule(),
+				}}
 				sx={{ ...counterFieldSx }}
-				InputProps={{ readOnly: true }}
 				required
 				fullWidth
 			/>
-			<CounterField
+			<TextField
 				formName="service.modificationCount"
 				label="기본 수정 횟수"
-				value={1}
-				min={1}
-				max={30}
+				type="number"
+				InputProps={{
+					endAdornment: <InputAdornment position="end">회</InputAdornment>,
+					inputProps: {
+						min: STUDIO_PRICE_FORM_LIMITS.service.modificationCount.min,
+						max: STUDIO_PRICE_FORM_LIMITS.service.modificationCount.max,
+					},
+				}}
+				rules={{
+					...getModificationCountMinRule(),
+					...getModificationCountMaxRule(),
+				}}
 				sx={{ ...counterFieldSx }}
-				InputProps={{ readOnly: true }}
 				required
 				fullWidth
 			/>
-			<DropdownMenu formName="service.postDurationType" label="기본 업로드 횟수" required items={getMenuItems()} />
+			<Select formName="service.postDurationType" label="기본 업로드 횟수" required items={PostDurationMonthItems} />
 		</StudioFormView>
 	);
 }
