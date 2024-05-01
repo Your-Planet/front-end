@@ -3,17 +3,16 @@
 import ReactHookForm from "@/components/common/ReactHookForm";
 import DynamicInstagramPortfolios from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/components/DynamicInstagramPortfolios";
 import InstagramUserNameTextField from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/components/InstagramUserNameTextField";
+import InstatoonCategoryCheckboxGroup from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/components/InstatoonCategoryCheckboxGroup";
 import {
 	DEFAULT_PORTFOLIO,
 	STUDIO_PROFILE_FORM_LENGTH,
 } from "@/components/mypage/studio/StudioProfileView/defines/constants";
 import { Portfolio, StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
-import { INSTATOON_CATEGORY_NAME_BY_TYPE } from "@/defines/instatoon-category/constants";
 import { InstatoonCategoryType } from "@/defines/instatoon-category/types";
 import useMutationPostProfile from "@/hooks/queries/studio/useMutationPostProfile";
 import { getMaxLengthRule, getMinLengthRule } from "@/utils/react-hook-form/rule";
-import { FormHelperText, FormLabel, Grid, Stack } from "@mui/material";
 import { FormEventHandler } from "react";
 import { useForm } from "react-hook-form";
 
@@ -50,13 +49,7 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 		},
 	});
 
-	const {
-		handleSubmit,
-		getValues,
-		setError,
-		clearErrors,
-		formState: { errors },
-	} = form;
+	const { handleSubmit } = form;
 
 	const { mutateAsync: mutatePostProfile } = useMutationPostProfile({});
 
@@ -87,31 +80,6 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 		}
 	});
 
-	const handleChangeCategory = () => {
-		const category = getValues("category");
-		const { length } = Object.values(category).filter(Boolean);
-
-		if (length < STUDIO_PROFILE_FORM_LENGTH.category.min) {
-			setError("category", {
-				type: "min",
-				message: "인스타툰 카테고리를 1개 이상 선택해주세요.",
-			});
-			return;
-		}
-
-		if (length > STUDIO_PROFILE_FORM_LENGTH.category.max) {
-			setError("category", {
-				type: "max",
-				message: "인스타툰 카테고리는 최대 5개까지 선택 가능합니다.",
-			});
-			return;
-		}
-
-		if (errors.category) {
-			clearErrors("category");
-		}
-	};
-
 	return (
 		<StudioFormView title={"프로필 설정"} useFormReturn={form} onSubmit={handleFormSubmit}>
 			<InstagramUserNameTextField />
@@ -135,26 +103,9 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 				}}
 			/>
 
-			<Stack>
-				<FormLabel required>인스타툰 카테고리</FormLabel>
-				<Grid container spacing={1}>
-					{Object.entries(INSTATOON_CATEGORY_NAME_BY_TYPE).map(([instatoonCategoryType, label]) => (
-						<Grid item xs={3} key={instatoonCategoryType}>
-							<Checkbox
-								formName={`category.${instatoonCategoryType as InstatoonCategoryType}`}
-								label={label}
-								hideErrorMessage
-								rules={{
-									onChange: handleChangeCategory,
-								}}
-							/>
-						</Grid>
-					))}
-				</Grid>
-				<FormHelperText error>{errors?.category?.message ?? " "}</FormHelperText>
-			</Stack>
+			<InstatoonCategoryCheckboxGroup label="인스타툰 카테고리" />
 
-			<DynamicInstagramPortfolios />
+			<DynamicInstagramPortfolios label="포트폴리오 링크" />
 		</StudioFormView>
 	);
 }
