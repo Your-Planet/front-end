@@ -7,7 +7,7 @@ import {
 	DEFAULT_PORTFOLIO,
 	STUDIO_PROFILE_FORM_LENGTH,
 } from "@/components/mypage/studio/StudioProfileView/defines/constants";
-import { StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
+import { Portfolio, StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
 import { INSTATOON_CATEGORY_NAME_BY_TYPE } from "@/defines/instatoon-category/constants";
 import { InstatoonCategoryType } from "@/defines/instatoon-category/types";
@@ -61,9 +61,26 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 	const { mutateAsync: mutatePostProfile } = useMutationPostProfile({});
 
 	const handleFormSubmit: FormEventHandler = handleSubmit(async (data) => {
+		const categoryToCategories = (category: Record<InstatoonCategoryType, boolean>): InstatoonCategoryType[] => {
+			return Object.entries(category)
+				.filter(([categoryType, checked]) => checked)
+				.map(([categoryType]) => categoryType as InstatoonCategoryType);
+		};
+
+		const portfoliosToPortfolioIds = (portfolios: Portfolio[]) => {
+			return portfolios.map(({ id }) => id);
+		};
+
 		try {
 			const { category, portfolios, ...restData } = data;
-			// TODO @김현규 저장 API 연동
+
+			await mutatePostProfile({
+				...restData,
+				categories: categoryToCategories(category),
+				portfolioIds: portfoliosToPortfolioIds(portfolios),
+			});
+
+			// TODO @김현규 성공 처리
 		} catch (e) {
 			// TODO @김현규 예외 처리
 			console.log(e);
