@@ -1,7 +1,7 @@
 "use client";
 
-import DynamicAppend from "@/components/common/DynamicAppend";
 import ReactHookForm from "@/components/common/ReactHookForm";
+import DynamicInstagramPortfolios from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/components/DynamicInstagramPortfolios";
 import InstagramUserNameTextField from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/components/InstagramUserNameTextField";
 import {
 	DEFAULT_PORTFOLIO,
@@ -154,14 +154,7 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 				<FormHelperText error>{errors?.category?.message ?? " "}</FormHelperText>
 			</Stack>
 
-			<DynamicAppend<StudioProfileForm>
-				label="포트폴리오 링크"
-				formName="portfolios"
-				component={({ index }) => <TextField formName={`portfolios.${index}.permalink`} label="" fullWidth />}
-				maxCount={10}
-				defaultValue={DEFAULT_PORTFOLIO}
-				required
-			/>
+			<DynamicInstagramPortfolios />
 		</StudioFormView>
 	);
 }

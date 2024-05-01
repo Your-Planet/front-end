@@ -8,7 +8,7 @@ export const DEFAULT_PORTFOLIO: DefaultValues<Portfolio> = {
 };
 
 export const STUDIO_PROFILE_FORM_LENGTH: Record<
-	keyof Pick<StudioProfileForm, "name" | "description" | "category">,
+	keyof Pick<StudioProfileForm, "name" | "description" | "category" | "portfolios">,
 	LengthLimit
 > = {
 	name: {
@@ -22,5 +22,9 @@ export const STUDIO_PROFILE_FORM_LENGTH: Record<
 	category: {
 		min: 1,
 		max: 5,
+	},
+	portfolios: {
+		min: 1,
+		max: 10,
 	},
 };
