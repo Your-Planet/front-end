@@ -10,9 +10,14 @@ import {
 } from "@/components/mypage/studio/StudioProfileView/defines/constants";
 import { Portfolio, StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
+import { IA } from "@/defines/ia/constants";
 import { InstatoonCategoryType } from "@/defines/instatoon-category/types";
 import useMutationPostProfile from "@/hooks/queries/studio/useMutationPostProfile";
+import { getIaPath } from "@/utils/ia";
 import { getMaxLengthRule, getMinLengthRule } from "@/utils/react-hook-form/rule";
+import { Button } from "@mui/material";
+import { useRouter } from "next/navigation";
+import { enqueueSnackbar } from "notistack";
 import { FormEventHandler } from "react";
 import { useForm } from "react-hook-form";
 
@@ -53,6 +58,8 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 
 	const { mutateAsync: mutatePostProfile } = useMutationPostProfile({});
 
+	const router = useRouter();
+
 	const handleFormSubmit: FormEventHandler = handleSubmit(async (data) => {
 		const categoryToCategories = (category: Record<InstatoonCategoryType, boolean>): InstatoonCategoryType[] => {
 			return Object.entries(category)
@@ -73,7 +80,12 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 				portfolioIds: portfoliosToPortfolioIds(portfolios),
 			});
 
-			// TODO @김현규 성공 처리
+			enqueueSnackbar("프로필 설정을 저장했어요.", {
+				variant: "success",
+				autoHideDuration: 6000,
+			});
+
+			router.push(getIaPath(IA.mypage.studio.price));
 		} catch (e) {
 			// TODO @김현규 예외 처리
 			console.log(e);
@@ -106,6 +118,10 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 			<InstatoonCategoryCheckboxGroup label="인스타툰 카테고리" />
 
 			<DynamicInstagramPortfolios label="포트폴리오 링크" />
+
+			<Button type="submit" variant="contained" size="large">
+				다음
+			</Button>
 		</StudioFormView>
 	);
 }
