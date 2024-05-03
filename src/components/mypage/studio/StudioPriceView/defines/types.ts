@@ -12,11 +12,6 @@ export type ServiceForm = {
 
 export type ProvisionType = "NONE" | "DEFAULT" | "ADDITIONAL";
 
-export type RadioProvisionType = {
-	value: ProvisionType;
-	label?: string | undefined;
-};
-
 type ServiceFormType = {
 	price: number; // 가격
 	workingDays: number; // 작업 기간
