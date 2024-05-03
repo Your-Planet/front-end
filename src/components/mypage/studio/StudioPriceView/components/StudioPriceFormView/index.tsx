@@ -43,23 +43,23 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 				workingDays: 1,
 				defaultCuts: 1,
 				modificationCount: 1,
-				postDurationType: "A_MONTH",
+				postDurationMonth: "A_MONTH",
 			},
 			option: {
 				refinement: {
-					provisionType: "NONE",
+					provision: "NONE",
 				},
 				additionalPanel: {
-					provisionType: "NONE",
+					provision: "NONE",
 					price: 0,
 					workingDays: 0,
 				},
 				additionalModification: {
-					provisionType: "NONE",
+					provision: "NONE",
 					price: 0,
 				},
 				postDurationExtension: {
-					provisionType: "NONE",
+					provision: "NONE",
 					price: 0,
 				},
 			},
@@ -144,26 +144,36 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 				required
 				fullWidth
 			/>
-			<Select formName="service.postDurationType" label="기본 업로드 횟수" required items={POST_DURATION_MONTH_ITEMS} />
+			<Select
+				formName="service.postDurationMonth"
+				label="기본 업로드 횟수"
+				required
+				items={POST_DURATION_MONTH_ITEMS}
+			/>
 
 			<Typography variant="h5">옵션</Typography>
 
-			<RadioGroup<ProvisionType> label="2차 가공" formName="option.refinement" radios={PROVISION_TYPE_RADIOS} row />
+			<RadioGroup<ProvisionType>
+				label="2차 가공"
+				formName="option.refinement.provision"
+				radios={PROVISION_TYPE_RADIOS}
+				row
+			/>
 			<RadioGroup<ProvisionType>
 				label="컷 수 추가"
-				formName="option.additionalPanel"
+				formName="option.additionalPanel.provision"
 				radios={PROVISION_TYPE_RADIOS}
 				row
 			/>
 			<RadioGroup<ProvisionType>
 				label="수정 횟수 추가"
-				formName="option.additionalModification"
+				formName="option.additionalModification.provision"
 				radios={PROVISION_TYPE_RADIOS}
 				row
 			/>
 			<RadioGroup<ProvisionType>
 				label="업로드 기간 연장"
-				formName="option.postDurationExtension"
+				formName="option.postDurationExtension.provision"
 				radios={PROVISION_TYPE_RADIOS}
 				row
 			/>

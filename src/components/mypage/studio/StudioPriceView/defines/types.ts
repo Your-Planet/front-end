@@ -7,7 +7,7 @@ export type ServiceForm = {
 	workingDays: number;
 	defaultCuts: number;
 	modificationCount: number;
-	postDurationType: PostDurationMonthType;
+	postDurationMonth: PostDurationMonthType;
 };
 
 export type ProvisionType = "NONE" | "DEFAULT" | "ADDITIONAL";
@@ -17,28 +17,28 @@ type ServiceFormType = {
 	workingDays: number; // 작업 기간
 	defaultCuts: number; // 기본 컷 수
 	modificationCount: number; // 기본 수정 횟수
-	postDurationType: PostDurationMonthType; // 기본 업로드 기간
+	postDurationMonth: PostDurationMonthType; // 기본 업로드 기간
 };
 
 export type OptionFormType = {
 	// 2차 가공
 	refinement: {
-		provisionType: ProvisionType; // 기본 제공, 추가 제공, 미제공
+		provision: ProvisionType; // 기본 제공, 추가 제공, 미제공
 	};
 	// 컷 수 추가
 	additionalPanel: {
-		provisionType: ProvisionType;
+		provision: ProvisionType;
 		price: number;
 		workingDays: number;
 	};
 	// 수정 횟수 추가
 	additionalModification: {
-		provisionType: ProvisionType;
+		provision: ProvisionType;
 		price: number;
 	};
 	// 업로드 기간 연장
 	postDurationExtension: {
-		provisionType: ProvisionType;
+		provision: ProvisionType;
 		price: number;
 	};
 };
@@ -52,5 +52,5 @@ export type ServiceLimits<ServiceForm> = Omit<
 	{
 		[K in keyof ServiceForm]: LengthLimit;
 	},
-	"postDurationType"
+	"postDurationMonth"
 >;
