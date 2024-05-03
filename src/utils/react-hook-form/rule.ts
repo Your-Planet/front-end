@@ -24,7 +24,7 @@ export const getAlphabetLengthErrorMessage = (length: number) => `영문 ${lengt
 export const getMaxRule = (max: number, message: Message) => ({
 	max: {
 		value: max,
-		message: message,
+		message,
 	},
 });
 
@@ -42,7 +42,7 @@ export const getMaxLengthRule = (maxLength: number, message?: Message | ((maxLen
 export const getMinRule = (min: number, message: Message) => ({
 	min: {
 		value: min,
-		message: message,
+		message,
 	},
 });
 
