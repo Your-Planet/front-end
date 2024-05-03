@@ -2,7 +2,7 @@
 
 import ReactHookForm from "@/components/common/ReactHookForm";
 import {
-	PostDurationMonthItems,
+	POST_DURATION_MONTH_ITEMS,
 	STUDIO_PRICE_FORM_LIMITS,
 } from "@/components/mypage/studio/StudioPriceView/defines/constants";
 import {
@@ -14,7 +14,7 @@ import {
 	getPriceMinRule,
 	getWorkingDaysMaxRule,
 	getWorkingDaysMinRule,
-} from "@/components/mypage/studio/StudioPriceView/defines/rules";
+} from "@/components/mypage/studio/StudioPriceView/defines/rule";
 import { StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
 import { isNumber } from "@/utils/string";
@@ -124,7 +124,7 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 				required
 				fullWidth
 			/>
-			<Select formName="service.postDurationType" label="기본 업로드 횟수" required items={PostDurationMonthItems} />
+			<Select formName="service.postDurationType" label="기본 업로드 횟수" required items={POST_DURATION_MONTH_ITEMS} />
 		</StudioFormView>
 	);
 }

@@ -14,7 +14,7 @@ export const LABEL_BY_POST_DURATION_MONTH_TYPE: Record<PostDurationMonthType, st
 	OVER_A_YEAR: "12개월 이상",
 });
 
-export const PostDurationMonthItems: { value: PostDurationMonthType; label: string }[] = Object.keys(
+export const POST_DURATION_MONTH_ITEMS: { value: PostDurationMonthType; label: string }[] = Object.keys(
 	LABEL_BY_POST_DURATION_MONTH_TYPE,
 ).map((key) => ({
 	value: key as PostDurationMonthType,
