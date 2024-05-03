@@ -28,12 +28,12 @@ export const POST_DURATION_MONTH_ITEMS: { value: PostDurationMonthType; label: s
 	label: LABEL_BY_POST_DURATION_MONTH_TYPE[key as PostDurationMonthType],
 }));
 
-export const PROVISION_TYPE_RADIOS: { value: ProvisionType; label: string }[] = Object.keys(
-	LABEL_BY_PROVISION_TYPE,
-).map((key) => ({
-	value: key as ProvisionType,
-	label: LABEL_BY_PROVISION_TYPE[key as ProvisionType],
-}));
+export const PROVISION_RADIOS: { value: ProvisionType; label: string }[] = Object.keys(LABEL_BY_PROVISION_TYPE).map(
+	(key) => ({
+		value: key as ProvisionType,
+		label: LABEL_BY_PROVISION_TYPE[key as ProvisionType],
+	}),
+);
 
 export const STUDIO_PRICE_FORM_LIMITS: Record<
 	keyof Pick<StudioPriceFormType, "service">,

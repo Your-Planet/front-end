@@ -3,7 +3,7 @@
 import ReactHookForm from "@/components/common/ReactHookForm";
 import {
 	POST_DURATION_MONTH_ITEMS,
-	PROVISION_TYPE_RADIOS,
+	PROVISION_RADIOS,
 	STUDIO_PRICE_FORM_LIMITS,
 } from "@/components/mypage/studio/StudioPriceView/defines/constants";
 import {
@@ -16,13 +16,12 @@ import {
 	getWorkingDaysMaxRule,
 	getWorkingDaysMinRule,
 } from "@/components/mypage/studio/StudioPriceView/defines/rule";
-import { StudioPriceFormType } from "@/components/mypage/studio/StudioPriceView/defines/types";
+import { ProvisionType, StudioPriceFormType } from "@/components/mypage/studio/StudioPriceView/defines/types";
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
 import { isNumber } from "@/utils/string";
 import { InputAdornment, Typography } from "@mui/material";
 import { FormEventHandler } from "react";
 import { useForm } from "react-hook-form";
-import { ProvisionType } from "../../defines/types";
 
 export interface StudioPriceFormViewProps {}
 
@@ -66,7 +65,7 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 		},
 	});
 
-	const { handleSubmit, getValues } = form;
+	const { handleSubmit } = form;
 
 	const handleFormSubmit: FormEventHandler = handleSubmit(() => {});
 
@@ -156,25 +155,25 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 			<RadioGroup<ProvisionType>
 				label="2차 가공"
 				formName="option.refinement.provision"
-				radios={PROVISION_TYPE_RADIOS}
+				radios={PROVISION_RADIOS}
 				row
 			/>
 			<RadioGroup<ProvisionType>
 				label="컷 수 추가"
 				formName="option.additionalPanel.provision"
-				radios={PROVISION_TYPE_RADIOS}
+				radios={PROVISION_RADIOS}
 				row
 			/>
 			<RadioGroup<ProvisionType>
 				label="수정 횟수 추가"
 				formName="option.additionalModification.provision"
-				radios={PROVISION_TYPE_RADIOS}
+				radios={PROVISION_RADIOS}
 				row
 			/>
 			<RadioGroup<ProvisionType>
 				label="업로드 기간 연장"
 				formName="option.postDurationExtension.provision"
-				radios={PROVISION_TYPE_RADIOS}
+				radios={PROVISION_RADIOS}
 				row
 			/>
 		</StudioFormView>
