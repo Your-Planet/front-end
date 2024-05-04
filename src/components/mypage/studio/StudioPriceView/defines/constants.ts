@@ -42,7 +42,7 @@ export const STUDIO_PRICE_FORM_LIMITS: Record<
 	service: {
 		price: { min: 1000, max: 9999990 },
 		workingDays: { min: 1, max: 30 },
-		defaultCuts: { min: 1, max: 30 },
+		defaultCuts: { min: 1, max: 10 },
 		modificationCount: { min: 1, max: 30 },
 	},
 };

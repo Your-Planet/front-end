@@ -24,6 +24,7 @@ export type OptionFormType = {
 	// 2차 가공
 	refinement: {
 		provision: ProvisionType; // 기본 제공, 추가 제공, 미제공
+		price: number;
 	};
 	// 컷 수 추가
 	additionalPanel: {
@@ -35,6 +36,7 @@ export type OptionFormType = {
 	additionalModification: {
 		provision: ProvisionType;
 		price: number;
+		workingDays: number;
 	};
 	// 업로드 기간 연장
 	postDurationExtension: {
