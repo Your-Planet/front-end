@@ -1,8 +1,11 @@
 import ReactHookForm from "@/components/common/ReactHookForm";
+import { PROVISION_RADIOS } from "@/components/mypage/studio/StudioPriceView/defines/constants";
 import {
-	PROVISION_RADIOS,
-	STUDIO_PRICE_FORM_LIMITS,
-} from "@/components/mypage/studio/StudioPriceView/defines/constants";
+	getPriceMaxRule,
+	getPriceMinRule,
+	getWorkingDaysMaxRule,
+	getWorkingDaysMinRule,
+} from "@/components/mypage/studio/StudioPriceView/defines/rule";
 import { ProvisionType, StudioPriceFormType } from "@/components/mypage/studio/StudioPriceView/defines/types";
 import { isNumber } from "@/utils/string";
 import { Box, InputAdornment, Typography } from "@mui/material";
@@ -45,13 +48,14 @@ function OptionFormView(props: Props) {
 					validator={isNumber}
 					InputProps={{
 						endAdornment: <InputAdornment position="end">원</InputAdornment>,
-						inputProps: {
-							min: STUDIO_PRICE_FORM_LIMITS.service.price.min,
-							max: STUDIO_PRICE_FORM_LIMITS.service.price.max,
-						},
 					}}
 					size="small"
 					disabled={isDisabled(refinementProvision)}
+					required={!isDisabled(refinementProvision)}
+					rules={{
+						...getPriceMinRule(),
+						...getPriceMaxRule(),
+					}}
 					fullWidth
 				/>
 			</Box>
@@ -69,13 +73,14 @@ function OptionFormView(props: Props) {
 						validator={isNumber}
 						InputProps={{
 							endAdornment: <InputAdornment position="end">원</InputAdornment>,
-							inputProps: {
-								min: STUDIO_PRICE_FORM_LIMITS.service.price.min,
-								max: STUDIO_PRICE_FORM_LIMITS.service.price.max,
-							},
 						}}
 						size="small"
 						disabled={isDisabled(additionalPanelProvision)}
+						required={!isDisabled(additionalPanelProvision)}
+						rules={{
+							...getPriceMinRule(),
+							...getPriceMaxRule(),
+						}}
 						fullWidth
 					/>
 					<TextField
@@ -84,13 +89,14 @@ function OptionFormView(props: Props) {
 						type="number"
 						InputProps={{
 							endAdornment: <InputAdornment position="end">일</InputAdornment>,
-							inputProps: {
-								min: STUDIO_PRICE_FORM_LIMITS.service.workingDays.min,
-								max: STUDIO_PRICE_FORM_LIMITS.service.workingDays.max,
-							},
 						}}
 						size="small"
 						disabled={isDisabled(additionalPanelProvision)}
+						required={!isDisabled(additionalPanelProvision)}
+						rules={{
+							...getWorkingDaysMinRule(),
+							...getWorkingDaysMaxRule(),
+						}}
 						fullWidth
 					/>
 				</Box>
@@ -109,13 +115,14 @@ function OptionFormView(props: Props) {
 						validator={isNumber}
 						InputProps={{
 							endAdornment: <InputAdornment position="end">원</InputAdornment>,
-							inputProps: {
-								min: STUDIO_PRICE_FORM_LIMITS.service.price.min,
-								max: STUDIO_PRICE_FORM_LIMITS.service.price.max,
-							},
 						}}
 						size="small"
 						disabled={isDisabled(additionalModificationProvision)}
+						required={!isDisabled(additionalModificationProvision)}
+						rules={{
+							...getPriceMinRule(),
+							...getPriceMaxRule(),
+						}}
 						fullWidth
 					/>
 					<TextField
@@ -124,13 +131,14 @@ function OptionFormView(props: Props) {
 						type="number"
 						InputProps={{
 							endAdornment: <InputAdornment position="end">일</InputAdornment>,
-							inputProps: {
-								min: STUDIO_PRICE_FORM_LIMITS.service.workingDays.min,
-								max: STUDIO_PRICE_FORM_LIMITS.service.workingDays.max,
-							},
 						}}
 						size="small"
 						disabled={isDisabled(additionalModificationProvision)}
+						required={!isDisabled(additionalModificationProvision)}
+						rules={{
+							...getWorkingDaysMinRule(),
+							...getWorkingDaysMaxRule(),
+						}}
 						fullWidth
 					/>
 				</Box>
@@ -148,13 +156,14 @@ function OptionFormView(props: Props) {
 					validator={isNumber}
 					InputProps={{
 						endAdornment: <InputAdornment position="end">원</InputAdornment>,
-						inputProps: {
-							min: STUDIO_PRICE_FORM_LIMITS.service.price.min,
-							max: STUDIO_PRICE_FORM_LIMITS.service.price.max,
-						},
 					}}
 					size="small"
 					disabled={isDisabled(postDurationExtensionProvision)}
+					required={!isDisabled(postDurationExtensionProvision)}
+					rules={{
+						...getPriceMinRule(),
+						...getPriceMaxRule(),
+					}}
 					fullWidth
 				/>
 			</Box>
