@@ -1,7 +1,10 @@
 import { InstagramAuthApi } from "@/apis/instagram-auth";
 import { InstagramGraphApi } from "@/apis/instagram-graph";
 import { MemberApi } from "@/apis/member";
+import { HTTP_HEADER } from "@/defines/apis/constants";
+import { COOKIE } from "@/defines/cookie/constants";
 import { DOMAIN } from "@/defines/domain/constants";
+import { getCookie } from "@/utils/cookie";
 import { deepFreeze } from "@/utils/object";
 import axios from "axios";
 
@@ -15,6 +18,22 @@ const instagramApiAxiosInstance = axios.create({
 
 const instagramGraphAxiosInstance = axios.create({
 	baseURL: DOMAIN.instagram.graph,
+});
+
+axiosInstance.interceptors.request.use((config) => {
+	const accessToken = getCookie(COOKIE.accessToken);
+
+	const newConfig = {
+		...config,
+	};
+
+	if (accessToken) {
+		newConfig.headers[HTTP_HEADER.authorization] = `Bearer ${accessToken}`;
+	} else {
+		delete newConfig.headers[HTTP_HEADER.authorization];
+	}
+
+	return newConfig;
 });
 
 [axiosInstance, instagramApiAxiosInstance, instagramGraphAxiosInstance].forEach((instance) => {
