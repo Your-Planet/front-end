@@ -16,7 +16,7 @@ import {
 	workingDaysMaxRule,
 	workingDaysMinRule,
 } from "@/components/mypage/studio/StudioPriceView/defines/rule";
-import { ProvisionType, StudioPriceFormType } from "@/components/mypage/studio/StudioPriceView/defines/types";
+import { Provision, StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
 import { isNumber } from "@/utils/string";
 import { InputAdornment, Typography } from "@mui/material";
@@ -32,9 +32,9 @@ const counterFieldSx = {
 function StudioPriceFormView(props: StudioPriceFormViewProps) {
 	const {} = props;
 
-	const { TextField, RadioGroup, Select } = ReactHookForm<StudioPriceFormType>();
+	const { TextField, RadioGroup, Select } = ReactHookForm<StudioPriceForm>();
 
-	const form = useForm<StudioPriceFormType>({
+	const form = useForm<StudioPriceForm>({
 		mode: "all",
 		defaultValues: {
 			service: {
@@ -152,25 +152,20 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 
 			<Typography variant="h5">옵션</Typography>
 
-			<RadioGroup<ProvisionType>
-				label="2차 가공"
-				formName="option.refinement.provision"
-				radios={PROVISION_RADIOS}
-				row
-			/>
-			<RadioGroup<ProvisionType>
+			<RadioGroup<Provision> label="2차 가공" formName="option.refinement.provision" radios={PROVISION_RADIOS} row />
+			<RadioGroup<Provision>
 				label="컷 수 추가"
 				formName="option.additionalPanel.provision"
 				radios={PROVISION_RADIOS}
 				row
 			/>
-			<RadioGroup<ProvisionType>
+			<RadioGroup<Provision>
 				label="수정 횟수 추가"
 				formName="option.additionalModification.provision"
 				radios={PROVISION_RADIOS}
 				row
 			/>
-			<RadioGroup<ProvisionType>
+			<RadioGroup<Provision>
 				label="업로드 기간 연장"
 				formName="option.postDurationExtension.provision"
 				radios={PROVISION_RADIOS}
