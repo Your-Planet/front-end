@@ -5,6 +5,12 @@ import {
 	PROVISION_RADIOS,
 	STUDIO_PRICE_FORM_LIMITS,
 } from "@/components/mypage/studio/StudioPriceView/defines/constants";
+import {
+	priceMaxRule,
+	priceMinRule,
+	workingDaysMaxRule,
+	workingDaysMinRule,
+} from "@/components/mypage/studio/StudioPriceView/defines/rule";
 import { Provision, StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
 import { isNumber } from "@/utils/string";
 import { Box, InputAdornment, Typography } from "@mui/material";
@@ -49,6 +55,11 @@ function OptionFormView(props: Props) {
 					}}
 					size="small"
 					disabled={isDisabled(refinementProvision)}
+					required={!isDisabled(refinementProvision)}
+					rules={{
+						...priceMinRule,
+						...priceMaxRule,
+					}}
 					fullWidth
 				/>
 			</Box>
@@ -73,6 +84,11 @@ function OptionFormView(props: Props) {
 						}}
 						size="small"
 						disabled={isDisabled(additionalPanelProvision)}
+						required={!isDisabled(additionalPanelProvision)}
+						rules={{
+							...priceMinRule,
+							...priceMaxRule,
+						}}
 						fullWidth
 					/>
 					<TextField
@@ -88,6 +104,11 @@ function OptionFormView(props: Props) {
 						}}
 						size="small"
 						disabled={isDisabled(additionalPanelProvision)}
+						required={!isDisabled(additionalPanelProvision)}
+						rules={{
+							...workingDaysMinRule,
+							...workingDaysMaxRule,
+						}}
 						fullWidth
 					/>
 				</Box>
@@ -113,6 +134,11 @@ function OptionFormView(props: Props) {
 						}}
 						size="small"
 						disabled={isDisabled(additionalModificationProvision)}
+						required={!isDisabled(additionalModificationProvision)}
+						rules={{
+							...priceMinRule,
+							...priceMaxRule,
+						}}
 						fullWidth
 					/>
 					<TextField
@@ -128,6 +154,11 @@ function OptionFormView(props: Props) {
 						}}
 						size="small"
 						disabled={isDisabled(additionalModificationProvision)}
+						required={!isDisabled(additionalModificationProvision)}
+						rules={{
+							...workingDaysMinRule,
+							...workingDaysMaxRule,
+						}}
 						fullWidth
 					/>
 				</Box>
@@ -152,6 +183,11 @@ function OptionFormView(props: Props) {
 					}}
 					size="small"
 					disabled={isDisabled(postDurationExtensionProvision)}
+					required={!isDisabled(postDurationExtensionProvision)}
+					rules={{
+						...priceMinRule,
+						...priceMaxRule,
+					}}
 					fullWidth
 				/>
 			</Box>
