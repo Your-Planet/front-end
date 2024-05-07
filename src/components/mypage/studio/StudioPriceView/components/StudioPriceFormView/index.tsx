@@ -6,14 +6,14 @@ import {
 	STUDIO_PRICE_FORM_LIMITS,
 } from "@/components/mypage/studio/StudioPriceView/defines/constants";
 import {
-	getDefaultCutsMaxRule,
-	getDefaultCutsMinRule,
-	getModificationCountMaxRule,
-	getModificationCountMinRule,
-	getPriceMaxRule,
-	getPriceMinRule,
-	getWorkingDaysMaxRule,
-	getWorkingDaysMinRule,
+	defaultCutsMaxRule,
+	defaultCutsMinRule,
+	modificationCountMaxRule,
+	modificationCountMinRule,
+	priceMaxRule,
+	priceMinRule,
+	workingDaysMaxRule,
+	workingDaysMinRule,
 } from "@/components/mypage/studio/StudioPriceView/defines/rule";
 import { StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
@@ -60,8 +60,8 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 				required
 				validator={isNumber}
 				rules={{
-					...getPriceMinRule(),
-					...getPriceMaxRule(),
+					...priceMinRule,
+					...priceMaxRule,
 				}}
 				InputProps={{
 					endAdornment: <InputAdornment position="end">원</InputAdornment>,
@@ -79,8 +79,8 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 					},
 				}}
 				rules={{
-					...getWorkingDaysMinRule(),
-					...getWorkingDaysMaxRule(),
+					...workingDaysMinRule,
+					...workingDaysMaxRule,
 				}}
 				sx={{ ...counterFieldSx }}
 				required
@@ -98,8 +98,8 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 					},
 				}}
 				rules={{
-					...getDefaultCutsMinRule(),
-					...getDefaultCutsMaxRule(),
+					...defaultCutsMinRule,
+					...defaultCutsMaxRule,
 				}}
 				sx={{ ...counterFieldSx }}
 				required
@@ -117,8 +117,8 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 					},
 				}}
 				rules={{
-					...getModificationCountMinRule(),
-					...getModificationCountMaxRule(),
+					...modificationCountMinRule,
+					...modificationCountMaxRule,
 				}}
 				sx={{ ...counterFieldSx }}
 				required
