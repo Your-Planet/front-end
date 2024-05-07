@@ -1,26 +1,28 @@
+"use client";
+
 import ReactHookForm from "@/components/common/ReactHookForm";
 import {
 	POST_DURATION_MONTH_ITEMS,
 	STUDIO_PRICE_FORM_LIMITS,
 } from "@/components/mypage/studio/StudioPriceView/defines/constants";
 import {
-	getDefaultCutsMaxRule,
-	getDefaultCutsMinRule,
-	getModificationCountMaxRule,
-	getModificationCountMinRule,
-	getPriceMaxRule,
-	getPriceMinRule,
-	getWorkingDaysMaxRule,
-	getWorkingDaysMinRule,
+	defaultCutsMaxRule,
+	defaultCutsMinRule,
+	modificationCountMaxRule,
+	modificationCountMinRule,
+	priceMaxRule,
+	priceMinRule,
+	workingDaysMaxRule,
+	workingDaysMinRule,
 } from "@/components/mypage/studio/StudioPriceView/defines/rule";
-import { StudioPriceFormType } from "@/components/mypage/studio/StudioPriceView/defines/types";
+import { StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
 import { isNumber } from "@/utils/string";
 import { InputAdornment, Typography } from "@mui/material";
 
 type Props = {};
 
 function ServiceFormView({}: Props) {
-	const { TextField, Select } = ReactHookForm<StudioPriceFormType>();
+	const { TextField, Select } = ReactHookForm<StudioPriceForm>();
 
 	return (
 		<>
@@ -32,8 +34,8 @@ function ServiceFormView({}: Props) {
 				required
 				validator={isNumber}
 				rules={{
-					...getPriceMinRule(),
-					...getPriceMaxRule(),
+					...priceMinRule,
+					...priceMaxRule,
 				}}
 				InputProps={{
 					endAdornment: <InputAdornment position="end">원</InputAdornment>,
@@ -51,10 +53,11 @@ function ServiceFormView({}: Props) {
 					},
 				}}
 				rules={{
-					...getWorkingDaysMinRule(),
-					...getWorkingDaysMaxRule(),
+					...workingDaysMinRule,
+					...workingDaysMaxRule,
 				}}
 				required
+				fullWidth
 			/>
 			<TextField
 				formName="service.defaultCuts"
@@ -68,10 +71,11 @@ function ServiceFormView({}: Props) {
 					},
 				}}
 				rules={{
-					...getDefaultCutsMinRule(),
-					...getDefaultCutsMaxRule(),
+					...defaultCutsMinRule,
+					...defaultCutsMaxRule,
 				}}
 				required
+				fullWidth
 			/>
 			<TextField
 				formName="service.modificationCount"
@@ -85,10 +89,11 @@ function ServiceFormView({}: Props) {
 					},
 				}}
 				rules={{
-					...getModificationCountMinRule(),
-					...getModificationCountMaxRule(),
+					...modificationCountMinRule,
+					...modificationCountMaxRule,
 				}}
 				required
+				fullWidth
 			/>
 			<Select
 				formName="service.postDurationMonth"

@@ -5,41 +5,36 @@ import { AccessTokenPayload } from "@/defines/jwt/types";
 import { getCookie } from "@/utils/cookie";
 import { decode } from "jsonwebtoken";
 import { usePathname } from "next/navigation";
-import { createContext, ReactNode, useContext, useEffect, useMemo, useState } from "react";
+import { ReactNode, createContext, useContext, useMemo } from "react";
 
-export interface AuthContextProps {
+interface AuthContextProps {
 	jwtPayload: AccessTokenPayload | null;
 }
 
-export const AuthContext = createContext<AuthContextProps>({
+const AuthContext = createContext<AuthContextProps>({
 	jwtPayload: null,
 });
 
 export const useAuthContext = () => useContext(AuthContext);
 
-export interface AuthProviderProps {
+interface AuthClientProviderProps {
+	token: string | undefined;
 	children: ReactNode;
 }
 
-function AuthProvider(props: AuthProviderProps) {
-	const { children } = props;
-
+function AuthClientProvider(props: AuthClientProviderProps) {
+	const { children, token: tokenFromServer } = props;
 	const pathname = usePathname();
 
-	const [token, setToken] = useState<string>();
+	const contextValue: AuthContextProps = useMemo(() => {
+		const token = tokenFromServer ?? getCookie(COOKIE.accessToken);
 
-	useEffect(() => {
-		setToken(getCookie(COOKIE.accessToken));
-	}, [pathname]);
-
-	const contextValue: AuthContextProps = useMemo(
-		() => ({
+		return {
 			jwtPayload: token ? (decode(token) as AccessTokenPayload) : null,
-		}),
-		[token],
-	);
+		};
+	}, [tokenFromServer, pathname]);
 
 	return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
 }
 
-export default AuthProvider;
+export default AuthClientProvider;

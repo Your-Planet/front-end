@@ -2,7 +2,7 @@ import { UseInfiniteQueryOptions, UseMutationOptions, UseQueryOptions } from "@t
 
 export interface UseQueryParams<FnRes, Error, Req = undefined, QueryRes = FnRes> {
 	req: Req;
-	queryOption?: UseQueryOptions<FnRes, Error, QueryRes>;
+	queryOption?: Omit<UseQueryOptions<FnRes, Error, QueryRes>, "queryKey">;
 }
 
 export interface UseInfiniteQueryParams<FnRes, Error, Req = undefined, QueryRes = FnRes> {

@@ -2,15 +2,25 @@ import GlobalMenuLink from "@/components/common/layout/Header/components/GlobalM
 import { IA } from "@/defines/ia/constants";
 import { useAuthContext } from "@/providers/AuthProvider";
 import { Box } from "@mui/material";
+import { usePathname, useSearchParams } from "next/navigation";
 
 function GlobalMenu() {
 	const { jwtPayload } = useAuthContext();
+
+	const pathname = usePathname();
+	const searchParams = useSearchParams();
+	const currentPathWithQuery = `${pathname}?${searchParams.toString()}`;
 
 	return (
 		<Box>
 			{jwtPayload ? (
 				<>
-					<GlobalMenuLink page={IA.logout} />
+					<GlobalMenuLink
+						page={IA.logout}
+						query={{
+							redirect: currentPathWithQuery,
+						}}
+					/>
 					<GlobalMenuLink page={IA.mypage} />
 				</>
 			) : (

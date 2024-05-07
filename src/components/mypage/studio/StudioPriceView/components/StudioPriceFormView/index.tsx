@@ -2,7 +2,7 @@
 
 import OptionFormView from "@/components/mypage/studio/StudioPriceView/components/StudioPriceFormView/components/PriceOption";
 import ServiceFormView from "@/components/mypage/studio/StudioPriceView/components/StudioPriceFormView/components/PriceService";
-import { StudioPriceFormType } from "@/components/mypage/studio/StudioPriceView/defines/types";
+import { StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
 import { FormEventHandler } from "react";
 import { useForm } from "react-hook-form";
@@ -12,7 +12,7 @@ export interface StudioPriceFormViewProps {}
 function StudioPriceFormView(props: StudioPriceFormViewProps) {
 	const {} = props;
 
-	const form = useForm<StudioPriceFormType>({
+	const form = useForm<StudioPriceForm>({
 		mode: "all",
 		defaultValues: {
 			service: {

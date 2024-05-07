@@ -1,12 +1,11 @@
+"use client";
+
 import ReactHookForm from "@/components/common/ReactHookForm";
-import { PROVISION_RADIOS } from "@/components/mypage/studio/StudioPriceView/defines/constants";
 import {
-	getPriceMaxRule,
-	getPriceMinRule,
-	getWorkingDaysMaxRule,
-	getWorkingDaysMinRule,
-} from "@/components/mypage/studio/StudioPriceView/defines/rule";
-import { ProvisionType, StudioPriceFormType } from "@/components/mypage/studio/StudioPriceView/defines/types";
+	PROVISION_RADIOS,
+	STUDIO_PRICE_FORM_LIMITS,
+} from "@/components/mypage/studio/StudioPriceView/defines/constants";
+import { Provision, StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
 import { isNumber } from "@/utils/string";
 import { Box, InputAdornment, Typography } from "@mui/material";
 import { useFormContext } from "react-hook-form";
@@ -14,7 +13,7 @@ import { useFormContext } from "react-hook-form";
 type Props = {};
 
 function OptionFormView(props: Props) {
-	const { TextField, RadioGroup } = ReactHookForm<StudioPriceFormType>();
+	const { TextField, RadioGroup } = ReactHookForm<StudioPriceForm>();
 	const { watch } = useFormContext();
 
 	const [
@@ -29,38 +28,32 @@ function OptionFormView(props: Props) {
 		"option.postDurationExtension.provision",
 	]);
 
-	const isDisabled = (target: ProvisionType) => target !== "ADDITIONAL";
+	const isDisabled = (target: Provision) => target !== "ADDITIONAL";
 
 	return (
 		<>
 			<Typography variant="h5">옵션</Typography>
 
 			<Box>
-				<RadioGroup<ProvisionType>
-					label="2차 가공"
-					formName="option.refinement.provision"
-					radios={PROVISION_RADIOS}
-					row
-				/>
+				<RadioGroup<Provision> label="2차 가공" formName="option.refinement.provision" radios={PROVISION_RADIOS} row />
 				<TextField
 					formName="option.refinement.price"
 					label="추가 비용"
 					validator={isNumber}
 					InputProps={{
 						endAdornment: <InputAdornment position="end">원</InputAdornment>,
+						inputProps: {
+							min: STUDIO_PRICE_FORM_LIMITS.service.price.min,
+							max: STUDIO_PRICE_FORM_LIMITS.service.price.max,
+						},
 					}}
 					size="small"
 					disabled={isDisabled(refinementProvision)}
-					required={!isDisabled(refinementProvision)}
-					rules={{
-						...getPriceMinRule(),
-						...getPriceMaxRule(),
-					}}
 					fullWidth
 				/>
 			</Box>
 			<Box>
-				<RadioGroup<ProvisionType>
+				<RadioGroup<Provision>
 					label="컷 수 추가"
 					formName="option.additionalPanel.provision"
 					radios={PROVISION_RADIOS}
@@ -73,14 +66,13 @@ function OptionFormView(props: Props) {
 						validator={isNumber}
 						InputProps={{
 							endAdornment: <InputAdornment position="end">원</InputAdornment>,
+							inputProps: {
+								min: STUDIO_PRICE_FORM_LIMITS.service.price.min,
+								max: STUDIO_PRICE_FORM_LIMITS.service.price.max,
+							},
 						}}
 						size="small"
 						disabled={isDisabled(additionalPanelProvision)}
-						required={!isDisabled(additionalPanelProvision)}
-						rules={{
-							...getPriceMinRule(),
-							...getPriceMaxRule(),
-						}}
 						fullWidth
 					/>
 					<TextField
@@ -89,20 +81,19 @@ function OptionFormView(props: Props) {
 						type="number"
 						InputProps={{
 							endAdornment: <InputAdornment position="end">일</InputAdornment>,
+							inputProps: {
+								min: STUDIO_PRICE_FORM_LIMITS.service.workingDays.min,
+								max: STUDIO_PRICE_FORM_LIMITS.service.workingDays.max,
+							},
 						}}
 						size="small"
 						disabled={isDisabled(additionalPanelProvision)}
-						required={!isDisabled(additionalPanelProvision)}
-						rules={{
-							...getWorkingDaysMinRule(),
-							...getWorkingDaysMaxRule(),
-						}}
 						fullWidth
 					/>
 				</Box>
 			</Box>
 			<Box>
-				<RadioGroup<ProvisionType>
+				<RadioGroup<Provision>
 					label="수정 횟수 추가"
 					formName="option.additionalModification.provision"
 					radios={PROVISION_RADIOS}
@@ -115,14 +106,13 @@ function OptionFormView(props: Props) {
 						validator={isNumber}
 						InputProps={{
 							endAdornment: <InputAdornment position="end">원</InputAdornment>,
+							inputProps: {
+								min: STUDIO_PRICE_FORM_LIMITS.service.price.min,
+								max: STUDIO_PRICE_FORM_LIMITS.service.price.max,
+							},
 						}}
 						size="small"
 						disabled={isDisabled(additionalModificationProvision)}
-						required={!isDisabled(additionalModificationProvision)}
-						rules={{
-							...getPriceMinRule(),
-							...getPriceMaxRule(),
-						}}
 						fullWidth
 					/>
 					<TextField
@@ -131,20 +121,19 @@ function OptionFormView(props: Props) {
 						type="number"
 						InputProps={{
 							endAdornment: <InputAdornment position="end">일</InputAdornment>,
+							inputProps: {
+								min: STUDIO_PRICE_FORM_LIMITS.service.workingDays.min,
+								max: STUDIO_PRICE_FORM_LIMITS.service.workingDays.max,
+							},
 						}}
 						size="small"
 						disabled={isDisabled(additionalModificationProvision)}
-						required={!isDisabled(additionalModificationProvision)}
-						rules={{
-							...getWorkingDaysMinRule(),
-							...getWorkingDaysMaxRule(),
-						}}
 						fullWidth
 					/>
 				</Box>
 			</Box>
 			<Box>
-				<RadioGroup<ProvisionType>
+				<RadioGroup<Provision>
 					label="업로드 기간 연장"
 					formName="option.postDurationExtension.provision"
 					radios={PROVISION_RADIOS}
@@ -156,14 +145,13 @@ function OptionFormView(props: Props) {
 					validator={isNumber}
 					InputProps={{
 						endAdornment: <InputAdornment position="end">원</InputAdornment>,
+						inputProps: {
+							min: STUDIO_PRICE_FORM_LIMITS.service.price.min,
+							max: STUDIO_PRICE_FORM_LIMITS.service.price.max,
+						},
 					}}
 					size="small"
 					disabled={isDisabled(postDurationExtensionProvision)}
-					required={!isDisabled(postDurationExtensionProvision)}
-					rules={{
-						...getPriceMinRule(),
-						...getPriceMaxRule(),
-					}}
 					fullWidth
 				/>
 			</Box>

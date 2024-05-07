@@ -4,12 +4,13 @@ import DynamicAppendButtonGroup from "@/components/common/DynamicAppend/componen
 import { FormLabel, Grid, Stack } from "@mui/material";
 import { ReactElement } from "react";
 import { ArrayPath, FieldArray, FieldArrayPath, FieldValues, useFieldArray, useFormContext } from "react-hook-form";
+import { DefaultValues } from "react-hook-form/dist/types/form";
 
 export interface DynamicAppendProps<TFieldValues extends FieldValues> {
 	formName: ArrayPath<TFieldValues>;
 	label?: string;
 	component: (props: DynamicAppendItemProps) => ReactElement;
-	defaultValue: FieldArray<TFieldValues, FieldArrayPath<TFieldValues>>;
+	defaultValue: DefaultValues<FieldArray<TFieldValues, FieldArrayPath<TFieldValues>>>;
 	required?: boolean;
 	disabled?: boolean;
 	maxCount?: number;
@@ -31,7 +32,7 @@ function DynamicAppend<TFieldValues extends FieldValues>(props: DynamicAppendPro
 	});
 
 	const getHandleClickAppend = () => () => {
-		append(defaultValue);
+		append(defaultValue as FieldArray<TFieldValues, FieldArrayPath<TFieldValues>>);
 	};
 
 	const getHandleClickRemove = (index: number) => () => {
