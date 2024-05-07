@@ -2,16 +2,18 @@
 
 import DynamicAppend from "@/components/common/DynamicAppend";
 import ReactHookForm from "@/components/common/ReactHookForm";
+import InstagramUserNameTextField from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/components/InstagramUserNameTextField";
 import {
-	DEFAULT_PORTFOLIO_LINK,
+	DEFAULT_PORTFOLIO,
 	STUDIO_PROFILE_FORM_LENGTH,
 } from "@/components/mypage/studio/StudioProfileView/defines/constants";
-import { StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
+import { Portfolio, StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
 import { INSTATOON_CATEGORY_NAME_BY_TYPE } from "@/defines/instatoon-category/constants";
 import { InstatoonCategoryType } from "@/defines/instatoon-category/types";
+import useMutationPostProfile from "@/hooks/queries/studio/useMutationPostProfile";
 import { getMaxLengthRule, getMinLengthRule } from "@/utils/react-hook-form/rule";
-import { FormHelperText, FormLabel, Grid, TextField as ReadOnlyTextField, Stack } from "@mui/material";
+import { FormHelperText, FormLabel, Grid, Stack } from "@mui/material";
 import { FormEventHandler } from "react";
 import { useForm } from "react-hook-form";
 
@@ -44,7 +46,7 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 				MARRIAGE: false,
 				HEALING: false,
 			},
-			portfolioLinks: [DEFAULT_PORTFOLIO_LINK],
+			portfolios: [DEFAULT_PORTFOLIO],
 		},
 	});
 
@@ -56,7 +58,34 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 		formState: { errors },
 	} = form;
 
-	const handleFormSubmit: FormEventHandler = handleSubmit(() => {});
+	const { mutateAsync: mutatePostProfile } = useMutationPostProfile({});
+
+	const handleFormSubmit: FormEventHandler = handleSubmit(async (data) => {
+		const categoryToCategories = (category: Record<InstatoonCategoryType, boolean>): InstatoonCategoryType[] => {
+			return Object.entries(category)
+				.filter(([categoryType, checked]) => checked)
+				.map(([categoryType]) => categoryType as InstatoonCategoryType);
+		};
+
+		const portfoliosToPortfolioIds = (portfolios: Portfolio[]) => {
+			return portfolios.map(({ id }) => id);
+		};
+
+		try {
+			const { category, portfolios, ...restData } = data;
+
+			await mutatePostProfile({
+				...restData,
+				categories: categoryToCategories(category),
+				portfolioIds: portfoliosToPortfolioIds(portfolios),
+			});
+
+			// TODO @김현규 성공 처리
+		} catch (e) {
+			// TODO @김현규 예외 처리
+			console.log(e);
+		}
+	});
 
 	const handleChangeCategory = () => {
 		const category = getValues("category");
@@ -85,7 +114,7 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 
 	return (
 		<StudioFormView title={"프로필 설정"} useFormReturn={form} onSubmit={handleFormSubmit}>
-			<ReadOnlyTextField label="인스타그램 계정" disabled helperText=" " />
+			<InstagramUserNameTextField />
 
 			<TextField
 				formName="name"
@@ -127,10 +156,10 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 
 			<DynamicAppend<StudioProfileForm>
 				label="포트폴리오 링크"
-				formName="portfolioLinks"
-				component={({ index }) => <TextField formName={`portfolioLinks.${index}.content`} label="" fullWidth />}
+				formName="portfolios"
+				component={({ index }) => <TextField formName={`portfolios.${index}.permalink`} label="" fullWidth />}
 				maxCount={10}
-				defaultValue={DEFAULT_PORTFOLIO_LINK}
+				defaultValue={DEFAULT_PORTFOLIO}
 				required
 			/>
 		</StudioFormView>

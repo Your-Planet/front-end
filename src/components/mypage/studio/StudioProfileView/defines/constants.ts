@@ -1,8 +1,10 @@
-import { PortfolioLink, StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
+import { Portfolio, StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
 import { LengthLimit } from "@/defines/forms/types";
+import { DefaultValues } from "react-hook-form/dist/types/form";
 
-export const DEFAULT_PORTFOLIO_LINK: PortfolioLink = {
-	content: "",
+export const DEFAULT_PORTFOLIO: DefaultValues<Portfolio> = {
+	id: undefined,
+	permalink: "",
 };
 
 export const STUDIO_PROFILE_FORM_LENGTH: Record<

@@ -1,8 +1,17 @@
-import { JoinRequest, JoinResponse } from "@/apis/member/models";
-import { FindEmailRequest, FindEmailResponse } from "@/apis/member/models/find";
-import { LoginRequest, LoginResponse } from "@/apis/member/models/login";
-import { ResetPasswordRequest, ResetPasswordResponse } from "@/apis/member/models/reset-pw";
-import { ValidateMemberRequest, ValidateMemberResponse } from "@/apis/member/models/validate";
+import {
+	FindEmailRequest,
+	FindEmailResponse,
+	JoinRequest,
+	JoinResponse,
+	LoginRequest,
+	LoginResponse,
+	MemberDetailRequest,
+	MemberDetailResponse,
+	ResetPasswordRequest,
+	ResetPasswordResponse,
+	ValidateMemberRequest,
+	ValidateMemberResponse,
+} from "@/apis/member/models";
 import { AxiosRequestYourPlanetFunction } from "@/defines/apis/types";
 import BaseApi from "@/utils/api/BaseApi";
 
@@ -25,5 +34,9 @@ export class MemberApi extends BaseApi {
 
 	public resetPassword: AxiosRequestYourPlanetFunction<ResetPasswordRequest, ResetPasswordResponse> = (req) => {
 		return this.axiosInstance.post(this.getUrl("/reset-password"), req);
+	};
+
+	public detail: AxiosRequestYourPlanetFunction<MemberDetailRequest, MemberDetailResponse> = (req) => {
+		return this.axiosInstance.get(this.getUrl("/detail"), { params: req });
 	};
 }
