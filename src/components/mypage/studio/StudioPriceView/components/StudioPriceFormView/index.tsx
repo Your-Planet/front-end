@@ -3,6 +3,7 @@
 import ReactHookForm from "@/components/common/ReactHookForm";
 import {
 	POST_DURATION_MONTH_ITEMS,
+	PROVISION_RADIOS,
 	STUDIO_PRICE_FORM_LIMITS,
 } from "@/components/mypage/studio/StudioPriceView/defines/constants";
 import {
@@ -15,7 +16,7 @@ import {
 	workingDaysMaxRule,
 	workingDaysMinRule,
 } from "@/components/mypage/studio/StudioPriceView/defines/rule";
-import { StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
+import { Provision, StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
 import { isNumber } from "@/utils/string";
 import { InputAdornment, Typography } from "@mui/material";
@@ -31,7 +32,7 @@ const counterFieldSx = {
 function StudioPriceFormView(props: StudioPriceFormViewProps) {
 	const {} = props;
 
-	const { TextField, Select } = ReactHookForm<StudioPriceForm>();
+	const { TextField, RadioGroup, Select } = ReactHookForm<StudioPriceForm>();
 
 	const form = useForm<StudioPriceForm>({
 		mode: "all",
@@ -41,7 +42,25 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 				workingDays: 1,
 				defaultCuts: 1,
 				modificationCount: 1,
-				postDurationType: "A_MONTH",
+				postDurationMonth: "A_MONTH",
+			},
+			option: {
+				refinement: {
+					provision: "NONE",
+				},
+				additionalPanel: {
+					provision: "NONE",
+					price: 0,
+					workingDays: 0,
+				},
+				additionalModification: {
+					provision: "NONE",
+					price: 0,
+				},
+				postDurationExtension: {
+					provision: "NONE",
+					price: 0,
+				},
 			},
 		},
 	});
@@ -124,7 +143,34 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 				required
 				fullWidth
 			/>
-			<Select formName="service.postDurationType" label="기본 업로드 횟수" required items={POST_DURATION_MONTH_ITEMS} />
+			<Select
+				formName="service.postDurationMonth"
+				label="기본 업로드 횟수"
+				required
+				items={POST_DURATION_MONTH_ITEMS}
+			/>
+
+			<Typography variant="h5">옵션</Typography>
+
+			<RadioGroup<Provision> label="2차 가공" formName="option.refinement.provision" radios={PROVISION_RADIOS} row />
+			<RadioGroup<Provision>
+				label="컷 수 추가"
+				formName="option.additionalPanel.provision"
+				radios={PROVISION_RADIOS}
+				row
+			/>
+			<RadioGroup<Provision>
+				label="수정 횟수 추가"
+				formName="option.additionalModification.provision"
+				radios={PROVISION_RADIOS}
+				row
+			/>
+			<RadioGroup<Provision>
+				label="업로드 기간 연장"
+				formName="option.postDurationExtension.provision"
+				radios={PROVISION_RADIOS}
+				row
+			/>
 		</StudioFormView>
 	);
 }
