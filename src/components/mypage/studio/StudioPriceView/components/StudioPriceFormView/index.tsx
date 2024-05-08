@@ -16,7 +16,7 @@ import {
 	workingDaysMaxRule,
 	workingDaysMinRule,
 } from "@/components/mypage/studio/StudioPriceView/defines/rule";
-import { Provision, StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
+import { ProvisionType, StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
 import { isNumber } from "@/utils/string";
 import { Box, InputAdornment, Typography } from "@mui/material";
@@ -83,7 +83,7 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 		"option.postDurationExtension.provisionType",
 	]);
 
-	const isDisabled = (target: Provision) => target !== "ADDITIONAL";
+	const isDisabled = (target: ProvisionType) => target !== "ADDITIONAL";
 
 	return (
 		<StudioFormView title={"가격 설정"} useFormReturn={form} onSubmit={handleFormSubmit}>
@@ -169,7 +169,7 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 			<Typography variant="h5">옵션</Typography>
 
 			<Box>
-				<RadioGroup<Provision>
+				<RadioGroup<ProvisionType>
 					label="2차 가공"
 					formName="option.refinement.provisionType"
 					radios={PROVISION_RADIOS}
@@ -191,7 +191,7 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 				/>
 			</Box>
 			<Box>
-				<RadioGroup<Provision>
+				<RadioGroup<ProvisionType>
 					label="컷 수 추가"
 					formName="option.additionalPanel.provisionType"
 					radios={PROVISION_RADIOS}
@@ -231,7 +231,7 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 				</Box>
 			</Box>
 			<Box>
-				<RadioGroup<Provision>
+				<RadioGroup<ProvisionType>
 					label="수정 횟수 추가"
 					formName="option.additionalModification.provisionType"
 					radios={PROVISION_RADIOS}
@@ -271,7 +271,7 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 				</Box>
 			</Box>
 			<Box>
-				<RadioGroup<Provision>
+				<RadioGroup<ProvisionType>
 					label="업로드 기간 연장"
 					formName="option.postDurationExtension.provisionType"
 					radios={PROVISION_RADIOS}
