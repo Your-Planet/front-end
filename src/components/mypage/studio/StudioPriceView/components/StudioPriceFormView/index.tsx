@@ -16,10 +16,10 @@ import {
 	workingDaysMaxRule,
 	workingDaysMinRule,
 } from "@/components/mypage/studio/StudioPriceView/defines/rule";
-import { Provision, StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
+import { ProvisionType, StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
 import { isNumber } from "@/utils/string";
-import { InputAdornment, Typography } from "@mui/material";
+import { Box, InputAdornment, Typography } from "@mui/material";
 import { FormEventHandler } from "react";
 import { useForm } from "react-hook-form";
 
@@ -46,28 +46,44 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 			},
 			option: {
 				refinement: {
-					provision: "NONE",
+					provisionType: "NONE",
+					price: 0,
 				},
 				additionalPanel: {
-					provision: "NONE",
+					provisionType: "NONE",
 					price: 0,
 					workingDays: 0,
 				},
 				additionalModification: {
-					provision: "NONE",
+					provisionType: "NONE",
 					price: 0,
+					workingDays: 0,
 				},
 				postDurationExtension: {
-					provision: "NONE",
+					provisionType: "NONE",
 					price: 0,
 				},
 			},
 		},
 	});
 
-	const { handleSubmit } = form;
+	const { handleSubmit, watch } = form;
 
 	const handleFormSubmit: FormEventHandler = handleSubmit(() => {});
+
+	const [
+		refinementProvision,
+		additionalPanelProvision,
+		additionalModificationProvision,
+		postDurationExtensionProvision,
+	] = watch([
+		"option.refinement.provisionType",
+		"option.additionalPanel.provisionType",
+		"option.additionalModification.provisionType",
+		"option.postDurationExtension.provisionType",
+	]);
+
+	const isDisabled = (target: ProvisionType) => target !== "ADDITIONAL";
 
 	return (
 		<StudioFormView title={"가격 설정"} useFormReturn={form} onSubmit={handleFormSubmit}>
@@ -152,25 +168,130 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 
 			<Typography variant="h5">옵션</Typography>
 
-			<RadioGroup<Provision> label="2차 가공" formName="option.refinement.provision" radios={PROVISION_RADIOS} row />
-			<RadioGroup<Provision>
-				label="컷 수 추가"
-				formName="option.additionalPanel.provision"
-				radios={PROVISION_RADIOS}
-				row
-			/>
-			<RadioGroup<Provision>
-				label="수정 횟수 추가"
-				formName="option.additionalModification.provision"
-				radios={PROVISION_RADIOS}
-				row
-			/>
-			<RadioGroup<Provision>
-				label="업로드 기간 연장"
-				formName="option.postDurationExtension.provision"
-				radios={PROVISION_RADIOS}
-				row
-			/>
+			<Box>
+				<RadioGroup<ProvisionType>
+					label="2차 가공"
+					formName="option.refinement.provisionType"
+					radios={PROVISION_RADIOS}
+					row
+				/>
+				<TextField
+					formName="option.refinement.price"
+					label="추가 비용"
+					validator={isNumber}
+					InputProps={{
+						endAdornment: <InputAdornment position="end">원</InputAdornment>,
+						inputProps: {
+							min: STUDIO_PRICE_FORM_LIMITS.service.price.min,
+							max: STUDIO_PRICE_FORM_LIMITS.service.price.max,
+						},
+					}}
+					size="small"
+					disabled={isDisabled(refinementProvision)}
+				/>
+			</Box>
+			<Box>
+				<RadioGroup<ProvisionType>
+					label="컷 수 추가"
+					formName="option.additionalPanel.provisionType"
+					radios={PROVISION_RADIOS}
+					row
+				/>
+				<Box display="flex" gap={1}>
+					<TextField
+						formName="option.additionalPanel.price"
+						label="1컷 당 추가 비용"
+						validator={isNumber}
+						InputProps={{
+							endAdornment: <InputAdornment position="end">원</InputAdornment>,
+							inputProps: {
+								min: STUDIO_PRICE_FORM_LIMITS.service.price.min,
+								max: STUDIO_PRICE_FORM_LIMITS.service.price.max,
+							},
+						}}
+						size="small"
+						disabled={isDisabled(additionalPanelProvision)}
+						fullWidth
+					/>
+					<TextField
+						formName="option.additionalPanel.workingDays"
+						label="작업 기간"
+						type="number"
+						InputProps={{
+							endAdornment: <InputAdornment position="end">일</InputAdornment>,
+							inputProps: {
+								min: STUDIO_PRICE_FORM_LIMITS.service.workingDays.min,
+								max: STUDIO_PRICE_FORM_LIMITS.service.workingDays.max,
+							},
+						}}
+						size="small"
+						disabled={isDisabled(additionalPanelProvision)}
+						fullWidth
+					/>
+				</Box>
+			</Box>
+			<Box>
+				<RadioGroup<ProvisionType>
+					label="수정 횟수 추가"
+					formName="option.additionalModification.provisionType"
+					radios={PROVISION_RADIOS}
+					row
+				/>
+				<Box display="flex" gap={1}>
+					<TextField
+						formName="option.additionalModification.price"
+						label="1컷 당 추가 비용"
+						validator={isNumber}
+						InputProps={{
+							endAdornment: <InputAdornment position="end">원</InputAdornment>,
+							inputProps: {
+								min: STUDIO_PRICE_FORM_LIMITS.service.price.min,
+								max: STUDIO_PRICE_FORM_LIMITS.service.price.max,
+							},
+						}}
+						size="small"
+						disabled={isDisabled(additionalModificationProvision)}
+						fullWidth
+					/>
+					<TextField
+						formName="option.additionalModification.workingDays"
+						label="작업 기간"
+						type="number"
+						InputProps={{
+							endAdornment: <InputAdornment position="end">일</InputAdornment>,
+							inputProps: {
+								min: STUDIO_PRICE_FORM_LIMITS.service.workingDays.min,
+								max: STUDIO_PRICE_FORM_LIMITS.service.workingDays.max,
+							},
+						}}
+						size="small"
+						disabled={isDisabled(additionalModificationProvision)}
+						fullWidth
+					/>
+				</Box>
+			</Box>
+			<Box>
+				<RadioGroup<ProvisionType>
+					label="업로드 기간 연장"
+					formName="option.postDurationExtension.provisionType"
+					radios={PROVISION_RADIOS}
+					row
+				/>
+				<TextField
+					formName="option.postDurationExtension.price"
+					label="1개월 당 추가 비용"
+					validator={isNumber}
+					InputProps={{
+						endAdornment: <InputAdornment position="end">원</InputAdornment>,
+						inputProps: {
+							min: STUDIO_PRICE_FORM_LIMITS.service.price.min,
+							max: STUDIO_PRICE_FORM_LIMITS.service.price.max,
+						},
+					}}
+					size="small"
+					disabled={isDisabled(postDurationExtensionProvision)}
+				/>
+			</Box>
 		</StudioFormView>
 	);
 }
