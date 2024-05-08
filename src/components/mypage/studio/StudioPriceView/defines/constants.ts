@@ -1,5 +1,5 @@
 import {
-	PostDurationMonth,
+	PostDurationMonthType,
 	Provision,
 	ServiceForm,
 	ServiceLimits,
@@ -7,7 +7,7 @@ import {
 } from "@/components/mypage/studio/StudioPriceView/defines/types";
 import { deepFreeze } from "@/utils/object";
 
-export const LABEL_BY_POST_DURATION_MONTH_TYPE: Record<PostDurationMonth, string> = deepFreeze({
+export const LABEL_BY_POST_DURATION_MONTH_TYPE: Record<PostDurationMonthType, string> = deepFreeze({
 	A_MONTH: "1개월",
 	TWO_MONTH: "2개월",
 	THREE_MONTH: "3개월",
@@ -21,11 +21,11 @@ export const LABEL_BY_PROVISION_TYPE: Record<Provision, string> = deepFreeze({
 	ADDITIONAL: "추가 제공",
 });
 
-export const POST_DURATION_MONTH_ITEMS: { value: PostDurationMonth; label: string }[] = Object.keys(
+export const POST_DURATION_MONTH_ITEMS: { value: PostDurationMonthType; label: string }[] = Object.keys(
 	LABEL_BY_POST_DURATION_MONTH_TYPE,
 ).map((key) => ({
-	value: key as PostDurationMonth,
-	label: LABEL_BY_POST_DURATION_MONTH_TYPE[key as PostDurationMonth],
+	value: key as PostDurationMonthType,
+	label: LABEL_BY_POST_DURATION_MONTH_TYPE[key as PostDurationMonthType],
 }));
 
 export const PROVISION_RADIOS: { value: Provision; label: string }[] = Object.keys(LABEL_BY_PROVISION_TYPE).map(

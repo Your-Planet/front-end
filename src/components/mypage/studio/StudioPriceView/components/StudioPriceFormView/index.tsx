@@ -46,21 +46,21 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 			},
 			option: {
 				refinement: {
-					provision: "NONE",
+					provisionType: "NONE",
 					price: 0,
 				},
 				additionalPanel: {
-					provision: "NONE",
+					provisionType: "NONE",
 					price: 0,
 					workingDays: 0,
 				},
 				additionalModification: {
-					provision: "NONE",
+					provisionType: "NONE",
 					price: 0,
 					workingDays: 0,
 				},
 				postDurationExtension: {
-					provision: "NONE",
+					provisionType: "NONE",
 					price: 0,
 				},
 			},
@@ -77,10 +77,10 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 		additionalModificationProvision,
 		postDurationExtensionProvision,
 	] = watch([
-		"option.refinement.provision",
-		"option.additionalPanel.provision",
-		"option.additionalModification.provision",
-		"option.postDurationExtension.provision",
+		"option.refinement.provisionType",
+		"option.additionalPanel.provisionType",
+		"option.additionalModification.provisionType",
+		"option.postDurationExtension.provisionType",
 	]);
 
 	const isDisabled = (target: Provision) => target !== "ADDITIONAL";
@@ -169,7 +169,12 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 			<Typography variant="h5">옵션</Typography>
 
 			<Box>
-				<RadioGroup<Provision> label="2차 가공" formName="option.refinement.provision" radios={PROVISION_RADIOS} row />
+				<RadioGroup<Provision>
+					label="2차 가공"
+					formName="option.refinement.provisionType"
+					radios={PROVISION_RADIOS}
+					row
+				/>
 				<TextField
 					formName="option.refinement.price"
 					label="추가 비용"
@@ -188,7 +193,7 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 			<Box>
 				<RadioGroup<Provision>
 					label="컷 수 추가"
-					formName="option.additionalPanel.provision"
+					formName="option.additionalPanel.provisionType"
 					radios={PROVISION_RADIOS}
 					row
 				/>
@@ -228,7 +233,7 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 			<Box>
 				<RadioGroup<Provision>
 					label="수정 횟수 추가"
-					formName="option.additionalModification.provision"
+					formName="option.additionalModification.provisionType"
 					radios={PROVISION_RADIOS}
 					row
 				/>
@@ -268,7 +273,7 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 			<Box>
 				<RadioGroup<Provision>
 					label="업로드 기간 연장"
-					formName="option.postDurationExtension.provision"
+					formName="option.postDurationExtension.provisionType"
 					radios={PROVISION_RADIOS}
 					row
 				/>
