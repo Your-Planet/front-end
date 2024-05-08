@@ -9,10 +9,11 @@ import { StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/
 import { HookFormChangeEventHandler } from "@/defines/hook-form/types";
 import { TIME_UNIT } from "@/defines/time/constants";
 import { useFetchQueryGetPosts } from "@/hooks/queries/instagram/useQueryGetPosts";
-import { isUrl } from "@/utils/string";
 import { AxiosError } from "axios";
 import { debounce } from "lodash-es";
 import { useFormContext } from "react-hook-form";
+
+const INSTAGRAM_MEDIA_URL_PREFIX = "https://www.instagram.com/p/";
 
 export interface DynamicInstagramPortfoliosProps {
 	label: string;
@@ -44,7 +45,7 @@ function DynamicInstagramPortfolios(props: DynamicInstagramPortfoliosProps) {
 	};
 
 	const checkUrlValid = (value: string) => {
-		if (!isUrl(value)) {
+		if (!value.startsWith(INSTAGRAM_MEDIA_URL_PREFIX)) {
 			throw new Error("올바른 URL 형식을 입력해 주세요.");
 		}
 	};
