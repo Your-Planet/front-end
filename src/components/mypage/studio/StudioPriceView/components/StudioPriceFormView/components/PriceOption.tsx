@@ -13,7 +13,7 @@ import {
 	workingDaysMaxRule,
 	workingDaysMinRule,
 } from "@/components/mypage/studio/StudioPriceView/defines/rule";
-import { Provision, StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
+import { ProvisionType, StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
 import { isNumber } from "@/utils/string";
 import { Box, InputAdornment, Typography } from "@mui/material";
 import { useFormContext } from "react-hook-form";
@@ -30,20 +30,25 @@ function OptionFormView(props: Props) {
 		additionalModificationProvision,
 		postDurationExtensionProvision,
 	] = watch([
-		"option.refinement.provision",
-		"option.additionalPanel.provision",
-		"option.additionalModification.provision",
-		"option.postDurationExtension.provision",
+		"option.refinement.provisionType",
+		"option.additionalPanel.provisionType",
+		"option.additionalModification.provisionType",
+		"option.postDurationExtension.provisionType",
 	]);
 
-	const isDisabled = (target: Provision) => target !== "ADDITIONAL";
+	const isDisabled = (target: ProvisionType) => target !== "ADDITIONAL";
 
 	return (
 		<>
 			<Typography variant="h5">옵션</Typography>
 
 			<Box>
-				<RadioGroup<Provision> label="2차 가공" formName="option.refinement.provision" radios={PROVISION_RADIOS} row />
+				<RadioGroup<ProvisionType>
+					label="2차 가공"
+					formName="option.refinement.provisionType"
+					radios={PROVISION_RADIOS}
+					row
+				/>
 				<TextField
 					formName="option.refinement.price"
 					label="추가 비용"
@@ -66,9 +71,9 @@ function OptionFormView(props: Props) {
 				/>
 			</Box>
 			<Box>
-				<RadioGroup<Provision>
+				<RadioGroup<ProvisionType>
 					label="컷 수 추가"
-					formName="option.additionalPanel.provision"
+					formName="option.additionalPanel.provisionType"
 					radios={PROVISION_RADIOS}
 					row
 				/>
@@ -116,9 +121,9 @@ function OptionFormView(props: Props) {
 				</Box>
 			</Box>
 			<Box>
-				<RadioGroup<Provision>
+				<RadioGroup<ProvisionType>
 					label="수정 횟수 추가"
-					formName="option.additionalModification.provision"
+					formName="option.additionalModification.provisionType"
 					radios={PROVISION_RADIOS}
 					row
 				/>
@@ -166,9 +171,9 @@ function OptionFormView(props: Props) {
 				</Box>
 			</Box>
 			<Box>
-				<RadioGroup<Provision>
+				<RadioGroup<ProvisionType>
 					label="업로드 기간 연장"
-					formName="option.postDurationExtension.provision"
+					formName="option.postDurationExtension.provisionType"
 					radios={PROVISION_RADIOS}
 					row
 				/>

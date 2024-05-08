@@ -24,21 +24,21 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 			},
 			option: {
 				refinement: {
-					provision: "NONE",
+					provisionType: "NONE",
 					price: 0,
 				},
 				additionalPanel: {
-					provision: "NONE",
+					provisionType: "NONE",
 					price: 0,
 					workingDays: 0,
 				},
 				additionalModification: {
-					provision: "NONE",
+					provisionType: "NONE",
 					price: 0,
 					workingDays: 0,
 				},
 				postDurationExtension: {
-					provision: "NONE",
+					provisionType: "NONE",
 					price: 0,
 				},
 			},

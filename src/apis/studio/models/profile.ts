@@ -4,7 +4,7 @@ interface StudioProfile {
 	name: string;
 	description: string;
 	categories: InstatoonCategoryType[];
-	portfolioIds: number[];
+	portfolioIds: string[];
 }
 
 export interface PostProfileRequest extends StudioProfile {}

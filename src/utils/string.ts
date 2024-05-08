@@ -15,6 +15,18 @@ export const isNumber = (str: string): boolean => /^[0-9]*$/.test(str);
 export const isEmail = (str: string): boolean => /^[A-Za-z0-9_.\-]{1,64}@[A-Za-z0-9_.\-]{1,260}$/.test(str);
 
 /**
+ * 유효한 URL 형식인지 검사
+ * @param str
+ */
+export const isUrl = (str: string): boolean => {
+	// eslint-disable-next-line prefer-regex-literals
+	const urlRegex = new RegExp(
+		"^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?",
+	);
+	return urlRegex.test(str);
+};
+
+/**
  * 문자열에 특정 패턴이 있는지 검사
  * @param str
  * @param regExp
