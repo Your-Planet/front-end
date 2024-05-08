@@ -5,6 +5,7 @@ import AuthProvider from "@/providers/AuthProvider";
 import DateLocalizationProvider from "@/providers/DateLocalizationProvider";
 import ReactQueryClientProvider from "@/providers/ReactQueryClientProvider";
 import RecoilProvider from "@/providers/RecoilProvider";
+import SnackbarProvider from "@/providers/SnackbarProvider";
 import StyleProviders from "@/providers/StyleProviders";
 import StyledComponentsRegistry from "@/providers/StyledComponentsRegistry";
 import type { Metadata } from "next";
@@ -28,9 +29,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 								<AuthProvider>
 									<ReactQueryClientProvider>
 										<RecoilProvider>
-											<Header />
-											<Main>{children}</Main>
-											<Footer />
+											<SnackbarProvider>
+												<Header />
+												<Main>{children}</Main>
+												<Footer />
+											</SnackbarProvider>
 										</RecoilProvider>
 									</ReactQueryClientProvider>
 								</AuthProvider>
