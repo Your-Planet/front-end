@@ -14,10 +14,12 @@ import { AxiosError } from "axios";
 import { debounce } from "lodash-es";
 import { useFormContext } from "react-hook-form";
 
-export interface DynamicInstagramPortfoliosProps {}
+export interface DynamicInstagramPortfoliosProps {
+	label: string;
+}
 
 function DynamicInstagramPortfolios(props: DynamicInstagramPortfoliosProps) {
-	const {} = props;
+	const { label } = props;
 
 	const { TextField } = ReactHookForm<StudioProfileForm>();
 
@@ -83,7 +85,7 @@ function DynamicInstagramPortfolios(props: DynamicInstagramPortfoliosProps) {
 
 	return (
 		<DynamicAppend<StudioProfileForm>
-			label="포트폴리오 링크"
+			label={label}
 			formName="portfolios"
 			component={({ index }) => (
 				<TextField
