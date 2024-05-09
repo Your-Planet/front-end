@@ -1,11 +1,11 @@
 export interface InstagramPost {
 	id: string;
 	caption: string;
-	is_shared_to_feed: boolean;
-	media_type: string;
-	media_url: string;
+	isSharedToFeed: boolean;
+	mediaType: string;
+	mediaUrl: string;
 	permalink: string;
-	thumbnail_url: string;
+	thumbnailUrl: string;
 	timestamp: string;
 	username: string;
 }
