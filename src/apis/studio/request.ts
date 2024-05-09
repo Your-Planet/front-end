@@ -10,4 +10,8 @@ export class StudioApi extends BaseApi {
 	public postPriceTemp: AxiosRequestYourPlanetFunction<PostPriceRequest, PostPriceResponse> = (req) => {
 		return this.axiosInstance.post(this.getUrl("/price-temp"), req);
 	};
+
+	public postPrice: AxiosRequestYourPlanetFunction<PostPriceRequest, PostPriceResponse> = (req) => {
+		return this.axiosInstance.post(this.getUrl("/price"), req);
+	};
 }

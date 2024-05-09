@@ -4,6 +4,7 @@ import OptionFormView from "@/components/mypage/studio/StudioPriceView/component
 import ServiceFormView from "@/components/mypage/studio/StudioPriceView/components/StudioPriceFormView/components/PriceService";
 import { StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
+import useMutationPostPrice from "@/hooks/queries/studio/useMutationPostPrice";
 import useMutationPostPriceTemp from "@/hooks/queries/studio/useMutationPostPriceTemp";
 import { Button } from "@mui/material";
 import { FormEventHandler } from "react";
@@ -50,6 +51,7 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 	const { handleSubmit } = form;
 
 	const { mutateAsync: mutatePostPriceTemp } = useMutationPostPriceTemp({});
+	const { mutate: mutatePostPrice } = useMutationPostPrice({});
 
 	const handleTempSave: FormEventHandler = handleSubmit(async (data) => {
 		try {
@@ -63,7 +65,18 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 		}
 	});
 
-	const handleFormSubmit: FormEventHandler = handleSubmit(() => {});
+	const handleFormSubmit: FormEventHandler = handleSubmit((data) => {
+		mutatePostPrice(data, {
+			onSuccess() {
+				// TODO: @나은찬 mui alert 대체
+				alert("저장이 완료되었습니다.");
+			},
+			// TODO: @나은찬 mui alert 대체
+			onError({ response }) {
+				alert(response?.data.message);
+			},
+		});
+	});
 
 	return (
 		<StudioFormView title={"가격 설정"} useFormReturn={form} onSubmit={handleFormSubmit}>
@@ -72,6 +85,9 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 			{/* TODO: @나은찬 임시 저장 버튼 최초 등록 시에만 노출 */}
 			<Button variant="outlined" onClick={handleTempSave}>
 				임시 저장
+			</Button>
+			<Button variant="contained" type="submit">
+				포트폴리오 저장
 			</Button>
 		</StudioFormView>
 	);
