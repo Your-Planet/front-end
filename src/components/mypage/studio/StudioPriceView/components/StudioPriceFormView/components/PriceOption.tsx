@@ -5,6 +5,14 @@ import {
 	PROVISION_RADIOS,
 	STUDIO_PRICE_FORM_LIMITS,
 } from "@/components/mypage/studio/StudioPriceView/defines/constants";
+import {
+	modificationCountMaxRule,
+	modificationCountMinRule,
+	priceMaxRule,
+	priceMinRule,
+	workingDaysMaxRule,
+	workingDaysMinRule,
+} from "@/components/mypage/studio/StudioPriceView/defines/rule";
 import { ProvisionType, StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
 import { isNumber } from "@/utils/string";
 import { Box, InputAdornment, Typography } from "@mui/material";
@@ -54,6 +62,11 @@ function OptionFormView(props: Props) {
 					}}
 					size="small"
 					disabled={isDisabled(refinementProvision)}
+					required={!isDisabled(refinementProvision)}
+					rules={{
+						...priceMinRule,
+						...priceMaxRule,
+					}}
 					fullWidth
 				/>
 			</Box>
@@ -78,6 +91,11 @@ function OptionFormView(props: Props) {
 						}}
 						size="small"
 						disabled={isDisabled(additionalPanelProvision)}
+						required={!isDisabled(additionalPanelProvision)}
+						rules={{
+							...priceMinRule,
+							...priceMaxRule,
+						}}
 						fullWidth
 					/>
 					<TextField
@@ -93,6 +111,11 @@ function OptionFormView(props: Props) {
 						}}
 						size="small"
 						disabled={isDisabled(additionalPanelProvision)}
+						required={!isDisabled(additionalPanelProvision)}
+						rules={{
+							...workingDaysMinRule,
+							...workingDaysMaxRule,
+						}}
 						fullWidth
 					/>
 				</Box>
@@ -107,7 +130,7 @@ function OptionFormView(props: Props) {
 				<Box display="flex" gap={1}>
 					<TextField
 						formName="option.additionalModification.price"
-						label="1컷 당 추가 비용"
+						label="1회 당 추가 비용"
 						validator={isNumber}
 						InputProps={{
 							endAdornment: <InputAdornment position="end">원</InputAdornment>,
@@ -118,21 +141,31 @@ function OptionFormView(props: Props) {
 						}}
 						size="small"
 						disabled={isDisabled(additionalModificationProvision)}
+						required={!isDisabled(additionalModificationProvision)}
+						rules={{
+							...priceMinRule,
+							...priceMaxRule,
+						}}
 						fullWidth
 					/>
 					<TextField
 						formName="option.additionalModification.workingDays"
-						label="작업 기간"
+						label="수정 횟수"
 						type="number"
 						InputProps={{
-							endAdornment: <InputAdornment position="end">일</InputAdornment>,
+							endAdornment: <InputAdornment position="end">회</InputAdornment>,
 							inputProps: {
-								min: STUDIO_PRICE_FORM_LIMITS.service.workingDays.min,
-								max: STUDIO_PRICE_FORM_LIMITS.service.workingDays.max,
+								min: STUDIO_PRICE_FORM_LIMITS.service.modificationCount.min,
+								max: STUDIO_PRICE_FORM_LIMITS.service.modificationCount.max,
 							},
 						}}
 						size="small"
 						disabled={isDisabled(additionalModificationProvision)}
+						required={!isDisabled(additionalModificationProvision)}
+						rules={{
+							...modificationCountMinRule,
+							...modificationCountMaxRule,
+						}}
 						fullWidth
 					/>
 				</Box>
@@ -157,6 +190,11 @@ function OptionFormView(props: Props) {
 					}}
 					size="small"
 					disabled={isDisabled(postDurationExtensionProvision)}
+					required={!isDisabled(postDurationExtensionProvision)}
+					rules={{
+						...priceMinRule,
+						...priceMaxRule,
+					}}
 					fullWidth
 				/>
 			</Box>
