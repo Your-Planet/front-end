@@ -15,7 +15,9 @@ import { InstatoonCategoryType } from "@/defines/instatoon-category/types";
 import useMutationPostProfile from "@/hooks/queries/studio/useMutationPostProfile";
 import { getIaPath } from "@/utils/ia";
 import { getMaxLengthRule, getMinLengthRule } from "@/utils/react-hook-form/rule";
+import { enqueueClosableSnackbar } from "@/utils/snackbar";
 import { Button } from "@mui/material";
+import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { enqueueSnackbar } from "notistack";
 import { FormEventHandler } from "react";
@@ -60,6 +62,33 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 
 	const router = useRouter();
 
+	const handleSaveSuccess = () => {
+		enqueueSnackbar({
+			message: "프로필 설정을 저장했어요.",
+			variant: "success",
+		});
+
+		router.push(getIaPath(IA.mypage.studio.price));
+	};
+
+	const handleError = (e: unknown) => {
+		const message: string = (() => {
+			if (e instanceof AxiosError) {
+				return e?.response?.data.message;
+			}
+			if (e instanceof Error) {
+				return e.message;
+			}
+			return "처리 중 오류가 발생했습니다.";
+		})();
+
+		enqueueClosableSnackbar({
+			message,
+			variant: "error",
+			autoHideDuration: null,
+		});
+	};
+
 	const handleFormSubmit: FormEventHandler = handleSubmit(async (data) => {
 		const categoryToCategories = (category: Record<InstatoonCategoryType, boolean>): InstatoonCategoryType[] => {
 			return Object.entries(category)
@@ -80,15 +109,9 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 				portfolioIds: portfoliosToPortfolioIds(portfolios),
 			});
 
-			enqueueSnackbar("프로필 설정을 저장했어요.", {
-				variant: "success",
-				autoHideDuration: 6000,
-			});
-
-			router.push(getIaPath(IA.mypage.studio.price));
+			handleSaveSuccess();
 		} catch (e) {
-			// TODO @김현규 예외 처리
-			console.log(e);
+			handleError(e);
 		}
 	});
 
