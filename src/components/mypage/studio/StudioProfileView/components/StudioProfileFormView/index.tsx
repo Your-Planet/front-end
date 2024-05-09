@@ -72,6 +72,8 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 	};
 
 	const handleError = (e: unknown) => {
+		console.error("error", e);
+
 		const message: string = (() => {
 			const DEFAULT_MESSAGE = "처리 중 오류가 발생했습니다.";
 
@@ -83,9 +85,6 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 			}
 			return DEFAULT_MESSAGE;
 		})();
-
-		console.error("error", e);
-		console.log("message", message);
 
 		enqueueClosableSnackbar({
 			message,
