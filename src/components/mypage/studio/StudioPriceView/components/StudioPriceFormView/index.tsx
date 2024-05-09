@@ -52,7 +52,6 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 	const { mutateAsync: mutatePostPriceTemp } = useMutationPostPriceTemp({});
 
 	const handleTempSave: FormEventHandler = handleSubmit(async (data) => {
-		console.log("clicked", data);
 		try {
 			await mutatePostPriceTemp({
 				...data,
