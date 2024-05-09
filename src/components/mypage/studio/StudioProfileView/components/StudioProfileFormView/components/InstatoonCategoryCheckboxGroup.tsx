@@ -16,35 +16,29 @@ function InstatoonCategoryCheckboxGroup(props: InstatoonCategoryCheckboxGroupPro
 	const { Checkbox } = ReactHookForm<StudioProfileForm>();
 
 	const {
-		getValues,
-		setError,
-		clearErrors,
 		formState: { errors },
+		register,
+		trigger,
 	} = useFormContext<StudioProfileForm>();
 
+	register("category", {
+		validate: (category) => {
+			const { length } = Object.values(category).filter(Boolean);
+
+			if (length < STUDIO_PROFILE_FORM_LENGTH.category.min) {
+				return `인스타툰 카테고리를 ${STUDIO_PROFILE_FORM_LENGTH.category.min}개 이상 선택해주세요.`;
+			}
+
+			if (length > STUDIO_PROFILE_FORM_LENGTH.category.max) {
+				return `인스타툰 카테고리는 최대 ${STUDIO_PROFILE_FORM_LENGTH.category.max}개까지 선택 가능합니다.`;
+			}
+
+			return true;
+		},
+	});
+
 	const handleChangeCategory = () => {
-		const category = getValues("category");
-		const { length } = Object.values(category).filter(Boolean);
-
-		if (length < STUDIO_PROFILE_FORM_LENGTH.category.min) {
-			setError("category", {
-				type: "min",
-				message: "인스타툰 카테고리를 1개 이상 선택해주세요.",
-			});
-			return;
-		}
-
-		if (length > STUDIO_PROFILE_FORM_LENGTH.category.max) {
-			setError("category", {
-				type: "max",
-				message: "인스타툰 카테고리는 최대 5개까지 선택 가능합니다.",
-			});
-			return;
-		}
-
-		if (errors.category) {
-			clearErrors("category");
-		}
+		trigger("category");
 	};
 
 	return (
