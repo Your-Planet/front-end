@@ -1,4 +1,4 @@
-import { InstagramPost } from "@/apis/instagram";
+import { InstagramMedia } from "@/apis/instagram";
 import DynamicAppend from "@/components/common/DynamicAppend";
 import ReactHookForm from "@/components/common/ReactHookForm";
 import {
@@ -8,7 +8,7 @@ import {
 import { StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
 import { HookFormChangeEventHandler } from "@/defines/hook-form/types";
 import { TIME_UNIT } from "@/defines/time/constants";
-import { useFetchQueryGetPosts } from "@/hooks/queries/instagram/useQueryGetPosts";
+import { useFetchQueryGetMedias } from "@/hooks/queries/instagram/useQueryGetMedias";
 import { AxiosError } from "axios";
 import { debounce } from "lodash-es";
 import { useFormContext } from "react-hook-form";
@@ -26,22 +26,22 @@ function DynamicInstagramPortfolios(props: DynamicInstagramPortfoliosProps) {
 
 	const { setValue } = useFormContext<StudioProfileForm>();
 
-	const fetchQueryGetPosts = useFetchQueryGetPosts();
+	const fetchQueryGetMedias = useFetchQueryGetMedias();
 
-	const getPostByLink = async (value: string) => {
+	const getMediaByLink = async (value: string) => {
 		const {
 			data: {
-				posts: [post],
+				medias: [media],
 			},
-		} = await fetchQueryGetPosts({
+		} = await fetchQueryGetMedias({
 			permalink: value,
 		});
 
-		if (!post) {
+		if (!media) {
 			throw new Error("조회된 게시글이 없습니다.");
 		}
 
-		return post;
+		return media;
 	};
 
 	const checkUrlValid = (value: string) => {
@@ -50,8 +50,8 @@ function DynamicInstagramPortfolios(props: DynamicInstagramPortfoliosProps) {
 		}
 	};
 
-	const setPortfolio = (index: number, post: InstagramPost) => {
-		const { id, permalink } = post;
+	const setPortfolio = (index: number, media: InstagramMedia) => {
+		const { id, permalink } = media;
 		setValue(`portfolios.${index}.id`, id);
 		setValue(`portfolios.${index}.permalink`, permalink);
 	};
@@ -67,13 +67,13 @@ function DynamicInstagramPortfolios(props: DynamicInstagramPortfoliosProps) {
 		}
 	};
 
-	const setPostByLink = debounce(async (linkValue: string, index: number) => {
+	const setMediaByLink = debounce(async (linkValue: string, index: number) => {
 		if (!linkValue) return;
 
 		try {
 			checkUrlValid(linkValue);
-			const post = (await getPostByLink(linkValue))!;
-			setPortfolio(index, post);
+			const media = (await getMediaByLink(linkValue))!;
+			setPortfolio(index, media);
 		} catch (e) {
 			handleError(e);
 		}
@@ -81,7 +81,7 @@ function DynamicInstagramPortfolios(props: DynamicInstagramPortfoliosProps) {
 
 	const handleChange: HookFormChangeEventHandler = async (e) => {
 		const index = Number(e.target.name.split(".")[1]);
-		await setPostByLink(e.target.value, index);
+		await setMediaByLink(e.target.value, index);
 	};
 
 	return (
