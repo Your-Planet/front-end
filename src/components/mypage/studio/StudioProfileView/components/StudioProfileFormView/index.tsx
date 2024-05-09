@@ -16,7 +16,7 @@ import useMutationPostProfile from "@/hooks/queries/studio/useMutationPostProfil
 import { getIaPath } from "@/utils/ia";
 import { getMaxLengthRule, getMinLengthRule } from "@/utils/react-hook-form/rule";
 import { enqueueClosableSnackbar } from "@/utils/snackbar";
-import { Button } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { enqueueSnackbar } from "notistack";
@@ -58,7 +58,7 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 
 	const { handleSubmit } = form;
 
-	const { mutateAsync: mutatePostProfile } = useMutationPostProfile({});
+	const { mutateAsync: mutatePostProfile, isPending: isSaving } = useMutationPostProfile({});
 
 	const router = useRouter();
 
@@ -73,14 +73,19 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 
 	const handleError = (e: unknown) => {
 		const message: string = (() => {
+			const DEFAULT_MESSAGE = "처리 중 오류가 발생했습니다.";
+
 			if (e instanceof AxiosError) {
-				return e?.response?.data.message;
+				return e?.response?.data.message ?? DEFAULT_MESSAGE;
 			}
 			if (e instanceof Error) {
-				return e.message;
+				return e.message ?? DEFAULT_MESSAGE;
 			}
-			return "처리 중 오류가 발생했습니다.";
+			return DEFAULT_MESSAGE;
 		})();
+
+		console.error("error", e);
+		console.log("message", message);
 
 		enqueueClosableSnackbar({
 			message,
@@ -142,9 +147,9 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 
 			<DynamicInstagramPortfolios label="포트폴리오 링크" />
 
-			<Button type="submit" variant="contained" size="large">
+			<LoadingButton type="submit" variant="contained" size="large" loading={isSaving}>
 				다음
-			</Button>
+			</LoadingButton>
 		</StudioFormView>
 	);
 }
