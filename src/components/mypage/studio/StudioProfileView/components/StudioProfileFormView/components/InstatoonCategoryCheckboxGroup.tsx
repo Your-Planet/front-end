@@ -59,7 +59,9 @@ function InstatoonCategoryCheckboxGroup(props: InstatoonCategoryCheckboxGroupPro
 						</Grid>
 					))}
 				</Grid>
-				<FormHelperText error>{errors?.category?.message ?? " "}</FormHelperText>
+				<FormHelperText sx={{ margin: "3px 14px 0" }} error>
+					{errors?.category?.message ?? " "}
+				</FormHelperText>
 			</Stack>
 		</>
 	);
