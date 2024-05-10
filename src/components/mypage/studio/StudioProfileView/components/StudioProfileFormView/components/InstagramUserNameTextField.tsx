@@ -6,10 +6,12 @@ import { enqueueClosableSnackbar } from "@/utils/snackbar";
 import { TextField } from "@mui/material";
 import { useEffect } from "react";
 
-export interface InstagramUserNameTextFieldProps {}
+export interface InstagramUserNameTextFieldProps {
+	label: string;
+}
 
 function InstagramUserNameTextField(props: InstagramUserNameTextFieldProps) {
-	const {} = props;
+	const { label } = props;
 
 	const { data: { data } = {}, isError } = useQueryGetDetail({
 		req: undefined,
@@ -29,7 +31,7 @@ function InstagramUserNameTextField(props: InstagramUserNameTextFieldProps) {
 		}
 	}, [isError]);
 
-	return <TextField label="인스타그램 계정" disabled helperText=" " value={memberInfo?.instagramUsername} />;
+	return <TextField label={label} disabled helperText=" " value={memberInfo?.instagramUsername} />;
 }
 
 export default InstagramUserNameTextField;
