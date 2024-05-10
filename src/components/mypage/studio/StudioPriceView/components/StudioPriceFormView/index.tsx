@@ -5,7 +5,10 @@ import ServiceFormView from "@/components/mypage/studio/StudioPriceView/componen
 import { StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
 import useMutationPostPriceTemp from "@/hooks/queries/studio/useMutationPostPriceTemp";
-import { Button } from "@mui/material";
+import { enqueueClosableSnackbar } from "@/utils/snackbar";
+import { LoadingButton } from "@mui/lab";
+import { AxiosError } from "axios";
+import { enqueueSnackbar } from "notistack";
 import { FormEventHandler } from "react";
 import { useForm } from "react-hook-form";
 
@@ -49,17 +52,43 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 
 	const { handleSubmit } = form;
 
-	const { mutateAsync: mutatePostPriceTemp } = useMutationPostPriceTemp({});
+	const { mutateAsync: mutatePostPriceTemp, isPending: isSaving } = useMutationPostPriceTemp({});
+
+	const handleTempSaveSuccess = () => {
+		enqueueSnackbar({
+			message: "가격 설정을 임시 저장했어요.",
+			variant: "success",
+		});
+	};
+
+	const handleError = (e: unknown) => {
+		console.error("error", e);
+
+		const message: string = (() => {
+			const DEFAULT_MESSAGE = "처리 중 오류가 발생했습니다.";
+
+			if (e instanceof AxiosError) {
+				return e?.response?.data.message ?? DEFAULT_MESSAGE;
+			}
+			if (e instanceof Error) {
+				return e.message ?? DEFAULT_MESSAGE;
+			}
+			return DEFAULT_MESSAGE;
+		})();
+
+		enqueueClosableSnackbar({
+			message,
+			variant: "error",
+		});
+	};
 
 	const handleTempSave: FormEventHandler = handleSubmit(async (data) => {
 		try {
-			await mutatePostPriceTemp({
-				...data,
-			});
-			// TODO @나은찬 성공 처리
+			await mutatePostPriceTemp(data);
+
+			handleTempSaveSuccess();
 		} catch (e) {
-			// TODO @나은찬 예외 처리
-			console.log(e);
+			handleError(e);
 		}
 	});
 
@@ -70,9 +99,9 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 			<ServiceFormView />
 			<OptionFormView />
 			{/* TODO: @나은찬 임시 저장 버튼 최초 등록 시에만 노출 */}
-			<Button variant="outlined" onClick={handleTempSave}>
+			<LoadingButton variant="outlined" onClick={handleTempSave} loading={isSaving}>
 				임시 저장
-			</Button>
+			</LoadingButton>
 		</StudioFormView>
 	);
 }
