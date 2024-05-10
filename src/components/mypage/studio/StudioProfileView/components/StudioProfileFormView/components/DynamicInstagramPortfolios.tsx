@@ -107,6 +107,7 @@ function DynamicInstagramPortfolios(props: DynamicInstagramPortfoliosProps) {
 						if (!portfolio.id) {
 							return "올바른 포트폴리오 URL을 입력해 주세요.";
 						}
+						return true;
 					},
 				});
 
