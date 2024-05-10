@@ -96,7 +96,7 @@ function ServiceFormView({}: Props) {
 				fullWidth
 			/>
 			<Select
-				formName="service.postDurationMonth"
+				formName="service.postDurationMonthType"
 				label="기본 업로드 횟수"
 				required
 				items={POST_DURATION_MONTH_ITEMS}

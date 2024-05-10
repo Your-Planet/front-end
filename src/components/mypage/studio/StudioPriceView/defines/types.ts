@@ -1,16 +1,16 @@
 import { LengthLimit } from "@/defines/forms/types";
 
-export type PostDurationMonthType = "A_MONTH" | "TWO_MONTH" | "THREE_MONTH" | "SIX_MONTH" | "OVER_A_YEAR";
+export type PostDurationMonthType = "ONE_MONTH" | "TWO_MONTH" | "THREE_MONTH" | "SIX_MONTH" | "MORE_THAN_ONE_YEAR";
 
 export type ServiceForm = {
 	price: number; // 가격
 	workingDays: number; // 작업 기간
 	defaultCuts: number; // 기본 컷 수
 	modificationCount: number; // 기본 수정 횟수
-	postDurationMonth: PostDurationMonthType; // 기본 업로드 기간
+	postDurationMonthType: PostDurationMonthType; // 기본 업로드 기간
 };
 
-export type ProvisionType = "NONE" | "DEFAULT" | "ADDITIONAL";
+export type ProvisionType = "UNPROVIDED" | "DEFAULT" | "PROVIDED";
 
 export type OptionForm = {
 	// 2차 가공
@@ -46,5 +46,5 @@ export type ServiceLimits<ServiceForm> = Omit<
 	{
 		[K in keyof ServiceForm]: LengthLimit;
 	},
-	"postDurationMonth"
+	"postDurationMonthType"
 >;

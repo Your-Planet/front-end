@@ -8,17 +8,17 @@ import {
 import { deepFreeze } from "@/utils/object";
 
 export const LABEL_BY_POST_DURATION_MONTH_TYPE: Record<PostDurationMonthType, string> = deepFreeze({
-	A_MONTH: "1개월",
+	ONE_MONTH: "1개월",
 	TWO_MONTH: "2개월",
 	THREE_MONTH: "3개월",
 	SIX_MONTH: "6개월",
-	OVER_A_YEAR: "12개월 이상",
+	MORE_THAN_ONE_YEAR: "12개월 이상",
 });
 
 export const LABEL_BY_PROVISION_TYPE: Record<ProvisionType, string> = deepFreeze({
-	NONE: "미제공",
+	UNPROVIDED: "미제공",
 	DEFAULT: "기본 제공",
-	ADDITIONAL: "추가 제공",
+	PROVIDED: "추가 제공",
 });
 
 export const POST_DURATION_MONTH_ITEMS: { value: PostDurationMonthType; label: string }[] = Object.keys(

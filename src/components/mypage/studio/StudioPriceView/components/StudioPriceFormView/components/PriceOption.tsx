@@ -36,7 +36,7 @@ function OptionFormView(props: Props) {
 		"option.postDurationExtension.provisionType",
 	]);
 
-	const isDisabled = (target: ProvisionType) => target !== "ADDITIONAL";
+	const isDisabled = (target: ProvisionType) => target !== "PROVIDED";
 
 	return (
 		<>

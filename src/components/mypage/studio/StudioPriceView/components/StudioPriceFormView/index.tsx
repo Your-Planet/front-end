@@ -20,25 +20,25 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 				workingDays: 1,
 				defaultCuts: 1,
 				modificationCount: 1,
-				postDurationMonth: "A_MONTH",
+				postDurationMonthType: "ONE_MONTH",
 			},
 			option: {
 				refinement: {
-					provisionType: "NONE",
+					provisionType: "UNPROVIDED",
 					price: 0,
 				},
 				additionalPanel: {
-					provisionType: "NONE",
+					provisionType: "UNPROVIDED",
 					price: 0,
 					workingDays: 0,
 				},
 				additionalModification: {
-					provisionType: "NONE",
+					provisionType: "UNPROVIDED",
 					price: 0,
 					workingDays: 0,
 				},
 				postDurationExtension: {
-					provisionType: "NONE",
+					provisionType: "UNPROVIDED",
 					price: 0,
 				},
 			},
