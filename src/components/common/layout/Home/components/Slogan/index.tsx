@@ -23,19 +23,19 @@ function Slogan() {
 				<AnimatedText text="u" animate="animate-flip-up" delay="700" />
 				<AnimatedText text="r" animate="animate-flip-down" delay="800" />
 				<Box className="flex animate-fade animate-duration-[1500ms] animate-delay-[1500ms] animate-ease-linear">
-					<Typography className="ml-5 font-black text-[#b2ebc9]" variant="h1">
+					<Typography fontFamily="Futura-pt-bold" className="ml-5 font-black text-[#b2ebc9]" variant="h1">
 						C
 					</Typography>
-					<Typography className="font-black text-[#f5e89d]" variant="h1">
+					<Typography fontFamily="Futura-pt-bold" className="font-black text-[#f5e89d]" variant="h1">
 						O
 					</Typography>
-					<Typography className="font-black text-[#b9daf6]" variant="h1">
+					<Typography fontFamily="Futura-pt-bold" className="font-black text-[#b9daf6]" variant="h1">
 						L
 					</Typography>
-					<Typography className="font-black text-[#e5adc0]" variant="h1">
+					<Typography fontFamily="Futura-pt-bold" className="font-black text-[#e5adc0]" variant="h1">
 						O
 					</Typography>
-					<Typography className="font-black text-[#ffb347]" variant="h1">
+					<Typography fontFamily="Futura-pt-bold" className="font-black text-[#ffb347]" variant="h1">
 						R
 					</Typography>
 				</Box>

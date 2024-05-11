@@ -5,6 +5,7 @@ const LOGO_SIZE = 45;
 
 const StyledLogo = {
 	fontSize: LOGO_SIZE,
+	fontFamily: "Futura-pt-bold-oblique",
 	color: "black",
 	fontWeight: "bold",
 	textDecoration: "none",
