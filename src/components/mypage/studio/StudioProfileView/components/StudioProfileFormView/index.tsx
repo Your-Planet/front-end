@@ -5,6 +5,7 @@ import DynamicInstagramPortfolios from "@/components/mypage/studio/StudioProfile
 import InstagramUserNameTextField from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/components/InstagramUserNameTextField";
 import InstatoonCategoryCheckboxGroup from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/components/InstatoonCategoryCheckboxGroup";
 import {
+	DEFAULT_CATEGORY,
 	DEFAULT_PORTFOLIO,
 	STUDIO_PROFILE_FORM_LENGTH,
 } from "@/components/mypage/studio/StudioProfileView/defines/constants";
@@ -13,15 +14,14 @@ import StudioFormView from "@/components/mypage/studio/components/StudioFormView
 import { IA } from "@/defines/ia/constants";
 import { InstatoonCategoryType } from "@/defines/instatoon-category/types";
 import useMutationPostProfile from "@/hooks/queries/studio/useMutationPostProfile";
+import useQueryGetProfile from "@/hooks/queries/studio/useQueryGetProfile";
 import { handleCommonError } from "@/utils/error";
 import { getIaPath } from "@/utils/ia";
 import { getMaxLengthRule, getMinLengthRule } from "@/utils/react-hook-form/rule";
-import { enqueueClosableSnackbar } from "@/utils/snackbar";
 import { LoadingButton } from "@mui/lab";
-import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { enqueueSnackbar } from "notistack";
-import { FormEventHandler } from "react";
+import { FormEventHandler, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 export interface StudioProfileFormViewProps {}
@@ -36,28 +36,34 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 		defaultValues: {
 			name: "",
 			description: "",
-			category: {
-				DAILY_LIFE: false,
-				EXERCISE: false,
-				FASHION: false,
-				PARENTING: false,
-				BEAUTY: false,
-				ECONOMY: false,
-				SELF_IMPROVEMENT: false,
-				EMPATHY: false,
-				INVESTMENT: false,
-				HUMOR: false,
-				TRAVEL: false,
-				TIPS: false,
-				ROMANCE: false,
-				MARRIAGE: false,
-				HEALING: false,
-			},
+			category: DEFAULT_CATEGORY,
 			portfolios: [DEFAULT_PORTFOLIO],
 		},
 	});
 
-	const { handleSubmit } = form;
+	const { handleSubmit, reset } = form;
+
+	const { data: { data: profile } = {} } = useQueryGetProfile({
+		req: undefined,
+	});
+
+	useEffect(() => {
+		if (!profile) return;
+
+		const categoriesToCategory = (categories: InstatoonCategoryType[]): Record<InstatoonCategoryType, boolean> => {
+			return categories.reduce((acc, category) => {
+				acc[category] = true;
+				return acc;
+			}, DEFAULT_CATEGORY);
+		};
+
+		const { categories, ...rest } = profile;
+
+		reset({
+			...rest,
+			category: categoriesToCategory(categories),
+		});
+	}, [profile]);
 
 	const { mutateAsync: mutatePostProfile, isPending: isSaving } = useMutationPostProfile({});
 
@@ -70,28 +76,6 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 		});
 
 		router.push(getIaPath(IA.mypage.studio.price));
-	};
-
-	const handleError = (e: unknown) => {
-		console.error("error", e);
-
-		const message: string = (() => {
-			const DEFAULT_MESSAGE = "처리 중 오류가 발생했습니다.";
-
-			if (e instanceof AxiosError) {
-				return e?.response?.data.message ?? DEFAULT_MESSAGE;
-			}
-			if (e instanceof Error) {
-				return e.message ?? DEFAULT_MESSAGE;
-			}
-			return DEFAULT_MESSAGE;
-		})();
-
-		enqueueClosableSnackbar({
-			message,
-			variant: "error",
-			autoHideDuration: null,
-		});
 	};
 
 	const handleFormSubmit: FormEventHandler = handleSubmit(async (data) => {
