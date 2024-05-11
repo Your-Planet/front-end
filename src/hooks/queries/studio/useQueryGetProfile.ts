@@ -22,6 +22,7 @@ function useQueryGetProfile(params: UseQueryGetProfileParams): UseQueryGetProfil
 	return useQuery({
 		queryKey: QUERY_KEY.studio.profile(),
 		queryFn: async () => (await API.studio.getProfile(req)).data,
+		refetchOnWindowFocus: false,
 		...queryOption,
 	});
 }
