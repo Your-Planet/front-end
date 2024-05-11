@@ -1,13 +1,13 @@
 import { API } from "@/apis";
-import { PostPriceRequest, PostPriceResponse } from "@/apis/studio";
+import { PostPriceTempRequest, PostPriceTempResponse } from "@/apis/studio";
 import { ResponseEntity } from "@/defines/apis/types";
 import { UseMutationParams } from "@/defines/react-query/types";
 import { UseMutationResult, useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 
-type Request = PostPriceRequest;
+type Request = PostPriceTempRequest;
 
-type Response = ResponseEntity<PostPriceResponse>;
+type Response = ResponseEntity<PostPriceTempResponse>;
 
 type Error = AxiosError<Response>;
 

@@ -30,6 +30,10 @@ interface StudioPrice {
 	};
 }
 
+export interface PostPriceTempRequest extends StudioPrice {}
+
 export interface PostPriceRequest extends StudioPrice {}
+
+export type PostPriceTempResponse = void;
 
 export type PostPriceResponse = void;

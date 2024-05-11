@@ -88,6 +88,7 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 		enqueueClosableSnackbar({
 			message,
 			variant: "error",
+			autoHideDuration: null,
 		});
 	};
 
@@ -118,7 +119,7 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 			<ServiceFormView />
 			<OptionFormView />
 			{/* TODO: @나은찬 임시 저장 버튼 최초 등록 시에만 노출 */}
-			<LoadingButton variant="outlined" onClick={handleTempSave} loading={isTempSaving}>
+			<LoadingButton variant="outlined" type="button" onClick={handleTempSave} loading={isTempSaving}>
 				임시 저장
 			</LoadingButton>
 			<LoadingButton variant="contained" type="submit" loading={isSaving}>
