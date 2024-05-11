@@ -50,9 +50,7 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 		},
 	});
 
-	const { handleSubmit, watch } = form;
-
-	const [service, option] = watch(["service", "option"]);
+	const { handleSubmit, getValues } = form;
 
 	const { mutateAsync: mutatePostPriceTemp, isPending: isSaving } = useMutationPostPriceTemp({});
 
@@ -87,8 +85,8 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 	const handleTempSave: FormEventHandler = async () => {
 		try {
 			const data = {
-				service,
-				option,
+				service: getValues("service"),
+				option: getValues("option"),
 			};
 
 			await mutatePostPriceTemp(data);
