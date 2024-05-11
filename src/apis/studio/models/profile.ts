@@ -7,6 +7,10 @@ interface StudioProfile {
 	portfolioIds: string[];
 }
 
+export type GetProfileRequest = void;
+
+export interface GetProfileResponse extends StudioProfile {}
+
 export interface PostProfileRequest extends StudioProfile {}
 
 export type PostProfileResponse = void;
