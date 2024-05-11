@@ -1,11 +1,7 @@
 import StudioProfileLoading from "@/components/mypage/studio/StudioProfileView/components/StudioProfileLoading";
 import { Box } from "@mui/material";
 
-export interface LoadingProps {}
-
-function Loading(props: LoadingProps) {
-	const {} = props;
-
+function Loading() {
 	return (
 		<Box
 			sx={{
