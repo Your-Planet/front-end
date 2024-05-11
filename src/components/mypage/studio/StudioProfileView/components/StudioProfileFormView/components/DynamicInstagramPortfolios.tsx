@@ -1,4 +1,4 @@
-import { InstagramPost } from "@/apis/instagram";
+import { InstagramMedia } from "@/apis/instagram";
 import DynamicAppend from "@/components/common/DynamicAppend";
 import ReactHookForm from "@/components/common/ReactHookForm";
 import {
@@ -6,10 +6,12 @@ import {
 	STUDIO_PROFILE_FORM_LENGTH,
 } from "@/components/mypage/studio/StudioProfileView/defines/constants";
 import { StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
+import InvalidUrlError from "@/defines/errors/InvalidUrlError";
 import { HookFormChangeEventHandler } from "@/defines/hook-form/types";
 import { TIME_UNIT } from "@/defines/time/constants";
-import { useFetchQueryGetPosts } from "@/hooks/queries/instagram/useQueryGetPosts";
-import { AxiosError } from "axios";
+import { useFetchQueryGetMedias } from "@/hooks/queries/instagram/useQueryGetMedias";
+import { handleCommonError } from "@/utils/error";
+import { getObjectAtPath } from "@/utils/object";
 import { debounce } from "lodash-es";
 import { useFormContext } from "react-hook-form";
 
@@ -24,80 +26,104 @@ function DynamicInstagramPortfolios(props: DynamicInstagramPortfoliosProps) {
 
 	const { TextField } = ReactHookForm<StudioProfileForm>();
 
-	const { setValue } = useFormContext<StudioProfileForm>();
+	const {
+		setValue,
+		setError,
+		formState: { errors },
+		register,
+		clearErrors,
+	} = useFormContext<StudioProfileForm>();
 
-	const fetchQueryGetPosts = useFetchQueryGetPosts();
+	const fetchQueryGetMedias = useFetchQueryGetMedias();
 
-	const getPostByLink = async (value: string) => {
+	const getMediaByLink = async (value: string) => {
 		const {
 			data: {
-				posts: [post],
+				medias: [media],
 			},
-		} = await fetchQueryGetPosts({
+		} = await fetchQueryGetMedias({
 			permalink: value,
 		});
 
-		if (!post) {
+		if (!media) {
 			throw new Error("조회된 게시글이 없습니다.");
 		}
 
-		return post;
+		return media;
 	};
 
 	const checkUrlValid = (value: string) => {
 		if (!value.startsWith(INSTAGRAM_MEDIA_URL_PREFIX)) {
-			throw new Error("올바른 URL 형식을 입력해 주세요.");
+			throw new InvalidUrlError("올바른 URL 형식을 입력해 주세요.");
 		}
 	};
 
-	const setPortfolio = (index: number, post: InstagramPost) => {
-		const { id, permalink } = post;
+	const setPortfolio = (index: number, media: InstagramMedia) => {
+		const { id, permalink } = media;
 		setValue(`portfolios.${index}.id`, id);
 		setValue(`portfolios.${index}.permalink`, permalink);
 	};
 
-	const handleError = (e: unknown) => {
-		// TODO @김현규 에러 처리
-		if (e instanceof AxiosError) {
-			console.error(e?.response?.data.message);
-		} else if (e instanceof Error) {
-			console.error(e.message);
+	const handleError = (e: unknown, index: number) => {
+		if (e instanceof InvalidUrlError) {
+			setError(`portfolios.${index}`, {
+				type: "validate",
+				message: e.message,
+			});
 		} else {
-			console.error(e);
+			// TODO @김현규 API 에러 처리 방식 변경
+			handleCommonError(e);
 		}
 	};
 
-	const setPostByLink = debounce(async (linkValue: string, index: number) => {
+	const setMediaByLink = debounce(async (linkValue: string, index: number) => {
 		if (!linkValue) return;
 
 		try {
 			checkUrlValid(linkValue);
-			const post = (await getPostByLink(linkValue))!;
-			setPortfolio(index, post);
+			clearErrors(`portfolios.${index}`);
+
+			const media = (await getMediaByLink(linkValue))!;
+			setPortfolio(index, media);
 		} catch (e) {
-			handleError(e);
+			handleError(e, index);
 		}
-	}, 0.4 * TIME_UNIT.unitOfMs.asSecond);
+	}, TIME_UNIT.unitOfMs.asSecond);
 
 	const handleChange: HookFormChangeEventHandler = async (e) => {
 		const index = Number(e.target.name.split(".")[1]);
-		await setPostByLink(e.target.value, index);
+		await setMediaByLink(e.target.value, index);
 	};
 
 	return (
 		<DynamicAppend<StudioProfileForm>
 			label={label}
 			formName="portfolios"
-			component={({ index }) => (
-				<TextField
-					formName={`portfolios.${index}.permalink`}
-					rules={{
-						onChange: handleChange,
-					}}
-					label=""
-					fullWidth
-				/>
-			)}
+			component={({ index }) => {
+				const error = getObjectAtPath(errors, `portfolios.${index}`);
+
+				register(`portfolios.${index}`, {
+					validate: (portfolio) => {
+						if (!portfolio.id) {
+							return "올바른 포트폴리오 URL을 입력해 주세요.";
+						}
+						return true;
+					},
+				});
+
+				return (
+					<TextField
+						formName={`portfolios.${index}.permalink`}
+						rules={{
+							onChange: handleChange,
+						}}
+						label=""
+						fullWidth
+						error={error}
+						helperText={error?.message ?? " "}
+					/>
+				);
+			}}
 			maxCount={STUDIO_PROFILE_FORM_LENGTH.portfolios.max}
 			defaultValue={DEFAULT_PORTFOLIO}
 			required
