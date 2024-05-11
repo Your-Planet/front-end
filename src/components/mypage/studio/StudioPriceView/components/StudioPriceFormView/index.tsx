@@ -6,9 +6,8 @@ import { StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defi
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
 import useMutationPostPrice from "@/hooks/queries/studio/useMutationPostPrice";
 import useMutationPostPriceTemp from "@/hooks/queries/studio/useMutationPostPriceTemp";
-import { enqueueClosableSnackbar } from "@/utils/snackbar";
+import { handleCommonError } from "@/utils/error";
 import { LoadingButton } from "@mui/lab";
-import { AxiosError } from "axios";
 import { enqueueSnackbar } from "notistack";
 import { FormEventHandler } from "react";
 import { useForm } from "react-hook-form";
@@ -70,28 +69,6 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 		});
 	};
 
-	const handleError = (e: unknown) => {
-		console.error("error", e);
-
-		const message: string = (() => {
-			const DEFAULT_MESSAGE = "처리 중 오류가 발생했습니다.";
-
-			if (e instanceof AxiosError) {
-				return e?.response?.data.message ?? DEFAULT_MESSAGE;
-			}
-			if (e instanceof Error) {
-				return e.message ?? DEFAULT_MESSAGE;
-			}
-			return DEFAULT_MESSAGE;
-		})();
-
-		enqueueClosableSnackbar({
-			message,
-			variant: "error",
-			autoHideDuration: null,
-		});
-	};
-
 	const handleTempSave: FormEventHandler = async () => {
 		try {
 			const data = {
@@ -103,14 +80,14 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 
 			handleTempSaveSuccess();
 		} catch (e) {
-			handleError(e);
+			handleCommonError(e);
 		}
 	};
 
 	const handleFormSubmit: FormEventHandler = handleSubmit((data) => {
 		mutatePostPrice(data, {
 			onSuccess: handleSaveSuccess,
-			onError: handleError,
+			onError: handleCommonError,
 		});
 	});
 
