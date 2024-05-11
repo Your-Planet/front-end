@@ -5,6 +5,10 @@ export const QUERY_KEY = deepFreeze({
 		all: () => ["member"] as const,
 		detail: () => [...QUERY_KEY.member.all(), "detail"] as const,
 	},
+	studio: {
+		all: () => ["studio"] as const,
+		profile: () => [...QUERY_KEY.studio.all(), "profile"] as const,
+	},
 	instagram: {
 		all: () => ["instagram"] as const,
 		medias: (req: object) => [...QUERY_KEY.instagram.all(), "posts", req] as const,
