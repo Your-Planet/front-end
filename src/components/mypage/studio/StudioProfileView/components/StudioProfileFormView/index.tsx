@@ -13,6 +13,7 @@ import StudioFormView from "@/components/mypage/studio/components/StudioFormView
 import { IA } from "@/defines/ia/constants";
 import { InstatoonCategoryType } from "@/defines/instatoon-category/types";
 import useMutationPostProfile from "@/hooks/queries/studio/useMutationPostProfile";
+import { handleCommonError } from "@/utils/error";
 import { getIaPath } from "@/utils/ia";
 import { getMaxLengthRule, getMinLengthRule } from "@/utils/react-hook-form/rule";
 import { enqueueClosableSnackbar } from "@/utils/snackbar";
@@ -115,13 +116,13 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 
 			handleSaveSuccess();
 		} catch (e) {
-			handleError(e);
+			handleCommonError(e);
 		}
 	});
 
 	return (
 		<StudioFormView title={"프로필 설정"} useFormReturn={form} onSubmit={handleFormSubmit}>
-			<InstagramUserNameTextField />
+			<InstagramUserNameTextField label="인스타그램 계정" />
 
 			<TextField
 				formName="name"

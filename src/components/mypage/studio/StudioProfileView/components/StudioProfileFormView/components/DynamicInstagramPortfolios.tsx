@@ -6,10 +6,12 @@ import {
 	STUDIO_PROFILE_FORM_LENGTH,
 } from "@/components/mypage/studio/StudioProfileView/defines/constants";
 import { StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
+import InvalidUrlError from "@/defines/errors/InvalidUrlError";
 import { HookFormChangeEventHandler } from "@/defines/hook-form/types";
 import { TIME_UNIT } from "@/defines/time/constants";
 import { useFetchQueryGetMedias } from "@/hooks/queries/instagram/useQueryGetMedias";
-import { AxiosError } from "axios";
+import { handleCommonError } from "@/utils/error";
+import { getObjectAtPath } from "@/utils/object";
 import { debounce } from "lodash-es";
 import { useFormContext } from "react-hook-form";
 
@@ -24,7 +26,13 @@ function DynamicInstagramPortfolios(props: DynamicInstagramPortfoliosProps) {
 
 	const { TextField } = ReactHookForm<StudioProfileForm>();
 
-	const { setValue } = useFormContext<StudioProfileForm>();
+	const {
+		setValue,
+		setError,
+		formState: { errors },
+		register,
+		clearErrors,
+	} = useFormContext<StudioProfileForm>();
 
 	const fetchQueryGetMedias = useFetchQueryGetMedias();
 
@@ -46,7 +54,7 @@ function DynamicInstagramPortfolios(props: DynamicInstagramPortfoliosProps) {
 
 	const checkUrlValid = (value: string) => {
 		if (!value.startsWith(INSTAGRAM_MEDIA_URL_PREFIX)) {
-			throw new Error("올바른 URL 형식을 입력해 주세요.");
+			throw new InvalidUrlError("올바른 URL 형식을 입력해 주세요.");
 		}
 	};
 
@@ -56,14 +64,15 @@ function DynamicInstagramPortfolios(props: DynamicInstagramPortfoliosProps) {
 		setValue(`portfolios.${index}.permalink`, permalink);
 	};
 
-	const handleError = (e: unknown) => {
-		// TODO @김현규 에러 처리
-		if (e instanceof AxiosError) {
-			console.error(e?.response?.data.message);
-		} else if (e instanceof Error) {
-			console.error(e.message);
+	const handleError = (e: unknown, index: number) => {
+		if (e instanceof InvalidUrlError) {
+			setError(`portfolios.${index}`, {
+				type: "validate",
+				message: e.message,
+			});
 		} else {
-			console.error(e);
+			// TODO @김현규 API 에러 처리 방식 변경
+			handleCommonError(e);
 		}
 	};
 
@@ -72,12 +81,14 @@ function DynamicInstagramPortfolios(props: DynamicInstagramPortfoliosProps) {
 
 		try {
 			checkUrlValid(linkValue);
+			clearErrors(`portfolios.${index}`);
+
 			const media = (await getMediaByLink(linkValue))!;
 			setPortfolio(index, media);
 		} catch (e) {
-			handleError(e);
+			handleError(e, index);
 		}
-	}, 0.4 * TIME_UNIT.unitOfMs.asSecond);
+	}, TIME_UNIT.unitOfMs.asSecond);
 
 	const handleChange: HookFormChangeEventHandler = async (e) => {
 		const index = Number(e.target.name.split(".")[1]);
@@ -88,16 +99,31 @@ function DynamicInstagramPortfolios(props: DynamicInstagramPortfoliosProps) {
 		<DynamicAppend<StudioProfileForm>
 			label={label}
 			formName="portfolios"
-			component={({ index }) => (
-				<TextField
-					formName={`portfolios.${index}.permalink`}
-					rules={{
-						onChange: handleChange,
-					}}
-					label=""
-					fullWidth
-				/>
-			)}
+			component={({ index }) => {
+				const error = getObjectAtPath(errors, `portfolios.${index}`);
+
+				register(`portfolios.${index}`, {
+					validate: (portfolio) => {
+						if (!portfolio.id) {
+							return "올바른 포트폴리오 URL을 입력해 주세요.";
+						}
+						return true;
+					},
+				});
+
+				return (
+					<TextField
+						formName={`portfolios.${index}.permalink`}
+						rules={{
+							onChange: handleChange,
+						}}
+						label=""
+						fullWidth
+						error={error}
+						helperText={error?.message ?? " "}
+					/>
+				);
+			}}
 			maxCount={STUDIO_PROFILE_FORM_LENGTH.portfolios.max}
 			defaultValue={DEFAULT_PORTFOLIO}
 			required
