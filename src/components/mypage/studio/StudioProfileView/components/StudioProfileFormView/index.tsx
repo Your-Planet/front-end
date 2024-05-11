@@ -16,9 +16,7 @@ import useMutationPostProfile from "@/hooks/queries/studio/useMutationPostProfil
 import { handleCommonError } from "@/utils/error";
 import { getIaPath } from "@/utils/ia";
 import { getMaxLengthRule, getMinLengthRule } from "@/utils/react-hook-form/rule";
-import { enqueueClosableSnackbar } from "@/utils/snackbar";
 import { LoadingButton } from "@mui/lab";
-import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { enqueueSnackbar } from "notistack";
 import { FormEventHandler } from "react";
@@ -70,28 +68,6 @@ function StudioProfileFormView(props: StudioProfileFormViewProps) {
 		});
 
 		router.push(getIaPath(IA.mypage.studio.price));
-	};
-
-	const handleError = (e: unknown) => {
-		console.error("error", e);
-
-		const message: string = (() => {
-			const DEFAULT_MESSAGE = "처리 중 오류가 발생했습니다.";
-
-			if (e instanceof AxiosError) {
-				return e?.response?.data.message ?? DEFAULT_MESSAGE;
-			}
-			if (e instanceof Error) {
-				return e.message ?? DEFAULT_MESSAGE;
-			}
-			return DEFAULT_MESSAGE;
-		})();
-
-		enqueueClosableSnackbar({
-			message,
-			variant: "error",
-			autoHideDuration: null,
-		});
 	};
 
 	const handleFormSubmit: FormEventHandler = handleSubmit(async (data) => {
