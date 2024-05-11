@@ -24,11 +24,7 @@ import { enqueueSnackbar } from "notistack";
 import { FormEventHandler, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-export interface StudioProfileFormViewProps {}
-
-function StudioProfileFormView(props: StudioProfileFormViewProps) {
-	const {} = props;
-
+function StudioProfileFormView() {
 	const { TextField } = ReactHookForm<StudioProfileForm>();
 
 	const form = useForm<StudioProfileForm>({
