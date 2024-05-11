@@ -4,6 +4,7 @@ import OptionFormView from "@/components/mypage/studio/StudioPriceView/component
 import ServiceFormView from "@/components/mypage/studio/StudioPriceView/components/StudioPriceFormView/components/PriceService";
 import { StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
+import useMutationPostPrice from "@/hooks/queries/studio/useMutationPostPrice";
 import useMutationPostPriceTemp from "@/hooks/queries/studio/useMutationPostPriceTemp";
 import { enqueueClosableSnackbar } from "@/utils/snackbar";
 import { LoadingButton } from "@mui/lab";
@@ -52,11 +53,19 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 
 	const { handleSubmit, getValues } = form;
 
-	const { mutateAsync: mutatePostPriceTemp, isPending: isSaving } = useMutationPostPriceTemp({});
+	const { mutateAsync: mutatePostPriceTemp, isPending: isTempSaving } = useMutationPostPriceTemp({});
+	const { mutate: mutatePostPrice, isPending: isSaving } = useMutationPostPrice({});
 
 	const handleTempSaveSuccess = () => {
 		enqueueSnackbar({
-			message: "가격 설정을 임시 저장했어요.",
+			message: "포트폴리오를 임시 저장했어요.",
+			variant: "success",
+		});
+	};
+
+	const handleSaveSuccess = () => {
+		enqueueSnackbar({
+			message: "포트폴리오를 저장했어요.",
 			variant: "success",
 		});
 	};
@@ -97,15 +106,23 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 		}
 	};
 
-	const handleFormSubmit: FormEventHandler = handleSubmit(() => {});
+	const handleFormSubmit: FormEventHandler = handleSubmit((data) => {
+		mutatePostPrice(data, {
+			onSuccess: handleSaveSuccess,
+			onError: handleError,
+		});
+	});
 
 	return (
 		<StudioFormView title={"가격 설정"} useFormReturn={form} onSubmit={handleFormSubmit}>
 			<ServiceFormView />
 			<OptionFormView />
 			{/* TODO: @나은찬 임시 저장 버튼 최초 등록 시에만 노출 */}
-			<LoadingButton variant="outlined" onClick={handleTempSave} loading={isSaving}>
+			<LoadingButton variant="outlined" onClick={handleTempSave} loading={isTempSaving}>
 				임시 저장
+			</LoadingButton>
+			<LoadingButton variant="contained" type="submit" loading={isSaving}>
+				포트폴리오 저장
 			</LoadingButton>
 		</StudioFormView>
 	);
