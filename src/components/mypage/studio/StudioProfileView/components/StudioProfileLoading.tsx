@@ -38,8 +38,9 @@ function StudioProfileLoading(props: StudioProfileLoadingViewProps) {
 						gap: "12px",
 					}}
 				>
-					{Array.from({ length: 4 }).map(() => (
+					{Array.from({ length: 4 }).map((_, i) => (
 						<Skeleton
+							key={i}
 							variant="rounded"
 							sx={{
 								flex: "auto",
