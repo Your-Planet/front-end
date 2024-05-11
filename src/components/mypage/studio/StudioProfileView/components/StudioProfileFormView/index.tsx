@@ -4,24 +4,17 @@ import ReactHookForm from "@/components/common/ReactHookForm";
 import DynamicInstagramPortfolios from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/components/DynamicInstagramPortfolios";
 import InstagramUserNameTextField from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/components/InstagramUserNameTextField";
 import InstatoonCategoryCheckboxGroup from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/components/InstatoonCategoryCheckboxGroup";
+import useLoadStudioProfile from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/hooks/useLoadStudioProfile";
+import useSaveStudioProfile from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/hooks/useSaveStudioProfile";
 import {
 	DEFAULT_CATEGORY,
 	DEFAULT_PORTFOLIO,
 	STUDIO_PROFILE_FORM_LENGTH,
 } from "@/components/mypage/studio/StudioProfileView/defines/constants";
-import { Portfolio, StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
+import { StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
-import { IA } from "@/defines/ia/constants";
-import { InstatoonCategoryType } from "@/defines/instatoon-category/types";
-import useMutationPostProfile from "@/hooks/queries/studio/useMutationPostProfile";
-import useQueryGetProfile from "@/hooks/queries/studio/useQueryGetProfile";
-import { handleCommonError } from "@/utils/error";
-import { getIaPath } from "@/utils/ia";
 import { getMaxLengthRule, getMinLengthRule } from "@/utils/react-hook-form/rule";
 import { LoadingButton } from "@mui/lab";
-import { useRouter } from "next/navigation";
-import { enqueueSnackbar } from "notistack";
-import { FormEventHandler, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 function StudioProfileFormView() {
@@ -37,71 +30,16 @@ function StudioProfileFormView() {
 		},
 	});
 
-	const { handleSubmit, reset } = form;
-
-	const { data: { data: profile } = {} } = useQueryGetProfile({
-		req: undefined,
+	useLoadStudioProfile({
+		form,
 	});
 
-	useEffect(() => {
-		if (!profile) return;
-
-		const categoriesToCategory = (categories: InstatoonCategoryType[]): Record<InstatoonCategoryType, boolean> => {
-			return categories.reduce((acc, category) => {
-				acc[category] = true;
-				return acc;
-			}, DEFAULT_CATEGORY);
-		};
-
-		const { categories, ...rest } = profile;
-
-		reset({
-			...rest,
-			category: categoriesToCategory(categories),
-		});
-	}, [profile]);
-
-	const { mutateAsync: mutatePostProfile, isPending: isSaving } = useMutationPostProfile({});
-
-	const router = useRouter();
-
-	const handleSaveSuccess = () => {
-		enqueueSnackbar({
-			message: "프로필 설정을 저장했어요.",
-			variant: "success",
-		});
-
-		router.push(getIaPath(IA.mypage.studio.price));
-	};
-
-	const handleFormSubmit: FormEventHandler = handleSubmit(async (data) => {
-		const categoryToCategories = (category: Record<InstatoonCategoryType, boolean>): InstatoonCategoryType[] => {
-			return Object.entries(category)
-				.filter(([_, checked]) => checked)
-				.map(([categoryType]) => categoryType as InstatoonCategoryType);
-		};
-
-		const portfoliosToPortfolioIds = (portfolios: Portfolio[]) => {
-			return portfolios.map(({ id }) => id);
-		};
-
-		try {
-			const { category, portfolios, ...restData } = data;
-
-			await mutatePostProfile({
-				...restData,
-				categories: categoryToCategories(category),
-				portfolioIds: portfoliosToPortfolioIds(portfolios),
-			});
-
-			handleSaveSuccess();
-		} catch (e) {
-			handleCommonError(e);
-		}
+	const { isSaving, handleStudioProfileFormSubmit } = useSaveStudioProfile({
+		form,
 	});
 
 	return (
-		<StudioFormView title={"프로필 설정"} useFormReturn={form} onSubmit={handleFormSubmit}>
+		<StudioFormView title={"프로필 설정"} useFormReturn={form} onSubmit={handleStudioProfileFormSubmit}>
 			<InstagramUserNameTextField label="인스타그램 계정" />
 
 			<TextField
