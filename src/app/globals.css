@@ -8,6 +8,11 @@
 	}
 }
 
+@font-face {
+	font-family: "Futura";
+	src: url("/fonts/futura-pt-bold-oblique.otf") format("opentype");
+}
+
 :root {
 	--foreground-rgb: 0, 0, 0;
 	--background-start-rgb: 214, 219, 220;
@@ -16,8 +21,7 @@
 
 html > body * {
 	font-family:
-		"Pretendard Variable",
-		Pretendard,
+		Futura,
 		-apple-system,
 		BlinkMacSystemFont,
 		system-ui,
