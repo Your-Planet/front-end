@@ -1,4 +1,4 @@
-export interface InstagramPost {
+export interface InstagramMedia {
 	id: string;
 	caption: string;
 	isSharedToFeed: boolean;
@@ -10,10 +10,10 @@ export interface InstagramPost {
 	username: string;
 }
 
-export interface InstagramPostRequest {
+export interface InstagramMediaRequest {
 	permalink: string;
 }
 
-export interface InstagramPostResponse {
-	posts: InstagramPost[];
+export interface InstagramMediaResponse {
+	medias: InstagramMedia[];
 }

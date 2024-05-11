@@ -7,7 +7,7 @@ export const QUERY_KEY = deepFreeze({
 	},
 	instagram: {
 		all: () => ["instagram"] as const,
-		posts: (req: object) => [...QUERY_KEY.instagram.all(), "posts", req] as const,
+		medias: (req: object) => [...QUERY_KEY.instagram.all(), "posts", req] as const,
 	},
 	instagramGraph: {
 		all: () => ["instagramGraph"] as const,
