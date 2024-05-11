@@ -51,7 +51,7 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 		},
 	});
 
-	const { handleSubmit } = form;
+	const { handleSubmit, getValues } = form;
 
 	const { mutateAsync: mutatePostPriceTemp, isPending: isTempSaving } = useMutationPostPriceTemp({});
 	const { mutate: mutatePostPrice, isPending: isSaving } = useMutationPostPrice({});
@@ -91,15 +91,20 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 		});
 	};
 
-	const handleTempSave: FormEventHandler = handleSubmit(async (data) => {
+	const handleTempSave: FormEventHandler = async () => {
 		try {
+			const data = {
+				service: getValues("service"),
+				option: getValues("option"),
+			};
+
 			await mutatePostPriceTemp(data);
 
 			handleTempSaveSuccess();
 		} catch (e) {
 			handleError(e);
 		}
-	});
+	};
 
 	const handleFormSubmit: FormEventHandler = handleSubmit((data) => {
 		mutatePostPrice(data, {
