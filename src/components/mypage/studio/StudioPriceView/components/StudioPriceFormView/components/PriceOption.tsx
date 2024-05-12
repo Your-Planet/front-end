@@ -63,10 +63,14 @@ function OptionFormView(props: Props) {
 					size="small"
 					disabled={isDisabled(refinementProvision)}
 					required={!isDisabled(refinementProvision)}
-					rules={{
-						...priceMinRule,
-						...priceMaxRule,
-					}}
+					rules={
+						!isDisabled(refinementProvision)
+							? {
+									...priceMinRule,
+									...priceMaxRule,
+								}
+							: {}
+					}
 					fullWidth
 				/>
 			</Box>
@@ -92,10 +96,14 @@ function OptionFormView(props: Props) {
 						size="small"
 						disabled={isDisabled(additionalPanelProvision)}
 						required={!isDisabled(additionalPanelProvision)}
-						rules={{
-							...priceMinRule,
-							...priceMaxRule,
-						}}
+						rules={
+							!isDisabled(additionalPanelProvision)
+								? {
+										...priceMinRule,
+										...priceMaxRule,
+									}
+								: {}
+						}
 						fullWidth
 					/>
 					<TextField
@@ -112,10 +120,14 @@ function OptionFormView(props: Props) {
 						size="small"
 						disabled={isDisabled(additionalPanelProvision)}
 						required={!isDisabled(additionalPanelProvision)}
-						rules={{
-							...workingDaysMinRule,
-							...workingDaysMaxRule,
-						}}
+						rules={
+							!isDisabled(additionalPanelProvision)
+								? {
+										...workingDaysMinRule,
+										...workingDaysMaxRule,
+									}
+								: {}
+						}
 						fullWidth
 					/>
 				</Box>
@@ -142,10 +154,14 @@ function OptionFormView(props: Props) {
 						size="small"
 						disabled={isDisabled(additionalModificationProvision)}
 						required={!isDisabled(additionalModificationProvision)}
-						rules={{
-							...priceMinRule,
-							...priceMaxRule,
-						}}
+						rules={
+							!isDisabled(additionalModificationProvision)
+								? {
+										...priceMinRule,
+										...priceMaxRule,
+									}
+								: {}
+						}
 						fullWidth
 					/>
 					<TextField
@@ -162,10 +178,14 @@ function OptionFormView(props: Props) {
 						size="small"
 						disabled={isDisabled(additionalModificationProvision)}
 						required={!isDisabled(additionalModificationProvision)}
-						rules={{
-							...modificationCountMinRule,
-							...modificationCountMaxRule,
-						}}
+						rules={
+							!isDisabled(additionalModificationProvision)
+								? {
+										...modificationCountMinRule,
+										...modificationCountMaxRule,
+									}
+								: {}
+						}
 						fullWidth
 					/>
 				</Box>
@@ -191,10 +211,14 @@ function OptionFormView(props: Props) {
 					size="small"
 					disabled={isDisabled(postDurationExtensionProvision)}
 					required={!isDisabled(postDurationExtensionProvision)}
-					rules={{
-						...priceMinRule,
-						...priceMaxRule,
-					}}
+					rules={
+						!isDisabled(postDurationExtensionProvision)
+							? {
+									...priceMinRule,
+									...priceMaxRule,
+								}
+							: {}
+					}
 					fullWidth
 				/>
 			</Box>

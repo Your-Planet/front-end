@@ -1,4 +1,13 @@
-import { GetProfileRequest, GetProfileResponse, PostProfileRequest, PostProfileResponse } from "@/apis/studio/models";
+import {
+	GetProfileRequest,
+	GetProfileResponse,
+	PostPriceRequest,
+	PostPriceResponse,
+	PostPriceTempRequest,
+	PostPriceTempResponse,
+	PostProfileRequest,
+	PostProfileResponse,
+} from "@/apis/studio/models";
 import { AxiosRequestYourPlanetFunction } from "@/defines/apis/types";
 import BaseApi from "@/utils/api/BaseApi";
 
@@ -9,5 +18,13 @@ export class StudioApi extends BaseApi {
 
 	public postProfile: AxiosRequestYourPlanetFunction<PostProfileRequest, PostProfileResponse> = (req) => {
 		return this.axiosInstance.post(this.getUrl("/profile"), req);
+	};
+
+	public postPriceTemp: AxiosRequestYourPlanetFunction<PostPriceTempRequest, PostPriceTempResponse> = (req) => {
+		return this.axiosInstance.post(this.getUrl("/price-temp"), req);
+	};
+
+	public postPrice: AxiosRequestYourPlanetFunction<PostPriceRequest, PostPriceResponse> = (req) => {
+		return this.axiosInstance.post(this.getUrl("/price"), req);
 	};
 }
