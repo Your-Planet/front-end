@@ -2,16 +2,12 @@
 
 import OptionFormView from "@/components/mypage/studio/StudioPriceView/components/StudioPriceFormView/components/PriceOption";
 import ServiceFormView from "@/components/mypage/studio/StudioPriceView/components/StudioPriceFormView/components/PriceService";
+import useLoadStudioPrice from "@/components/mypage/studio/StudioPriceView/components/StudioPriceFormView/hooks/useLoadStudioPrice";
+import useSaveStudioPrice from "@/components/mypage/studio/StudioPriceView/components/StudioPriceFormView/hooks/useSaveStudioPrice";
+import useSaveStudioPriceTemp from "@/components/mypage/studio/StudioPriceView/components/StudioPriceFormView/hooks/useSaveStudioPriceTemp";
 import { StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
-import useMutationPostPrice from "@/hooks/queries/studio/useMutationPostPrice";
-import useMutationPostPriceTemp from "@/hooks/queries/studio/useMutationPostPriceTemp";
-import useQueryGetPrice from "@/hooks/queries/studio/useQueryGetPrice";
-import useQueryGetPriceTemp from "@/hooks/queries/studio/useQueryGetPriceTemp";
-import { handleCommonError } from "@/utils/error";
 import { LoadingButton } from "@mui/lab";
-import { enqueueSnackbar } from "notistack";
-import { FormEventHandler, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 export interface StudioPriceFormViewProps {}
@@ -56,70 +52,22 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 		},
 	});
 
-	const { handleSubmit, getValues, reset } = form;
+	useLoadStudioPrice({ form });
 
-	const { data: { data: priceTemp } = {} } = useQueryGetPriceTemp({
-		req: undefined,
-	});
-
-	const { data: { data: price } = {} } = useQueryGetPrice({
-		req: undefined,
-	});
-
-	useEffect(() => {
-		const priceData = priceTemp ?? price;
-
-		if (!priceData) {
-			return;
-		}
-
-		reset(priceData);
-	}, [priceTemp, price]);
-
-	const { mutateAsync: mutatePostPriceTemp, isPending: isTempSaving } = useMutationPostPriceTemp({});
-	const { mutate: mutatePostPrice, isPending: isSaving } = useMutationPostPrice({});
-
-	const handleTempSaveSuccess = () => {
-		enqueueSnackbar({
-			message: "포트폴리오를 임시 저장했어요.",
-			variant: "success",
-		});
-	};
-
-	const handleSaveSuccess = () => {
-		enqueueSnackbar({
-			message: "포트폴리오를 저장했어요.",
-			variant: "success",
-		});
-	};
-
-	const handleTempSave: FormEventHandler = async () => {
-		try {
-			const data = {
-				service: getValues("service"),
-				option: getValues("option"),
-			};
-
-			await mutatePostPriceTemp(data);
-
-			handleTempSaveSuccess();
-		} catch (e) {
-			handleCommonError(e);
-		}
-	};
-
-	const handleFormSubmit: FormEventHandler = handleSubmit((data) => {
-		mutatePostPrice(data, {
-			onSuccess: handleSaveSuccess,
-			onError: handleCommonError,
-		});
-	});
+	const { isTempSaving, handleStudioPriceTempSave } = useSaveStudioPriceTemp({ form });
+	const { isSaving, isSuccess, handleStudioPriceSaveSubmit } = useSaveStudioPrice({ form });
 
 	return (
-		<StudioFormView title={"가격 설정"} useFormReturn={form} onSubmit={handleFormSubmit}>
+		<StudioFormView title={"가격 설정"} useFormReturn={form} onSubmit={handleStudioPriceSaveSubmit}>
 			<ServiceFormView />
 			<OptionFormView />
-			<LoadingButton variant="outlined" type="button" onClick={handleTempSave} loading={isTempSaving} hidden={!!price}>
+			<LoadingButton
+				variant="outlined"
+				type="button"
+				onClick={handleStudioPriceTempSave}
+				loading={isTempSaving}
+				hidden={isSuccess}
+			>
 				임시 저장
 			</LoadingButton>
 			<LoadingButton variant="contained" type="submit" loading={isSaving}>
