@@ -1,4 +1,6 @@
 import {
+	GetPriceTempRequest,
+	GetPriceTempResponse,
 	GetProfileRequest,
 	GetProfileResponse,
 	PostPriceRequest,
@@ -12,10 +14,16 @@ import { AxiosRequestYourPlanetFunction } from "@/defines/apis/types";
 import BaseApi from "@/utils/api/BaseApi";
 
 export class StudioApi extends BaseApi {
+	// GET
 	public getProfile: AxiosRequestYourPlanetFunction<GetProfileRequest, GetProfileResponse> = () => {
 		return this.axiosInstance.get(this.getUrl("/profile"));
 	};
 
+	public getPriceTemp: AxiosRequestYourPlanetFunction<GetPriceTempRequest, GetPriceTempResponse> = (req) => {
+		return this.axiosInstance.get(this.getUrl("/price-temp"));
+	};
+
+	// POST
 	public postProfile: AxiosRequestYourPlanetFunction<PostProfileRequest, PostProfileResponse> = (req) => {
 		return this.axiosInstance.post(this.getUrl("/profile"), req);
 	};
