@@ -51,6 +51,10 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 					provisionType: "UNPROVIDED",
 					price: 0,
 				},
+				originFile: {
+					provisionType: "UNPROVIDED",
+					price: 0,
+				},
 			},
 		},
 	});
