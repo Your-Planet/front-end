@@ -4,9 +4,12 @@ import OptionFormView from "@/components/mypage/studio/StudioPriceView/component
 import ServiceFormView from "@/components/mypage/studio/StudioPriceView/components/StudioPriceFormView/components/PriceService";
 import { StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
+import { COOKIE } from "@/defines/cookie/constants";
 import useMutationPostPrice from "@/hooks/queries/studio/useMutationPostPrice";
 import useMutationPostPriceTemp from "@/hooks/queries/studio/useMutationPostPriceTemp";
+import useQueryGetPrice from "@/hooks/queries/studio/useQueryGetPrice";
 import useQueryGetPriceTemp from "@/hooks/queries/studio/useQueryGetPriceTemp";
+import { getCookie } from "@/utils/cookie";
 import { handleCommonError } from "@/utils/error";
 import { LoadingButton } from "@mui/lab";
 import { enqueueSnackbar } from "notistack";
@@ -17,6 +20,7 @@ export interface StudioPriceFormViewProps {}
 
 function StudioPriceFormView(props: StudioPriceFormViewProps) {
 	const {} = props;
+	const accessToken = getCookie(COOKIE.accessToken);
 
 	const form = useForm<StudioPriceForm>({
 		mode: "all",
@@ -53,17 +57,23 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 
 	const { handleSubmit, getValues, reset } = form;
 
-	const { data: { data: price } = {} } = useQueryGetPriceTemp({
-		req: undefined,
+	const { data: { data: priceTemp } = {} } = useQueryGetPriceTemp({
+		req: accessToken,
+	});
+
+	const { data: { data: price } = {} } = useQueryGetPrice({
+		req: accessToken,
 	});
 
 	useEffect(() => {
-		if (!price) {
+		const priceData = priceTemp ?? price;
+
+		if (!priceData) {
 			return;
 		}
 
-		reset(price);
-	}, [price]);
+		reset(priceData);
+	}, [priceTemp, price]);
 
 	const { mutateAsync: mutatePostPriceTemp, isPending: isTempSaving } = useMutationPostPriceTemp({});
 	const { mutate: mutatePostPrice, isPending: isSaving } = useMutationPostPrice({});

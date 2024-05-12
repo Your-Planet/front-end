@@ -38,6 +38,10 @@ export type GetPriceTempRequest = void;
 
 export type GetPriceTempResponse = StudioPrice;
 
+export type GetPriceRequest = void;
+
+export type GetPriceResponse = StudioPrice;
+
 export type PostPriceTempResponse = void;
 
 export type PostPriceResponse = void;
