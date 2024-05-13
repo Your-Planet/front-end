@@ -11,7 +11,6 @@ export interface UseSaveStudioPriceParams {
 
 export interface UseSaveStudioPrice {
 	isSaving: boolean;
-	isSuccess: boolean;
 	handleStudioPriceSaveSubmit: FormEventHandler;
 }
 
@@ -20,7 +19,7 @@ export default function useSaveStudioPrice(params: UseSaveStudioPriceParams): Us
 
 	const { handleSubmit } = form;
 
-	const { mutateAsync: mutatePostPrice, isPending: isSaving, isSuccess: isSuccess } = useMutationPostPrice({});
+	const { mutateAsync: mutatePostPrice, isPending: isSaving } = useMutationPostPrice({});
 
 	const handleSaveSuccess = () => {
 		enqueueSnackbar({
@@ -38,7 +37,6 @@ export default function useSaveStudioPrice(params: UseSaveStudioPriceParams): Us
 
 	return {
 		isSaving,
-		isSuccess,
 		handleStudioPriceSaveSubmit,
 	};
 }

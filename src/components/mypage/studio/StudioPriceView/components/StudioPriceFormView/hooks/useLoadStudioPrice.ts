@@ -8,7 +8,11 @@ export interface UseLoadStudioPriceParams {
 	form: UseFormReturn<StudioPriceForm>;
 }
 
-export default function useLoadStudioPrice(params: UseLoadStudioPriceParams) {
+export interface UseLoadStudioPrice {
+	isPrice: boolean;
+}
+
+export default function useLoadStudioPrice(params: UseLoadStudioPriceParams): UseLoadStudioPrice {
 	const { form } = params;
 
 	const { reset } = form;
@@ -30,4 +34,8 @@ export default function useLoadStudioPrice(params: UseLoadStudioPriceParams) {
 
 		reset(priceData);
 	}, [priceTemp, price]);
+
+	return {
+		isPrice: Boolean(price),
+	};
 }
