@@ -21,7 +21,17 @@ function useQueryGetPrice(params: UseQueryGetPriceParams): UseQueryGetPrice {
 
 	return useQuery({
 		queryKey: QUERY_KEY.studio.price(),
-		queryFn: async () => (await API.studio.getPrice(req)).data,
+		queryFn: async () => {
+			const priceTempData = (await API.studio.getPriceTemp(req)).data;
+
+			if (priceTempData) {
+				return priceTempData;
+			}
+
+			const priceData = (await API.studio.getPrice(req)).data;
+
+			return priceData;
+		},
 		refetchOnWindowFocus: false,
 		...queryOption,
 	});
