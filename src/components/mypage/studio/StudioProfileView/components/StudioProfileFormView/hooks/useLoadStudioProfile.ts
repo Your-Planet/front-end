@@ -14,8 +14,11 @@ export default function useLoadStudioProfile(params: UseLoadStudioProfileParams)
 
 	const { reset } = form;
 
-	const { data: { data: profile } = {} } = useQueryGetProfile({
+	const { data: { data: profile } = {}, isLoading } = useQueryGetProfile({
 		req: undefined,
+		queryOption: {
+			retry: false,
+		},
 	});
 
 	useEffect(() => {
@@ -35,4 +38,8 @@ export default function useLoadStudioProfile(params: UseLoadStudioProfileParams)
 			category: categoriesToCategory(categories),
 		});
 	}, [profile]);
+
+	return {
+		isLoading,
+	};
 }
