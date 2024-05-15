@@ -100,7 +100,7 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 	const handleFormSubmit: FormEventHandler = handleSubmit((data) => {
 		mutatePostPrice(data, {
 			onSuccess: handleSaveSuccess,
-			onError: handleCommonError,
+			onError: (e) => handleCommonError(e),
 		});
 	});
 
