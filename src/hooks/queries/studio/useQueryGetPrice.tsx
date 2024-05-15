@@ -4,7 +4,7 @@ import { ResponseEntity } from "@/defines/apis/types";
 import { QUERY_KEY } from "@/defines/react-query/constants";
 import { UseQueryParams } from "@/defines/react-query/types";
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
-import { AxiosError } from "axios";
+import { AxiosError, HttpStatusCode } from "axios";
 
 type Request = GetPriceRequest;
 
@@ -22,15 +22,25 @@ function useQueryGetPrice(params: UseQueryGetPriceParams): UseQueryGetPrice {
 	return useQuery({
 		queryKey: QUERY_KEY.studio.price(),
 		queryFn: async () => {
-			const priceTempData = (await API.studio.getPriceTemp(req)).data;
+			try {
+				const priceTempData = await API.studio.getPriceTemp(req);
 
-			if (priceTempData) {
-				return priceTempData;
+				return priceTempData.data;
+			} catch (err) {
+				const axiosError = err as AxiosError<Response>;
+
+				if (axiosError.response && axiosError.response.status === HttpStatusCode.NotFound) {
+					try {
+						const priceData = await API.studio.getPrice(req);
+
+						return priceData.data;
+					} catch (err) {
+						return {} as Response;
+					}
+				}
+
+				return {} as Response;
 			}
-
-			const priceData = (await API.studio.getPrice(req)).data;
-
-			return priceData;
 		},
 		refetchOnWindowFocus: false,
 		...queryOption,
