@@ -63,15 +63,12 @@ function DynamicInstagramPortfolios(props: DynamicInstagramPortfoliosProps) {
 	};
 
 	const handleError = (e: unknown, index: number) => {
-		if (e instanceof InvalidUrlError) {
+		handleCommonError(e, (errorMessage) => {
 			setError(`portfolios.${index}`, {
 				type: "validate",
-				message: e.message,
+				message: errorMessage,
 			});
-		} else {
-			// TODO @김현규 API 에러 처리 방식 변경
-			handleCommonError(e);
-		}
+		});
 	};
 
 	const setMediaByLink = debounce(async (instagramMediaLink: string, index: number) => {
@@ -116,6 +113,7 @@ function DynamicInstagramPortfolios(props: DynamicInstagramPortfoliosProps) {
 							onChange: handleChange,
 						}}
 						label=""
+						placeholder={INSTAGRAM_MEDIA_URL_PREFIX}
 						fullWidth
 						error={error}
 						helperText={error?.message ?? " "}
