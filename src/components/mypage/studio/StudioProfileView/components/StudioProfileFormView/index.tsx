@@ -6,6 +6,7 @@ import InstagramUserNameTextField from "@/components/mypage/studio/StudioProfile
 import InstatoonCategoryCheckboxGroup from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/components/InstatoonCategoryCheckboxGroup";
 import useLoadStudioProfile from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/hooks/useLoadStudioProfile";
 import useSaveStudioProfile from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/hooks/useSaveStudioProfile";
+import StudioProfileLoading from "@/components/mypage/studio/StudioProfileView/components/StudioProfileLoading";
 import {
 	DEFAULT_CATEGORY,
 	DEFAULT_PORTFOLIO,
@@ -15,6 +16,7 @@ import { StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
 import { getMaxLengthRule, getMinLengthRule } from "@/utils/react-hook-form/rule";
 import { LoadingButton } from "@mui/lab";
+import { Box } from "@mui/material";
 import { useForm } from "react-hook-form";
 
 function StudioProfileFormView() {
@@ -30,13 +32,29 @@ function StudioProfileFormView() {
 		},
 	});
 
-	useLoadStudioProfile({
+	const { isLoading } = useLoadStudioProfile({
 		form,
 	});
 
 	const { isSaving, handleStudioProfileFormSubmit } = useSaveStudioProfile({
 		form,
 	});
+
+	if (isLoading) {
+		return (
+			<Box
+				sx={{
+					flex: "auto",
+					display: "flex",
+					flexDirection: "column",
+					alignItems: "center",
+					justifyContent: "center",
+				}}
+			>
+				<StudioProfileLoading />
+			</Box>
+		);
+	}
 
 	return (
 		<StudioFormView title={"프로필 설정"} useFormReturn={form} onSubmit={handleStudioProfileFormSubmit}>
