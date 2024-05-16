@@ -1,7 +1,9 @@
 "use client";
 
+import CentralBox from "@/components/common/CentralBox";
 import OptionFormView from "@/components/mypage/studio/StudioPriceView/components/StudioPriceFormView/components/PriceOption";
 import ServiceFormView from "@/components/mypage/studio/StudioPriceView/components/StudioPriceFormView/components/PriceService";
+import StudioPriceLoading from "@/components/mypage/studio/StudioPriceView/components/StudioPriceFormView/components/StudioPriceLoading";
 import useLoadStudioPrice from "@/components/mypage/studio/StudioPriceView/components/StudioPriceFormView/hooks/useLoadStudioPrice";
 import useSaveStudioPrice from "@/components/mypage/studio/StudioPriceView/components/StudioPriceFormView/hooks/useSaveStudioPrice";
 import useSaveStudioPriceTemp from "@/components/mypage/studio/StudioPriceView/components/StudioPriceFormView/hooks/useSaveStudioPriceTemp";
@@ -52,10 +54,18 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 		},
 	});
 
-	const { isPrice } = useLoadStudioPrice({ form });
+	const { isPrice, isLoading } = useLoadStudioPrice({ form });
 
 	const { isTempSaving, handleStudioPriceTempSave } = useSaveStudioPriceTemp({ form });
 	const { isSaving, handleStudioPriceSaveSubmit } = useSaveStudioPrice({ form });
+
+	if (isLoading) {
+		return (
+			<CentralBox>
+				<StudioPriceLoading />
+			</CentralBox>
+		);
+	}
 
 	return (
 		<StudioFormView title={"가격 설정"} useFormReturn={form} onSubmit={handleStudioPriceSaveSubmit}>

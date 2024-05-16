@@ -9,6 +9,7 @@ export interface UseLoadStudioPriceParams {
 
 export interface UseLoadStudioPrice {
 	isPrice: boolean;
+	isLoading: boolean;
 }
 
 export default function useLoadStudioPrice(params: UseLoadStudioPriceParams): UseLoadStudioPrice {
@@ -16,7 +17,7 @@ export default function useLoadStudioPrice(params: UseLoadStudioPriceParams): Us
 
 	const { reset } = form;
 
-	const { data: { data: priceData } = {} } = useQueryGetPrice({
+	const { data: { data: priceData } = {}, isLoading } = useQueryGetPrice({
 		req: undefined,
 	});
 
@@ -26,5 +27,6 @@ export default function useLoadStudioPrice(params: UseLoadStudioPriceParams): Us
 
 	return {
 		isPrice: Boolean(priceData),
+		isLoading,
 	};
 }
