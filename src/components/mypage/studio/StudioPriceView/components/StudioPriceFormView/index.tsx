@@ -6,7 +6,7 @@ import { StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defi
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
 import useMutationPostPrice from "@/hooks/queries/studio/useMutationPostPrice";
 import useMutationPostPriceTemp from "@/hooks/queries/studio/useMutationPostPriceTemp";
-import useQueryGetPriceTemp from "@/hooks/queries/studio/useQueryGetPriceTemp";
+import useQueryGetPrice from "@/hooks/queries/studio/useQueryGetPrice";
 import { handleCommonError } from "@/utils/error";
 import { LoadingButton } from "@mui/lab";
 import { enqueueSnackbar } from "notistack";
@@ -53,17 +53,13 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 
 	const { handleSubmit, getValues, reset } = form;
 
-	const { data: { data: price } = {} } = useQueryGetPriceTemp({
+	const { data: { data: priceData } = {} } = useQueryGetPrice({
 		req: undefined,
 	});
 
 	useEffect(() => {
-		if (!price) {
-			return;
-		}
-
-		reset(price);
-	}, [price]);
+		reset(priceData);
+	}, [priceData]);
 
 	const { mutateAsync: mutatePostPriceTemp, isPending: isTempSaving } = useMutationPostPriceTemp({});
 	const { mutate: mutatePostPrice, isPending: isSaving } = useMutationPostPrice({});

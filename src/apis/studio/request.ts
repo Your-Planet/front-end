@@ -1,4 +1,6 @@
 import {
+	GetPriceRequest,
+	GetPriceResponse,
 	GetPriceTempRequest,
 	GetPriceTempResponse,
 	GetProfileRequest,
@@ -19,8 +21,12 @@ export class StudioApi extends BaseApi {
 		return this.axiosInstance.get(this.getUrl("/profile"));
 	};
 
-	public getPriceTemp: AxiosRequestYourPlanetFunction<GetPriceTempRequest, GetPriceTempResponse> = (req) => {
+	public getPriceTemp: AxiosRequestYourPlanetFunction<GetPriceTempRequest, GetPriceTempResponse> = () => {
 		return this.axiosInstance.get(this.getUrl("/price-temp"));
+	};
+
+	public getPrice: AxiosRequestYourPlanetFunction<GetPriceRequest, GetPriceResponse> = () => {
+		return this.axiosInstance.get(this.getUrl("/price"));
 	};
 
 	// POST
