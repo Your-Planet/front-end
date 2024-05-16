@@ -28,11 +28,13 @@ export default function useSaveStudioPrice(params: UseSaveStudioPriceParams): Us
 		});
 	};
 
-	const handleStudioPriceSaveSubmit: FormEventHandler = handleSubmit((data) => {
-		mutatePostPrice(data, {
-			onSuccess: handleSaveSuccess,
-			onError: handleCommonError,
-		});
+	const handleStudioPriceSaveSubmit: FormEventHandler = handleSubmit(async (data) => {
+		try {
+			await mutatePostPrice(data);
+			handleSaveSuccess();
+		} catch (e) {
+			handleCommonError(e);
+		}
 	});
 
 	return {
