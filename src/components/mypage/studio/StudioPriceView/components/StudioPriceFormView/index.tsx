@@ -104,8 +104,7 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 		<StudioFormView title={"가격 설정"} useFormReturn={form} onSubmit={handleFormSubmit}>
 			<ServiceFormView />
 			<OptionFormView />
-			{/* TODO: @나은찬 임시 저장 버튼 최초 등록 시에만 노출 */}
-			<LoadingButton variant="outlined" type="button" onClick={handleTempSave} loading={isTempSaving}>
+			<LoadingButton variant="outlined" type="button" onClick={handleTempSave} loading={isTempSaving} hidden={!!price}>
 				임시 저장
 			</LoadingButton>
 			<LoadingButton variant="contained" type="submit" loading={isSaving}>
