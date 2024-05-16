@@ -31,7 +31,7 @@ function InstagramUserNameTextField(props: InstagramUserNameTextFieldProps) {
 		}
 	}, [isError]);
 
-	return <TextField label={label} disabled helperText=" " value={memberInfo?.instagramUsername} />;
+	return <TextField label={label} disabled helperText=" " value={memberInfo?.instagramUsername ?? ""} />;
 }
 
 export default InstagramUserNameTextField;

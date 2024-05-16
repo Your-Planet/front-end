@@ -59,9 +59,7 @@ function DynamicInstagramPortfolios(props: DynamicInstagramPortfoliosProps) {
 	};
 
 	const setPortfolio = (index: number, media: InstagramMedia) => {
-		const { id, permalink } = media;
-		setValue(`portfolios.${index}.id`, id);
-		setValue(`portfolios.${index}.permalink`, permalink);
+		setValue(`portfolios.${index}`, media);
 	};
 
 	const handleError = (e: unknown, index: number) => {
@@ -76,14 +74,14 @@ function DynamicInstagramPortfolios(props: DynamicInstagramPortfoliosProps) {
 		}
 	};
 
-	const setMediaByLink = debounce(async (linkValue: string, index: number) => {
-		if (!linkValue) return;
+	const setMediaByLink = debounce(async (instagramMediaLink: string, index: number) => {
+		if (!instagramMediaLink) return;
 
 		try {
-			checkUrlValid(linkValue);
+			checkUrlValid(instagramMediaLink);
 			clearErrors(`portfolios.${index}`);
 
-			const media = (await getMediaByLink(linkValue))!;
+			const media = (await getMediaByLink(instagramMediaLink))!;
 			setPortfolio(index, media);
 		} catch (e) {
 			handleError(e, index);

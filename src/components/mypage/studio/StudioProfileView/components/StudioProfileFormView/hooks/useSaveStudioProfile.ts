@@ -1,4 +1,5 @@
-import { Portfolio, StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
+import { InstagramMedia } from "@/apis/instagram";
+import { StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
 import { IA } from "@/defines/ia/constants";
 import { InstatoonCategoryType } from "@/defines/instatoon-category/types";
 import useMutationPostProfile from "@/hooks/queries/studio/useMutationPostProfile";
@@ -43,7 +44,7 @@ export default function useSaveStudioProfile(params: UseSaveStudioProfileParams)
 				.map(([categoryType]) => categoryType as InstatoonCategoryType);
 		};
 
-		const portfoliosToPortfolioIds = (portfolios: Portfolio[]) => {
+		const portfoliosToPortfolioIds = (portfolios: InstagramMedia[]) => {
 			return portfolios.map(({ id }) => id);
 		};
 

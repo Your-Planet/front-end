@@ -1,4 +1,5 @@
-import { Portfolio, StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
+import { InstagramMedia } from "@/apis/instagram";
+import { StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
 import { LengthLimit } from "@/defines/forms/types";
 import { InstatoonCategoryType } from "@/defines/instatoon-category/types";
 import { DefaultValues } from "react-hook-form/dist/types/form";
@@ -21,7 +22,7 @@ export const DEFAULT_CATEGORY: Record<InstatoonCategoryType, boolean> = {
 	HEALING: false,
 };
 
-export const DEFAULT_PORTFOLIO: DefaultValues<Portfolio> = {
+export const DEFAULT_PORTFOLIO: DefaultValues<InstagramMedia> = {
 	id: undefined,
 	permalink: "",
 };
