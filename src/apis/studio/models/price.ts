@@ -27,6 +27,10 @@ interface StudioPrice {
 			provisionType: ProvisionType;
 			price: number;
 		};
+		originFile: {
+			provisionType: ProvisionType;
+			price: number;
+		};
 	};
 }
 
