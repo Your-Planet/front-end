@@ -58,7 +58,7 @@ function DynamicAppend<TFieldValues extends FieldValues>(props: DynamicAppendPro
 							})}
 						</Grid>
 
-						<Grid width="fit-content">
+						<Grid width="fit-content" display="flex" flexDirection="column">
 							<DynamicAppendButtonGroup
 								disabled={Boolean(disabled)}
 								appendable={getAppendable(index)}

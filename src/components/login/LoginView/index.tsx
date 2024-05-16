@@ -8,7 +8,8 @@ import useMutationPostLogin from "@/hooks/queries/member/useMutationPostLogin";
 import { getCookie, removeCookie, setCookie } from "@/utils/cookie";
 import { getIaPath } from "@/utils/ia";
 import { isEmail } from "@/utils/string";
-import { Alert, Box, Button, Stack } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
+import { Alert, Box, Stack } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -38,7 +39,7 @@ function LoginView(props: LoginViewProps) {
 
 	const { handleSubmit, setValue } = form;
 
-	const { mutate: mutatePostLogin } = useMutationPostLogin({});
+	const { mutate: mutatePostLogin, isPending } = useMutationPostLogin({});
 
 	const handleFormSubmit = handleSubmit(({ isRemember, ...data }) => {
 		mutatePostLogin(data, {
@@ -109,9 +110,9 @@ function LoginView(props: LoginViewProps) {
 							}}
 						/>
 						<Checkbox formName="isRemember" label={"이메일 기억하기"} />
-						<Button fullWidth variant="contained" size="large" type="submit">
+						<LoadingButton fullWidth variant="contained" size="large" type="submit" loading={isPending}>
 							로그인
-						</Button>
+						</LoadingButton>
 					</form>
 				</FormProvider>
 

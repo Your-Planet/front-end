@@ -1,8 +1,8 @@
 "use client";
 
-import DynamicAppendButton from "@/components/common/DynamicAppend/components/DynamicAppendButtonGroup/components/buttons/DynamicAppendButton";
-import DynamicRemoveButton from "@/components/common/DynamicAppend/components/DynamicAppendButtonGroup/components/buttons/DynamicRemoveButton";
-import { Grid } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+import { Button, ButtonGroup, FormHelperText } from "@mui/material";
 import { MouseEventHandler } from "react";
 
 export interface DynamicAppendButtonGroupProps {
@@ -17,14 +17,17 @@ function DynamicAppendButtonGroup(props: DynamicAppendButtonGroupProps) {
 	const { disabled, appendable, removable, onClickAppend, onClickRemove } = props;
 
 	return (
-		<Grid container spacing={1} margin={0} gap={"4px"}>
-			<Grid>
-				<DynamicRemoveButton disabled={!removable || disabled} onClick={onClickRemove} />
-			</Grid>
-			<Grid>
-				<DynamicAppendButton disabled={!appendable || disabled} onClick={onClickAppend} />
-			</Grid>
-		</Grid>
+		<>
+			<ButtonGroup sx={{ flex: "auto" }}>
+				<Button aria-label="remove" disabled={!removable || disabled} onClick={onClickRemove}>
+					<RemoveIcon fontSize="small" />
+				</Button>
+				<Button aria-label="append" disabled={!appendable || disabled} onClick={onClickAppend}>
+					<AddIcon fontSize="small" />
+				</Button>
+			</ButtonGroup>
+			<FormHelperText sx={{ margin: "3px 14px 0" }}> </FormHelperText>
+		</>
 	);
 }
 

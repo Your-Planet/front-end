@@ -1,6 +1,5 @@
 import { StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
 import useQueryGetPrice from "@/hooks/queries/studio/useQueryGetPrice";
-import useQueryGetPriceTemp from "@/hooks/queries/studio/useQueryGetPriceTemp";
 import { useEffect } from "react";
 import { UseFormReturn } from "react-hook-form";
 
@@ -17,25 +16,15 @@ export default function useLoadStudioPrice(params: UseLoadStudioPriceParams): Us
 
 	const { reset } = form;
 
-	const { data: { data: priceTemp } = {} } = useQueryGetPriceTemp({
-		req: undefined,
-	});
-
-	const { data: { data: price } = {} } = useQueryGetPrice({
+	const { data: { data: priceData } = {} } = useQueryGetPrice({
 		req: undefined,
 	});
 
 	useEffect(() => {
-		const priceData = priceTemp ?? price;
-
-		if (!priceData) {
-			return;
-		}
-
 		reset(priceData);
-	}, [priceTemp, price]);
+	}, [priceData]);
 
 	return {
-		isPrice: Boolean(price),
+		isPrice: Boolean(priceData),
 	};
 }

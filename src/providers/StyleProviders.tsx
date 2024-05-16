@@ -11,6 +11,8 @@ const StyleProviders = ({ children }: { children: ReactNode }) => {
 			fontFamily: [
 				"Pretendard Variable",
 				"Pretendard",
+				"Futura-pt-bold",
+				"Futura-pt-bold-oblique",
 				"-apple-system",
 				"BlinkMacSystemFont",
 				"system-ui",

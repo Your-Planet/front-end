@@ -8,6 +8,16 @@
 	}
 }
 
+@font-face {
+	font-family: "Futura-pt-bold";
+	src: url("/fonts/futura-pt-bold.otf") format("opentype");
+}
+
+@font-face {
+	font-family: "Futura-pt-bold-oblique";
+	src: url("/fonts/futura-pt-bold-oblique.otf") format("opentype");
+}
+
 :root {
 	--foreground-rgb: 0, 0, 0;
 	--background-start-rgb: 214, 219, 220;

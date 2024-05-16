@@ -14,6 +14,7 @@ function AnimatedText(props: Props) {
 	return (
 		<Typography
 			className={`font-black ${animate} animate-duration-[1500ms] animate-ease-linear ${margin}`}
+			fontFamily="Futura-pt-bold-oblique"
 			variant={variant}
 			style={{ animationDelay: `${delay}ms !important` }}
 		>
