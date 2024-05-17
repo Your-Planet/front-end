@@ -1,6 +1,7 @@
 "use client";
 
 import CentralBox from "@/components/common/CentralBox";
+import PageContainer from "@/components/common/PageContainer";
 import OptionFormView from "@/components/mypage/studio/StudioPriceView/components/StudioPriceFormView/components/PriceOption";
 import ServiceFormView from "@/components/mypage/studio/StudioPriceView/components/StudioPriceFormView/components/PriceService";
 import StudioPriceLoading from "@/components/mypage/studio/StudioPriceView/components/StudioPriceFormView/components/StudioPriceLoading";
@@ -68,22 +69,24 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 	}
 
 	return (
-		<StudioFormView title={"가격 설정"} useFormReturn={form} onSubmit={handleStudioPriceSaveSubmit}>
-			<ServiceFormView />
-			<OptionFormView />
-			<LoadingButton
-				variant="outlined"
-				type="button"
-				onClick={handleStudioPriceTempSave}
-				loading={isTempSaving}
-				hidden={isPrice}
-			>
-				임시 저장
-			</LoadingButton>
-			<LoadingButton variant="contained" type="submit" loading={isSaving}>
-				포트폴리오 저장
-			</LoadingButton>
-		</StudioFormView>
+		<PageContainer sx={{ padding: "32px" }}>
+			<StudioFormView title={"가격 설정"} useFormReturn={form} onSubmit={handleStudioPriceSaveSubmit}>
+				<ServiceFormView />
+				<OptionFormView />
+				<LoadingButton
+					variant="outlined"
+					type="button"
+					onClick={handleStudioPriceTempSave}
+					loading={isTempSaving}
+					hidden={isPrice}
+				>
+					임시 저장
+				</LoadingButton>
+				<LoadingButton variant="contained" type="submit" loading={isSaving}>
+					포트폴리오 저장
+				</LoadingButton>
+			</StudioFormView>
+		</PageContainer>
 	);
 }
 

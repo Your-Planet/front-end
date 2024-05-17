@@ -1,5 +1,6 @@
 "use client";
 
+import PageContainer from "@/components/common/PageContainer";
 import ReactHookForm from "@/components/common/ReactHookForm";
 import DynamicInstagramPortfolios from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/components/DynamicInstagramPortfolios";
 import InstagramUserNameTextField from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/components/InstagramUserNameTextField";
@@ -16,7 +17,6 @@ import { StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
 import { getMaxLengthRule, getMinLengthRule } from "@/utils/react-hook-form/rule";
 import { LoadingButton } from "@mui/lab";
-import { Box } from "@mui/material";
 import { useForm } from "react-hook-form";
 
 function StudioProfileFormView() {
@@ -42,17 +42,13 @@ function StudioProfileFormView() {
 
 	if (isLoading) {
 		return (
-			<Box
+			<PageContainer
 				sx={{
-					flex: "auto",
-					display: "flex",
-					flexDirection: "column",
-					alignItems: "center",
-					justifyContent: "center",
+					padding: "32px",
 				}}
 			>
 				<StudioProfileLoading />
-			</Box>
+			</PageContainer>
 		);
 	}
 
