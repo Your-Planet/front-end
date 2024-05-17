@@ -5,7 +5,7 @@ function StudioProfilePreview(props: StudioProfilePreviewProps) {
 
 	return (
 		<>
-			<div></div>
+			<div />
 		</>
 	);
 }
