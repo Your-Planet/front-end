@@ -35,6 +35,11 @@ export type OptionForm = {
 		provisionType: ProvisionType;
 		price: number;
 	};
+	// 원본 파일 제공
+	originFile: {
+		provisionType: ProvisionType;
+		price: number;
+	};
 };
 
 export type StudioPriceForm = {

@@ -1,16 +1,15 @@
 "use client";
 
+import CentralBox from "@/components/common/CentralBox";
 import OptionFormView from "@/components/mypage/studio/StudioPriceView/components/StudioPriceFormView/components/PriceOption";
 import ServiceFormView from "@/components/mypage/studio/StudioPriceView/components/StudioPriceFormView/components/PriceService";
+import StudioPriceLoading from "@/components/mypage/studio/StudioPriceView/components/StudioPriceFormView/components/StudioPriceLoading";
+import useLoadStudioPrice from "@/components/mypage/studio/StudioPriceView/components/StudioPriceFormView/hooks/useLoadStudioPrice";
+import useSaveStudioPrice from "@/components/mypage/studio/StudioPriceView/components/StudioPriceFormView/hooks/useSaveStudioPrice";
+import useSaveStudioPriceTemp from "@/components/mypage/studio/StudioPriceView/components/StudioPriceFormView/hooks/useSaveStudioPriceTemp";
 import { StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
-import useMutationPostPrice from "@/hooks/queries/studio/useMutationPostPrice";
-import useMutationPostPriceTemp from "@/hooks/queries/studio/useMutationPostPriceTemp";
-import useQueryGetPriceTemp from "@/hooks/queries/studio/useQueryGetPriceTemp";
-import { handleCommonError } from "@/utils/error";
 import { LoadingButton } from "@mui/lab";
-import { enqueueSnackbar } from "notistack";
-import { FormEventHandler, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 export interface StudioPriceFormViewProps {}
@@ -47,26 +46,18 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 					provisionType: "UNPROVIDED",
 					price: 0,
 				},
+				originFile: {
+					provisionType: "UNPROVIDED",
+					price: 0,
+				},
 			},
 		},
 	});
 
-	const { handleSubmit, getValues, reset } = form;
+	const { isPrice, isLoading } = useLoadStudioPrice({ form });
 
-	const { data: { data: price } = {} } = useQueryGetPriceTemp({
-		req: undefined,
-	});
-
-	useEffect(() => {
-		if (!price) {
-			return;
-		}
-
-		reset(price);
-	}, [price]);
-
-	const { mutateAsync: mutatePostPriceTemp, isPending: isTempSaving } = useMutationPostPriceTemp({});
-	const { mutate: mutatePostPrice, isPending: isSaving } = useMutationPostPrice({});
+	const { isTempSaving, handleStudioPriceTempSave } = useSaveStudioPriceTemp({ form });
+	const { isSaving, handleStudioPriceSaveSubmit } = useSaveStudioPrice({ form });
 
 	const handleTempSaveSuccess = () => {
 		enqueueSnackbar({
@@ -104,12 +95,25 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 		});
 	});
 
+	if (isLoading) {
+		return (
+			<CentralBox>
+				<StudioPriceLoading />
+			</CentralBox>
+		);
+	}
+
 	return (
-		<StudioFormView title={"가격 설정"} useFormReturn={form} onSubmit={handleFormSubmit}>
+		<StudioFormView title={"가격 설정"} useFormReturn={form} onSubmit={handleStudioPriceSaveSubmit}>
 			<ServiceFormView />
 			<OptionFormView />
-			{/* TODO: @나은찬 임시 저장 버튼 최초 등록 시에만 노출 */}
-			<LoadingButton variant="outlined" type="button" onClick={handleTempSave} loading={isTempSaving}>
+			<LoadingButton
+				variant="outlined"
+				type="button"
+				onClick={handleStudioPriceTempSave}
+				loading={isTempSaving}
+				hidden={isPrice}
+			>
 				임시 저장
 			</LoadingButton>
 			<LoadingButton variant="contained" type="submit" loading={isSaving}>

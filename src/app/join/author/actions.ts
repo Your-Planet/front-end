@@ -13,14 +13,13 @@ const getRedirectUri = (ia: PageAttributes) => `${DOMAIN.yourPlanet}${getLeading
 const clientId = process.env.INSTAGRAM_CLIENT_ID!;
 const secretCode = process.env.INSTAGRAM_SECRET_CODE!;
 
-export const getInstagramAuthUrl = async (userMedia?: boolean) => {
-	const scopes = ["user_profile"];
-	if (userMedia) scopes.push("user_media");
+const INSTAGRAM_API_SCOPES = ["user_profile", "user_media"] as const;
 
+export const getInstagramAuthUrl = async () => {
 	const params = objectToUrlParams({
 		client_id: clientId,
 		redirect_uri: getRedirectUri(IA.join.author.details),
-		scope: scopes.join(),
+		scope: INSTAGRAM_API_SCOPES.join(),
 		response_type: "code",
 	});
 

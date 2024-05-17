@@ -29,11 +29,13 @@ function OptionFormView(props: Props) {
 		additionalPanelProvision,
 		additionalModificationProvision,
 		postDurationExtensionProvision,
+		originFileProvision,
 	] = watch([
 		"option.refinement.provisionType",
 		"option.additionalPanel.provisionType",
 		"option.additionalModification.provisionType",
 		"option.postDurationExtension.provisionType",
+		"option.originFile.provisionType",
 	]);
 
 	const isDisabled = (target: ProvisionType) => target !== "PROVIDED";
@@ -213,6 +215,38 @@ function OptionFormView(props: Props) {
 					required={!isDisabled(postDurationExtensionProvision)}
 					rules={
 						!isDisabled(postDurationExtensionProvision)
+							? {
+									...priceMinRule,
+									...priceMaxRule,
+								}
+							: {}
+					}
+					fullWidth
+				/>
+			</Box>
+			<Box>
+				<RadioGroup<ProvisionType>
+					label="원본 파일 제공"
+					formName="option.originFile.provisionType"
+					radios={PROVISION_RADIOS}
+					row
+				/>
+				<TextField
+					formName="option.originFile.price"
+					label="추가 비용"
+					validator={isNumber}
+					InputProps={{
+						endAdornment: <InputAdornment position="end">원</InputAdornment>,
+						inputProps: {
+							min: STUDIO_PRICE_FORM_LIMITS.service.price.min,
+							max: STUDIO_PRICE_FORM_LIMITS.service.price.max,
+						},
+					}}
+					size="small"
+					disabled={isDisabled(originFileProvision)}
+					required={!isDisabled(originFileProvision)}
+					rules={
+						!isDisabled(originFileProvision)
 							? {
 									...priceMinRule,
 									...priceMaxRule,

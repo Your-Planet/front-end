@@ -27,6 +27,10 @@ interface StudioPrice {
 			provisionType: ProvisionType;
 			price: number;
 		};
+		originFile: {
+			provisionType: ProvisionType;
+			price: number;
+		};
 	};
 }
 
@@ -37,6 +41,10 @@ export interface PostPriceRequest extends StudioPrice {}
 export type GetPriceTempRequest = void;
 
 export type GetPriceTempResponse = StudioPrice;
+
+export type GetPriceRequest = void;
+
+export type GetPriceResponse = StudioPrice;
 
 export type PostPriceTempResponse = void;
 
