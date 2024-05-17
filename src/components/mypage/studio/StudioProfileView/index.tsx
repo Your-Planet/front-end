@@ -1,10 +1,10 @@
 "use client";
 
-import PageContainer from "@/components/common/PageContainer";
 import StudioProfileFormView from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView";
 import StudioProfilePreview from "@/components/mypage/studio/StudioProfileView/components/StudioProfilePreview";
 import { DEFAULT_CATEGORY, DEFAULT_PORTFOLIO } from "@/components/mypage/studio/StudioProfileView/defines/constants";
 import { StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
+import { Box } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
 
 interface StudioProfileViewProps {}
@@ -23,14 +23,12 @@ function StudioProfileView(props: StudioProfileViewProps) {
 	});
 
 	return (
-		<section>
+		<Box sx={{ padding: "32px 20px" }}>
 			<FormProvider {...form}>
-				<PageContainer sx={{ padding: "32px 20px" }}>
-					<StudioProfileFormView />
-					<StudioProfilePreview />
-				</PageContainer>
+				<StudioProfileFormView />
+				<StudioProfilePreview />
 			</FormProvider>
-		</section>
+		</Box>
 	);
 }
 

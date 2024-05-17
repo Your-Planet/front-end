@@ -1,6 +1,5 @@
 "use client";
 
-import PageContainer from "@/components/common/PageContainer";
 import ReactHookForm from "@/components/common/ReactHookForm";
 import DynamicInstagramPortfolios from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/components/DynamicInstagramPortfolios";
 import InstagramUserNameTextField from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/components/InstagramUserNameTextField";
@@ -22,15 +21,7 @@ function StudioProfileFormView() {
 	const { isSaving, handleStudioProfileFormSubmit } = useSaveStudioProfile();
 
 	if (isLoading) {
-		return (
-			<PageContainer
-				sx={{
-					padding: "32px",
-				}}
-			>
-				<StudioProfileLoading />
-			</PageContainer>
-		);
+		return <StudioProfileLoading />;
 	}
 
 	return (
