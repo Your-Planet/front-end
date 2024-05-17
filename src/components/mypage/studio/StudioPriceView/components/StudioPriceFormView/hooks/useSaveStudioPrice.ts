@@ -31,7 +31,7 @@ export default function useSaveStudioPrice(params: UseSaveStudioPriceParams): Us
 	const handleStudioPriceSaveSubmit: FormEventHandler = handleSubmit((data) => {
 		mutatePostPrice(data, {
 			onSuccess: handleSaveSuccess,
-			onError: handleCommonError,
+			onError: (e) => handleCommonError(e),
 		});
 	});
 
