@@ -8,21 +8,15 @@ import { getIaPath } from "@/utils/ia";
 import { useRouter } from "next/navigation";
 import { enqueueSnackbar } from "notistack";
 import { FormEventHandler } from "react";
-import { UseFormReturn } from "react-hook-form";
-
-export interface UseSaveStudioProfileParams {
-	form: UseFormReturn<StudioProfileForm>;
-}
+import { useFormContext } from "react-hook-form";
 
 export interface UseSaveStudioProfile {
 	isSaving: boolean;
 	handleStudioProfileFormSubmit: FormEventHandler;
 }
 
-export default function useSaveStudioProfile(params: UseSaveStudioProfileParams): UseSaveStudioProfile {
-	const { form } = params;
-
-	const { handleSubmit } = form;
+export default function useSaveStudioProfile(): UseSaveStudioProfile {
+	const { handleSubmit } = useFormContext<StudioProfileForm>();
 
 	const { mutateAsync: mutatePostProfile, isPending: isSaving } = useMutationPostProfile({});
 

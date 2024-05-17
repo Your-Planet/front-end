@@ -3,16 +3,10 @@ import { StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/
 import { InstatoonCategoryType } from "@/defines/instatoon-category/types";
 import useQueryGetProfile from "@/hooks/queries/studio/useQueryGetProfile";
 import { useEffect } from "react";
-import { UseFormReturn } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 
-export interface UseLoadStudioProfileParams {
-	form: UseFormReturn<StudioProfileForm>;
-}
-
-export default function useLoadStudioProfile(params: UseLoadStudioProfileParams) {
-	const { form } = params;
-
-	const { reset } = form;
+export default function useLoadStudioProfile() {
+	const { reset } = useFormContext<StudioProfileForm>();
 
 	const { data: { data: profile } = {}, isLoading } = useQueryGetProfile({
 		req: undefined,

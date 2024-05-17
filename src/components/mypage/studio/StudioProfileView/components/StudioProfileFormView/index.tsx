@@ -8,37 +8,18 @@ import InstatoonCategoryCheckboxGroup from "@/components/mypage/studio/StudioPro
 import useLoadStudioProfile from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/hooks/useLoadStudioProfile";
 import useSaveStudioProfile from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/hooks/useSaveStudioProfile";
 import StudioProfileLoading from "@/components/mypage/studio/StudioProfileView/components/StudioProfileLoading";
-import {
-	DEFAULT_CATEGORY,
-	DEFAULT_PORTFOLIO,
-	STUDIO_PROFILE_FORM_LENGTH,
-} from "@/components/mypage/studio/StudioProfileView/defines/constants";
+import { STUDIO_PROFILE_FORM_LENGTH } from "@/components/mypage/studio/StudioProfileView/defines/constants";
 import { StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
 import { getMaxLengthRule, getMinLengthRule } from "@/utils/react-hook-form/rule";
 import { LoadingButton } from "@mui/lab";
-import { useForm } from "react-hook-form";
 
 function StudioProfileFormView() {
 	const { TextField } = ReactHookForm<StudioProfileForm>();
 
-	const form = useForm<StudioProfileForm>({
-		mode: "all",
-		defaultValues: {
-			name: "",
-			description: "",
-			category: DEFAULT_CATEGORY,
-			portfolios: [DEFAULT_PORTFOLIO],
-		},
-	});
+	const { isLoading } = useLoadStudioProfile();
 
-	const { isLoading } = useLoadStudioProfile({
-		form,
-	});
-
-	const { isSaving, handleStudioProfileFormSubmit } = useSaveStudioProfile({
-		form,
-	});
+	const { isSaving, handleStudioProfileFormSubmit } = useSaveStudioProfile();
 
 	if (isLoading) {
 		return (
@@ -53,7 +34,7 @@ function StudioProfileFormView() {
 	}
 
 	return (
-		<StudioFormView title={"프로필 설정"} useFormReturn={form} onSubmit={handleStudioProfileFormSubmit}>
+		<StudioFormView title={"프로필 설정"} onSubmit={handleStudioProfileFormSubmit}>
 			<InstagramUserNameTextField label="인스타그램 계정" />
 
 			<TextField
