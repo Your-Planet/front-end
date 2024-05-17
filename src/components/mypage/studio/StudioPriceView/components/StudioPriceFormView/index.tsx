@@ -59,42 +59,6 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 	const { isTempSaving, handleStudioPriceTempSave } = useSaveStudioPriceTemp({ form });
 	const { isSaving, handleStudioPriceSaveSubmit } = useSaveStudioPrice({ form });
 
-	const handleTempSaveSuccess = () => {
-		enqueueSnackbar({
-			message: "포트폴리오를 임시 저장했어요.",
-			variant: "success",
-		});
-	};
-
-	const handleSaveSuccess = () => {
-		enqueueSnackbar({
-			message: "포트폴리오를 저장했어요.",
-			variant: "success",
-		});
-	};
-
-	const handleTempSave: FormEventHandler = async () => {
-		try {
-			const data = {
-				service: getValues("service"),
-				option: getValues("option"),
-			};
-
-			await mutatePostPriceTemp(data);
-
-			handleTempSaveSuccess();
-		} catch (e) {
-			handleCommonError(e);
-		}
-	};
-
-	const handleFormSubmit: FormEventHandler = handleSubmit((data) => {
-		mutatePostPrice(data, {
-			onSuccess: handleSaveSuccess,
-			onError: (e) => handleCommonError(e),
-		});
-	});
-
 	if (isLoading) {
 		return (
 			<CentralBox>
