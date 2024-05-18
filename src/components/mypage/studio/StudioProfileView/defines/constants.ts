@@ -40,7 +40,7 @@ export const STUDIO_PROFILE_FORM_LENGTH: Record<
 		max: 200,
 	},
 	category: {
-		min: 1,
+		min: 3,
 		max: 5,
 	},
 	portfolios: {
