@@ -15,10 +15,10 @@ function StudioFormView<TFieldValues extends FieldValues>(props: StudioFormViewP
 	const { title, onSubmit, children } = props;
 
 	return (
-		<>
+		<div>
 			<H3>{title}</H3>
 			<StyledStudioForm onSubmit={onSubmit}>{children}</StyledStudioForm>
-		</>
+		</div>
 	);
 }
 
