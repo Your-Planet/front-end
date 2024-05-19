@@ -85,7 +85,7 @@ function AuthorCard(props: AuthorCardProps) {
 
 			<Stack direction="row" spacing={1}>
 				{categories.map((category) => (
-					<Chip label={INSTATOON_CATEGORY_NAME_BY_TYPE[category]} color="primary" size="small" />
+					<Chip key={category} label={INSTATOON_CATEGORY_NAME_BY_TYPE[category]} color="primary" size="small" />
 				))}
 			</Stack>
 
