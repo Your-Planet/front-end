@@ -11,9 +11,9 @@ export const StyledBlurBox = styled(Box)`
 	backdrop-filter: blur(12px);
 `;
 
-export const StyledContainerBox = styled(Box)`
+export const StyledBlurContainerBox = styled(Box)`
 	position: absolute;
-	top: 20%;
+	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	background-color: white;
@@ -22,7 +22,7 @@ export const StyledContainerBox = styled(Box)`
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 `;
 
-export const StyledInnerBox = styled(Box)`
+export const StyledBlurInnerBox = styled(Box)`
 	display: flex;
 	flex-direction: column;
 	gap: 2rem;

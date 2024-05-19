@@ -1,7 +1,7 @@
 import {
 	StyledBlurBox,
-	StyledContainerBox,
-	StyledInnerBox,
+	StyledBlurContainerBox,
+	StyledBlurInnerBox,
 } from "@/components/search/components/BlurBox/defines/styles";
 import { IA } from "@/defines/ia/constants";
 import { getIaPath } from "@/utils/ia";
@@ -23,8 +23,8 @@ function BlurBox(props: Props) {
 
 	return (
 		<StyledBlurBox>
-			<StyledContainerBox>
-				<StyledInnerBox>
+			<StyledBlurContainerBox>
+				<StyledBlurInnerBox>
 					<Typography className="font-bold" variant="h6">
 						로그인이 필요한 서비스입니다!
 					</Typography>
@@ -36,8 +36,8 @@ function BlurBox(props: Props) {
 							로그인
 						</Button>
 					</Box>
-				</StyledInnerBox>
-			</StyledContainerBox>
+				</StyledBlurInnerBox>
+			</StyledBlurContainerBox>
 		</StyledBlurBox>
 	);
 }

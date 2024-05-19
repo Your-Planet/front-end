@@ -1,19 +1,18 @@
-import { Typography } from "@mui/material";
+import { styled } from "@mui/material";
 
-type Props = {
+interface H6Props {
 	children: string;
-	color?: string; // tailwindcss
-	bold?: boolean;
-};
+}
 
-function H6(props: Props) {
-	const { children, color, bold } = props;
+const StyledH6 = styled("h2")`
+	font-size: 16px;
+	font-weight: bold;
+`;
 
-	return (
-		<Typography className={`${bold ? "font-bold" : ""} ${color}`} variant="h6">
-			{children}
-		</Typography>
-	);
+function H6(props: H6Props) {
+	const { children } = props;
+
+	return <StyledH6>{children}</StyledH6>;
 }
 
 export default H6;

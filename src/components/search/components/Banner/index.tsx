@@ -1,6 +1,4 @@
-import H1 from "@/components/common/text/H1";
-import H6 from "@/components/common/text/H6";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 function Banner() {
 	return (
@@ -8,11 +6,15 @@ function Banner() {
 			<Box>
 				<Box className="flex animate-fade-right animate-duration-[3s]">
 					<Box className="border-t-[10px] border-solid border-t-black">
-						<H1 bold>PARTNER</H1>
+						<Typography variant="h1" fontWeight="bold">
+							PARTNER
+						</Typography>
 					</Box>
 				</Box>
 				<Box className="animate-fade-right animate-duration-[3s] animate-delay-1000">
-					<H6 color="text-gray-500">유어플래닛은 광고 목적에 맞게 인스타툰 통합 솔루션을 제공합니다.</H6>
+					<Typography variant="h6" color="GrayText">
+						유어플래닛은 광고 목적에 맞게 인스타툰 통합 솔루션을 제공합니다.
+					</Typography>
 				</Box>
 			</Box>
 		</Box>
