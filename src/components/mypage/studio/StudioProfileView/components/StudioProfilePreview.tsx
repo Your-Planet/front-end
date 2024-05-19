@@ -53,7 +53,7 @@ function StudioProfilePreview() {
 				},
 				position: "sticky",
 				height: "fit-content",
-				top: `${HEADER_HEIGHT + STUDIO_VIEW_PADDING.horizontal}px`,
+				top: `${HEADER_HEIGHT + STUDIO_VIEW_PADDING.vertical}px`,
 			}}
 		>
 			<AuthorCard
