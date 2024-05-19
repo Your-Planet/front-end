@@ -4,7 +4,7 @@ interface H4Props {
 	children: string;
 }
 
-const StyledH4 = styled("h2")`
+const StyledH4 = styled("h4")`
 	font-size: 24px;
 	font-weight: bold;
 `;

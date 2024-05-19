@@ -4,7 +4,7 @@ interface H1Props {
 	children: string;
 }
 
-const StyledH1 = styled("h2")`
+const StyledH1 = styled("h1")`
 	font-size: 40px;
 	font-weight: bold;
 `;

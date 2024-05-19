@@ -4,7 +4,7 @@ interface H5Props {
 	children: string;
 }
 
-const StyledH5 = styled("h2")`
+const StyledH5 = styled("h5")`
 	font-size: 20px;
 	font-weight: bold;
 `;
