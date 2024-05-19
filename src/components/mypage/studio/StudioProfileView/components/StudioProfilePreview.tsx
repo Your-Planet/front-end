@@ -7,9 +7,18 @@ import {
 	STUDIO_PROFILE_PREVIEW_WIDTH,
 } from "@/components/mypage/studio/defines/constants";
 import useQueryGetDetail from "@/hooks/queries/member/useQueryGetDetail";
-import { Box, Button, Grid } from "@mui/material";
+import { Box, Button, Grid, Tooltip } from "@mui/material";
 import { grey } from "@mui/material/colors";
+import { ReactElement } from "react";
 import { useFormContext } from "react-hook-form";
+
+function GuideTooltip({ children }: { children: ReactElement }) {
+	return (
+		<Tooltip title={"미리보기에서는 지원하지 않는 기능입니다."} placement={"bottom"}>
+			{children}
+		</Tooltip>
+	);
+}
 
 function StudioProfilePreview() {
 	const { watch } = useFormContext<StudioProfileForm>();
@@ -48,6 +57,7 @@ function StudioProfilePreview() {
 								item
 								sx={{
 									fontSize: "18px",
+									fontWeight: "bold",
 									color: grey[900],
 									maxWidth: "200px",
 									lineHeight: 1.4,
@@ -86,15 +96,19 @@ function StudioProfilePreview() {
 
 				<Grid container spacing={2} marginTop={4}>
 					<Grid item xs={6}>
-						<Button fullWidth variant="contained">
-							프로젝트 의뢰하기
-						</Button>
+						<GuideTooltip>
+							<Button fullWidth variant="contained">
+								프로젝트 의뢰하기
+							</Button>
+						</GuideTooltip>
 					</Grid>
 
 					<Grid item xs={6}>
-						<Button fullWidth variant="outlined">
-							자세히 보기
-						</Button>
+						<GuideTooltip>
+							<Button fullWidth variant="outlined">
+								자세히 보기
+							</Button>
+						</GuideTooltip>
 					</Grid>
 				</Grid>
 			</Box>
