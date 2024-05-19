@@ -1,13 +1,16 @@
 import { AuthorDetailResponse } from "@/apis/member";
 import { StudioProfile } from "@/apis/studio";
 import { AuthorCard } from "@/components/common/AuthorCard";
+import { HEADER_HEIGHT } from "@/components/common/layout/Header/defines/constants";
 import { STUDIO_PROFILE_FORM_LENGTH } from "@/components/mypage/studio/StudioProfileView/defines/constants";
 import { StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
+import useLoadStudioProfile from "@/components/mypage/studio/StudioProfileView/hooks/useLoadStudioProfile";
 import { categoryToCategories } from "@/components/mypage/studio/StudioProfileView/utils";
 import {
 	STUDIO_FORM_WIDTH,
 	STUDIO_PROFILE_GAP,
 	STUDIO_PROFILE_PREVIEW_WIDTH,
+	STUDIO_VIEW_PADDING,
 } from "@/components/mypage/studio/defines/constants";
 import useQueryGetDetail from "@/hooks/queries/member/useQueryGetDetail";
 import { Box } from "@mui/material";
@@ -32,9 +35,15 @@ function StudioProfilePreview() {
 	const profile: StudioProfile = {
 		name: name.substring(0, STUDIO_PROFILE_FORM_LENGTH.name.max),
 		description: description.substring(0, STUDIO_PROFILE_FORM_LENGTH.description.max),
-		categories: categoryToCategories(category),
+		categories: categoryToCategories(category).slice(0, STUDIO_PROFILE_FORM_LENGTH.category.max),
 		portfolios,
 	};
+
+	const { isLoading } = useLoadStudioProfile();
+
+	if (isLoading) {
+		return null;
+	}
 
 	return (
 		<Box
@@ -42,6 +51,9 @@ function StudioProfilePreview() {
 				[`@media (max-width: ${STUDIO_FORM_WIDTH + STUDIO_PROFILE_PREVIEW_WIDTH + STUDIO_PROFILE_GAP}px)`]: {
 					display: "none",
 				},
+				position: "sticky",
+				height: "fit-content",
+				top: `${HEADER_HEIGHT + STUDIO_VIEW_PADDING.horizontal}px`,
 			}}
 		>
 			<AuthorCard
