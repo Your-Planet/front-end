@@ -1,19 +1,19 @@
 import { InstagramMedia } from "@/apis/instagram";
 import { InstatoonCategoryType } from "@/defines/instatoon-category/types";
 
-interface StudioProfile {
+export interface StudioProfile {
 	name: string;
 	description: string;
 	categories: InstatoonCategoryType[];
-	portfolioIds: string[];
+	portfolios: InstagramMedia[];
 }
 
 export type GetProfileRequest = void;
 
-export interface GetProfileResponse extends Omit<StudioProfile, "portfolioIds"> {
-	portfolios: InstagramMedia[];
-}
+export interface GetProfileResponse extends StudioProfile {}
 
-export interface PostProfileRequest extends StudioProfile {}
+export interface PostProfileRequest extends Omit<StudioProfile, "portfolios"> {
+	portfolioIds: string[];
+}
 
 export type PostProfileResponse = void;

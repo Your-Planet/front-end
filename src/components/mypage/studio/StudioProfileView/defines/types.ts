@@ -1,5 +1,4 @@
-import { InstagramMedia } from "@/apis/instagram";
-import { PostProfileRequest } from "@/apis/studio";
+import { StudioProfile } from "@/apis/studio";
 import { InstatoonCategoryType } from "@/defines/instatoon-category/types";
 
 export type Portfolio = {
@@ -7,9 +6,6 @@ export type Portfolio = {
 	link: string;
 };
 
-export interface StudioProfileForm extends Pick<PostProfileRequest, "name" | "description"> {
-	name: string;
-	description: string;
+export interface StudioProfileForm extends Pick<StudioProfile, "name" | "description" | "portfolios"> {
 	category: Record<InstatoonCategoryType, boolean>;
-	portfolios: InstagramMedia[];
 }

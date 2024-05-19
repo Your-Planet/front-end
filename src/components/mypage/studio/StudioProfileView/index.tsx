@@ -23,7 +23,13 @@ function StudioProfileView(props: StudioProfileViewProps) {
 	});
 
 	return (
-		<Box sx={{ padding: "32px 20px" }}>
+		<Box
+			sx={{
+				padding: "32px 20px",
+				display: "flex",
+				gap: "48px",
+			}}
+		>
 			<FormProvider {...form}>
 				<StudioProfileFormView />
 				<StudioProfilePreview />
