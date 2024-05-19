@@ -1,7 +1,5 @@
 import Contents from "@/components/common/layout/Home/components/OurWork/components/Contents";
-import H4 from "@/components/common/text/H4";
-import H5 from "@/components/common/text/H5";
-import { Box, styled } from "@mui/material";
+import { Box, styled, Typography } from "@mui/material";
 import { forwardRef } from "react";
 
 const StyledBox = styled(Box)`
@@ -20,15 +18,19 @@ const StyledBox = styled(Box)`
 const Section = forwardRef((props, ref) => {
 	return (
 		<Box className="flex flex-col justify-center w-full h-except-header tracking-wider" ref={ref}>
-			<H4 bold>복잡한 광고주와의</H4>
-			<H4 bold>거래 프로세스를 한 곳에서</H4>
+			<Typography variant="h4" fontWeight="bold">
+				복잡한 광고주와의
+			</Typography>
+			<Typography variant="h4" fontWeight="bold">
+				거래 프로세스를 한 곳에서
+			</Typography>
 			<Box className="mt-3">
-				<H5 bold color="text-gray-400">
+				<Typography variant="h5" fontWeight="bold" color="GrayText">
 					유어플래닛과 함께하면
-				</H5>
-				<H5 bold color="text-gray-400">
+				</Typography>
+				<Typography variant="h5" fontWeight="bold" color="GrayText">
 					더 자유롭게, 더 전문적으로 성장할 수 있어요
-				</H5>
+				</Typography>
 			</Box>
 			<StyledBox>
 				<Contents />

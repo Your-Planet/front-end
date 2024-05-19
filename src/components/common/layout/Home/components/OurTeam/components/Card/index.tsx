@@ -1,5 +1,4 @@
-import H4 from "@/components/common/text/H4";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 
 type Props = {
@@ -20,7 +19,9 @@ function Card(props: Props) {
 				<Image src={imageSrc} alt={imageAlt} width={50} height={50} priority />
 			</Box>
 			<Box className="py-8">
-				<H4 bold>{text}</H4>
+				<Typography variant="h4" fontWeight="bold">
+					{text}
+				</Typography>
 			</Box>
 		</Box>
 	);
