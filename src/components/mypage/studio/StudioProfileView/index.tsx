@@ -4,6 +4,7 @@ import StudioProfileFormView from "@/components/mypage/studio/StudioProfileView/
 import StudioProfilePreview from "@/components/mypage/studio/StudioProfileView/components/StudioProfilePreview";
 import { DEFAULT_CATEGORY, DEFAULT_PORTFOLIO } from "@/components/mypage/studio/StudioProfileView/defines/constants";
 import { StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
+import { STUDIO_PROFILE_GAP } from "@/components/mypage/studio/defines/constants";
 import { Box } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
 
@@ -27,7 +28,7 @@ function StudioProfileView(props: StudioProfileViewProps) {
 			sx={{
 				padding: "32px 20px",
 				display: "flex",
-				gap: "48px",
+				gap: `${STUDIO_PROFILE_GAP}px`,
 			}}
 		>
 			<FormProvider {...form}>

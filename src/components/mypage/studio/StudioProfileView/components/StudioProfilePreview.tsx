@@ -1,6 +1,11 @@
 import { AuthorDetailResponse } from "@/apis/member";
 import { STUDIO_PROFILE_FORM_LENGTH } from "@/components/mypage/studio/StudioProfileView/defines/constants";
 import { StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
+import {
+	STUDIO_FORM_WIDTH,
+	STUDIO_PROFILE_GAP,
+	STUDIO_PROFILE_PREVIEW_WIDTH,
+} from "@/components/mypage/studio/defines/constants";
 import useQueryGetDetail from "@/hooks/queries/member/useQueryGetDetail";
 import { Box, Button, Grid } from "@mui/material";
 import { grey } from "@mui/material/colors";
@@ -28,8 +33,12 @@ function StudioProfilePreview() {
 					border: `1px solid ${grey[300]}`,
 					padding: "24px",
 					boxShadow: `4px 4px 10px ${grey[200]}`,
-					width: "500px",
+					width: `${STUDIO_PROFILE_PREVIEW_WIDTH}px`,
 					height: "fit-content",
+
+					[`@media (max-width: ${STUDIO_FORM_WIDTH + STUDIO_PROFILE_PREVIEW_WIDTH + STUDIO_PROFILE_GAP}px)`]: {
+						display: "none",
+					},
 				}}
 			>
 				<Grid container spacing={2}>
