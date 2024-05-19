@@ -31,6 +31,7 @@ function StudioProfileFormView() {
 			<TextField
 				formName="name"
 				label="인스타툰 네임"
+				placeholder="사람들이 알아보기 쉬운 인지도 있는 이름을 추천해요."
 				required
 				rules={getMaxLengthRule(STUDIO_PROFILE_FORM_LENGTH.name.max)}
 			/>
@@ -38,6 +39,7 @@ function StudioProfileFormView() {
 			<TextField
 				formName="description"
 				label="인스타툰 소개"
+				placeholder={`자신을 자유롭게 소개해 주세요. 최대 ${STUDIO_PROFILE_FORM_LENGTH.description.max}자까지 입력 가능해요.`}
 				required
 				multiline
 				rows={6}
