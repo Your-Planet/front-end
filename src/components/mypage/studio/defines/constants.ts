@@ -1,0 +1,5 @@
+export const STUDIO_FORM_WIDTH = 520;
+
+export const STUDIO_PROFILE_PREVIEW_WIDTH = 500;
+
+export const STUDIO_PROFILE_GAP = 48;

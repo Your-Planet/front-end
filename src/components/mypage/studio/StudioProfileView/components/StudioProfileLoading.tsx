@@ -25,6 +25,7 @@ function StudioProfileLoading(props: StudioProfileLoadingViewProps) {
 					display: "flex",
 					flexDirection: "column",
 					gap: "16px",
+					padding: "24px",
 				}}
 			>
 				<Skeleton variant="text" sx={{ fontSize: 28 }} width={200} />

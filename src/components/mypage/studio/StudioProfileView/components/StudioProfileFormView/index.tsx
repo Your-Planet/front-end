@@ -7,62 +7,31 @@ import InstatoonCategoryCheckboxGroup from "@/components/mypage/studio/StudioPro
 import useLoadStudioProfile from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/hooks/useLoadStudioProfile";
 import useSaveStudioProfile from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/hooks/useSaveStudioProfile";
 import StudioProfileLoading from "@/components/mypage/studio/StudioProfileView/components/StudioProfileLoading";
-import {
-	DEFAULT_CATEGORY,
-	DEFAULT_PORTFOLIO,
-	STUDIO_PROFILE_FORM_LENGTH,
-} from "@/components/mypage/studio/StudioProfileView/defines/constants";
+import { STUDIO_PROFILE_FORM_LENGTH } from "@/components/mypage/studio/StudioProfileView/defines/constants";
 import { StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
 import { getMaxLengthRule, getMinLengthRule } from "@/utils/react-hook-form/rule";
 import { LoadingButton } from "@mui/lab";
-import { Box } from "@mui/material";
-import { useForm } from "react-hook-form";
 
 function StudioProfileFormView() {
 	const { TextField } = ReactHookForm<StudioProfileForm>();
 
-	const form = useForm<StudioProfileForm>({
-		mode: "all",
-		defaultValues: {
-			name: "",
-			description: "",
-			category: DEFAULT_CATEGORY,
-			portfolios: [DEFAULT_PORTFOLIO],
-		},
-	});
+	const { isLoading } = useLoadStudioProfile();
 
-	const { isLoading } = useLoadStudioProfile({
-		form,
-	});
-
-	const { isSaving, handleStudioProfileFormSubmit } = useSaveStudioProfile({
-		form,
-	});
+	const { isSaving, handleStudioProfileFormSubmit } = useSaveStudioProfile();
 
 	if (isLoading) {
-		return (
-			<Box
-				sx={{
-					flex: "auto",
-					display: "flex",
-					flexDirection: "column",
-					alignItems: "center",
-					justifyContent: "center",
-				}}
-			>
-				<StudioProfileLoading />
-			</Box>
-		);
+		return <StudioProfileLoading />;
 	}
 
 	return (
-		<StudioFormView title={"프로필 설정"} useFormReturn={form} onSubmit={handleStudioProfileFormSubmit}>
+		<StudioFormView title={"프로필 설정"} onSubmit={handleStudioProfileFormSubmit}>
 			<InstagramUserNameTextField label="인스타그램 계정" />
 
 			<TextField
 				formName="name"
 				label="인스타툰 네임"
+				placeholder="사람들이 알아보기 쉬운 인지도 있는 이름을 추천해요."
 				required
 				rules={getMaxLengthRule(STUDIO_PROFILE_FORM_LENGTH.name.max)}
 			/>
@@ -70,6 +39,7 @@ function StudioProfileFormView() {
 			<TextField
 				formName="description"
 				label="인스타툰 소개"
+				placeholder={`자신을 자유롭게 소개해 주세요. 최대 ${STUDIO_PROFILE_FORM_LENGTH.description.max}자까지 입력 가능해요.`}
 				required
 				multiline
 				rows={6}

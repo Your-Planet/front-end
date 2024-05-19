@@ -17,7 +17,7 @@ function SearchPageView({}: Props) {
 	const accessToken = getCookie(COOKIE.accessToken);
 
 	return (
-		<Box>
+		<Box width="100%">
 			<StyledBannerBox>
 				<Banner />
 			</StyledBannerBox>

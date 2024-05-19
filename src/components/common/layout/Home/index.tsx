@@ -10,7 +10,7 @@ type Props = {};
 
 function HomeView({}: Props) {
 	return (
-		<Box>
+		<Box width="100%">
 			<StyledBoxInHome>
 				<Slogan />
 			</StyledBoxInHome>
