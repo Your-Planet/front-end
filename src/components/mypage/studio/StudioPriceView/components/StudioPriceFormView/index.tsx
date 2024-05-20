@@ -79,15 +79,11 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 				<StudioFormView title={"가격 설정"} onSubmit={handleStudioPriceSaveSubmit}>
 					<ServiceFormView />
 					<OptionFormView />
-					<LoadingButton
-						variant="outlined"
-						type="button"
-						onClick={handleStudioPriceTempSave}
-						loading={isTempSaving}
-						hidden={isPrice}
-					>
-						임시 저장
-					</LoadingButton>
+					{!isPrice ?? (
+						<LoadingButton variant="outlined" type="button" onClick={handleStudioPriceTempSave} loading={isTempSaving}>
+							임시 저장
+						</LoadingButton>
+					)}
 					<LoadingButton variant="contained" type="submit" loading={isSaving}>
 						포트폴리오 저장
 					</LoadingButton>
