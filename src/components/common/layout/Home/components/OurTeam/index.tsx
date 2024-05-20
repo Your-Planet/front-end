@@ -1,6 +1,5 @@
 import Card from "@/components/common/layout/Home/components/OurTeam/components/Card";
-import H4 from "@/components/common/text/H4";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { cloneElement } from "react";
 import { useInView } from "react-intersection-observer";
 
@@ -57,7 +56,9 @@ function OurTeam() {
 				ref={boxRef}
 			>
 				<Box className="flex flex-col items-center justify-center w-full h-except-header">
-					<H4 bold>직접 경험해보세요</H4>
+					<Typography variant="h4" fontWeight="bold">
+						직접 경험해보세요
+					</Typography>
 					<Box className="flex w-full items-center overflow-hidden h-[300px] whitespace-nowrap relative before:absolute before:top-0 before:w-[30px] before:h-full before:content-[''] before:z-10 before:left-0 before:bg-gradient-to-l before:from-white/0 before:to-white after:absolute after:top-0 after:w-[30px] after:h-full after:content-[''] after:z-10 after:right-0 after:bg-gradient-to-r after:from-white/0 after:to-white hover:pause">
 						<Box className={`flex ${boxInView ? "" : "pause"} hover:pause animate-slide animate-delay-[1500ms]`}>
 							{slidingCards()}

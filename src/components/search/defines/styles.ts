@@ -18,9 +18,10 @@ export const StyledContainerBox = styled(Box)`
 	justify-content: center;
 	align-items: center;
 	position: relative;
+	padding: 3rem;
 `;
 
 export const StyledInnerBox = styled(Box)`
-	min-width: 50%;
-	max-width: min-content;
+	width: 100%;
+	padding: 1.5rem;
 `;
