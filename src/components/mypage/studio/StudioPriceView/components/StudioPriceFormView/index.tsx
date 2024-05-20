@@ -9,6 +9,7 @@ import useSaveStudioPrice from "@/components/mypage/studio/StudioPriceView/compo
 import useSaveStudioPriceTemp from "@/components/mypage/studio/StudioPriceView/components/StudioPriceFormView/hooks/useSaveStudioPriceTemp";
 import { StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
+import { STUDIO_VIEW_PADDING } from "@/components/mypage/studio/defines/constants";
 import { LoadingButton } from "@mui/lab";
 import { Box } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
@@ -70,7 +71,11 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 
 	return (
 		<FormProvider {...form}>
-			<Box sx={{ padding: "32px 20px" }}>
+			<Box
+				sx={{
+					padding: `${STUDIO_VIEW_PADDING.vertical}px ${STUDIO_VIEW_PADDING.horizontal}px`,
+				}}
+			>
 				<StudioFormView title={"가격 설정"} onSubmit={handleStudioPriceSaveSubmit}>
 					<ServiceFormView />
 					<OptionFormView />
