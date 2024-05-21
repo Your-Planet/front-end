@@ -1,7 +1,7 @@
 "use client";
 
 import ReactHookForm from "@/components/common/ReactHookForm";
-import DynamicInstagramPortfolios from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/components/DynamicInstagramPortfolios";
+import { DynamicInstagramPortfolios } from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/components/DynamicInstagramPortfolios";
 import InstagramUserNameTextField from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/components/InstagramUserNameTextField";
 import InstatoonCategoryCheckboxGroup from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/components/InstatoonCategoryCheckboxGroup";
 import StudioProfileLoading from "@/components/mypage/studio/StudioProfileView/components/StudioProfileLoading";

@@ -23,7 +23,7 @@ export const DEFAULT_CATEGORY: Record<InstatoonCategoryType, boolean> = {
 };
 
 export const DEFAULT_PORTFOLIO: DefaultValues<InstagramMedia> = {
-	id: undefined,
+	id: "",
 	permalink: "",
 };
 
