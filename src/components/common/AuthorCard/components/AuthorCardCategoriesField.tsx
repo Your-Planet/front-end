@@ -14,8 +14,8 @@ function AuthorCardCategoriesField(props: AuthorCardCategoriesFieldProps) {
 	return (
 		<Stack direction="row" spacing={1}>
 			{isLoading
-				? Array.from({ length: 3 }).map(() => (
-						<Skeleton variant="rounded" sx={{ borderRadius: 10 }} width={38} height={24} />
+				? Array.from({ length: 3 }).map((_, i) => (
+						<Skeleton key={i} variant="rounded" sx={{ borderRadius: 10 }} width={38} height={24} />
 					))
 				: value.map((category) => (
 						<Chip key={category} label={INSTATOON_CATEGORY_NAME_BY_TYPE[category]} color="primary" size="small" />
