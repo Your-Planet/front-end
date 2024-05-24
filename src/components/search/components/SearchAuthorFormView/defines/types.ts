@@ -5,10 +5,10 @@ export type BudgetType = {
 	max: number;
 };
 
-export type FilterType = "INSTATOON_NAME" | "INSTAGRAM_ACCOUNT" | "INSTATTON_DESCRIPTION";
+export type SearchByType = "INSTATOON_NAME" | "INSTAGRAM_ACCOUNT" | "INSTATTON_DESCRIPTION";
 
 export type SearchAuthorForm = {
 	category: Record<InstatoonCategoryType, boolean>;
 	budget: BudgetType;
-	filter: FilterType;
+	searchBy: SearchByType;
 };
