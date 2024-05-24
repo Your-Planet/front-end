@@ -105,7 +105,8 @@ function DynamicInstagramPortfolioTextField(props: DynamicInstagramPortfolioText
 			try {
 				if (!instagramMediaLink) {
 					clearError();
-					return clearPortfolio();
+					clearPortfolio();
+					return;
 				}
 
 				checkUrlValid(instagramMediaLink);
