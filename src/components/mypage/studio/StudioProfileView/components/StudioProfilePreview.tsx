@@ -23,7 +23,7 @@ function StudioProfilePreview() {
 
 	const { name, description, category, portfolios } = watch();
 
-	const { data: { data } = {} } = useQueryGetDetail({
+	const { data: { data } = {}, isLoading: isLoadingDetail } = useQueryGetDetail({
 		req: undefined,
 		queryOption: {
 			refetchOnWindowFocus: false,
@@ -39,11 +39,7 @@ function StudioProfilePreview() {
 		portfolios,
 	};
 
-	const { isLoading } = useLoadStudioProfile();
-
-	if (isLoading) {
-		return null;
-	}
+	const { isLoading: isLoadingProfile } = useLoadStudioProfile();
 
 	return (
 		<Box
@@ -58,7 +54,7 @@ function StudioProfilePreview() {
 		>
 			<AuthorCard
 				profile={profile}
-				instagramUserName={memberInfo?.instagramUsername || ""}
+				instagramUsername={memberInfo?.instagramUsername || ""}
 				buttonEvent={{
 					project: {
 						tooltip: BUTTON_TOOLTIP_MESSAGE,
@@ -67,6 +63,7 @@ function StudioProfilePreview() {
 						tooltip: BUTTON_TOOLTIP_MESSAGE,
 					},
 				}}
+				isLoading={isLoadingProfile || isLoadingDetail}
 			/>
 		</Box>
 	);
