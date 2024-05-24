@@ -2,7 +2,7 @@
 
 import Banner from "@/components/search/components/Banner";
 import BlurBox from "@/components/search/components/BlurBox";
-import SearchSection from "@/components/search/components/SearchSection";
+import SearchAuthorFormView from "@/components/search/components/SearchAuthorFormView";
 import { StyledBannerBox, StyledContainerBox, StyledInnerBox } from "@/components/search/defines/styles";
 import { COOKIE } from "@/defines/cookie/constants";
 import { getCookie } from "@/utils/cookie";
@@ -24,7 +24,7 @@ function SearchPageView({}: Props) {
 			<StyledContainerBox>
 				{!accessToken && <BlurBox />}
 				<StyledInnerBox>
-					<SearchSection />
+					<SearchAuthorFormView />
 				</StyledInnerBox>
 			</StyledContainerBox>
 		</Box>

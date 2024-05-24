@@ -1,18 +1,17 @@
+import Category from "@/components/search/components/SearchAuthorFormView/components/FilterSelect/components/Category";
 import { Search } from "@mui/icons-material";
 import { Box, Button, InputAdornment, MenuItem, Select, TextField } from "@mui/material";
 
 type Props = {};
 
-function FilterSection({}: Props) {
+function FilterSelect({}: Props) {
 	const handleClickResetButton = () => {
 		console.log("초기화");
 	};
 
 	return (
 		<Box display="flex" gap="1rem" height="auto" alignItems="center">
-			<Select size="small" label="카테고리" value="dummy">
-				<MenuItem value="dummy">카테고리</MenuItem>
-			</Select>
+			<Category />
 
 			<Select size="small" label="예산" value="dummy">
 				<MenuItem value="dummy">예산</MenuItem>
@@ -45,4 +44,4 @@ function FilterSection({}: Props) {
 	);
 }
 
-export default FilterSection;
+export default FilterSelect;
