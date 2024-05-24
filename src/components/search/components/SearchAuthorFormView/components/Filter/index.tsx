@@ -1,10 +1,10 @@
-import Category from "@/components/search/components/SearchAuthorFormView/components/FilterSelect/components/Category";
+import Category from "@/components/search/components/SearchAuthorFormView/components/Filter/components/Category";
 import { Search } from "@mui/icons-material";
 import { Box, Button, InputAdornment, MenuItem, Select, TextField } from "@mui/material";
 
 type Props = {};
 
-function FilterSelect({}: Props) {
+function Filter({}: Props) {
 	const handleClickResetButton = () => {
 		console.log("초기화");
 	};
@@ -44,4 +44,4 @@ function FilterSelect({}: Props) {
 	);
 }
 
-export default FilterSelect;
+export default Filter;

@@ -1,5 +1,5 @@
 import { DEFAULT_CATEGORY } from "@/components/mypage/studio/StudioProfileView/defines/constants";
-import FilterSection from "@/components/search/components/SearchAuthorFormView/components/FilterSelect";
+import Filter from "@/components/search/components/SearchAuthorFormView/components/Filter";
 import Header from "@/components/search/components/SearchAuthorFormView/components/Header";
 import SortSection from "@/components/search/components/SearchAuthorFormView/components/SortSection";
 import { SearchAuthorForm } from "@/components/search/components/SearchAuthorFormView/defines/types";
@@ -28,7 +28,7 @@ function SearchAuthorFormView({}: Props) {
 				<Header />
 				<Box display="flex" gap="1rem" flexDirection="column">
 					<Box display="flex" justifyContent="space-between" alignItems="center">
-						<FilterSection />
+						<Filter />
 						<SortSection />
 					</Box>
 					{/* TODO: @나은찬 필터 결과 표시 */}
