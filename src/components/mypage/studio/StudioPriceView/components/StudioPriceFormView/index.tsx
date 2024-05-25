@@ -56,7 +56,7 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 		},
 	});
 
-	const { isPrice, isLoading } = useLoadStudioPrice({ form });
+	const { isSavedPriceData, isLoading } = useLoadStudioPrice({ form });
 
 	const { isTempSaving, handleStudioPriceTempSave } = useSaveStudioPriceTemp({ form });
 	const { isSaving, handleStudioPriceSaveSubmit } = useSaveStudioPrice({ form });
@@ -79,7 +79,7 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 				<StudioFormView title={"가격 설정"} onSubmit={handleStudioPriceSaveSubmit}>
 					<ServiceFormView />
 					<OptionFormView />
-					{!isPrice ?? (
+					{!isSavedPriceData ?? (
 						<LoadingButton variant="outlined" type="button" onClick={handleStudioPriceTempSave} loading={isTempSaving}>
 							임시 저장
 						</LoadingButton>

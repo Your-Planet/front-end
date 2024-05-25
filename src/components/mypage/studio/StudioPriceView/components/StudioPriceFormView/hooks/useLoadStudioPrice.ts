@@ -8,7 +8,7 @@ export interface UseLoadStudioPriceParams {
 }
 
 export interface UseLoadStudioPrice {
-	isPrice: boolean;
+	isSavedPriceData: boolean;
 	isLoading: boolean;
 }
 
@@ -26,7 +26,7 @@ export default function useLoadStudioPrice(params: UseLoadStudioPriceParams): Us
 	}, [priceData]);
 
 	return {
-		isPrice: Boolean(priceData),
+		isSavedPriceData: Boolean(priceData),
 		isLoading,
 	};
 }
