@@ -14,9 +14,13 @@ type Props = {};
 
 function Category({}: Props) {
 	const { Checkbox } = ReactHookForm<SearchAuthorForm>();
-	const { trigger } = useFormContext<SearchAuthorForm>();
+	const { trigger, resetField } = useFormContext<SearchAuthorForm>();
 
-	const handleChange = () => {
+	const handleClickReset = () => {
+		resetField("category");
+	};
+
+	const handleClickApply = () => {
 		trigger("category");
 	};
 
@@ -56,17 +60,18 @@ function Category({}: Props) {
 									formName={`category.${instatoonCategoryType as InstatoonCategoryType}`}
 									value={instatoonCategoryType}
 									label={label}
-									rules={{
-										onChange: handleChange,
-									}}
 									hideErrorMessage
 								/>
 							</Grid>
 						))}
 					</Grid>
 					<Box display="flex" justifyContent="center" gap="3rem">
-						<Button variant="outlined">초기화</Button>
-						<Button variant="contained">적용</Button>
+						<Button variant="outlined" onClick={handleClickReset}>
+							해제
+						</Button>
+						<Button variant="contained" onClick={handleClickApply}>
+							적용
+						</Button>
 					</Box>
 				</Box>
 			</TextField>
