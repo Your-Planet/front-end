@@ -58,6 +58,7 @@
 		"@typescript-eslint/naming-convention": "off",
 		"react/jsx-curly-brace-presence": "off",
 		"@typescript-eslint/return-await": "off",
-		"spaced-comment": "off"
+		"spaced-comment": "off",
+		"import/no-cycle": "off"
 	}
 }
