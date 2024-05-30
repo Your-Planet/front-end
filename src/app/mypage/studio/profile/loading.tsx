@@ -1,4 +1,4 @@
-import StudioProfileLoading from "@/components/mypage/studio/StudioProfileView/components/StudioProfileLoading";
+import StudioProfileFormLoading from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormLoading";
 import { Box } from "@mui/material";
 
 function Loading() {
@@ -12,7 +12,7 @@ function Loading() {
 				justifyContent: "center",
 			}}
 		>
-			<StudioProfileLoading />
+			<StudioProfileFormLoading />
 		</Box>
 	);
 }

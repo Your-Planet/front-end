@@ -1,14 +1,14 @@
 "use client";
 
 import ReactHookForm from "@/components/common/ReactHookForm";
-import DynamicInstagramPortfolios from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/components/DynamicInstagramPortfolios";
+import StudioProfileFormLoading from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormLoading";
+import { DynamicInstagramPortfolios } from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/components/DynamicInstagramPortfolios";
 import InstagramUserNameTextField from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/components/InstagramUserNameTextField";
 import InstatoonCategoryCheckboxGroup from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/components/InstatoonCategoryCheckboxGroup";
-import useLoadStudioProfile from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/hooks/useLoadStudioProfile";
-import useSaveStudioProfile from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView/hooks/useSaveStudioProfile";
-import StudioProfileLoading from "@/components/mypage/studio/StudioProfileView/components/StudioProfileLoading";
 import { STUDIO_PROFILE_FORM_LENGTH } from "@/components/mypage/studio/StudioProfileView/defines/constants";
 import { StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
+import useLoadStudioProfile from "@/components/mypage/studio/StudioProfileView/hooks/useLoadStudioProfile";
+import useSaveStudioProfile from "@/components/mypage/studio/StudioProfileView/hooks/useSaveStudioProfile";
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
 import { getMaxLengthRule, getMinLengthRule } from "@/utils/react-hook-form/rule";
 import { LoadingButton } from "@mui/lab";
@@ -21,7 +21,7 @@ function StudioProfileFormView() {
 	const { isSaving, handleStudioProfileFormSubmit } = useSaveStudioProfile();
 
 	if (isLoading) {
-		return <StudioProfileLoading />;
+		return <StudioProfileFormLoading />;
 	}
 
 	return (

@@ -9,6 +9,7 @@ import useSaveStudioPrice from "@/components/mypage/studio/StudioPriceView/compo
 import useSaveStudioPriceTemp from "@/components/mypage/studio/StudioPriceView/components/StudioPriceFormView/hooks/useSaveStudioPriceTemp";
 import { StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
 import StudioFormView from "@/components/mypage/studio/components/StudioFormView";
+import { STUDIO_VIEW_PADDING } from "@/components/mypage/studio/defines/constants";
 import { LoadingButton } from "@mui/lab";
 import { Box } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
@@ -55,7 +56,7 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 		},
 	});
 
-	const { isPrice, isLoading } = useLoadStudioPrice({ form });
+	const { isSavedPriceData, isLoading } = useLoadStudioPrice({ form });
 
 	const { isTempSaving, handleStudioPriceTempSave } = useSaveStudioPriceTemp({ form });
 	const { isSaving, handleStudioPriceSaveSubmit } = useSaveStudioPrice({ form });
@@ -70,19 +71,19 @@ function StudioPriceFormView(props: StudioPriceFormViewProps) {
 
 	return (
 		<FormProvider {...form}>
-			<Box sx={{ padding: "32px 20px" }}>
+			<Box
+				sx={{
+					padding: `${STUDIO_VIEW_PADDING.vertical}px ${STUDIO_VIEW_PADDING.horizontal}px`,
+				}}
+			>
 				<StudioFormView title={"가격 설정"} onSubmit={handleStudioPriceSaveSubmit}>
 					<ServiceFormView />
 					<OptionFormView />
-					<LoadingButton
-						variant="outlined"
-						type="button"
-						onClick={handleStudioPriceTempSave}
-						loading={isTempSaving}
-						hidden={isPrice}
-					>
-						임시 저장
-					</LoadingButton>
+					{!isSavedPriceData ?? (
+						<LoadingButton variant="outlined" type="button" onClick={handleStudioPriceTempSave} loading={isTempSaving}>
+							임시 저장
+						</LoadingButton>
+					)}
 					<LoadingButton variant="contained" type="submit" loading={isSaving}>
 						포트폴리오 저장
 					</LoadingButton>
