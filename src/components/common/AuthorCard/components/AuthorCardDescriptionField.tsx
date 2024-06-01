@@ -33,6 +33,8 @@ function AuthorCardDescriptionField(props: AuthorCardDescriptionFieldProps) {
 					<Skeleton variant="text" sx={{ fontSize: 16 }} width={390} />
 					<Skeleton variant="text" sx={{ fontSize: 16 }} width={340} />
 					<Skeleton variant="text" sx={{ fontSize: 16 }} width={350} />
+					<Skeleton variant="text" sx={{ fontSize: 16 }} width={380} />
+					<Skeleton variant="text" sx={{ fontSize: 16 }} width={310} />
 				</>
 			) : (
 				value
