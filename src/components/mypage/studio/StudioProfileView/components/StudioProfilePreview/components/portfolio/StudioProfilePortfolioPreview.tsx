@@ -4,17 +4,13 @@ import { StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/
 import { styled } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 
-export interface StudioProfilePortfolioPreviewProps {}
-
 const StyledUl = styled("ul")`
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
 `;
 
-function StudioProfilePortfolioPreview(props: StudioProfilePortfolioPreviewProps) {
-	const {} = props;
-
+function StudioProfilePortfolioPreview() {
 	const { watch } = useFormContext<StudioProfileForm>();
 
 	const { portfolios } = watch();
