@@ -1,2 +1,3 @@
-export { default as AuthorCard } from "./AuthorCard";
+import { default as AuthorCard } from "./AuthorCard";
+export default AuthorCard;
 export * from "./defines";
