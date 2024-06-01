@@ -1,2 +1,3 @@
-import { default as InstagramMediaCard } from "./InstagramMediaCard";
+import InstagramMediaCard from "./InstagramMediaCard";
+
 export default InstagramMediaCard;
