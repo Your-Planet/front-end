@@ -21,13 +21,13 @@ function useFilter() {
 	const handleClickSearchButton = () => {
 		const categories = selectedCategories.join(",");
 
-		router.push(pathname + `?categories=${categories}`, { scroll: false });
+		router.push(`${pathname}?categories=${categories}`, { scroll: false });
 	};
 
 	const handleClickResetButton = () => {
 		setSelectedCategories([]);
 
-		router.push(pathname + `?categories=`, { scroll: false });
+		router.push(`${pathname}?categories=`, { scroll: false });
 	};
 
 	return {
