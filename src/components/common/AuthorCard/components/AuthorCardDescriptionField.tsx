@@ -16,8 +16,14 @@ function AuthorCardDescriptionField(props: AuthorCardDescriptionFieldProps) {
 				whiteSpace: "pre-wrap",
 				fontSize: "16px",
 				color: grey[700],
-				lineHeight: 1.2,
+				lineHeight: 1.4,
 				wordWrap: "break-word",
+				height: "160px",
+				overflow: "hidden",
+				textOverflow: "ellipsis",
+				display: "-webkit-box",
+				"-webkit-line-clamp": "7",
+				"-webkit-box-orient": "vertical",
 			}}
 		>
 			{isLoading ? (
@@ -27,6 +33,8 @@ function AuthorCardDescriptionField(props: AuthorCardDescriptionFieldProps) {
 					<Skeleton variant="text" sx={{ fontSize: 16 }} width={390} />
 					<Skeleton variant="text" sx={{ fontSize: 16 }} width={340} />
 					<Skeleton variant="text" sx={{ fontSize: 16 }} width={350} />
+					<Skeleton variant="text" sx={{ fontSize: 16 }} width={380} />
+					<Skeleton variant="text" sx={{ fontSize: 16 }} width={310} />
 				</>
 			) : (
 				value
