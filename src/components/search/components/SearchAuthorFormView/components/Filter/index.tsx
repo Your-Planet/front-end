@@ -1,17 +1,24 @@
 import Category from "@/components/search/components/SearchAuthorFormView/components/Filter/components/Category";
+import { FilterType } from "@/components/search/components/SearchAuthorFormView/components/Filter/defines/types";
 import { Search } from "@mui/icons-material";
 import { Box, Button, InputAdornment, MenuItem, Select, TextField } from "@mui/material";
 
-type Props = {};
-
-function Filter({}: Props) {
-	const handleClickResetButton = () => {
-		console.log("초기화");
-	};
+function Filter(props: FilterType) {
+	const {
+		selectedCategories,
+		splitCategoriesFromSearchParams,
+		onChangeCategories,
+		onClickSearchButton,
+		onClickResetButton,
+	} = props;
 
 	return (
 		<Box display="flex" gap="1rem" height="auto" alignItems="center">
-			<Category />
+			<Category
+				selectedCategories={selectedCategories}
+				splitCategoriesFromSearchParams={splitCategoriesFromSearchParams}
+				onChangeCategories={onChangeCategories}
+			/>
 
 			<Select size="small" label="예산" value="dummy">
 				<MenuItem value="dummy">예산</MenuItem>
@@ -37,7 +44,10 @@ function Filter({}: Props) {
 				/>
 			</Box>
 
-			<Button variant="outlined" onClick={handleClickResetButton}>
+			<Button variant="contained" onClick={onClickSearchButton}>
+				검색
+			</Button>
+			<Button variant="outlined" onClick={onClickResetButton}>
 				초기화
 			</Button>
 		</Box>
