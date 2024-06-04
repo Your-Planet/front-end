@@ -134,6 +134,7 @@ function JoinSponsorFormView(props: JoinSponsorFormViewProps) {
 						}}
 						placeholder="숫자만 입력하세요"
 						fullWidth
+						validator={isNumber}
 						type="tel"
 					/>
 
