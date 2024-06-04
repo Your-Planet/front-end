@@ -9,6 +9,7 @@ import { JOIN_SPONSOR_FORM_FIELD_LENGTH } from "@/defines/forms/join/sponsor/con
 import { JoinSponsorForm } from "@/defines/forms/join/sponsor/types";
 import { GenderType, SubscriptionPathType } from "@/defines/member/types";
 import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";
+import useOpen from "@/hooks/common/useOpen";
 import useMutationPostSponsorJoin from "@/hooks/queries/member/useMutationPostSponsorJoin";
 import { getObjectAtPath } from "@/utils/object";
 import { getEmailValidateRule, getLengthErrorMessage } from "@/utils/react-hook-form/rule";
@@ -19,10 +20,8 @@ import { useDaumPostcodePopup } from "react-daum-postcode";
 import { postcodeScriptUrl } from "react-daum-postcode/lib/loadPostcode";
 import { FormProvider, useForm } from "react-hook-form";
 
-export interface JoinSponsorFormViewProps {}
-
-function JoinSponsorFormView(props: JoinSponsorFormViewProps) {
-	const {} = props;
+function JoinSponsorFormView() {
+	const { opened: popupOpened, handleOpen: openPopup, handleClose: closePopup } = useOpen(false);
 
 	const openPostcodePopup = useDaumPostcodePopup(postcodeScriptUrl);
 
@@ -86,12 +85,17 @@ function JoinSponsorFormView(props: JoinSponsorFormViewProps) {
 	);
 
 	const openAddressPopup = () => {
+		if (popupOpened) return;
+
+		openPopup();
+
 		openPostcodePopup({
 			onComplete({ address }) {
 				setValue("businessAddress.base", address);
 			},
 			onClose() {
 				trigger("businessAddress.base");
+				closePopup();
 			},
 		});
 	};
