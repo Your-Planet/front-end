@@ -13,17 +13,14 @@ import useMutationPostSponsorJoin from "@/hooks/queries/member/useMutationPostSp
 import { getObjectAtPath } from "@/utils/object";
 import { getEmailValidateRule, getLengthErrorMessage } from "@/utils/react-hook-form/rule";
 import { isNumber } from "@/utils/string";
-import { Box, Button, FormControl, FormHelperText } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
+import { Box, FormControl, FormHelperText } from "@mui/material";
 import { FormEventHandler } from "react";
 import { useDaumPostcodePopup } from "react-daum-postcode";
 import { postcodeScriptUrl } from "react-daum-postcode/lib/loadPostcode";
 import { FormProvider, useForm } from "react-hook-form";
 
-export interface JoinSponsorFormViewProps {}
-
-function JoinSponsorFormView(props: JoinSponsorFormViewProps) {
-	const {} = props;
-
+function JoinSponsorFormView() {
 	const openPostcodePopup = useDaumPostcodePopup(postcodeScriptUrl);
 
 	const form = useForm<JoinSponsorForm>({
@@ -56,7 +53,7 @@ function JoinSponsorFormView(props: JoinSponsorFormViewProps) {
 		formState: { errors },
 	} = form;
 
-	const { mutate: mutatePostJoin } = useMutationPostSponsorJoin({});
+	const { mutate: mutatePostJoin, isPending } = useMutationPostSponsorJoin({});
 
 	const { handleSuccessJoin, handleFailJoin } = useJoinForm();
 
@@ -234,9 +231,9 @@ function JoinSponsorFormView(props: JoinSponsorFormViewProps) {
 						]}
 					/>
 
-					<Button type="submit" variant="contained" size="large" fullWidth>
+					<LoadingButton type="submit" variant="contained" size="large" fullWidth loading={isPending}>
 						가입하기
-					</Button>
+					</LoadingButton>
 				</StyledFormInJoin>
 			</FormProvider>
 		</StyledBoxInJoin>
