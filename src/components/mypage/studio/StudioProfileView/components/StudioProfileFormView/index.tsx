@@ -42,7 +42,7 @@ function StudioProfileFormView() {
 				placeholder={`자신을 자유롭게 소개해 주세요. 최대 ${STUDIO_PROFILE_FORM_LENGTH.description.max}자까지 입력 가능해요.`}
 				required
 				multiline
-				rows={6}
+				rows={10}
 				rules={{
 					...getMinLengthRule(STUDIO_PROFILE_FORM_LENGTH.description.min),
 					...getMaxLengthRule(STUDIO_PROFILE_FORM_LENGTH.description.max),

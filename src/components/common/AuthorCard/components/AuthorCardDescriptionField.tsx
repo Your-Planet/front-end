@@ -1,6 +1,7 @@
 import { AuthorCardFieldProps } from "@/components/common/AuthorCard";
 import { useAuthorCardLoadingContext } from "@/components/common/AuthorCard/providers/AuthorCardLoadingProvider";
-import { Box, Skeleton } from "@mui/material";
+import EllipsisBox from "@/components/common/EllipsisBox";
+import { Skeleton } from "@mui/material";
 import { grey } from "@mui/material/colors";
 
 type AuthorCardDescriptionFieldProps = AuthorCardFieldProps<string>;
@@ -11,7 +12,7 @@ function AuthorCardDescriptionField(props: AuthorCardDescriptionFieldProps) {
 	const isLoading = useAuthorCardLoadingContext();
 
 	return (
-		<Box
+		<EllipsisBox
 			sx={{
 				whiteSpace: "pre-wrap",
 				fontSize: "16px",
@@ -19,12 +20,8 @@ function AuthorCardDescriptionField(props: AuthorCardDescriptionFieldProps) {
 				lineHeight: 1.4,
 				wordWrap: "break-word",
 				height: "160px",
-				overflow: "hidden",
-				textOverflow: "ellipsis",
-				display: "-webkit-box",
-				"-webkit-line-clamp": "7",
-				"-webkit-box-orient": "vertical",
 			}}
+			line={7}
 		>
 			{isLoading ? (
 				<>
@@ -39,7 +36,7 @@ function AuthorCardDescriptionField(props: AuthorCardDescriptionFieldProps) {
 			) : (
 				value
 			)}
-		</Box>
+		</EllipsisBox>
 	);
 }
 
