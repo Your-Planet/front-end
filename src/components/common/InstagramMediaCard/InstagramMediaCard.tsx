@@ -19,7 +19,7 @@ function InstagramMediaCard(props: InstagramMediaCardProps) {
 		width,
 	} = props;
 
-	const thumbnailUrl = `${permalink}media/?size=l`;
+	const thumbnailUrl = permalink ? `${permalink}media/?size=l` : "";
 
 	return (
 		<Box
