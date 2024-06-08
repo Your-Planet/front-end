@@ -5,7 +5,7 @@ import { STUDIO_PROFILE_FORM_LENGTH } from "@/components/mypage/studio/StudioPro
 import { StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
 import useLoadStudioProfile from "@/components/mypage/studio/StudioProfileView/hooks/useLoadStudioProfile";
 import { categoryToCategories } from "@/components/mypage/studio/StudioProfileView/utils";
-import useQueryGetDetail from "@/hooks/queries/member/useQueryGetDetail";
+import { useMemberDetailContext } from "@/providers/MemberDetailProvider";
 import { useFormContext } from "react-hook-form";
 
 const BUTTON_TOOLTIP_MESSAGE = "미리보기에서는 지원하지 않는 기능입니다.";
@@ -23,12 +23,7 @@ function StudioProfileCardPreview() {
 
 	const { isLoading: isLoadingProfile } = useLoadStudioProfile();
 
-	const { data: { data } = {}, isLoading: isLoadingDetail } = useQueryGetDetail({
-		req: undefined,
-		queryOption: {
-			refetchOnWindowFocus: false,
-		},
-	});
+	const { data: { data } = {}, isLoading: isLoadingDetail } = useMemberDetailContext();
 
 	const memberInfo = data as AuthorDetailResponse;
 

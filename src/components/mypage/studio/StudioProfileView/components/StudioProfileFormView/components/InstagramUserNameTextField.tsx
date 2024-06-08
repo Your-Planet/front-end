@@ -1,7 +1,7 @@
 "use client";
 
 import { AuthorDetailResponse } from "@/apis/member";
-import useQueryGetDetail from "@/hooks/queries/member/useQueryGetDetail";
+import { useMemberDetailContext } from "@/providers/MemberDetailProvider";
 import { enqueueClosableSnackbar } from "@/utils/snackbar";
 import { TextField } from "@mui/material";
 import { useEffect } from "react";
@@ -13,12 +13,7 @@ export interface InstagramUserNameTextFieldProps {
 function InstagramUserNameTextField(props: InstagramUserNameTextFieldProps) {
 	const { label } = props;
 
-	const { data: { data } = {}, isError } = useQueryGetDetail({
-		req: undefined,
-		queryOption: {
-			refetchOnWindowFocus: false,
-		},
-	});
+	const { data: { data } = {}, isError } = useMemberDetailContext();
 
 	const memberInfo = data as AuthorDetailResponse;
 
