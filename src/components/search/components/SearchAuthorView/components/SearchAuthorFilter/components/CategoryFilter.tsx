@@ -13,14 +13,16 @@ function CategoryFilter(props: {}) {
 	const searchParams = useSearchParams();
 	const [selectedCategories, setSelectedCategories] = useState<InstatoonCategoryType[]>([]);
 
-	const changeCategories = (categories: InstatoonCategoryType[]) => {
-		setSelectedCategories(categories as InstatoonCategoryType[]);
+	const changeCategories = (categories: string) => {
+		const categoriesArray = categories?.split(",").filter((category) => category);
 
 		if (categories.length) {
-			router.push(`${pathname}?categories=${categories.join(",")}`, {
+			setSelectedCategories(categoriesArray as InstatoonCategoryType[]);
+			router.push(`${pathname}?categories=${encodeURIComponent(categoriesArray.join(","))}`, {
 				scroll: false,
 			});
 		} else {
+			setSelectedCategories([]);
 			router.push(`${pathname}`, {
 				scroll: false,
 			});
@@ -28,15 +30,12 @@ function CategoryFilter(props: {}) {
 	};
 
 	useEffect(() => {
-		const categoriesSearchParams = searchParams
-			.get("categories")
-			?.split(",")
-			.filter((category) => category);
+		const categoriesSearchParams = searchParams.get("categories");
 
 		if (categoriesSearchParams) {
-			changeCategories(categoriesSearchParams as InstatoonCategoryType[]);
+			changeCategories(categoriesSearchParams);
 		} else {
-			changeCategories([]);
+			changeCategories("");
 		}
 	}, [searchParams]);
 
@@ -46,12 +45,9 @@ function CategoryFilter(props: {}) {
 	}));
 
 	const handleChangeCategories = (event: SelectChangeEvent<typeof selectedCategories>) => {
-		const categories = event.target.value
-			?.toString()
-			.split(",")
-			.filter((category) => category);
+		const categories = event.target.value?.toString();
 
-		changeCategories(categories as InstatoonCategoryType[]);
+		changeCategories(categories);
 	};
 
 	return (
