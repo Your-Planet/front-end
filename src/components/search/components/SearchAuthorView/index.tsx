@@ -1,5 +1,6 @@
 "use client";
 
+import AppliedSearchFilter from "@/components/search/components/SearchAuthorView/components/AppliedSearchFilter";
 import Header from "@/components/search/components/SearchAuthorView/components/Header";
 import SearchAuthorFilter from "@/components/search/components/SearchAuthorView/components/SearchAuthorFilter";
 import SortSection from "@/components/search/components/SearchAuthorView/components/SortSection";
@@ -16,8 +17,7 @@ function SearchAuthorView({}: Props) {
 					<SearchAuthorFilter />
 					<SortSection />
 				</Box>
-				{/* TODO: @나은찬 필터 결과 표시 */}
-				<Box>필터 결과</Box>
+				<AppliedSearchFilter />
 			</Box>
 		</Box>
 	);
