@@ -51,7 +51,7 @@ function StudioProfileFormView() {
 
 			<InstatoonCategoryCheckboxGroup label="인스타툰 카테고리" />
 
-			<DynamicInstagramPortfolios label="포트폴리오 링크" />
+			<DynamicInstagramPortfolios label="포트폴리오(인스타그램 게시글) 링크" />
 
 			<LoadingButton type="submit" variant="contained" size="large" loading={isSaving}>
 				다음
