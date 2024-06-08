@@ -5,39 +5,16 @@ import { INSTATOON_CATEGORY_NAME_BY_TYPE } from "@/defines/instatoon-category/co
 import { InstatoonCategoryType } from "@/defines/instatoon-category/types";
 import { Checkbox, FormControl, InputLabel, ListItemText, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
 
 function CategoryFilter(props: {}) {
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
-	const [selectedCategories, setSelectedCategories] = useState<InstatoonCategoryType[]>([]);
-
-	const changeCategories = (categories: string) => {
-		const categoriesArray = categories?.split(",").filter((category) => category);
-
-		if (categories.length) {
-			setSelectedCategories(categoriesArray as InstatoonCategoryType[]);
-			router.push(`${pathname}?categories=${encodeURIComponent(categoriesArray.join(","))}`, {
-				scroll: false,
-			});
-		} else {
-			setSelectedCategories([]);
-			router.push(`${pathname}`, {
-				scroll: false,
-			});
-		}
-	};
-
-	useEffect(() => {
-		const categoriesSearchParams = searchParams.get("categories");
-
-		if (categoriesSearchParams) {
-			changeCategories(categoriesSearchParams);
-		} else {
-			changeCategories("");
-		}
-	}, [searchParams]);
+	const selectedCategories =
+		searchParams
+			.get("categories")
+			?.split(",")
+			.filter((category) => category) ?? [];
 
 	const categories = Object.entries(INSTATOON_CATEGORY_NAME_BY_TYPE).map(([instatoonCategoryType, label]) => ({
 		instatoonCategoryType,
@@ -47,7 +24,15 @@ function CategoryFilter(props: {}) {
 	const handleChangeCategories = (event: SelectChangeEvent<typeof selectedCategories>) => {
 		const categories = event.target.value?.toString();
 
-		changeCategories(categories);
+		if (categories) {
+			router.push(`${pathname}?categories=${encodeURIComponent(categories)}`, {
+				scroll: false,
+			});
+		} else {
+			router.push(`${pathname}`, {
+				scroll: false,
+			});
+		}
 	};
 
 	return (
@@ -74,7 +59,7 @@ function CategoryFilter(props: {}) {
 			>
 				{categories.map(({ instatoonCategoryType, label }) => (
 					<MenuItem key={instatoonCategoryType} value={instatoonCategoryType}>
-						<Checkbox checked={selectedCategories.includes(instatoonCategoryType as InstatoonCategoryType)} />
+						<Checkbox checked={selectedCategories?.includes(instatoonCategoryType as InstatoonCategoryType)} />
 						<ListItemText primary={label} />
 					</MenuItem>
 				))}
