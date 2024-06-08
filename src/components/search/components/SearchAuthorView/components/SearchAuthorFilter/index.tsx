@@ -1,24 +1,19 @@
 import CategoryFilter from "@/components/search/components/SearchAuthorView/components/SearchAuthorFilter/components/CategoryFilter";
-import useFilter from "@/components/search/hooks/useFilter";
 import { Search } from "@mui/icons-material";
 import { Box, Button, InputAdornment, MenuItem, Select, TextField } from "@mui/material";
+import { usePathname, useRouter } from "next/navigation";
 
 function SearchAuthorFilter(props: {}) {
-	const {
-		selectedCategories,
-		splitCategoriesFromSearchParams,
-		handleChangeCategories,
-		handleClickSearchButton,
-		handleClickResetButton,
-	} = useFilter();
+	const router = useRouter();
+	const pathname = usePathname();
+
+	const handleClickResetButton = () => {
+		router.push(`${pathname}`, { scroll: false });
+	};
 
 	return (
 		<Box display="flex" gap="1rem" height="auto" alignItems="center">
-			<CategoryFilter
-				selectedCategories={selectedCategories}
-				splitCategoriesFromSearchParams={splitCategoriesFromSearchParams}
-				onChangeCategories={handleChangeCategories}
-			/>
+			<CategoryFilter />
 
 			<Select size="small" label="예산" value="dummy">
 				<MenuItem value="dummy">예산</MenuItem>
@@ -44,9 +39,6 @@ function SearchAuthorFilter(props: {}) {
 				/>
 			</Box>
 
-			<Button variant="contained" onClick={handleClickSearchButton}>
-				검색
-			</Button>
 			<Button variant="outlined" onClick={handleClickResetButton}>
 				초기화
 			</Button>
