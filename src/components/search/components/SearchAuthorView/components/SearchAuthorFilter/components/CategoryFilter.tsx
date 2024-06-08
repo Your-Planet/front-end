@@ -51,7 +51,7 @@ function CategoryFilter(props: {}) {
 			.split(",")
 			.filter((category) => category);
 
-		changeCategories(categories);
+		changeCategories(categories as InstatoonCategoryType[]);
 	};
 
 	return (
