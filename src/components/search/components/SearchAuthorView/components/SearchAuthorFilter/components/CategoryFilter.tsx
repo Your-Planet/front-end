@@ -46,7 +46,7 @@ function CategoryFilter(props: {}) {
 				renderValue={() => "카테고리"}
 				onChange={handleChangeCategories}
 				sx={{
-					width: CATEGORY_SELECT_BOX_WIDTH,
+					width: `${CATEGORY_SELECT_BOX_WIDTH}px`,
 				}}
 				MenuProps={{
 					MenuListProps: {
