@@ -22,10 +22,10 @@ function CategoryFilter(props: {}) {
 	}));
 
 	const handleChangeCategories = (event: SelectChangeEvent<typeof selectedCategories>) => {
-		const categories = event.target.value?.toString();
+		const categoryFilterValues = event.target.value?.toString();
 
-		if (categories) {
-			router.push(`${pathname}?categories=${encodeURIComponent(categories)}`, {
+		if (categoryFilterValues) {
+			router.push(`${pathname}?categories=${encodeURIComponent(categoryFilterValues)}`, {
 				scroll: false,
 			});
 		} else {
