@@ -51,7 +51,7 @@ function DynamicAppend<TFieldValues extends FieldValues>(props: DynamicAppendPro
 			<Stack spacing={1} sx={{ marginTop: "6px" }}>
 				{fields.map(({ id }, index) => (
 					<Grid container key={id} gap={"6px"}>
-						<Grid xs>
+						<Grid xs item>
 							{component({
 								index,
 								disabled,

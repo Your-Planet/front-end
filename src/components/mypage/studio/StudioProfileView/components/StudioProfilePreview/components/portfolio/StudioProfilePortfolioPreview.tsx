@@ -17,14 +17,13 @@ function StudioProfilePortfolioPreview() {
 
 	return (
 		<StyledUl>
-			{portfolios.map(
-				(portfolio) =>
-					portfolio.id && (
-						<li key={portfolio.id}>
-							<InstagramMediaCard width={AUTHOR_CARD_WIDTH} instagramMedia={portfolio} />
-						</li>
-					),
-			)}
+			{portfolios
+				.filter(({ id, permalink }) => id && permalink)
+				.map((portfolio) => (
+					<li key={portfolio.id}>
+						<InstagramMediaCard width={AUTHOR_CARD_WIDTH} instagramMedia={portfolio} />
+					</li>
+				))}
 		</StyledUl>
 	);
 }

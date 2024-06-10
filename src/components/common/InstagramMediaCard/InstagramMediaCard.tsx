@@ -15,9 +15,11 @@ const GAP = 24;
 
 function InstagramMediaCard(props: InstagramMediaCardProps) {
 	const {
-		instagramMedia: { thumbnailUrl, caption },
+		instagramMedia: { permalink, caption },
 		width,
 	} = props;
+
+	const thumbnailUrl = permalink ? `${permalink}media/?size=l` : "";
 
 	return (
 		<Box
