@@ -39,6 +39,7 @@ function BudgetFilter({}: Props) {
 
 	const handleClickApplyButton = () => {
 		routerPushWithParams(["min", "max"], [minValue, maxValue]);
+		setOpen(false);
 	};
 
 	return (
