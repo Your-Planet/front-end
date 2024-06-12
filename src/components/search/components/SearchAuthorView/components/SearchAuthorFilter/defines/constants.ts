@@ -1,1 +1,2 @@
 export const CATEGORY_SELECT_BOX_WIDTH = 120;
+export const BUDGET_SELECT_BOX_WIDTH = 100;

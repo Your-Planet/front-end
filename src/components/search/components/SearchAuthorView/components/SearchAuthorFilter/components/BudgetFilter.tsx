@@ -1,3 +1,4 @@
+import { BUDGET_SELECT_BOX_WIDTH } from "@/components/search/components/SearchAuthorView/components/SearchAuthorFilter/defines/constants";
 import useRouterPushWithParams from "@/components/search/hooks/useRouterPushWithParams";
 import { isNumber } from "@/utils/string";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
@@ -52,7 +53,7 @@ function BudgetFilter({}: Props) {
 				displayEmpty
 				renderValue={() => "예산"}
 				sx={{
-					width: `${100}px`,
+					width: `${BUDGET_SELECT_BOX_WIDTH}px`,
 				}}
 				open={open}
 				onOpen={handleOpen}
