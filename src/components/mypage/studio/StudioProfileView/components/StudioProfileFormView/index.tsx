@@ -42,7 +42,7 @@ function StudioProfileFormView() {
 				placeholder={`자신을 자유롭게 소개해 주세요. 최대 ${STUDIO_PROFILE_FORM_LENGTH.description.max}자까지 입력 가능해요.`}
 				required
 				multiline
-				rows={6}
+				rows={10}
 				rules={{
 					...getMinLengthRule(STUDIO_PROFILE_FORM_LENGTH.description.min),
 					...getMaxLengthRule(STUDIO_PROFILE_FORM_LENGTH.description.max),
@@ -51,7 +51,7 @@ function StudioProfileFormView() {
 
 			<InstatoonCategoryCheckboxGroup label="인스타툰 카테고리" />
 
-			<DynamicInstagramPortfolios label="포트폴리오 링크" />
+			<DynamicInstagramPortfolios label="포트폴리오(인스타그램 게시글) 링크" />
 
 			<LoadingButton type="submit" variant="contained" size="large" loading={isSaving}>
 				다음

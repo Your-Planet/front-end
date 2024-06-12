@@ -22,8 +22,8 @@ function CategoryFilter(props: {}) {
 	}));
 
 	const handleChangeCategories = (event: SelectChangeEvent<typeof selectedCategories>) => {
-		const categories = event.target.value?.toString();
-		routerPushWithParams("categories", categories);
+		const categoryFilterValues = event.target.value?.toString();
+		routerPushWithParams("categories", categoryFilterValues);
 	};
 
 	return (

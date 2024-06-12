@@ -2,6 +2,7 @@ import { InstagramMedia } from "@/apis/instagram";
 import ReactHookForm from "@/components/common/ReactHookForm";
 import { DEFAULT_PORTFOLIO } from "@/components/mypage/studio/StudioProfileView/defines/constants";
 import { StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
+import DuplicatedError from "@/defines/errors/DuplicatedError";
 import InvalidUrlError from "@/defines/errors/InvalidUrlError";
 import { HookFormChangeEventHandler } from "@/defines/hook-form/types";
 import { TIME_UNIT } from "@/defines/time/constants";
@@ -32,6 +33,7 @@ function DynamicInstagramPortfolioTextField(props: DynamicInstagramPortfolioText
 		formState: { errors },
 		register,
 		setValue,
+		getValues,
 		setError,
 		clearErrors,
 		watch,
@@ -63,17 +65,11 @@ function DynamicInstagramPortfolioTextField(props: DynamicInstagramPortfolioText
 			permalink: value,
 		});
 
-		if (!media) {
-			throw new Error("조회된 게시글이 없습니다.");
-		}
-
 		return media;
 	};
 
-	const checkUrlValid = (value: string) => {
-		if (!value.startsWith(INSTAGRAM_MEDIA_URL_PREFIX)) {
-			throw new InvalidUrlError("올바른 URL 형식을 입력해 주세요.");
-		}
+	const getIsUrlValid = (value: string) => {
+		return !value.startsWith(INSTAGRAM_MEDIA_URL_PREFIX);
 	};
 
 	const setPortfolio = (media: InstagramMedia) => {
@@ -100,20 +96,42 @@ function DynamicInstagramPortfolioTextField(props: DynamicInstagramPortfolioText
 		});
 	};
 
-	const setMediaByLink = useCallback(
+	const getIsPortfolioDuplicated = (media: InstagramMedia) => {
+		const currentPortfolios = getValues("portfolios");
+
+		return currentPortfolios.some(({ id }, i) => media.id === id && i !== index);
+	};
+
+	const setMediaByLink = async (instagramMediaLink: string) => {
+		if (!instagramMediaLink) {
+			clearError();
+			clearPortfolio();
+			return;
+		}
+
+		if (getIsUrlValid(instagramMediaLink)) {
+			throw new InvalidUrlError("올바른 URL 형식을 입력해 주세요.");
+		}
+
+		const media = await getMediaByLink(instagramMediaLink);
+
+		if (!media) {
+			throw new Error("조회된 게시글이 없습니다.");
+		}
+
+		if (getIsPortfolioDuplicated(media)) {
+			throw new DuplicatedError("중복된 게시글입니다.");
+		}
+
+		clearError();
+
+		setPortfolio(media);
+	};
+
+	const setPortfolioByLink = useCallback(
 		debounce(async (instagramMediaLink: string) => {
 			try {
-				if (!instagramMediaLink) {
-					clearError();
-					clearPortfolio();
-					return;
-				}
-
-				checkUrlValid(instagramMediaLink);
-
-				const media = (await getMediaByLink(instagramMediaLink))!;
-				clearError();
-				setPortfolio(media);
+				await setMediaByLink(instagramMediaLink);
 			} catch (e) {
 				handleError(e);
 			} finally {
@@ -125,7 +143,7 @@ function DynamicInstagramPortfolioTextField(props: DynamicInstagramPortfolioText
 
 	const handleChange: HookFormChangeEventHandler = async (e) => {
 		setIsChecking(true);
-		await setMediaByLink(e.target.value);
+		await setPortfolioByLink(e.target.value);
 	};
 
 	const getHelperText = () => {

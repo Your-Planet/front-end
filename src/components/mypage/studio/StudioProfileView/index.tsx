@@ -1,7 +1,7 @@
 "use client";
 
 import StudioProfileFormView from "@/components/mypage/studio/StudioProfileView/components/StudioProfileFormView";
-import StudioProfilePreview from "@/components/mypage/studio/StudioProfileView/components/StudioProfilePreview";
+import { StudioProfilePreview } from "@/components/mypage/studio/StudioProfileView/components/StudioProfilePreview";
 import { DEFAULT_CATEGORY, DEFAULT_PORTFOLIO } from "@/components/mypage/studio/StudioProfileView/defines/constants";
 import { StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
 import { STUDIO_PROFILE_GAP, STUDIO_VIEW_PADDING } from "@/components/mypage/studio/defines/constants";

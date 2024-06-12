@@ -8,7 +8,7 @@ function TextFieldSkeleton() {
 }
 
 function TextFieldLineSkeleton() {
-	return <Skeleton variant="rounded" width="100%" height={140} />;
+	return <Skeleton variant="rounded" width="100%" height={260} />;
 }
 
 function LabelSkeleton() {
