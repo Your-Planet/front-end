@@ -20,7 +20,7 @@ function BudgetFilter({}: Props) {
 	const handleClose = () => setOpen(false);
 
 	const handleChangeMin = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-		const value = event.target.value;
+		const { value } = event.target;
 
 		if (isNumber(value)) {
 			event.preventDefault();
@@ -29,7 +29,7 @@ function BudgetFilter({}: Props) {
 	};
 
 	const handleChangeMax = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-		const value = event.target.value;
+		const { value } = event.target;
 
 		if (isNumber(value)) {
 			event.preventDefault();
