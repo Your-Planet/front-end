@@ -5,10 +5,16 @@ function useRouterPushWithParams() {
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
 
-	const routerPushWithParams = (filter: string, params: string) => {
+	const routerPushWithParams = (filter: string | string[], params: string | string[]) => {
 		const newSearchParams = new URLSearchParams(searchParams.toString());
 
-		newSearchParams.set(filter, params);
+		if (typeof filter === "string" && typeof params === "string") {
+			newSearchParams.set(filter, params);
+		} else {
+			for (let i = 0; i < filter.length; ++i) {
+				newSearchParams.set(filter[i], params[i]);
+			}
+		}
 		router.push(`${pathname}/?${newSearchParams.toString()}`, { scroll: false });
 	};
 
