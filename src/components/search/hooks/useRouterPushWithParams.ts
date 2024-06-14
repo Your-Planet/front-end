@@ -1,4 +1,5 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useCallback } from "react";
 
 function useRouterPushWithParams() {
 	const router = useRouter();
@@ -16,7 +17,7 @@ function useRouterPushWithParams() {
 			}
 		}
 		router.push(`${pathname}/?${newSearchParams.toString()}`, { scroll: false });
-	};
+	}, []);
 
 	return routerPushWithParams;
 }
