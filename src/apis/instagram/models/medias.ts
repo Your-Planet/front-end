@@ -5,7 +5,6 @@ export interface InstagramMedia {
 	mediaType: string;
 	mediaUrl: string;
 	permalink: string;
-	thumbnailUrl: string;
 	timestamp: string;
 	username: string;
 }

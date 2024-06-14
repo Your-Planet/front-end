@@ -14,7 +14,7 @@ import useMutationPostAuthorJoin from "@/hooks/queries/member/useMutationPostAut
 import { getCookie } from "@/utils/cookie";
 import { getEmailValidateRule } from "@/utils/react-hook-form/rule";
 import { isNumber } from "@/utils/string";
-import { Button } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
 import { FormEventHandler, useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
@@ -42,7 +42,7 @@ function JoinAuthorFormView() {
 
 	const { handleSubmit, setValue } = form;
 
-	const { mutate: mutatePostJoin } = useMutationPostAuthorJoin({});
+	const { mutate: mutatePostJoin, isPending } = useMutationPostAuthorJoin({});
 
 	const { handleSuccessJoin, handleFailJoin } = useJoinForm();
 
@@ -142,9 +142,9 @@ function JoinAuthorFormView() {
 
 					<DatePicker formName="birthDate" label="생년월일" required />
 
-					<Button type="submit" variant="contained" size="large" fullWidth>
+					<LoadingButton type="submit" variant="contained" size="large" fullWidth loading={isPending}>
 						가입하기
-					</Button>
+					</LoadingButton>
 				</StyledFormInJoin>
 			</FormProvider>
 		</StyledBoxInJoin>
