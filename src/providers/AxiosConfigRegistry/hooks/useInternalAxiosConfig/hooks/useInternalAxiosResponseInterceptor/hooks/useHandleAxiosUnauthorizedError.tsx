@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import { usePathname } from "next/navigation";
 import { closeSnackbar, enqueueSnackbar, SnackbarKey } from "notistack";
-import { Fragment, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export default function useHandleAxiosUnauthorizedError() {
 	const needLoginMessageRef = useRef(false);
@@ -31,16 +31,14 @@ export default function useHandleAxiosUnauthorizedError() {
 				};
 
 				return (
-					<Fragment>
-						<Button
-							sx={{
-								color: grey[50],
-							}}
-							onClick={handleClickLogin}
-						>
-							로그인하기
-						</Button>
-					</Fragment>
+					<Button
+						sx={{
+							color: grey[50],
+						}}
+						onClick={handleClickLogin}
+					>
+						로그인하기
+					</Button>
 				);
 			},
 		});

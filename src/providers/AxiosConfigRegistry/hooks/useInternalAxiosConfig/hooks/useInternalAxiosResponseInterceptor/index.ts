@@ -18,8 +18,7 @@ export default function useInternalAxiosResponseInterceptor(): UseInternalAxiosR
 
 		switch (error.response?.data?.statusCode) {
 			case HttpStatusCode.Unauthorized:
-				handleUnauthorizedError();
-				return;
+				return handleUnauthorizedError();
 
 			default:
 				break;
