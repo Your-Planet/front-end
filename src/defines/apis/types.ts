@@ -3,7 +3,7 @@ import { AxiosRequestConfig, AxiosResponse, HttpStatusCode } from "axios";
 export interface ResponseEntity<T> {
 	data: T;
 	// @ts-ignore
-	status: HttpStatusCode;
+	statusCode: HttpStatusCode;
 	message: string;
 }
 

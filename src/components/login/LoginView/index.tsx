@@ -3,6 +3,7 @@ import AccountManagementPanel from "@/components/login/LoginView/components/Acco
 import { LoginForm } from "@/components/login/LoginView/defines/types";
 import { COOKIE } from "@/defines/cookie/constants";
 import { IA } from "@/defines/ia/constants";
+import { TIME_UNIT } from "@/defines/time/constants";
 import useOpen from "@/hooks/common/useOpen";
 import useMutationPostLogin from "@/hooks/queries/member/useMutationPostLogin";
 import { getCookie, removeCookie, setCookie } from "@/utils/cookie";
@@ -10,7 +11,7 @@ import { getIaPath } from "@/utils/ia";
 import { isEmail } from "@/utils/string";
 import { LoadingButton } from "@mui/lab";
 import { Alert, Box, Stack } from "@mui/material";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
@@ -24,6 +25,7 @@ function LoginView(props: LoginViewProps) {
 	const {} = props;
 
 	const router = useRouter();
+	const searchParams = useSearchParams();
 
 	const form = useForm<LoginFormInterface>({
 		defaultValues: {
@@ -47,13 +49,13 @@ function LoginView(props: LoginViewProps) {
 				setCookie(COOKIE.accessToken, token);
 
 				if (isRemember) {
-					// TODO @김현규 시간 단위
-					setCookie(COOKIE.rememberUserEmail, data.email, 10000);
+					setCookie(COOKIE.rememberUserEmail, data.email, TIME_UNIT.unitOfSecond.asDay * 30);
 				} else {
 					removeCookie(COOKIE.rememberUserEmail);
 				}
 
-				router.push(getIaPath(IA));
+				const redirectPageUrlOnLoginSuccess = searchParams.get("redirect") ?? getIaPath(IA);
+				router.push(redirectPageUrlOnLoginSuccess);
 			},
 			onError(error) {
 				setServerErrorMessage(error?.response?.data.message);
