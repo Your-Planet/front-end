@@ -15,7 +15,7 @@ import { getEmailValidateRule, getLengthErrorMessage } from "@/utils/react-hook-
 import { isNumber } from "@/utils/string";
 import { LoadingButton } from "@mui/lab";
 import { Box, FormControl, FormHelperText } from "@mui/material";
-import { FormEventHandler } from "react";
+import { FormEventHandler, KeyboardEventHandler } from "react";
 import { useDaumPostcodePopup } from "react-daum-postcode";
 import { postcodeScriptUrl } from "react-daum-postcode/lib/loadPostcode";
 import { FormProvider, useForm } from "react-hook-form";
@@ -82,7 +82,7 @@ function JoinSponsorFormView() {
 		},
 	);
 
-	const handleClickSearchAddress = () => {
+	const openAddressPopup = () => {
 		openPostcodePopup({
 			onComplete({ address }) {
 				setValue("businessAddress.base", address);
@@ -91,6 +91,17 @@ function JoinSponsorFormView() {
 				trigger("businessAddress.base");
 			},
 		});
+	};
+
+	const handleClickSearchAddress = () => {
+		openAddressPopup();
+	};
+
+	const handleKeyDownSearchAddress: KeyboardEventHandler = (e) => {
+		if (e.code === "Enter") {
+			e.preventDefault();
+			openAddressPopup();
+		}
 	};
 
 	const addressErrorMessage = getObjectAtPath(errors, "businessAddress.base")?.message ?? " ";
@@ -163,6 +174,7 @@ function JoinSponsorFormView() {
 								inputProps={{ readOnly: true }}
 								hideErrorMessage
 								onClick={handleClickSearchAddress}
+								onKeyDown={handleKeyDownSearchAddress}
 							/>
 							<TextField
 								formName="businessAddress.detail"
