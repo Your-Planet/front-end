@@ -1,18 +1,19 @@
+import CategoryFilter from "@/components/search/components/SearchAuthorView/components/SearchAuthorFilter/components/CategoryFilter";
 import { Search } from "@mui/icons-material";
 import { Box, Button, InputAdornment, MenuItem, Select, TextField } from "@mui/material";
+import { usePathname, useRouter } from "next/navigation";
 
-type Props = {};
+function SearchAuthorFilter(props: {}) {
+	const router = useRouter();
+	const pathname = usePathname();
 
-function FilterSection({}: Props) {
 	const handleClickResetButton = () => {
-		console.log("초기화");
+		router.push(`${pathname}`, { scroll: false });
 	};
 
 	return (
 		<Box display="flex" gap="1rem" height="auto" alignItems="center">
-			<Select size="small" label="카테고리" value="dummy">
-				<MenuItem value="dummy">카테고리</MenuItem>
-			</Select>
+			<CategoryFilter />
 
 			<Select size="small" label="예산" value="dummy">
 				<MenuItem value="dummy">예산</MenuItem>
@@ -45,4 +46,4 @@ function FilterSection({}: Props) {
 	);
 }
 
-export default FilterSection;
+export default SearchAuthorFilter;

@@ -12,7 +12,7 @@ import { Box, Stack } from "@mui/material";
 import { grey } from "@mui/material/colors";
 
 interface AuthorCardProps {
-	profile: StudioProfile;
+	profile: Omit<StudioProfile, "portfolios">;
 	instagramUsername: string;
 	buttonEvent: {
 		project: AuthorCardButtonEvent;
@@ -36,8 +36,8 @@ function AuthorCard(props: AuthorCardProps) {
 				sx={{
 					borderRadius: "6px",
 					border: `1px solid ${grey[300]}`,
-					padding: "24px",
 					boxShadow: `4px 4px 10px ${grey[200]}`,
+					padding: "24px",
 					width: `${AUTHOR_CARD_WIDTH}px`,
 					height: "fit-content",
 				}}
