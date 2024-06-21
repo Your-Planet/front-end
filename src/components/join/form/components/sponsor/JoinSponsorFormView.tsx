@@ -142,6 +142,7 @@ function JoinSponsorFormView() {
 						}}
 						placeholder="숫자만 입력하세요"
 						fullWidth
+						validator={isNumber}
 						type="tel"
 					/>
 
