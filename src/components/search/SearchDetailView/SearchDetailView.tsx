@@ -1,7 +1,7 @@
 "use client";
 
 import AuthorIntroductionSection from "@/components/search/SearchDetailView/components/AuthorIntroductionSection";
-import AuthorIntroductionStudioProvider from "@/components/search/SearchDetailView/providers/AuthorIntroductionStudioProvider";
+import AuthorStudioProvider from "@/components/search/SearchDetailView/providers/AuthorStudioProvider";
 
 export interface SearchDetailViewProps {}
 
@@ -9,9 +9,9 @@ function SearchDetailView(props: SearchDetailViewProps) {
 	const {} = props;
 
 	return (
-		<AuthorIntroductionStudioProvider>
+		<AuthorStudioProvider>
 			<AuthorIntroductionSection />
-		</AuthorIntroductionStudioProvider>
+		</AuthorStudioProvider>
 	);
 }
 
