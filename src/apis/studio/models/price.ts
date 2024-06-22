@@ -1,4 +1,8 @@
-import { PostDurationMonthType, ProvisionType } from "@/components/mypage/studio/StudioPriceView/defines/types";
+export interface StudioPrice {
+	service: DefaultService;
+	option: Record<ServiceOptionTypeByWorkingDays["withWorkingDays"], ProvidingServiceWithWorkingDays> &
+		Record<ServiceOptionTypeByWorkingDays["withoutWorkingDays"], ProvidingServiceWithWorkingDays>;
+}
 
 export interface PostPriceTempRequest extends StudioPrice {}
 
@@ -15,6 +19,10 @@ export type GetPriceResponse = StudioPrice;
 export type PostPriceTempResponse = void;
 
 export type PostPriceResponse = void;
+
+export type PostDurationMonthType = "ONE_MONTH" | "TWO_MONTH" | "THREE_MONTH" | "SIX_MONTH" | "MORE_THAN_ONE_YEAR";
+
+export type ProvisionType = "UNPROVIDED" | "DEFAULT" | "PROVIDED";
 
 export interface ProvidingService {
 	provisionType: ProvisionType;
@@ -35,9 +43,3 @@ export type ServiceOptionTypeByWorkingDays = {
 	withWorkingDays: "additionalPanel" | "additionalModification";
 	withoutWorkingDays: "refinement" | "postDurationExtension" | "originFile";
 };
-
-interface StudioPrice {
-	service: DefaultService;
-	option: Record<ServiceOptionTypeByWorkingDays["withWorkingDays"], ProvidingServiceWithWorkingDays> &
-		Record<ServiceOptionTypeByWorkingDays["withoutWorkingDays"], ProvidingServiceWithWorkingDays>;
-}

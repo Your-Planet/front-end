@@ -1,6 +1,5 @@
+import { PostDurationMonthType, ProvisionType, StudioPrice } from "@/apis/studio";
 import { LengthLimit } from "@/defines/forms/types";
-
-export type PostDurationMonthType = "ONE_MONTH" | "TWO_MONTH" | "THREE_MONTH" | "SIX_MONTH" | "MORE_THAN_ONE_YEAR";
 
 export type ServiceForm = {
 	price: number; // 가격
@@ -9,8 +8,6 @@ export type ServiceForm = {
 	modificationCount: number; // 기본 수정 횟수
 	postDurationMonthType: PostDurationMonthType; // 기본 업로드 기간
 };
-
-export type ProvisionType = "UNPROVIDED" | "DEFAULT" | "PROVIDED";
 
 export type OptionForm = {
 	// 2차 가공
@@ -42,10 +39,7 @@ export type OptionForm = {
 	};
 };
 
-export type StudioPriceForm = {
-	service: ServiceForm;
-	option: OptionForm;
-};
+export type StudioPriceForm = StudioPrice;
 
 export type ServiceLimits<ServiceForm> = Omit<
 	{

@@ -1,5 +1,6 @@
 "use client";
 
+import { ProvisionType } from "@/apis/studio";
 import ReactHookForm from "@/components/common/ReactHookForm";
 import {
 	PROVISION_RADIOS,
@@ -13,14 +14,12 @@ import {
 	workingDaysMaxRule,
 	workingDaysMinRule,
 } from "@/components/mypage/studio/StudioPriceView/defines/rule";
-import { ProvisionType, StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
+import { StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
 import { isNumber } from "@/utils/string";
 import { Box, InputAdornment, Typography } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 
-type Props = {};
-
-function OptionFormView(props: Props) {
+function OptionFormView() {
 	const { TextField, RadioGroup } = ReactHookForm<StudioPriceForm>();
 	const { watch } = useFormContext();
 
