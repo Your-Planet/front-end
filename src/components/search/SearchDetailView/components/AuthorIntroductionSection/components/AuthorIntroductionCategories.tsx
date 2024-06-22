@@ -1,5 +1,5 @@
 import CategoryChip from "@/components/common/CategoryChip";
-import { useAuthorIntroductionStudio } from "@/components/search/SearchDetailView/providers/AuthorIntroductionStudioProvider";
+import { useAuthorStudio } from "@/components/search/SearchDetailView/providers/AuthorStudioProvider";
 import { styled } from "@mui/material";
 
 const StyledCategoryList = styled("ul")`
@@ -9,7 +9,7 @@ const StyledCategoryList = styled("ul")`
 `;
 
 function AuthorIntroductionCategories() {
-	const studio = useAuthorIntroductionStudio();
+	const studio = useAuthorStudio();
 
 	// TODO @김현규 스켈레톤 UI
 	if (!studio) {

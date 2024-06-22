@@ -1,8 +1,8 @@
-import { useAuthorIntroductionStudio } from "@/components/search/SearchDetailView/providers/AuthorIntroductionStudioProvider";
+import { useAuthorStudio } from "@/components/search/SearchDetailView/providers/AuthorStudioProvider";
 import { Typography } from "@mui/material";
 
 function AuthorIntroductionName() {
-	const studio = useAuthorIntroductionStudio();
+	const studio = useAuthorStudio();
 
 	// TODO @김현규 스켈레톤 UI
 	if (!studio) {

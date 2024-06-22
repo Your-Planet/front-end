@@ -1,4 +1,4 @@
-import { useAuthorIntroductionStudio } from "@/components/search/SearchDetailView/providers/AuthorIntroductionStudioProvider";
+import { useAuthorStudio } from "@/components/search/SearchDetailView/providers/AuthorStudioProvider";
 import { styled } from "@mui/material";
 import { blue } from "@mui/material/colors";
 
@@ -14,7 +14,7 @@ const StyledLink = styled("a")`
 `;
 
 function AuthorIntroductionInstagramUsername() {
-	const studio = useAuthorIntroductionStudio();
+	const studio = useAuthorStudio();
 
 	// TODO @김현규 스켈레톤 UI
 	if (!studio) {

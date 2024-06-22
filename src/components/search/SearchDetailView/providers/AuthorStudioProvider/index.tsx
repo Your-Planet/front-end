@@ -9,7 +9,7 @@ import { ReactNode, createContext, useContext, useMemo } from "react";
 type WithoutPrice<T extends { price: number }> = Omit<T, "price">;
 
 // TODO @김현규 price 부분 API model로 대체
-export interface AuthorIntroductionStudioContextProps {
+export interface AuthorStudioContextProps {
 	instagramUsername: string;
 	profile: StudioProfile;
 	price: {
@@ -19,17 +19,17 @@ export interface AuthorIntroductionStudioContextProps {
 	};
 }
 
-const AuthorIntroductionStudioContext = createContext<AuthorIntroductionStudioContextProps | undefined>(undefined);
+const AuthorStudioContext = createContext<AuthorStudioContextProps | undefined>(undefined);
 
-export const useAuthorIntroductionStudio = () => useContext(AuthorIntroductionStudioContext);
+export const useAuthorStudio = () => useContext(AuthorStudioContext);
 
-interface AuthorIntroductionStudioProviderProps {
+interface AuthorStudioProviderProps {
 	children: ReactNode;
 }
 
-function AuthorIntroductionStudioProvider({ children }: AuthorIntroductionStudioProviderProps) {
+function AuthorStudioProvider({ children }: AuthorStudioProviderProps) {
 	// TODO @김현규 API 연동
-	const contextValue: AuthorIntroductionStudioContextProps = useMemo(
+	const contextValue: AuthorStudioContextProps = useMemo(
 		() => ({
 			instagramUsername: "yp_hyeon.q",
 			profile: {
@@ -73,9 +73,7 @@ function AuthorIntroductionStudioProvider({ children }: AuthorIntroductionStudio
 		[],
 	);
 
-	return (
-		<AuthorIntroductionStudioContext.Provider value={contextValue}>{children}</AuthorIntroductionStudioContext.Provider>
-	);
+	return <AuthorStudioContext.Provider value={contextValue}>{children}</AuthorStudioContext.Provider>;
 }
 
-export default AuthorIntroductionStudioProvider;
+export default AuthorStudioProvider;
