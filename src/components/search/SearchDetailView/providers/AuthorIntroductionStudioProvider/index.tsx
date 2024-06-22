@@ -8,6 +8,7 @@ import { ReactNode, createContext, useContext } from "react";
 
 type WithoutPrice<T extends { price: number }> = Omit<T, "price">;
 
+// TODO @김현규 price 부분 API model로 대체
 export interface AuthorIntroductionStudioContextProps {
 	instagramUsername: string;
 	profile: StudioProfile;
@@ -29,7 +30,7 @@ interface AuthorIntroductionStudioProvider {
 function AuthorIntroductionStudioProvider({ children }: AuthorIntroductionStudioProvider) {
 	// TODO @김현규 API 연동
 	const contextValue: AuthorIntroductionStudioContextProps = {
-		instagramUsername: "_this_is_fake1",
+		instagramUsername: "yp_hyeon.q",
 		profile: {
 			name: "우띠우하하",
 			description:
