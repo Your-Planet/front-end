@@ -1,39 +1,5 @@
 import { PostDurationMonthType, ProvisionType } from "@/components/mypage/studio/StudioPriceView/defines/types";
 
-interface StudioPrice {
-	service: {
-		price: number;
-		workingDays: number;
-		defaultCuts: number;
-		modificationCount: number;
-		postDurationMonthType: PostDurationMonthType;
-	};
-	option: {
-		refinement: {
-			provisionType: ProvisionType;
-			price: number;
-		};
-		additionalPanel: {
-			provisionType: ProvisionType;
-			price: number;
-			workingDays: number;
-		};
-		additionalModification: {
-			provisionType: ProvisionType;
-			price: number;
-			workingDays: number;
-		};
-		postDurationExtension: {
-			provisionType: ProvisionType;
-			price: number;
-		};
-		originFile: {
-			provisionType: ProvisionType;
-			price: number;
-		};
-	};
-}
-
 export interface PostPriceTempRequest extends StudioPrice {}
 
 export interface PostPriceRequest extends StudioPrice {}
@@ -49,3 +15,29 @@ export type GetPriceResponse = StudioPrice;
 export type PostPriceTempResponse = void;
 
 export type PostPriceResponse = void;
+
+export interface ProvidingService {
+	provisionType: ProvisionType;
+	price: number;
+}
+
+export interface ProvidingServiceWithWorkingDays extends ProvidingService {
+	workingDays: number;
+}
+
+export interface DefaultService extends Omit<ProvidingServiceWithWorkingDays, "provisionType"> {
+	defaultCuts: number;
+	modificationCount: number;
+	postDurationMonthType: PostDurationMonthType;
+}
+
+export type ServiceOptionTypeByWorkingDays = {
+	withWorkingDays: "additionalPanel" | "additionalModification";
+	withoutWorkingDays: "refinement" | "postDurationExtension" | "originFile";
+};
+
+interface StudioPrice {
+	service: DefaultService;
+	option: Record<ServiceOptionTypeByWorkingDays["withWorkingDays"], ProvidingServiceWithWorkingDays> &
+		Record<ServiceOptionTypeByWorkingDays["withoutWorkingDays"], ProvidingServiceWithWorkingDays>;
+}
