@@ -1,3 +1,5 @@
+"use client";
+
 import ReactHookForm from "@/components/common/ReactHookForm";
 import { STUDIO_PROFILE_FORM_LENGTH } from "@/components/mypage/studio/StudioProfileView/defines/constants";
 import { StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";

@@ -1,3 +1,5 @@
+"use client";
+
 import { BUDGET_SELECT_BOX_WIDTH } from "@/components/search/components/SearchAuthorView/components/SearchAuthorFilter/defines/constants";
 import useRouterPushWithParams from "@/components/search/hooks/useRouterPushWithParams";
 import { isNumber } from "@/utils/string";
