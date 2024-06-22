@@ -3,7 +3,7 @@ import { useAuthorStudio } from "@/components/search/SearchDetailView/providers/
 import { styled } from "@mui/material";
 
 const StyledSection = styled("section")`
-	width: 800px;
+	width: 680px;
 `;
 
 const StyledUl = styled("ul")`
