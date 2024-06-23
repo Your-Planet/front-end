@@ -3,7 +3,17 @@ import useRouterPushWithParams from "@/components/search/hooks/useRouterPushWith
 import useOpen from "@/hooks/common/useOpen";
 import { isNumber } from "@/utils/string";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
+import {
+	Box,
+	Button,
+	FormControl,
+	FormHelperText,
+	InputLabel,
+	MenuItem,
+	Select,
+	TextField,
+	Typography,
+} from "@mui/material";
 import { grey } from "@mui/material/colors";
 import { useSearchParams } from "next/navigation";
 import { ChangeEvent, useState } from "react";
@@ -16,6 +26,7 @@ function BudgetFilter({}: Props) {
 	const { opened, handleOpen, handleClose } = useOpen(false);
 	const [minValue, setMinValue] = useState<number>(Number(searchParams.get("min")) ?? 0);
 	const [maxValue, setMaxValue] = useState<number>(Number(searchParams.get("max")) ?? 0);
+	const [isError, setIsError] = useState<boolean>(maxValue < minValue);
 
 	const handleChangeMin = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
 		const { value } = event.target;
@@ -23,6 +34,12 @@ function BudgetFilter({}: Props) {
 		if (isNumber(value)) {
 			event.preventDefault();
 			setMinValue(Number(value));
+
+			if (maxValue < minValue) {
+				setIsError(true);
+			} else {
+				setIsError(false);
+			}
 		}
 	};
 
@@ -36,8 +53,10 @@ function BudgetFilter({}: Props) {
 	};
 
 	const handleClickApplyButton = () => {
-		routerPushWithParams(["min", "max"], [minValue.toString(), maxValue.toString()]);
-		handleClose();
+		if (!isError) {
+			routerPushWithParams(["min", "max"], [minValue.toString(), maxValue.toString()]);
+			handleClose();
+		}
 	};
 
 	return (
@@ -85,20 +104,24 @@ function BudgetFilter({}: Props) {
 				<Box
 					sx={{
 						display: "flex",
-						justifyContent: "center",
-						alignItems: "center",
+						flexDirection: "column",
 					}}
 				>
-					<MenuItem disableRipple disableTouchRipple>
-						<TextField type="tel" label="최소" size="small" value={minValue} onChange={handleChangeMin} />
-					</MenuItem>
-					<Typography>~</Typography>
-					<MenuItem disableRipple disableTouchRipple>
-						<TextField type="tel" label="최대" size="small" value={maxValue} onChange={handleChangeMax} />
-					</MenuItem>
+					<Box display="flex">
+						<MenuItem disableRipple disableTouchRipple>
+							<TextField type="tel" label="최소" size="small" value={minValue} onChange={handleChangeMin} />
+						</MenuItem>
+						<Typography>~</Typography>
+						<MenuItem disableRipple disableTouchRipple>
+							<TextField type="tel" label="최대" size="small" value={maxValue} onChange={handleChangeMax} />
+						</MenuItem>
+					</Box>
+					<FormHelperText error={isError} sx={{ paddingLeft: "1rem" }}>
+						{isError ? `최솟값은 최댓값보다 작아야 합니다.` : " "}
+					</FormHelperText>
 				</Box>
 
-				<Box sx={{ display: "flex", gap: ".5rem", justifyContent: "right", padding: "1rem" }}>
+				<Box sx={{ display: "flex", gap: ".5rem", justifyContent: "right", paddingX: "1rem" }}>
 					<Button variant="outlined" onClick={handleClose}>
 						취소
 					</Button>
