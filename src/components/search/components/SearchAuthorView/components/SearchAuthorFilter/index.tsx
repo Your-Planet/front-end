@@ -1,3 +1,4 @@
+import BudgetFilter from "@/components/search/components/SearchAuthorView/components/SearchAuthorFilter/components/BudgetFilter";
 import CategoryFilter from "@/components/search/components/SearchAuthorView/components/SearchAuthorFilter/components/CategoryFilter";
 import { Search } from "@mui/icons-material";
 import { Box, Button, InputAdornment, MenuItem, Select, TextField } from "@mui/material";
@@ -15,9 +16,7 @@ function SearchAuthorFilter(props: {}) {
 		<Box display="flex" gap="1rem" height="auto" alignItems="center">
 			<CategoryFilter />
 
-			<Select size="small" label="예산" value="dummy">
-				<MenuItem value="dummy">예산</MenuItem>
-			</Select>
+			<BudgetFilter />
 
 			<Box>
 				<Select size="small" value="dummy">

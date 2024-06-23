@@ -1,6 +1,6 @@
 "use client";
 
-import { CATEGORY_SELECT_BOX_WIDTH } from "@/components/search/components/SearchAuthorView/components/defines/constants";
+import { CATEGORY_SELECT_BOX_WIDTH } from "@/components/search/components/SearchAuthorView/components/SearchAuthorFilter/defines/constants";
 import useRouterPushWithParams from "@/components/search/hooks/useRouterPushWithParams";
 import { INSTATOON_CATEGORY_NAME_BY_TYPE } from "@/defines/instatoon-category/constants";
 import { InstatoonCategoryType } from "@/defines/instatoon-category/types";

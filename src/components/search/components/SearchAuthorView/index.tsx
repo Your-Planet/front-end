@@ -1,6 +1,6 @@
 "use client";
 
-import AppliedSearchFilter from "@/components/search/components/SearchAuthorView/components/AppliedSearchFilter";
+import AppliedFilterChip from "@/components/search/components/SearchAuthorView/components/AppliedFilterChip";
 import Header from "@/components/search/components/SearchAuthorView/components/Header";
 import SearchAuthorFilter from "@/components/search/components/SearchAuthorView/components/SearchAuthorFilter";
 import SortSection from "@/components/search/components/SearchAuthorView/components/SortSection";
@@ -17,7 +17,7 @@ function SearchAuthorView({}: Props) {
 					<SearchAuthorFilter />
 					<SortSection />
 				</Box>
-				<AppliedSearchFilter />
+				<AppliedFilterChip />
 			</Box>
 		</Box>
 	);
