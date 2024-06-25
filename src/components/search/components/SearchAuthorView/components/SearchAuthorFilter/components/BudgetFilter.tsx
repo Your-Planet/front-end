@@ -120,7 +120,7 @@ function BudgetFilter({}: Props) {
 						</MenuItem>
 					</Box>
 
-					<Box display="flex" alignItems="center">
+					<Box display="flex" alignItems="center" gap="2px">
 						<StyledFormHelperText error={isError} sx={{ paddingLeft: "1rem" }}>
 							{isError ? `최솟값은 최댓값보다 작아야 합니다.` : " "}
 						</StyledFormHelperText>
