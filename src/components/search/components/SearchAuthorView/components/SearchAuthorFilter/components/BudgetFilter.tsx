@@ -19,8 +19,8 @@ function BudgetFilter({}: Props) {
 	const routerPushWithParams = useRouterPushWithParams();
 	const searchParams = useSearchParams();
 	const { opened, handleOpen, handleClose } = useOpen(false);
-	const [minValue, setMinValue] = useState<number>(parseInt(searchParams.get("min") ?? "0"));
-	const [maxValue, setMaxValue] = useState<number>(parseInt(searchParams.get("max") ?? "0"));
+	const [minValue, setMinValue] = useState<number>(parseInt(searchParams.get("min") ?? "0", 10));
+	const [maxValue, setMaxValue] = useState<number>(parseInt(searchParams.get("max") ?? "0", 10));
 	const [isError, setIsError] = useState<boolean>(maxValue < minValue);
 
 	useEffect(() => {
