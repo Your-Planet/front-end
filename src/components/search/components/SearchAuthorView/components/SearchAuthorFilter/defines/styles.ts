@@ -1,6 +1,6 @@
 import { SwapHorizRounded } from "@mui/icons-material";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import { Box, styled, TextField } from "@mui/material";
+import { Box, FormHelperText, styled, TextField } from "@mui/material";
 import { grey } from "@mui/material/colors";
 
 export const StyledBoxInBudgetFilter = styled(Box)`
@@ -27,13 +27,14 @@ export const StyledInfoOutlinedIcon = styled(InfoOutlinedIcon)`
 	margin: 0 3px 0 3px;
 `;
 
+export const StyledFormHelperText = styled(FormHelperText)`
+	margin: 0;
+	user-select: none;
+`;
+
 export const StyledSwapHorizRounded = styled(SwapHorizRounded)`
 	font-size: 1.1rem;
 	vertical-align: middle;
 	margin-left: 3px;
 	color: ${grey[600]};
-
-	&:hover {
-		cursor: pointer;
-	}
 `;

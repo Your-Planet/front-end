@@ -1,6 +1,7 @@
 import { BUDGET_SELECT_BOX_WIDTH } from "@/components/search/components/SearchAuthorView/components/SearchAuthorFilter/defines/constants";
 import {
 	StyledBoxInBudgetFilter,
+	StyledFormHelperText,
 	StyledInfoOutlinedIcon,
 	StyledSwapHorizRounded,
 	StyledTextFieldInBudgetFilter,
@@ -8,7 +9,7 @@ import {
 import useRouterPushWithParams from "@/components/search/hooks/useRouterPushWithParams";
 import useOpen from "@/hooks/common/useOpen";
 import { isNumber } from "@/utils/string";
-import { Box, Button, FormControl, FormHelperText, InputLabel, MenuItem, Select, Typography } from "@mui/material";
+import { Box, Button, FormControl, InputLabel, MenuItem, Select, Typography } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import { useSearchParams } from "next/navigation";
 import { ChangeEvent, useEffect, useState } from "react";
@@ -66,7 +67,7 @@ function BudgetFilter({}: Props) {
 		}
 	};
 
-	const handleClickSwapIcon = () => {
+	const handleClickSwapBox = () => {
 		setMinValue(maxValue);
 		setMaxValue(minValue);
 	};
@@ -120,10 +121,18 @@ function BudgetFilter({}: Props) {
 					</Box>
 
 					<Box display="flex" alignItems="center">
-						<FormHelperText error={isError} sx={{ paddingLeft: "1rem" }}>
+						<StyledFormHelperText error={isError} sx={{ paddingLeft: "1rem" }}>
 							{isError ? `최솟값은 최댓값보다 작아야 합니다.` : " "}
-						</FormHelperText>
-						<StyledSwapHorizRounded visibility={isError ? "visible" : "hidden"} onClick={handleClickSwapIcon} />
+						</StyledFormHelperText>
+						<Box
+							display="flex"
+							alignItems="center"
+							sx={{ "&:hover": { cursor: "pointer" } }}
+							onClick={handleClickSwapBox}
+						>
+							<StyledSwapHorizRounded visibility={isError ? "visible" : "hidden"} />
+							<StyledFormHelperText>{isError ? `바꾸기` : " "}</StyledFormHelperText>
+						</Box>
 					</Box>
 				</Box>
 
