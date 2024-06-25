@@ -42,7 +42,7 @@ function BudgetFilter({}: Props) {
 		}
 
 		if (isNumber(value)) {
-			setMinValue(parseInt(value));
+			setMinValue(parseInt(value, 10));
 		}
 	};
 
@@ -56,7 +56,7 @@ function BudgetFilter({}: Props) {
 		}
 
 		if (isNumber(value)) {
-			setMaxValue(parseInt(value));
+			setMaxValue(parseInt(value, 10));
 		}
 	};
 
