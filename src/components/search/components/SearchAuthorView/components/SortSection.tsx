@@ -1,6 +1,9 @@
 "use client";
 
-import { SORT_BY_LABEL } from "@/components/search/components/SearchAuthorView/components/SearchAuthorFilter/defines/constants";
+import {
+	SORT_BY_BOX_WIDTH,
+	SORT_BY_LABEL,
+} from "@/components/search/components/SearchAuthorView/components/SearchAuthorFilter/defines/constants";
 import useRouterPushWithParams from "@/components/search/hooks/useRouterPushWithParams";
 import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { useSearchParams } from "next/navigation";
@@ -20,7 +23,7 @@ function SortSection({}: Props) {
 	};
 
 	return (
-		<Select size="small" value={selectedSorting} onChange={handleChangeSortBy}>
+		<Select size="small" sx={{ width: `${SORT_BY_BOX_WIDTH}px` }} value={selectedSorting} onChange={handleChangeSortBy}>
 			{Object.entries(SORT_BY_LABEL).map(([sortByType, label]) => (
 				<MenuItem key={sortByType} value={sortByType}>
 					{label}

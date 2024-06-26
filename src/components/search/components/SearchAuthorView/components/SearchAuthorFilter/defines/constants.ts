@@ -6,6 +6,7 @@ import {
 export const CATEGORY_SELECT_BOX_WIDTH = 120;
 export const BUDGET_SELECT_BOX_WIDTH = 100;
 export const SEARCH_BY_BOX_WIDTH = 150;
+export const SORT_BY_BOX_WIDTH = 140;
 
 export const SEARCH_BY_LABEL: Record<SearchByType, string> = {
 	name: "인스타툰 이름",
