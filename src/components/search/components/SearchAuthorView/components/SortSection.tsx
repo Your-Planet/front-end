@@ -1,24 +1,32 @@
-import { Box, MenuItem, Select } from "@mui/material";
+"use client";
+
+import { SORT_BY_LABEL } from "@/components/search/components/SearchAuthorView/components/SearchAuthorFilter/defines/constants";
+import useRouterPushWithParams from "@/components/search/hooks/useRouterPushWithParams";
+import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
+import { useSearchParams } from "next/navigation";
 
 type Props = {};
 
 function SortSection({}: Props) {
-	return (
-		<Box display="flex" gap="1rem">
-			<Select size="small" value="dummy">
-				<MenuItem value="dummy">20</MenuItem>
-				<MenuItem value="dummy2">40</MenuItem>
-				<MenuItem value="dummy3">80</MenuItem>
-				<MenuItem value="dummy4">100</MenuItem>
-			</Select>
+	const routerPushWithParams = useRouterPushWithParams();
+	const searchParams = useSearchParams();
+	const selectedSorting = searchParams.get("sortBy") ?? "popularity";
 
-			<Select size="small" value="dummy">
-				<MenuItem value="dummy">인기순</MenuItem>
-				<MenuItem value="dummy2">연과도순</MenuItem>
-				<MenuItem value="dummy3">팔로워순</MenuItem>
-				<MenuItem value="dummy4">작업 빠른 순</MenuItem>
-			</Select>
-		</Box>
+	const handleChangeSortBy = (event: SelectChangeEvent<typeof selectedSorting>) => {
+		const {
+			target: { value },
+		} = event;
+		routerPushWithParams("sortBy", value);
+	};
+
+	return (
+		<Select size="small" value={selectedSorting} onChange={handleChangeSortBy}>
+			{Object.entries(SORT_BY_LABEL).map(([sortByType, label]) => (
+				<MenuItem key={sortByType} value={sortByType}>
+					{label}
+				</MenuItem>
+			))}
+		</Select>
 	);
 }
 
