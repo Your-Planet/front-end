@@ -9,13 +9,19 @@ import useRouterPushWithParams from "@/components/search/hooks/useRouterPushWith
 import SearchIcon from "@mui/icons-material/Search";
 import { Box, IconButton, InputBase, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { useSearchParams } from "next/navigation";
-import { ChangeEvent, KeyboardEvent, useState } from "react";
+import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
 
 function SearchInput() {
 	const routerPushWithParams = useRouterPushWithParams();
 	const searchParams = useSearchParams();
 	const [searchBy, setSearchBy] = useState<string>(searchParams.get("searchBy") ?? ("name" as SearchByType));
 	const [keyword, setKeyword] = useState<string>("");
+
+	useEffect(() => {
+		console.log(searchParams.get("keyword"), searchParams.get("searchBy"));
+		setSearchBy(searchParams.get("searchBy") ?? ("name" as SearchByType));
+		setKeyword(searchParams.get("keyword") ?? "");
+	}, [searchParams]);
 
 	const handleSelectChange = (event: SelectChangeEvent) => {
 		setSearchBy(event.target.value);
@@ -71,6 +77,7 @@ function SearchInput() {
 				<InputBase
 					size="small"
 					sx={{ ml: 1, flex: 1 }}
+					value={keyword}
 					inputProps={{ style: { padding: 0 } }}
 					onChange={handleInputChange}
 					onKeyUp={handleInputKeyUp}

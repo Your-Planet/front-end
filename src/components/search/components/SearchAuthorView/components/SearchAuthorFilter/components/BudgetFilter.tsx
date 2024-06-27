@@ -18,7 +18,7 @@ import {
 } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import { useSearchParams } from "next/navigation";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 type Props = {};
 
@@ -29,6 +29,12 @@ function BudgetFilter({}: Props) {
 	const [minValue, setMinValue] = useState<number>(Number(searchParams.get("min")) ?? 0);
 	const [maxValue, setMaxValue] = useState<number>(Number(searchParams.get("max")) ?? 0);
 	const [isError, setIsError] = useState<boolean>(maxValue < minValue);
+
+	useEffect(() => {
+		setMinValue(Number(searchParams.get("min")) ?? 0);
+		setMaxValue(Number(searchParams.get("max")) ?? 0);
+		setIsError(false);
+	}, [searchParams]);
 
 	const handleChangeMin = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
 		const { value } = event.target;
