@@ -31,6 +31,10 @@ function SearchInput() {
 		}
 	};
 
+	const handleClickSearchIcon = () => {
+		routerPushWithParams(["searchBy", "keyword"], [searchBy, keyword]);
+	};
+
 	return (
 		<Box
 			sx={{
@@ -42,7 +46,7 @@ function SearchInput() {
 				size="small"
 				displayEmpty
 				sx={{
-					width: `${SEARCH_BY_BOX_WIDTH}px`,
+					minWidth: `${SEARCH_BY_BOX_WIDTH}px`,
 					borderTopRightRadius: 0,
 					borderBottomRightRadius: 0,
 				}}
@@ -71,7 +75,7 @@ function SearchInput() {
 					onChange={handleInputChange}
 					onKeyUp={handleInputKeyUp}
 				/>
-				<IconButton type="button" size="small">
+				<IconButton type="button" size="small" onClick={handleClickSearchIcon}>
 					<SearchIcon />
 				</IconButton>
 			</Box>
