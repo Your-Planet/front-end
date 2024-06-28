@@ -25,7 +25,7 @@ type JoinIa = Ia<"join", JoinSubIa["author"] & JoinSubIa["sponsor"] & JoinSubIa[
 
 type DeletionIa = Ia<"deletion", DeletionSubIa["complete"]>;
 
-type SearchIa = Ia<"search">;
+type SearchIa = Ia<"search", SearchSubIa["[id]"]>;
 
 type ProjectIa = Ia<"project">;
 
@@ -47,6 +47,10 @@ type JoinSubIa = {
 
 type DeletionSubIa = {
 	complete: Ia<"complete">;
+};
+
+type SearchSubIa = {
+	["[id]"]: Ia<"[id]">;
 };
 
 type MypageSubIa = {
