@@ -37,6 +37,7 @@ function BlurBox(props: Props) {
 							지금 로그인하고, 유어플래닛의 모든 작가들을 만나보세요!
 						</Typography>
 					</StyledTypographyBox>
+
 					<StyledButtonBoxInBlurBox>
 						<Button fullWidth variant="contained" onClick={handleClickLogin}>
 							로그인 하러가기
