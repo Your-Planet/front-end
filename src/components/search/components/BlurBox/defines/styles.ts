@@ -1,3 +1,4 @@
+import { TYPOGRAPHY_BOX_WIDTH } from "@/components/search/components/BlurBox/defines/constants";
 import { Box, styled } from "@mui/material";
 
 export const StyledBlurBox = styled(Box)`
@@ -26,4 +27,14 @@ export const StyledBlurInnerBox = styled(Box)`
 	display: flex;
 	flex-direction: column;
 	gap: 2rem;
+	align-items: center;
+`;
+
+export const StyledTypographyBox = styled(StyledBlurInnerBox)`
+	gap: 4px;
+`;
+
+export const StyledButtonBoxInBlurBox = styled(StyledBlurInnerBox)`
+	width: ${TYPOGRAPHY_BOX_WIDTH}px;
+	gap: 6px;
 `;
