@@ -27,6 +27,12 @@ function BudgetFilter({}: Props) {
 	const [isError, setIsError] = useState<boolean>(maxValue < minValue);
 
 	useEffect(() => {
+		setMinValue(Number(searchParams.get("min")) ?? 0);
+		setMaxValue(Number(searchParams.get("max")) ?? 0);
+		setIsError(false);
+	}, [searchParams]);
+
+	useEffect(() => {
 		if (maxValue < minValue) {
 			setIsError(true);
 		} else {
