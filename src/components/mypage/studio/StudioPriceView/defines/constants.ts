@@ -1,10 +1,5 @@
-import {
-	PostDurationMonthType,
-	ProvisionType,
-	ServiceForm,
-	ServiceLimits,
-	StudioPriceForm,
-} from "@/components/mypage/studio/StudioPriceView/defines/types";
+import { PostDurationMonthType, ProvisionType } from "@/apis/studio";
+import { ServiceForm, ServiceLimits, StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
 import { deepFreeze } from "@/utils/object";
 
 export const LABEL_BY_POST_DURATION_MONTH_TYPE: Record<PostDurationMonthType, string> = deepFreeze({

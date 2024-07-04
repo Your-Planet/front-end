@@ -18,7 +18,6 @@ function SearchInput() {
 	const [keyword, setKeyword] = useState<string>("");
 
 	useEffect(() => {
-		console.log(searchParams.get("keyword"), searchParams.get("searchBy"));
 		setSearchBy(searchParams.get("searchBy") ?? ("name" as SearchByType));
 		setKeyword(searchParams.get("keyword") ?? "");
 	}, [searchParams]);

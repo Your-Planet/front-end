@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export interface InstagramMediaCardProps {
 	instagramMedia: InstagramMedia;
-	width: number;
+	width: `${number}%` | number;
 }
 
 const SIDE_PADDING = 12;
@@ -30,14 +30,16 @@ function InstagramMediaCard(props: InstagramMediaCardProps) {
 				display: "flex",
 				gap: `${GAP}px`,
 				padding: `16px ${SIDE_PADDING}px`,
-				width: `${width}px`,
+				width,
 			}}
 		>
 			<Image src={thumbnailUrl} alt={caption} width={72} height={72} />
 			<EllipsisBox
 				line={4}
 				sx={{
-					width: width - SIDE_PADDING * 2 - IMAGE_SIZE - GAP,
+					width: `calc(${typeof width === "number" ? `${width}px` : width} - ${
+						SIDE_PADDING * 2
+					}px - ${IMAGE_SIZE}px - ${GAP}px)`,
 					lineHeight: 1.2,
 				}}
 			>

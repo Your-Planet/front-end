@@ -72,6 +72,11 @@ export const IA = deepFreeze<GlobalIa>({
 	search: {
 		title: "작가 찾기",
 		label: "작가 찾기",
+
+		"[id]": {
+			title: "작가 상세 보기",
+			label: "작가 상세 보기",
+		},
 	},
 
 	project: {
