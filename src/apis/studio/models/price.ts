@@ -43,3 +43,7 @@ export type ServiceOptionTypeByWorkingDays = {
 	withWorkingDays: "additionalPanel" | "additionalModification";
 	withoutWorkingDays: "refinement" | "postDurationExtension" | "originFile";
 };
+
+export type ServiceOptionType =
+	| ServiceOptionTypeByWorkingDays["withWorkingDays"]
+	| ServiceOptionTypeByWorkingDays["withoutWorkingDays"];

@@ -15,6 +15,7 @@ import {
 	workingDaysMinRule,
 } from "@/components/mypage/studio/StudioPriceView/defines/rule";
 import { StudioPriceForm } from "@/components/mypage/studio/StudioPriceView/defines/types";
+import { LABEL_BY_SERVICE_OPTION_TYPE } from "@/defines/price/constants";
 import { isNumber } from "@/utils/string";
 import { Box, InputAdornment, Typography } from "@mui/material";
 import { useFormContext } from "react-hook-form";
@@ -45,7 +46,7 @@ function OptionFormView() {
 
 			<Box>
 				<RadioGroup<ProvisionType>
-					label="2차 가공"
+					label={LABEL_BY_SERVICE_OPTION_TYPE.refinement}
 					formName="option.refinement.provisionType"
 					radios={PROVISION_RADIOS}
 					row
@@ -77,7 +78,7 @@ function OptionFormView() {
 			</Box>
 			<Box>
 				<RadioGroup<ProvisionType>
-					label="컷 수 추가"
+					label={LABEL_BY_SERVICE_OPTION_TYPE.additionalPanel}
 					formName="option.additionalPanel.provisionType"
 					radios={PROVISION_RADIOS}
 					row
@@ -135,7 +136,7 @@ function OptionFormView() {
 			</Box>
 			<Box>
 				<RadioGroup<ProvisionType>
-					label="수정 횟수 추가"
+					label={LABEL_BY_SERVICE_OPTION_TYPE.additionalModification}
 					formName="option.additionalModification.provisionType"
 					radios={PROVISION_RADIOS}
 					row
@@ -193,7 +194,7 @@ function OptionFormView() {
 			</Box>
 			<Box>
 				<RadioGroup<ProvisionType>
-					label="업로드 기간 연장"
+					label={LABEL_BY_SERVICE_OPTION_TYPE.postDurationExtension}
 					formName="option.postDurationExtension.provisionType"
 					radios={PROVISION_RADIOS}
 					row
@@ -225,7 +226,7 @@ function OptionFormView() {
 			</Box>
 			<Box>
 				<RadioGroup<ProvisionType>
-					label="원본 파일 제공"
+					label={LABEL_BY_SERVICE_OPTION_TYPE.originFile}
 					formName="option.originFile.provisionType"
 					radios={PROVISION_RADIOS}
 					row
