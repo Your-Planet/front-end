@@ -1,11 +1,15 @@
+import { TYPOGRAPHY_BOX_WIDTH } from "@/components/search/components/BlurBox/defines/constants";
 import {
 	StyledBlurBox,
 	StyledBlurContainerBox,
 	StyledBlurInnerBox,
+	StyledButtonBoxInBlurBox,
+	StyledTypographyBox,
 } from "@/components/search/components/BlurBox/defines/styles";
 import { IA } from "@/defines/ia/constants";
 import { getIaPath } from "@/utils/ia";
-import { Box, Button, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
+import { grey } from "@mui/material/colors";
 import { useRouter } from "next/navigation";
 
 type Props = {};
@@ -25,17 +29,23 @@ function BlurBox(props: Props) {
 		<StyledBlurBox>
 			<StyledBlurContainerBox>
 				<StyledBlurInnerBox>
-					<Typography className="font-bold" variant="h6">
-						로그인이 필요한 서비스입니다!
-					</Typography>
-					<Box className="gap-3 flex justify-end">
-						<Button variant="outlined" onClick={handleClickJoin}>
-							회원가입
+					<StyledTypographyBox>
+						<Typography className="font-bold" variant="h6">
+							유어플래닛에 무사히 도달하신 것을 환영합니다!
+						</Typography>
+						<Typography className="font-bold" variant="body2" color={grey[500]} width={`${TYPOGRAPHY_BOX_WIDTH}px`}>
+							지금 로그인하고, 유어플래닛의 모든 작가들을 만나보세요!
+						</Typography>
+					</StyledTypographyBox>
+
+					<StyledButtonBoxInBlurBox>
+						<Button fullWidth variant="contained" onClick={handleClickLogin}>
+							로그인 하러가기
 						</Button>
-						<Button variant="contained" onClick={handleClickLogin}>
-							로그인
+						<Button fullWidth variant="outlined" onClick={handleClickJoin}>
+							계정 만들기
 						</Button>
-					</Box>
+					</StyledButtonBoxInBlurBox>
 				</StyledBlurInnerBox>
 			</StyledBlurContainerBox>
 		</StyledBlurBox>
