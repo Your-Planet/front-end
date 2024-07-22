@@ -8,4 +8,5 @@ export type Portfolio = {
 
 export interface StudioProfileForm extends Pick<StudioProfile, "name" | "description" | "portfolios"> {
 	category: Record<InstatoonCategoryType, boolean>;
+	profileImage: File | string | null;
 }
