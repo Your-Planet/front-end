@@ -13,7 +13,7 @@ export type GetProfileRequest = void;
 
 export interface GetProfileResponse extends StudioProfile {}
 
-export interface PostProfileRequest extends Omit<StudioProfile, "portfolios"> {
+export interface PostProfileRequest extends Omit<StudioProfile, "portfolios" | "profileImageUrl"> {
 	portfolioIds: string[];
 }
 
