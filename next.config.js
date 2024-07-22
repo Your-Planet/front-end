@@ -3,7 +3,7 @@
 const SERVER_URL_BY_ENVIRONMENT = {
 	development: "http://localhost:8080",
 	test: "http://localhost:8080",
-	production: "https://ec2-15-164-160-23.ap-northeast-2.compute.amazonaws.com:8080",
+	production: "http://ec2-15-164-160-23.ap-northeast-2.compute.amazonaws.com:8080",
 };
 
 const nextConfig = {
