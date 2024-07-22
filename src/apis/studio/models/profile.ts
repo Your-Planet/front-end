@@ -6,6 +6,7 @@ export interface StudioProfile {
 	description: string;
 	categories: InstatoonCategoryType[];
 	portfolios: InstagramMedia[];
+	profileImageUrl: string;
 }
 
 export type GetProfileRequest = void;

@@ -10,10 +10,12 @@ import { AUTHOR_CARD_WIDTH, AuthorCardButtonEvent } from "@/components/common/Au
 import { AuthorCardLoadingProvider } from "@/components/common/AuthorCard/providers/AuthorCardLoadingProvider";
 import { Box, Stack } from "@mui/material";
 import { grey } from "@mui/material/colors";
+import { ReactNode } from "react";
 
 interface AuthorCardProps {
 	profile: Omit<StudioProfile, "portfolios">;
 	instagramUsername: string;
+	renderProfileImage?: (imageUrl: string) => ReactNode;
 	buttonEvent: {
 		project: AuthorCardButtonEvent;
 		detail: AuthorCardButtonEvent;
@@ -23,8 +25,9 @@ interface AuthorCardProps {
 
 function AuthorCard(props: AuthorCardProps) {
 	const {
-		profile: { name, description, categories },
+		profile: { name, description, categories, profileImageUrl },
 		instagramUsername,
+		renderProfileImage,
 		buttonEvent,
 		isLoading = false,
 	} = props;
@@ -50,8 +53,7 @@ function AuthorCard(props: AuthorCardProps) {
 						height: "fit-content",
 					}}
 				>
-					{/*TODO @김현규 프로필 사진*/}
-					<AuthorCardProfileImageField value={""} />
+					<AuthorCardProfileImageField value={renderProfileImage?.(profileImageUrl)} />
 					<Box>
 						<AuthorCardNameField value={name} />
 						<AuthorCardInstagramUsernameField value={`@${instagramUsername}`} />

@@ -1,8 +1,9 @@
 import { AuthorCardFieldProps } from "@/components/common/AuthorCard";
 import { useAuthorCardLoadingContext } from "@/components/common/AuthorCard/providers/AuthorCardLoadingProvider";
 import { Box, Skeleton } from "@mui/material";
+import { ReactNode } from "react";
 
-type AuthorCardProfileImageFieldProps = AuthorCardFieldProps<string>;
+type AuthorCardProfileImageFieldProps = AuthorCardFieldProps<ReactNode>;
 
 function AuthorCardProfileImageField(props: AuthorCardProfileImageFieldProps) {
 	const { value } = props;
