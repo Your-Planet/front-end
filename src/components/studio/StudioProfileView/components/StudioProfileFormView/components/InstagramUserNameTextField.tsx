@@ -1,6 +1,6 @@
 "use client";
 
-import { AuthorDetailResponse } from "@/apis/member";
+import { CreatorDetailResponse } from "@/apis/member";
 import { useMemberDetailContext } from "@/providers/MemberDetailProvider";
 import { enqueueClosableSnackbar } from "@/utils/snackbar";
 import { TextField } from "@mui/material";
@@ -15,7 +15,7 @@ function InstagramUserNameTextField(props: InstagramUserNameTextFieldProps) {
 
 	const { data: { data } = {}, isError } = useMemberDetailContext();
 
-	const memberInfo = data as AuthorDetailResponse;
+	const memberInfo = data as CreatorDetailResponse;
 
 	useEffect(() => {
 		if (isError) {

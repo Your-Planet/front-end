@@ -1,4 +1,4 @@
-export type MemberType = "ADMIN" | "AUTHOR" | "SPONSOR";
+export type MemberType = "ADMIN" | "CREATOR" | "SPONSOR";
 
 export type GenderType = "MALE" | "FEMALE";
 

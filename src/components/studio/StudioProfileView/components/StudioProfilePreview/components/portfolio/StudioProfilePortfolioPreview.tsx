@@ -1,4 +1,3 @@
-import { AUTHOR_CARD_WIDTH } from "@/components/common/AuthorCard";
 import InstagramMediaCard from "@/components/common/InstagramMediaCard";
 import { StudioProfileForm } from "@/components/studio/StudioProfileView/defines/types";
 import { styled } from "@mui/material";
@@ -21,7 +20,7 @@ function StudioProfilePortfolioPreview() {
 				.filter(({ id, permalink }) => id && permalink)
 				.map((portfolio) => (
 					<li key={portfolio.id}>
-						<InstagramMediaCard width={AUTHOR_CARD_WIDTH} instagramMedia={portfolio} />
+						<InstagramMediaCard width={CREATOR_CARD_WIDTH} instagramMedia={portfolio} />
 					</li>
 				))}
 		</StyledUl>

@@ -1,6 +1,6 @@
-import { AuthorDetailResponse } from "@/apis/member";
+import { CreatorDetailResponse } from "@/apis/member";
 import { StudioProfile } from "@/apis/studio";
-import AuthorCard from "@/components/common/AuthorCard";
+import CreatorCard from "@/components/common/CreatorCard";
 import { STUDIO_PROFILE_FORM_LENGTH } from "@/components/studio/StudioProfileView/defines/constants";
 import { StudioProfileForm } from "@/components/studio/StudioProfileView/defines/types";
 import useLoadStudioProfile from "@/components/studio/StudioProfileView/hooks/useLoadStudioProfile";
@@ -25,10 +25,10 @@ function StudioProfileCardPreview() {
 
 	const { data: { data } = {}, isLoading: isLoadingDetail } = useMemberDetailContext();
 
-	const memberInfo = data as AuthorDetailResponse;
+	const memberInfo = data as CreatorDetailResponse;
 
 	return (
-		<AuthorCard
+		<CreatorCard
 			profile={profile}
 			instagramUsername={memberInfo?.instagramUsername || ""}
 			buttonEvent={{

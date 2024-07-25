@@ -1,9 +1,9 @@
 "use client";
 
-import AuthorIntroductionSection from "@/components/search/SearchDetailView/components/AuthorIntroductionSection";
-import AuthorPortfoliosSection from "@/components/search/SearchDetailView/components/AuthorPortfoliosSection";
-import AuthorServiceOptionSection from "@/components/search/SearchDetailView/components/AuthorServiceOptionSection";
-import AuthorStudioProvider from "@/components/search/SearchDetailView/providers/AuthorStudioProvider";
+import CreatorIntroductionSection from "@/components/search/SearchDetailView/components/CreatorIntroductionSection";
+import CreatorPortfoliosSection from "@/components/search/SearchDetailView/components/CreatorPortfoliosSection";
+import CreatorServiceOptionSection from "@/components/search/SearchDetailView/components/CreatorServiceOptionSection";
+import CreatorStudioProvider from "@/components/search/SearchDetailView/providers/CreatorStudioProvider";
 import { Box } from "@mui/material";
 
 export interface SearchDetailViewProps {}
@@ -12,7 +12,7 @@ function SearchDetailView(props: SearchDetailViewProps) {
 	const {} = props;
 
 	return (
-		<AuthorStudioProvider>
+		<CreatorStudioProvider>
 			<Box
 				sx={{
 					display: "flex",
@@ -28,13 +28,13 @@ function SearchDetailView(props: SearchDetailViewProps) {
 						width: "fit-content",
 					}}
 				>
-					<AuthorIntroductionSection />
-					<AuthorServiceOptionSection />
+					<CreatorIntroductionSection />
+					<CreatorServiceOptionSection />
 				</Box>
 
-				<AuthorPortfoliosSection />
+				<CreatorPortfoliosSection />
 			</Box>
-		</AuthorStudioProvider>
+		</CreatorStudioProvider>
 	);
 }
 

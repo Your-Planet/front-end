@@ -22,7 +22,7 @@ type LoginIa = Ia<"login">;
 
 type LogoutIa = Ia<"logout">;
 
-type JoinIa = Ia<"join", JoinSubIa["author"] & JoinSubIa["sponsor"] & JoinSubIa["complete"]>;
+type JoinIa = Ia<"join", JoinSubIa["creator"] & JoinSubIa["sponsor"] & JoinSubIa["complete"]>;
 
 type DeletionIa = Ia<"deletion", DeletionSubIa["complete"]>;
 
@@ -43,7 +43,7 @@ type TermsIa = Ia<"terms">;
 type PrivacyIa = Ia<"privacy">;
 
 type JoinSubIa = {
-	author: Ia<"author", Ia<"verify" | "details">>;
+	creator: Ia<"creator", Ia<"verify" | "details">>;
 	sponsor: Ia<"sponsor", Ia<"details">>;
 	complete: Ia<"complete">;
 };
