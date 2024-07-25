@@ -1,3 +1,4 @@
+import { CREATOR_CARD_WIDTH } from "@/components/common/CreatorCard";
 import InstagramMediaCard from "@/components/common/InstagramMediaCard";
 import { StudioProfileForm } from "@/components/studio/StudioProfileView/defines/types";
 import { styled } from "@mui/material";

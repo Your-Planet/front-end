@@ -1,3 +1,5 @@
+import { CREATOR_CARD_WIDTH } from "@/components/common/CreatorCard/defines";
+
 export const STUDIO_FORM_WIDTH = 520;
 
 export const STUDIO_PROFILE_PREVIEW_WIDTH = CREATOR_CARD_WIDTH;
