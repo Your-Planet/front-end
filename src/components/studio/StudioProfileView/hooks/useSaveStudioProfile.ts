@@ -28,7 +28,7 @@ export default function useSaveStudioProfile(): UseSaveStudioProfile {
 			variant: "success",
 		});
 
-		router.push(getIaPath(IA.mypage.studio.price));
+		router.push(getIaPath(IA.studio.price));
 	};
 
 	const handleStudioProfileFormSubmit: FormEventHandler = handleSubmit(async (data) => {

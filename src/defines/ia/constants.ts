@@ -82,56 +82,47 @@ export const IA = deepFreeze<GlobalIa>({
 	project: {
 		title: "프로젝트 의뢰",
 		label: "프로젝트 의뢰",
+
+		"[id]": {
+			title: "프로젝트 상세",
+			label: "프로젝트 상세",
+		},
 	},
 
-	mypage: {
-		title: "마이페이지",
-		label: "마이페이지",
+	studio: {
+		title: "작가 스튜디오",
+		label: "작가 스튜디오",
 		accessConfig: {
 			allowedOnLogin: true,
+			allowedMemberTypes: ["AUTHOR"],
 		},
 
-		studio: {
-			title: "작가 스튜디오",
-			label: "작가 스튜디오",
+		profile: {
+			title: "작가 스튜디오 | 프로필",
+			label: "프로필 설정",
 			accessConfig: {
 				allowedOnLogin: true,
 				allowedMemberTypes: ["AUTHOR"],
 			},
-
-			profile: {
-				title: "작가 스튜디오 | 프로필",
-				label: "프로필 설정",
-				accessConfig: {
-					allowedOnLogin: true,
-					allowedMemberTypes: ["AUTHOR"],
-				},
-			},
-
-			price: {
-				title: "작가 스튜디오 | 가격",
-				label: "가격 설정",
-				accessConfig: {
-					allowedOnLogin: true,
-					allowedMemberTypes: ["AUTHOR"],
-				},
-			},
 		},
 
-		"project-history": {
-			title: "프로젝트 이력",
-			label: "프로젝트 이력",
+		price: {
+			title: "작가 스튜디오 | 가격",
+			label: "가격 설정",
 			accessConfig: {
 				allowedOnLogin: true,
+				allowedMemberTypes: ["AUTHOR"],
 			},
+		},
+	},
 
-			"[id]": {
-				title: "프로젝트 이력",
-				label: "상세 보기",
-				accessConfig: {
-					allowedOnLogin: true,
-				},
-			},
+	userinfo: {
+		title: "회원 정보 수정",
+		label: "회원 정보 수정",
+
+		verify: {
+			title: "회원 정보 확인",
+			label: "회원 정보 확인",
 		},
 	},
 
