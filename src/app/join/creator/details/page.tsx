@@ -1,4 +1,4 @@
-import { creatorizeInstagram } from "@/app/join/creator/actions";
+import { authorizeInstagram } from "@/app/join/creator/actions";
 import CookieSetter from "@/components/common/CookieSetter";
 import JoinCreatorFormView from "@/components/join/form/components/creator/JoinCreatorFormView";
 import { COOKIE } from "@/defines/cookie/constants";
@@ -24,7 +24,7 @@ async function JoinCreatorDetailsPage(props: PageProps) {
 		redirect(getIaPath(IA.join.creator.verify));
 	}
 
-	const { accessToken, expiresInSeconds } = await creatorizeInstagram(code);
+	const { accessToken, expiresInSeconds } = await authorizeInstagram(code);
 
 	return (
 		<CookieSetter name={COOKIE.instagramAccessToken} value={accessToken} expiresAt={expiresInSeconds}>

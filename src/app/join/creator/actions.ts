@@ -26,7 +26,7 @@ export const getInstagramAuthUrl = async () => {
 	return `${DOMAIN.instagram.api}/oauth/authorize?${params.toString()}`;
 };
 
-export const creatorizeInstagram = async (code: string) => {
+export const authorizeInstagram = async (code: string) => {
 	const { access_token: shortLivedAccessToken, user_id: userId } = (
 		await API.instagramAuth.shortLivedAccessToken({
 			client_id: clientId,
