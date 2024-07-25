@@ -6,7 +6,7 @@ import CreatorCardInstagramUsernameField from "@/components/common/CreatorCard/c
 import CreatorCardNameField from "@/components/common/CreatorCard/components/CreatorCardNameField";
 import CreatorCardProfileImageField from "@/components/common/CreatorCard/components/CreatorCardProfileImageField";
 import CreatorCardProjectButton from "@/components/common/CreatorCard/components/CreatorCardProjectButton";
-import { CreatorCardButtonEvent } from "@/components/common/CreatorCard/defines";
+import { CREATOR_CARD_WIDTH, CreatorCardButtonEvent } from "@/components/common/CreatorCard/defines";
 import { CreatorCardLoadingProvider } from "@/components/common/CreatorCard/providers/CreatorCardLoadingProvider";
 import { Box, Stack } from "@mui/material";
 import { grey } from "@mui/material/colors";
