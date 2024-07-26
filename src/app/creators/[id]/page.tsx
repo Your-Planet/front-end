@@ -1,7 +1,7 @@
-import CreatorsDetailView from "@/components/creators/CreatorsDetailView";
+import CreatorDetailView from "@/components/creators/CreatorDetailView";
 
-function CreatorsDetailPage() {
-	return <CreatorsDetailView />;
+function CreatorDetailPage() {
+	return <CreatorDetailView />;
 }
 
-export default CreatorsDetailPage;
+export default CreatorDetailPage;
