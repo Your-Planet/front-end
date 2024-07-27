@@ -12,10 +12,15 @@ import {
 	ValidateMemberRequest,
 	ValidateMemberResponse,
 } from "@/apis/member/models";
+import { RefreshTokenRequest, RefreshTokenResponse } from "@/apis/member/models/refresh-token";
 import { AxiosRequestYourPlanetFunction } from "@/defines/apis/types";
 import BaseApi from "@/utils/api/BaseApi";
 
 export class MemberApi extends BaseApi {
+	public refreshToken: AxiosRequestYourPlanetFunction<RefreshTokenRequest, RefreshTokenResponse> = () => {
+		return this.axiosInstance.post(this.getUrl("/refresh-token"));
+	};
+
 	public join: AxiosRequestYourPlanetFunction<JoinRequest, JoinResponse> = (req) => {
 		return this.axiosInstance.post(this.getUrl("/join"), req);
 	};
