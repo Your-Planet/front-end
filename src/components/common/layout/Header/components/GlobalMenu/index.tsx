@@ -1,3 +1,5 @@
+"use client";
+
 import GlobalMenuLink from "@/components/common/layout/Header/components/GlobalMenu/components/GlobalMenuLink";
 import { IA } from "@/defines/ia/constants";
 import { useAuthContext } from "@/providers/AuthProvider";
