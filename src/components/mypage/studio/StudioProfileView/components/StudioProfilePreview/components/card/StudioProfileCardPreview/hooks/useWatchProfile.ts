@@ -45,7 +45,11 @@ export default function useWatchProfile() {
 		name: name.substring(0, STUDIO_PROFILE_FORM_LENGTH.name.max),
 		description: description.substring(0, STUDIO_PROFILE_FORM_LENGTH.description.max),
 		categories: categoryToCategories(category).slice(0, STUDIO_PROFILE_FORM_LENGTH.category.max),
-		profileImageUrl: profileImage ? (getIsProfileImageTypeString(profileImage) ? profileImage : profileImageURL) : "",
+		profileImageUrl: getIsProfileImageTypeString(profileImage)
+			? profileImage
+			: getIsProfileImageTypeFile(profileImage)
+				? profileImageURL
+				: "",
 	};
 
 	return profile;
