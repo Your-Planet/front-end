@@ -3,13 +3,13 @@ import {
 	AxiosInterceptorCallbacks,
 	AxiosInterceptorFulfilledCallback,
 } from "@/providers/AxiosConfigRegistry/hooks/useInternalAxiosConfig/defines/types";
-import useHandleAxiosUnauthorizedError from "@/providers/AxiosConfigRegistry/hooks/useInternalAxiosConfig/hooks/useInternalAxiosResponseInterceptor/hooks/useHandleAxiosUnauthorizedError";
+import useAxiosUnauthorizedErrorHandler from "@/providers/AxiosConfigRegistry/hooks/useInternalAxiosConfig/hooks/useInternalAxiosResponseInterceptor/hooks/useAxiosUnauthorizedErrorHandler";
 import { AxiosError, AxiosResponse, HttpStatusCode } from "axios";
 
 export type UseInternalAxiosResponseInterceptor = AxiosInterceptorCallbacks<AxiosResponse>;
 
 export default function useInternalAxiosResponseInterceptor(): UseInternalAxiosResponseInterceptor {
-	const handleUnauthorizedError = useHandleAxiosUnauthorizedError();
+	const handleUnauthorizedError = useAxiosUnauthorizedErrorHandler();
 
 	const handleFulfilled: AxiosInterceptorFulfilledCallback<AxiosResponse> = (response) => response;
 

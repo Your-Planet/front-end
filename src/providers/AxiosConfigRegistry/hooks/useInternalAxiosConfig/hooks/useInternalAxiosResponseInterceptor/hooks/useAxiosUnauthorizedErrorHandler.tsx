@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { closeSnackbar, enqueueSnackbar, SnackbarKey } from "notistack";
 import { useEffect, useRef } from "react";
 
-export default function useHandleAxiosUnauthorizedError() {
+export default function useAxiosUnauthorizedErrorHandler() {
 	const needLoginMessageRef = useRef(false);
 	const needLoginMessageSnackbarKey = useRef<SnackbarKey>();
 
