@@ -6,6 +6,21 @@ import useFileToDataURLConverter from "@/hooks/common/useFileToDataURLConverter"
 import { useEffect, useState } from "react";
 import { useWatch } from "react-hook-form";
 
+type ProfileImage = StudioProfileForm["profileImage"];
+
+const getProfileImageTypeChecker =
+	(profileImage: ProfileImage) =>
+	<T extends "object" | "string">(typeName: T) =>
+		typeof profileImage === typeName;
+
+const getIsProfileImageTypeString = (profileImage: ProfileImage): profileImage is string =>
+	getProfileImageTypeChecker(profileImage)("string");
+
+const getIsProfileImageTypeFile = (profileImage: ProfileImage): profileImage is File => {
+	if (!profileImage) return false;
+	return getProfileImageTypeChecker(profileImage)("object");
+};
+
 export default function useWatchProfile() {
 	const [name, description, category, profileImage] = useWatch<
 		StudioProfileForm,
@@ -16,11 +31,11 @@ export default function useWatchProfile() {
 
 	const convertFileToDataURL = useFileToDataURLConverter();
 
-	const [profileImageURL, setProfileImageURL] = useState(typeof profileImage === "string" ? profileImage : "");
+	const [profileImageURL, setProfileImageURL] = useState(getIsProfileImageTypeString(profileImage) ? profileImage : "");
 
 	useEffect(() => {
 		(async () => {
-			if (profileImage && typeof profileImage === "object") {
+			if (profileImage && getIsProfileImageTypeFile(profileImage)) {
 				setProfileImageURL(await convertFileToDataURL(profileImage));
 			}
 		})();
@@ -30,7 +45,7 @@ export default function useWatchProfile() {
 		name: name.substring(0, STUDIO_PROFILE_FORM_LENGTH.name.max),
 		description: description.substring(0, STUDIO_PROFILE_FORM_LENGTH.description.max),
 		categories: categoryToCategories(category).slice(0, STUDIO_PROFILE_FORM_LENGTH.category.max),
-		profileImageUrl: profileImage ? (typeof profileImage === "string" ? profileImage : profileImageURL) : "",
+		profileImageUrl: profileImage ? (getIsProfileImageTypeString(profileImage) ? profileImage : profileImageURL) : "",
 	};
 
 	return profile;
