@@ -1,6 +1,7 @@
 import { AuthorDetailResponse } from "@/apis/member";
 import { StudioProfile } from "@/apis/studio";
 import AuthorCard from "@/components/common/AuthorCard";
+import ProfileImageSelector from "@/components/common/profile-image/ProfileImageSelector";
 import { STUDIO_PROFILE_FORM_LENGTH } from "@/components/mypage/studio/StudioProfileView/defines/constants";
 import { StudioProfileForm } from "@/components/mypage/studio/StudioProfileView/defines/types";
 import useLoadStudioProfile from "@/components/mypage/studio/StudioProfileView/hooks/useLoadStudioProfile";
@@ -32,6 +33,7 @@ function StudioProfileCardPreview() {
 		<AuthorCard
 			profile={profile}
 			instagramUsername={memberInfo?.instagramUsername || ""}
+			renderProfileImage={() => <ProfileImageSelector />}
 			buttonEvent={{
 				project: {
 					tooltip: BUTTON_TOOLTIP_MESSAGE,
