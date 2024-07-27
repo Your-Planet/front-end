@@ -35,7 +35,7 @@ export default function useWatchProfile() {
 
 	useEffect(() => {
 		(async () => {
-			if (profileImage && getIsProfileImageTypeFile(profileImage)) {
+			if (getIsProfileImageTypeFile(profileImage)) {
 				setProfileImageURL(await convertFileToDataURL(profileImage));
 			}
 		})();
