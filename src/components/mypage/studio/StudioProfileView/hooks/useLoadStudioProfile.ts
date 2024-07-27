@@ -17,11 +17,12 @@ export default function useLoadStudioProfile() {
 	useEffect(() => {
 		if (!profile) return;
 
-		const { categories, ...rest } = profile;
+		const { categories, profileImageUrl, ...rest } = profile;
 
 		reset({
 			...rest,
 			category: categoriesToCategory(categories),
+			profileImage: profileImageUrl,
 		});
 	}, [profile]);
 

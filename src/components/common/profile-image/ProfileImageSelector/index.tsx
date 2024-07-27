@@ -4,7 +4,7 @@ import ProfileImage from "@/components/common/profile-image/ProfileImage";
 import EditIcon from "@mui/icons-material/Edit";
 import { Box, IconButton, styled } from "@mui/material";
 import { grey } from "@mui/material/colors";
-import { ChangeEventHandler, useState } from "react";
+import { ChangeEventHandler } from "react";
 
 export interface ProfileImageSelectorProps {
 	src?: string;
@@ -25,21 +25,6 @@ const VisuallyHiddenInput = styled("input")({
 function ProfileImageSelector(props: ProfileImageSelectorProps) {
 	const { src, onChange } = props;
 
-	const [imageSrc, setImageSrc] = useState(src);
-
-	const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-		const image = e.target.files?.[0];
-		if (!image) return;
-
-		onChange?.(e);
-
-		const reader = new FileReader();
-		reader.readAsDataURL(image);
-		reader.onload = () => {
-			setImageSrc(reader.result as string);
-		};
-	};
-
 	return (
 		<Box
 			sx={{
@@ -48,7 +33,7 @@ function ProfileImageSelector(props: ProfileImageSelectorProps) {
 				height: "100%",
 			}}
 		>
-			{imageSrc && <ProfileImage src={imageSrc} />}
+			{src && <ProfileImage src={src} />}
 			<IconButton
 				aria-label="select profile image"
 				component="label"
@@ -67,7 +52,7 @@ function ProfileImageSelector(props: ProfileImageSelectorProps) {
 				}}
 			>
 				<EditIcon sx={{ fontSize: "16px" }} />
-				<VisuallyHiddenInput type="file" accept="image/*" onChange={handleChange} />
+				<VisuallyHiddenInput type="file" accept="image/*" onChange={onChange} />
 			</IconButton>
 		</Box>
 	);
