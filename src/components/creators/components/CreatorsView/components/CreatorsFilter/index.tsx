@@ -1,12 +1,12 @@
 "use client";
 
-import BudgetFilter from "@/components/creators/components/SearchCreatorsView/components/SearchCreatorsFilter/components/BudgetFilter";
-import CategoryFilter from "@/components/creators/components/SearchCreatorsView/components/SearchCreatorsFilter/components/CategoryFilter";
-import SearchInput from "@/components/creators/components/SearchCreatorsView/components/SearchCreatorsFilter/components/SearchInput";
+import BudgetFilter from "@/components/creators/components/CreatorsView/components/CreatorsFilter/components/BudgetFilter";
+import CategoryFilter from "@/components/creators/components/CreatorsView/components/CreatorsFilter/components/CategoryFilter";
+import SearchInput from "@/components/creators/components/CreatorsView/components/CreatorsFilter/components/SearchInput";
 import { Box, Button } from "@mui/material";
 import { usePathname, useRouter } from "next/navigation";
 
-function SearchCreatorFilter(props: {}) {
+function CreatorsFilter(props: {}) {
 	const router = useRouter();
 	const pathname = usePathname();
 
@@ -29,4 +29,4 @@ function SearchCreatorFilter(props: {}) {
 	);
 }
 
-export default SearchCreatorFilter;
+export default CreatorsFilter;

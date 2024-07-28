@@ -3,8 +3,8 @@
 import {
 	SEARCH_BY_BOX_WIDTH,
 	SEARCH_BY_LABEL,
-} from "@/components/creators/components/SearchCreatorsView/components/SearchCreatorsFilter/defines/constants";
-import { SearchByType } from "@/components/creators/components/SearchCreatorsView/components/SearchCreatorsFilter/defines/type";
+} from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/constants";
+import { SearchByType } from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/type";
 import useRouterPushWithParams from "@/components/creators/hooks/useRouterPushWithParams";
 import SearchIcon from "@mui/icons-material/Search";
 import { Box, IconButton, InputBase, MenuItem, Select, SelectChangeEvent } from "@mui/material";

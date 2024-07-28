@@ -2,7 +2,7 @@
 
 import Banner from "@/components/creators/components/Banner";
 import BlurBox from "@/components/creators/components/BlurBox";
-import SearchCreatorView from "@/components/creators/components/SearchCreatorsView";
+import CreatorsView from "@/components/creators/components/CreatorsView";
 import { StyledBannerBox, StyledContainerBox, StyledInnerBox } from "@/components/creators/defines/styles";
 import { COOKIE } from "@/defines/cookie/constants";
 import { getCookie } from "@/utils/cookie";
@@ -24,7 +24,7 @@ function SearchPageView({}: Props) {
 			<StyledContainerBox>
 				{!accessToken && <BlurBox />}
 				<StyledInnerBox>
-					<SearchCreatorView />
+					<CreatorsView />
 				</StyledInnerBox>
 			</StyledContainerBox>
 		</Box>

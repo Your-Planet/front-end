@@ -1,7 +1,7 @@
 import {
 	SearchByType,
 	SortByType,
-} from "@/components/creators/components/SearchCreatorsView/components/SearchCreatorsFilter/defines/type";
+} from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/type";
 
 export const CATEGORY_SELECT_BOX_WIDTH = 120;
 export const BUDGET_SELECT_BOX_WIDTH = 100;

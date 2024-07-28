@@ -1,20 +1,20 @@
 "use client";
 
-import AppliedFilterChip from "@/components/creators/components/SearchCreatorsView/components/AppliedFilterChip";
-import Header from "@/components/creators/components/SearchCreatorsView/components/Header";
-import SearchCreatorFilter from "@/components/creators/components/SearchCreatorsView/components/SearchCreatorsFilter";
-import SortSection from "@/components/creators/components/SearchCreatorsView/components/SortSection";
+import AppliedFilterChip from "@/components/creators/components/CreatorsView/components/AppliedFilterChip";
+import CreatorsFilter from "@/components/creators/components/CreatorsView/components/CreatorsFilter";
+import Header from "@/components/creators/components/CreatorsView/components/Header";
+import SortSection from "@/components/creators/components/CreatorsView/components/SortSection";
 import { Box, MenuItem, Select } from "@mui/material";
 
 type Props = {};
 
-function SearchCreatorView({}: Props) {
+function CreatorsView({}: Props) {
 	return (
 		<Box display="flex" gap="3rem" flexDirection="column">
 			<Header />
 			<Box display="flex" gap="1rem" flexDirection="column">
 				<Box display="flex" justifyContent="space-between" alignItems="center">
-					<SearchCreatorFilter />
+					<CreatorsFilter />
 
 					<Box display="flex" gap="1rem">
 						{/* TODO: @나은찬 컴포넌트화 */}
@@ -33,4 +33,4 @@ function SearchCreatorView({}: Props) {
 	);
 }
 
-export default SearchCreatorView;
+export default CreatorsView;
