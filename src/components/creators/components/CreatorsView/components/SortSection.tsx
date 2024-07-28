@@ -3,7 +3,7 @@
 import {
 	SORT_BY_BOX_WIDTH,
 	SORT_BY_LABEL,
-} from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/constants";
+} from "@/components/creators/components/CreatorsView/components/SearchFilter/defines/constants";
 import useRouterPushWithParams from "@/components/creators/hooks/useRouterPushWithParams";
 import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { useSearchParams } from "next/navigation";

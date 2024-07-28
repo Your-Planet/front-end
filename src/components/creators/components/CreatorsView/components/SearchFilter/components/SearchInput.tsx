@@ -1,29 +1,36 @@
 "use client";
 
 import {
-	SEARCH_BY_BOX_WIDTH,
-	SEARCH_BY_LABEL,
-} from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/constants";
-import { SearchByType } from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/type";
+	KEYWORD_TYPE_BOX_WIDTH,
+	KEYWORD_TYPE_LABEL,
+} from "@/components/creators/components/CreatorsView/components/SearchFilter/defines/constants";
+import { KeywordType } from "@/components/creators/components/CreatorsView/components/SearchFilter/defines/type";
 import useRouterPushWithParams from "@/components/creators/hooks/useRouterPushWithParams";
 import SearchIcon from "@mui/icons-material/Search";
 import { Box, IconButton, InputBase, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { useSearchParams } from "next/navigation";
 import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
 
-function SearchInput() {
+type Props = {
+	handleClickSearch: Function;
+};
+
+function SearchInput(props: Props) {
+	const { handleClickSearch } = props;
 	const routerPushWithParams = useRouterPushWithParams();
 	const searchParams = useSearchParams();
-	const [searchBy, setSearchBy] = useState<string>(searchParams.get("searchBy") ?? ("name" as SearchByType));
+	const [keywordType, setKeywordType] = useState<string>(
+		searchParams.get("keywordType") ?? ("toonName" as KeywordType),
+	);
 	const [keyword, setKeyword] = useState<string>("");
 
 	useEffect(() => {
-		setSearchBy(searchParams.get("searchBy") ?? ("name" as SearchByType));
+		setKeywordType(searchParams.get("keywordType") ?? ("toonName" as KeywordType));
 		setKeyword(searchParams.get("keyword") ?? "");
 	}, [searchParams]);
 
 	const handleSelectChange = (event: SelectChangeEvent) => {
-		setSearchBy(event.target.value);
+		setKeywordType(event.target.value);
 	};
 
 	const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -32,12 +39,14 @@ function SearchInput() {
 
 	const handleInputKeyUp = (event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 		if (event.key === "Enter") {
-			routerPushWithParams(["searchBy", "keyword"], [searchBy, keyword]);
+			routerPushWithParams(["keywordType", "keyword"], [keywordType, keyword]);
+			handleClickSearch();
 		}
 	};
 
 	const handleClickSearchIcon = () => {
-		routerPushWithParams(["searchBy", "keyword"], [searchBy, keyword]);
+		routerPushWithParams(["keywordType", "keyword"], [keywordType, keyword]);
+		handleClickSearch();
 	};
 
 	return (
@@ -47,18 +56,18 @@ function SearchInput() {
 			}}
 		>
 			<Select
-				value={searchBy}
+				value={keywordType}
 				size="small"
 				displayEmpty
 				sx={{
-					minWidth: `${SEARCH_BY_BOX_WIDTH}px`,
+					minWidth: `${KEYWORD_TYPE_BOX_WIDTH}px`,
 					borderTopRightRadius: 0,
 					borderBottomRightRadius: 0,
 				}}
 				onChange={handleSelectChange}
 			>
-				{Object.entries(SEARCH_BY_LABEL).map(([searchByType, label]) => (
-					<MenuItem key={searchByType} value={searchByType}>
+				{Object.entries(KEYWORD_TYPE_LABEL).map(([keywordType, label]) => (
+					<MenuItem key={keywordType} value={keywordType}>
 						{label}
 					</MenuItem>
 				))}

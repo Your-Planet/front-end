@@ -1,13 +1,13 @@
 "use client";
 
-import { BUDGET_SELECT_BOX_WIDTH } from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/constants";
+import { BUDGET_SELECT_BOX_WIDTH } from "@/components/creators/components/CreatorsView/components/SearchFilter/defines/constants";
 import {
 	StyledBoxInBudgetFilter,
 	StyledFormHelperText,
 	StyledInfoOutlinedIcon,
 	StyledSwapHorizRounded,
 	StyledTextFieldInBudgetFilter,
-} from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/styles";
+} from "@/components/creators/components/CreatorsView/components/SearchFilter/defines/styles";
 import useRouterPushWithParams from "@/components/creators/hooks/useRouterPushWithParams";
 import useOpen from "@/hooks/common/useOpen";
 import { isNumber } from "@/utils/string";
