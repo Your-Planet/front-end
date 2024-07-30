@@ -18,15 +18,18 @@ export default function useGetAxiosTokenExpiredErrorHandler(): GetAxiosIntercept
 	return ({ refreshTokenPromiseRef, axiosInstance }) => {
 		const requestRefreshToken = async (config: InternalAxiosRequestConfig) => {
 			if (!refreshTokenPromiseRef.current) {
+				// eslint-disable-next-line no-param-reassign
 				refreshTokenPromiseRef.current = setRefreshedAccessToken();
 			}
 
 			try {
 				await refreshTokenPromiseRef.current;
+				// eslint-disable-next-line no-param-reassign
 				refreshTokenPromiseRef.current = null;
 
 				return await axiosInstance(config);
 			} catch (e) {
+				// eslint-disable-next-line no-param-reassign
 				refreshTokenPromiseRef.current = null;
 
 				return Promise.reject(e);
