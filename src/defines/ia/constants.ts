@@ -22,7 +22,7 @@ export const IA = deepFreeze<GlobalIa>({
 		title: "회원가입",
 		label: "회원가입",
 
-		author: {
+		creator: {
 			title: "작가 회원가입",
 			label: "작가 회원가입",
 
@@ -94,7 +94,7 @@ export const IA = deepFreeze<GlobalIa>({
 		label: "작가 스튜디오",
 		accessConfig: {
 			allowedOnLogin: true,
-			allowedMemberTypes: ["AUTHOR"],
+			allowedMemberTypes: ["CREATOR"],
 		},
 
 		profile: {
@@ -102,7 +102,7 @@ export const IA = deepFreeze<GlobalIa>({
 			label: "프로필 설정",
 			accessConfig: {
 				allowedOnLogin: true,
-				allowedMemberTypes: ["AUTHOR"],
+				allowedMemberTypes: ["CREATOR"],
 			},
 		},
 
@@ -111,7 +111,7 @@ export const IA = deepFreeze<GlobalIa>({
 			label: "가격 설정",
 			accessConfig: {
 				allowedOnLogin: true,
-				allowedMemberTypes: ["AUTHOR"],
+				allowedMemberTypes: ["CREATOR"],
 			},
 		},
 	},
