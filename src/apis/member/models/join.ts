@@ -12,7 +12,7 @@ interface CommonJoinRequest {
 	termsInfo: TermsInfoType;
 }
 
-export interface AuthorJoinRequest extends CommonJoinRequest {
+export interface CreatorJoinRequest extends CommonJoinRequest {
 	instagramId: string;
 	instagramUsername: string;
 	instagramAccessToken: string;
@@ -26,6 +26,6 @@ export interface SponsorJoinRequest extends CommonJoinRequest {
 	subscriptionPath?: SubscriptionPathType;
 }
 
-export type JoinRequest = AuthorJoinRequest | SponsorJoinRequest;
+export type JoinRequest = CreatorJoinRequest | SponsorJoinRequest;
 
 export type JoinResponse = JoinRequest;

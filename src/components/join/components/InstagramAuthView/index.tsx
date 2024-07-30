@@ -1,6 +1,6 @@
 "use client";
 
-import { getInstagramAuthUrl } from "@/app/join/author/actions";
+import { getInstagramAuthUrl } from "@/app/join/creator/actions";
 import Logo from "@/components/common/Logo";
 import InstagramIcon from "@/icons/InstagramIcon";
 import { Button } from "@mui/material";
