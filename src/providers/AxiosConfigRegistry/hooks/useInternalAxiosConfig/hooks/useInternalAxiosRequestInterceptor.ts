@@ -9,7 +9,7 @@ export type UseInternalAxiosRequestInterceptor = AxiosInterceptorCallbacks<Inter
 
 export default function useInternalAxiosRequestInterceptor(): UseInternalAxiosRequestInterceptor {
 	return {
-		getFulfilledHandler: ({ refreshTokenPromiseRef, axiosInstance }) => {
+		getFulfilledHandler: ({ refreshTokenPromiseRef }) => {
 			return async (config) => {
 				if (refreshTokenPromiseRef.current && !config.url?.includes(REFRESH_TOKEN_URL)) {
 					await refreshTokenPromiseRef.current;
