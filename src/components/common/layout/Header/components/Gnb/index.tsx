@@ -8,7 +8,7 @@ function Gnb() {
 	return (
 		<Box className="flex">
 			<GnbLink page={IA} />
-			<GnbLink page={IA.search} />
+			<GnbLink page={IA.creators} />
 		</Box>
 	);
 }
