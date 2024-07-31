@@ -1,37 +1,7 @@
-import { PostDurationMonthType, ProvisionType } from "@/components/mypage/studio/StudioPriceView/defines/types";
-
-interface StudioPrice {
-	service: {
-		price: number;
-		workingDays: number;
-		defaultCuts: number;
-		modificationCount: number;
-		postDurationMonthType: PostDurationMonthType;
-	};
-	option: {
-		refinement: {
-			provisionType: ProvisionType;
-			price: number;
-		};
-		additionalPanel: {
-			provisionType: ProvisionType;
-			price: number;
-			workingDays: number;
-		};
-		additionalModification: {
-			provisionType: ProvisionType;
-			price: number;
-			workingDays: number;
-		};
-		postDurationExtension: {
-			provisionType: ProvisionType;
-			price: number;
-		};
-		originFile: {
-			provisionType: ProvisionType;
-			price: number;
-		};
-	};
+export interface StudioPrice {
+	service: DefaultService;
+	option: Record<ServiceOptionTypeByWorkingDays["withWorkingDays"], ProvidingServiceWithWorkingDays> &
+		Record<ServiceOptionTypeByWorkingDays["withoutWorkingDays"], ProvidingServiceWithWorkingDays>;
 }
 
 export interface PostPriceTempRequest extends StudioPrice {}
@@ -49,3 +19,31 @@ export type GetPriceResponse = StudioPrice;
 export type PostPriceTempResponse = void;
 
 export type PostPriceResponse = void;
+
+export type PostDurationMonthType = "ONE_MONTH" | "TWO_MONTH" | "THREE_MONTH" | "SIX_MONTH" | "MORE_THAN_ONE_YEAR";
+
+export type ProvisionType = "UNPROVIDED" | "DEFAULT" | "PROVIDED";
+
+export interface ProvidingService {
+	provisionType: ProvisionType;
+	price: number;
+}
+
+export interface ProvidingServiceWithWorkingDays extends ProvidingService {
+	workingDays: number;
+}
+
+export interface DefaultService extends Omit<ProvidingServiceWithWorkingDays, "provisionType"> {
+	defaultCuts: number;
+	modificationCount: number;
+	postDurationMonthType: PostDurationMonthType;
+}
+
+export type ServiceOptionTypeByWorkingDays = {
+	withWorkingDays: "additionalPanel" | "additionalModification";
+	withoutWorkingDays: "refinement" | "postDurationExtension" | "originFile";
+};
+
+export type ServiceOptionType =
+	| ServiceOptionTypeByWorkingDays["withWorkingDays"]
+	| ServiceOptionTypeByWorkingDays["withoutWorkingDays"];

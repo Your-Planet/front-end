@@ -14,7 +14,8 @@ import useMutationPostSponsorJoin from "@/hooks/queries/member/useMutationPostSp
 import { getObjectAtPath } from "@/utils/object";
 import { getEmailValidateRule, getLengthErrorMessage } from "@/utils/react-hook-form/rule";
 import { isNumber } from "@/utils/string";
-import { Box, Button, FormControl, FormHelperText } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
+import { Box, FormControl, FormHelperText } from "@mui/material";
 import { FormEventHandler, KeyboardEventHandler } from "react";
 import { useDaumPostcodePopup } from "react-daum-postcode";
 import { postcodeScriptUrl } from "react-daum-postcode/lib/loadPostcode";
@@ -55,7 +56,7 @@ function JoinSponsorFormView() {
 		formState: { errors },
 	} = form;
 
-	const { mutate: mutatePostJoin } = useMutationPostSponsorJoin({});
+	const { mutate: mutatePostJoin, isPending } = useMutationPostSponsorJoin({});
 
 	const { handleSuccessJoin, handleFailJoin } = useJoinForm();
 
@@ -149,6 +150,7 @@ function JoinSponsorFormView() {
 						}}
 						placeholder="숫자만 입력하세요"
 						fullWidth
+						validator={isNumber}
 						type="tel"
 					/>
 
@@ -250,9 +252,9 @@ function JoinSponsorFormView() {
 						]}
 					/>
 
-					<Button type="submit" variant="contained" size="large" fullWidth>
+					<LoadingButton type="submit" variant="contained" size="large" fullWidth loading={isPending}>
 						가입하기
-					</Button>
+					</LoadingButton>
 				</StyledFormInJoin>
 			</FormProvider>
 		</StyledBoxInJoin>

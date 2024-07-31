@@ -1,12 +1,11 @@
 export interface InstagramMedia {
 	id: string;
 	caption: string;
-	isSharedToFeed: boolean;
+	sharedToFeed: boolean;
 	mediaType: string;
 	mediaUrl: string;
 	permalink: string;
-	thumbnailUrl: string;
-	timestamp: string;
+	timestamp: string | null;
 	username: string;
 }
 
