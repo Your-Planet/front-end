@@ -13,7 +13,8 @@ export type GlobalIa = PageAttributes &
 	FindIa &
 	ResetPwIa &
 	TermsIa &
-	PrivacyIa;
+	PrivacyIa &
+	DummyIa;
 
 export type Ia<PageName extends string, SubIa extends PageAttributes = PageAttributes> = PageAttributes &
 	Record<PageName, SubIa>;
@@ -41,6 +42,8 @@ type ResetPwIa = Ia<"reset-pw">;
 type TermsIa = Ia<"terms">;
 
 type PrivacyIa = Ia<"privacy">;
+
+type DummyIa = Ia<"dummy">;
 
 type JoinSubIa = {
 	creator: Ia<"creator", Ia<"verify" | "details">>;

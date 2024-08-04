@@ -72,6 +72,11 @@ export const IA = deepFreeze<GlobalIa>({
 	creators: {
 		title: "작가 찾기",
 		label: "작가 찾기",
+		accessConfig: {
+			allowedOnLogin: true,
+			allowedMemberTypes: ["ADMIN", "SPONSOR"],
+			fallbackUrl: "dummy",
+		},
 
 		"[id]": {
 			title: "작가 상세 보기",
@@ -189,5 +194,13 @@ export const IA = deepFreeze<GlobalIa>({
 	privacy: {
 		title: "개인정보처리방침",
 		label: "개인정보처리방침",
+	},
+
+	dummy: {
+		title: "더미 페이지",
+		label: "더미 페이지",
+		accessConfig: {
+			disallowedOnLogin: true,
+		},
 	},
 });

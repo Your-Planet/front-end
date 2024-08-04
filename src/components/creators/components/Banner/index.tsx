@@ -1,23 +1,29 @@
+import {
+	StyledAnimatedBoxInBanner,
+	StyledBoxInBanner,
+	StyledTypographyBoxInBanner,
+} from "@/components/creators/components/Banner/defines/styles";
 import { Box, Typography } from "@mui/material";
+import { StyledTypographyAnimatedBoxInBanner } from "./defines/styles";
 
 function Banner() {
 	return (
-		<Box className="flex w-full h-full justify-center flex-col">
+		<StyledBoxInBanner>
 			<Box>
-				<Box className="flex animate-fade-right animate-duration-[3s]">
-					<Box className="border-t-[10px] border-solid border-t-black">
+				<StyledAnimatedBoxInBanner>
+					<StyledTypographyBoxInBanner>
 						<Typography variant="h1" fontWeight="bold">
 							PARTNER
 						</Typography>
-					</Box>
-				</Box>
-				<Box className="animate-fade-right animate-duration-[3s] animate-delay-1000">
+					</StyledTypographyBoxInBanner>
+				</StyledAnimatedBoxInBanner>
+				<StyledTypographyAnimatedBoxInBanner>
 					<Typography variant="h6" color="GrayText">
 						유어플래닛은 광고 목적에 맞게 인스타툰 통합 솔루션을 제공합니다.
 					</Typography>
-				</Box>
+				</StyledTypographyAnimatedBoxInBanner>
 			</Box>
-		</Box>
+		</StyledBoxInBanner>
 	);
 }
 
