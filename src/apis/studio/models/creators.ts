@@ -1,4 +1,4 @@
-import { KeywordType } from "@/components/creators/components/CreatorsView/components/SearchFilter/defines/type";
+import { KeywordType } from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/type";
 import { InstatoonCategoryType } from "@/defines/instatoon-category/types";
 
 export interface CreatorsRequest {

@@ -1,8 +1,8 @@
 "use client";
 
-import BudgetFilter from "@/components/creators/components/CreatorsView/components/SearchFilter/components/BudgetFilter";
-import CategoryFilter from "@/components/creators/components/CreatorsView/components/SearchFilter/components/CategoryFilter";
-import SearchInput from "@/components/creators/components/CreatorsView/components/SearchFilter/components/SearchInput";
+import BudgetFilter from "@/components/creators/components/CreatorsView/components/CreatorsFilter/components/BudgetFilter";
+import CategoryFilter from "@/components/creators/components/CreatorsView/components/CreatorsFilter/components/CategoryFilter";
+import SearchInput from "@/components/creators/components/CreatorsView/components/CreatorsFilter/components/SearchInput";
 import { Box, Button } from "@mui/material";
 import { usePathname, useRouter } from "next/navigation";
 

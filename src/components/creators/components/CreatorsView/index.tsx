@@ -1,8 +1,8 @@
 "use client";
 
 import AppliedFilterChip from "@/components/creators/components/CreatorsView/components/AppliedFilterChip";
+import SearchFilter from "@/components/creators/components/CreatorsView/components/CreatorsFilter";
 import Header from "@/components/creators/components/CreatorsView/components/Header";
-import SearchFilter from "@/components/creators/components/CreatorsView/components/SearchFilter";
 import SortSection from "@/components/creators/components/CreatorsView/components/SortSection";
 import { useCreatorsContext } from "@/components/creators/provider/CreatorsProvider";
 import { Box, MenuItem, Select } from "@mui/material";

@@ -3,8 +3,8 @@
 import {
 	KEYWORD_TYPE_BOX_WIDTH,
 	KEYWORD_TYPE_LABEL,
-} from "@/components/creators/components/CreatorsView/components/SearchFilter/defines/constants";
-import { KeywordType } from "@/components/creators/components/CreatorsView/components/SearchFilter/defines/type";
+} from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/constants";
+import { KeywordType } from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/type";
 import useRouterPushWithParams from "@/components/creators/hooks/useRouterPushWithParams";
 import { useCreatorsContext } from "@/components/creators/provider/CreatorsProvider";
 import SearchIcon from "@mui/icons-material/Search";
