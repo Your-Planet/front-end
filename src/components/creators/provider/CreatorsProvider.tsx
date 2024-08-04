@@ -2,7 +2,7 @@
 
 import { GetCreatorsRequest, GetCreatorsResponse } from "@/apis/studio/models/creators";
 import useQueryGetCreators from "@/hooks/queries/studio/useQueryGetCreators";
-import { ReactNode, createContext, useCallback, useContext, useState } from "react";
+import { ReactNode, createContext, useCallback, useContext, useMemo, useState } from "react";
 
 interface SearchContextProps {
 	creatorsData?: GetCreatorsResponse;
@@ -30,11 +30,12 @@ export const CreatorsProvider = ({ children, initialParams }: CreatorsProviderPr
 		[refetch],
 	);
 
-	return (
-		<CreatorsContext.Provider value={{ creatorsData: creators, handleClickSearch, isLoading }}>
-			{children}
-		</CreatorsContext.Provider>
+	const value = useMemo(
+		() => ({ creatorsData: creators, handleClickSearch, isLoading }),
+		[creators, handleClickSearch, isLoading],
 	);
+
+	return <CreatorsContext.Provider value={value}>{children}</CreatorsContext.Provider>;
 };
 
 export const useCreatorsContext = (): SearchContextProps => {
