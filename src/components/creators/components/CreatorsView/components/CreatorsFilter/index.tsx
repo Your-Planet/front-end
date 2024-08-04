@@ -8,7 +8,7 @@ import { usePathname, useRouter } from "next/navigation";
 
 type Props = {};
 
-function SearchAuthorFilter({}: Props) {
+function CreatorsFilter({}: Props) {
 	const router = useRouter();
 	const pathname = usePathname();
 
@@ -31,4 +31,4 @@ function SearchAuthorFilter({}: Props) {
 	);
 }
 
-export default SearchAuthorFilter;
+export default CreatorsFilter;
