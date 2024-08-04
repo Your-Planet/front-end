@@ -4,20 +4,20 @@ import AppliedFilterChip from "@/components/creators/components/CreatorsView/com
 import Header from "@/components/creators/components/CreatorsView/components/Header";
 import SearchFilter from "@/components/creators/components/CreatorsView/components/SearchFilter";
 import SortSection from "@/components/creators/components/CreatorsView/components/SortSection";
-import useLoadCreators from "@/components/creators/hooks/useLoadCreators";
+import { useCreatorsContext } from "@/components/creators/provider/CreatorsProvider";
 import { Box, MenuItem, Select } from "@mui/material";
 
 type Props = {};
 
 function CreatorsView({}: Props) {
-	const { creatorsData, handleClickSearch, isLoading } = useLoadCreators();
+	const { creatorsData, isLoading } = useCreatorsContext();
 
 	return (
 		<Box display="flex" gap="3rem" flexDirection="column">
 			<Header />
 			<Box display="flex" gap="1rem" flexDirection="column">
 				<Box display="flex" justifyContent="space-between" alignItems="center">
-					<SearchFilter handleClickSearch={handleClickSearch} />
+					<SearchFilter />
 
 					<Box display="flex" gap="1rem">
 						{/* TODO: @나은찬 컴포넌트화 */}

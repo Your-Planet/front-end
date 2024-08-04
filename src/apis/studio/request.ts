@@ -32,8 +32,7 @@ export class StudioApi extends BaseApi {
 	};
 
 	public getCreators: AxiosRequestYourPlanetFunction<GetCreatorsRequest, GetCreatorsResponse> = (req) => {
-		console.log(req);
-		return this.axiosInstance.get(this.getUrl("/studio"), {
+		return this.axiosInstance.get(this.getUrl("/"), {
 			params: req,
 		});
 	};

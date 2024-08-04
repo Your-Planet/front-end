@@ -6,12 +6,9 @@ import SearchInput from "@/components/creators/components/CreatorsView/component
 import { Box, Button } from "@mui/material";
 import { usePathname, useRouter } from "next/navigation";
 
-type Props = {
-	handleClickSearch: Function;
-};
+type Props = {};
 
-function SearchAuthorFilter(props: Props) {
-	const { handleClickSearch } = props;
+function SearchAuthorFilter({}: Props) {
 	const router = useRouter();
 	const pathname = usePathname();
 
@@ -25,7 +22,7 @@ function SearchAuthorFilter(props: Props) {
 
 			<BudgetFilter />
 
-			<SearchInput handleClickSearch={handleClickSearch} />
+			<SearchInput />
 
 			<Button variant="outlined" onClick={handleClickResetButton}>
 				초기화

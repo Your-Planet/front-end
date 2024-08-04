@@ -20,7 +20,7 @@ function useQueryGetCreators(params: useQueryGetCreatorsParams): UseQueryGetCrea
 	const { req, queryOption } = params;
 
 	return useQuery({
-		queryKey: QUERY_KEY.studio.profile(),
+		queryKey: [QUERY_KEY.studio.creators(), req],
 		queryFn: async () => (await API.studio.getCreators(req)).data,
 		refetchOnWindowFocus: false,
 		...queryOption,
