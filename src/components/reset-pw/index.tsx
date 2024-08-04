@@ -8,7 +8,7 @@ import { StyledFormInFind } from "@/components/find/components/defines/styles";
 import { ResetPasswordForm } from "@/defines/forms/reset-pw/types";
 import { IA } from "@/defines/ia/constants";
 import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";
-import useMutationPostPasswordReset from "@/hooks/queries/member/useMutationPostPasswordReset";
+import useMutationPostPasswordReset from "@/hooks/queries/auth/useMutationPostPasswordReset";
 import { getIaPath } from "@/utils/ia";
 import { Button } from "@mui/material";
 import { useRouter } from "next/navigation";

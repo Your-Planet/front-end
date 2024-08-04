@@ -1,4 +1,4 @@
-import { CreatorJoinRequest, SponsorJoinRequest } from "@/apis/member/models/join";
+import { CreatorJoinRequest, SponsorJoinRequest } from "@/apis/auth/models/join";
 
 export type MemberDetailRequest = void;
 

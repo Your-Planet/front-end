@@ -1,5 +1,5 @@
 import { API } from "@/apis";
-import { ValidateMemberRequest, ValidateMemberResponse } from "@/apis/member/models/validate";
+import { ValidateMemberRequest, ValidateMemberResponse } from "@/apis/auth/models/validate";
 import { ResponseEntity } from "@/defines/apis/types";
 import { UseMutationParams } from "@/defines/react-query/types";
 import { UseMutationResult, useMutation } from "@tanstack/react-query";
@@ -19,7 +19,7 @@ function useMutationPostValidateMember(params: UseMutationPostValidateMemberPara
 	const { mutationOption } = params;
 
 	return useMutation({
-		mutationFn: async (req: Request) => (await API.member.validateMember(req)).data,
+		mutationFn: async (req: Request) => (await API.auth.validateMember(req)).data,
 		...mutationOption,
 	});
 }
