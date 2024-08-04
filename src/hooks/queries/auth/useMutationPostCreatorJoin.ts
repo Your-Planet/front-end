@@ -1,5 +1,5 @@
 import { API } from "@/apis";
-import { CreatorJoinRequest, JoinResponse } from "@/apis/member";
+import { CreatorJoinRequest, JoinResponse } from "@/apis/auth";
 import { ResponseEntity } from "@/defines/apis/types";
 import { UseMutationParams } from "@/defines/react-query/types";
 import { UseMutationResult, useMutation } from "@tanstack/react-query";
@@ -19,7 +19,7 @@ function useMutationPostCreatorJoin(params: UseMutationPostCreatorJoinParams): U
 	const { mutationOption } = params;
 
 	return useMutation({
-		mutationFn: async (req: Request) => (await API.member.join(req)).data,
+		mutationFn: async (req: Request) => (await API.auth.join(req)).data,
 		...mutationOption,
 	});
 }

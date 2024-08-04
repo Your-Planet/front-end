@@ -1,5 +1,5 @@
 import { API } from "@/apis";
-import { ResetPasswordRequest, ResetPasswordResponse } from "@/apis/member/models/reset-pw";
+import { ResetPasswordRequest, ResetPasswordResponse } from "@/apis/auth/models/reset-pw";
 import { ResponseEntity } from "@/defines/apis/types";
 import { UseMutationParams } from "@/defines/react-query/types";
 import { UseMutationResult, useMutation } from "@tanstack/react-query";
@@ -19,7 +19,7 @@ function useMutationPostPasswordReset(params: UseMutationPostPasswordResetParams
 	const { mutationOption } = params;
 
 	return useMutation({
-		mutationFn: async (req: Request) => (await API.member.resetPassword(req)).data,
+		mutationFn: async (req: Request) => (await API.auth.resetPassword(req)).data,
 		...mutationOption,
 	});
 }

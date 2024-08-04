@@ -7,7 +7,7 @@ import { StyledFormInFind } from "@/components/find/components/defines/styles";
 import { FindEmailForm } from "@/defines/forms/find/email/types";
 import { IA } from "@/defines/ia/constants";
 import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";
-import useMutationPostEmailFind from "@/hooks/queries/member/useMutationPostEmailFind";
+import useMutationPostEmailFind from "@/hooks/queries/auth/useMutationPostEmailFind";
 import { getIaPath } from "@/utils/ia";
 import { getMinLengthRule } from "@/utils/react-hook-form/rule";
 import { isNumber } from "@/utils/string";
