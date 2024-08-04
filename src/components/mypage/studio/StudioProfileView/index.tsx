@@ -21,6 +21,7 @@ function StudioProfileView(props: StudioProfileViewProps) {
 			description: "",
 			category: DEFAULT_CATEGORY,
 			portfolios: [DEFAULT_PORTFOLIO],
+			profileImage: null,
 		},
 	});
 
