@@ -1,5 +1,5 @@
 import { API } from "@/apis";
-import { FindEmailRequest, FindEmailResponse } from "@/apis/member/models/find";
+import { FindEmailRequest, FindEmailResponse } from "@/apis/auth/models/find";
 import { ResponseEntity } from "@/defines/apis/types";
 import { UseMutationParams } from "@/defines/react-query/types";
 import { UseMutationResult, useMutation } from "@tanstack/react-query";
@@ -19,7 +19,7 @@ function useMutationPostEmailFind(params: UseMutationPostEmailFindParams): UseMu
 	const { mutationOption } = params;
 
 	return useMutation({
-		mutationFn: async (req: Request) => (await API.member.findEmail(req)).data,
+		mutationFn: async (req: Request) => (await API.auth.findEmail(req)).data,
 		...mutationOption,
 	});
 }

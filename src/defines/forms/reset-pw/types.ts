@@ -1,3 +1,3 @@
-import { ResetPasswordRequest } from "@/apis/member/models/reset-pw";
+import { ResetPasswordRequest } from "@/apis/auth/models/reset-pw";
 
 export interface ResetPasswordForm extends ResetPasswordRequest {}
