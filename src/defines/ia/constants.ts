@@ -197,10 +197,20 @@ export const IA = deepFreeze<GlobalIa>({
 	},
 
 	dummy: {
-		title: "더미 페이지",
-		label: "더미 페이지",
+		title: "작가 유저 더미 페이지",
+		label: "작가 유저 더미 페이지",
 		accessConfig: {
-			disallowedOnLogin: true,
+			allowedOnLogin: true,
+			allowedMemberTypes: ["ADMIN", "CREATOR"],
+			fallbackUrl: "/dummy/non-login",
+		},
+
+		"non-login": {
+			title: "비로그인 유저 더미 페이지",
+			label: "비로그인 유저 더미 페이지",
+			accessConfig: {
+				disallowedOnLogin: true,
+			},
 		},
 	},
 });

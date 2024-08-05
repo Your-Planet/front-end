@@ -43,7 +43,7 @@ type TermsIa = Ia<"terms">;
 
 type PrivacyIa = Ia<"privacy">;
 
-type DummyIa = Ia<"dummy">;
+type DummyIa = Ia<"dummy", DummySubIa["non-login"]>;
 
 type JoinSubIa = {
 	creator: Ia<"creator", Ia<"verify" | "details">>;
@@ -75,6 +75,10 @@ type UserInfoSubIa = {
 type FindSubIa = {
 	email: Ia<"email", Ia<"complete">>;
 	pw: Ia<"pw", Ia<"complete">>;
+};
+
+type DummySubIa = {
+	"non-login": Ia<"non-login">;
 };
 
 export interface PageAttributes {
