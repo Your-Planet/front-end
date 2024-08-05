@@ -1,4 +1,4 @@
-import { REFRESH_TOKEN_URL } from "@/apis/member";
+import { REFRESH_TOKEN_URL } from "@/apis/auth/request";
 import { HTTP_HEADER } from "@/defines/apis/constants";
 import { COOKIE } from "@/defines/cookie/constants";
 import { AxiosInterceptorCallbacks } from "@/providers/AxiosConfigRegistry/hooks/useInternalAxiosConfig/defines/types";

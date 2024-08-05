@@ -11,7 +11,7 @@ export default function useGetAxiosTokenExpiredErrorHandler(): GetAxiosIntercept
 	const setRefreshedAccessToken = async () => {
 		const {
 			data: { data: accessToken },
-		} = await API.member.refreshToken();
+		} = await API.auth.refreshToken();
 		setCookie(COOKIE.accessToken, accessToken);
 	};
 

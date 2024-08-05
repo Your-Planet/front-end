@@ -1,4 +1,4 @@
-import { REFRESH_TOKEN_URL } from "@/apis/member";
+import { REFRESH_TOKEN_URL } from "@/apis/auth/request";
 import { AxiosInterceptorCallbacks } from "@/providers/AxiosConfigRegistry/hooks/useInternalAxiosConfig/defines/types";
 import useGetAxiosTokenExpiredErrorHandler from "@/providers/AxiosConfigRegistry/hooks/useInternalAxiosConfig/hooks/useInternalAxiosResponseInterceptor/hooks/useGetAxiosTokenExpiredErrorHandler";
 import useGetAxiosUnauthorizedErrorHandler from "@/providers/AxiosConfigRegistry/hooks/useInternalAxiosConfig/hooks/useInternalAxiosResponseInterceptor/hooks/useGetAxiosUnauthorizedErrorHandler";
