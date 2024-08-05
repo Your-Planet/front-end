@@ -1,4 +1,4 @@
-import { SponsorJoinRequest } from "@/apis/member";
+import { SponsorJoinRequest } from "@/apis/auth";
 import { JoinCommonMemberForm } from "@/defines/forms/join/common/types";
 
 export interface JoinSponsorForm

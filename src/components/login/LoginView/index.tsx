@@ -5,7 +5,7 @@ import { COOKIE } from "@/defines/cookie/constants";
 import { IA } from "@/defines/ia/constants";
 import { TIME_UNIT } from "@/defines/time/constants";
 import useOpen from "@/hooks/common/useOpen";
-import useMutationPostLogin from "@/hooks/queries/member/useMutationPostLogin";
+import useMutationPostLogin from "@/hooks/queries/auth/useMutationPostLogin";
 import { getCookie, removeCookie, setCookie } from "@/utils/cookie";
 import { getIaPath } from "@/utils/ia";
 import { isEmail } from "@/utils/string";
