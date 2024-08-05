@@ -1,3 +1,3 @@
-import { LoginRequest } from "@/apis/member/models/login";
+import { LoginRequest } from "@/apis/auth/models/login";
 
 export interface LoginForm extends LoginRequest {}

@@ -6,9 +6,10 @@ export type GlobalIa = PageAttributes &
 	LogoutIa &
 	JoinIa &
 	DeletionIa &
-	SearchIa &
+	CreatorsIa &
 	ProjectIa &
-	MypageIa &
+	StudioIa &
+	UserInfoIa &
 	FindIa &
 	ResetPwIa &
 	TermsIa &
@@ -21,15 +22,17 @@ type LoginIa = Ia<"login">;
 
 type LogoutIa = Ia<"logout">;
 
-type JoinIa = Ia<"join", JoinSubIa["author"] & JoinSubIa["sponsor"] & JoinSubIa["complete"]>;
+type JoinIa = Ia<"join", JoinSubIa["creator"] & JoinSubIa["sponsor"] & JoinSubIa["complete"]>;
 
 type DeletionIa = Ia<"deletion", DeletionSubIa["complete"]>;
 
-type SearchIa = Ia<"search", SearchSubIa["[id]"]>;
+type CreatorsIa = Ia<"creators", CreatorsSubIa["[id]"]>;
 
-type ProjectIa = Ia<"project">;
+type ProjectIa = Ia<"project", ProjectSubIa["[id]"]>;
 
-type MypageIa = Ia<"mypage", MypageSubIa["studio"] & MypageSubIa["project-history"]>;
+type StudioIa = Ia<"studio", StudioSubIa["profile"] & StudioSubIa["price"]>;
+
+type UserInfoIa = Ia<"userinfo", UserInfoSubIa["verify"]>;
 
 type FindIa = Ia<"find", FindSubIa["email"] & FindSubIa["pw"]>;
 
@@ -40,7 +43,7 @@ type TermsIa = Ia<"terms">;
 type PrivacyIa = Ia<"privacy">;
 
 type JoinSubIa = {
-	author: Ia<"author", Ia<"verify" | "details">>;
+	creator: Ia<"creator", Ia<"verify" | "details">>;
 	sponsor: Ia<"sponsor", Ia<"details">>;
 	complete: Ia<"complete">;
 };
@@ -49,13 +52,21 @@ type DeletionSubIa = {
 	complete: Ia<"complete">;
 };
 
-type SearchSubIa = {
+type CreatorsSubIa = {
+	["[id]"]: Ia<"[id]", Ia<"request", Ia<"step1" | "step2" | "confirm" | "complete">>>;
+};
+
+type ProjectSubIa = {
 	["[id]"]: Ia<"[id]">;
 };
 
-type MypageSubIa = {
-	studio: Ia<"studio", Ia<"profile" | "price">>;
-	["project-history"]: Ia<"project-history", Ia<"[id]">>;
+type StudioSubIa = {
+	profile: Ia<"profile">;
+	price: Ia<"price">;
+};
+
+type UserInfoSubIa = {
+	verify: Ia<"verify">;
 };
 
 type FindSubIa = {

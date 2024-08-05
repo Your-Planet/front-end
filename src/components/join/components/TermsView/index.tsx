@@ -98,8 +98,8 @@ function TermsView(props: TermsViewProps) {
 
 		sessionStorage.setItem(SESSION_STORAGE.shoppingInformationTerm, shoppingInformation ? "true" : "false");
 
-		if (type === "author") {
-			router.push(getIaPath(IA.join.author.verify));
+		if (type === "creator") {
+			router.push(getIaPath(IA.join.creator.verify));
 		} else if (type === "sponsor") {
 			router.push(getIaPath(IA.join.sponsor.details));
 		}

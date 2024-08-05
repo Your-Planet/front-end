@@ -18,9 +18,9 @@ export default function useInternalAxiosRequestInterceptor(): UseInternalAxiosRe
 		};
 
 		if (accessToken) {
-			newConfig.headers[HTTP_HEADER.authorization] = `Bearer ${accessToken}`;
+			newConfig.headers[HTTP_HEADER.creatorization] = `Bearer ${accessToken}`;
 		} else {
-			delete newConfig.headers[HTTP_HEADER.authorization];
+			delete newConfig.headers[HTTP_HEADER.creatorization];
 		}
 
 		return newConfig;

@@ -1,3 +1,5 @@
+"use client";
+
 import GlobalMenuLink from "@/components/common/layout/Header/components/GlobalMenu/components/GlobalMenuLink";
 import { IA } from "@/defines/ia/constants";
 import { useAuthContext } from "@/providers/AuthProvider";
@@ -21,7 +23,8 @@ function GlobalMenu() {
 							redirect: currentPathWithQuery,
 						}}
 					/>
-					<GlobalMenuLink page={IA.mypage} />
+					{/* TODO: @나은찬 드롭다운 메뉴 수정 */}
+					<GlobalMenuLink page={IA.userinfo} />
 				</>
 			) : (
 				<>

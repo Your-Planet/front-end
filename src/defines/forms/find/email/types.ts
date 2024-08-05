@@ -1,3 +1,3 @@
-import { FindEmailRequest } from "@/apis/member/models/find";
+import { FindEmailRequest } from "@/apis/auth/models/find";
 
 export interface FindEmailForm extends FindEmailRequest {}
