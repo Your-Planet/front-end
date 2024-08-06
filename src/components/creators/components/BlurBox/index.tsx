@@ -1,5 +1,5 @@
-import CreatorUser from "@/components/creators/components/BlurBox/components/CreatorUser";
-import NonLogInUser from "@/components/creators/components/BlurBox/components/NonLogInUser";
+import MessageBoxForCreatorUser from "@/components/creators/components/BlurBox/components/MessageBoxForCreatorUser";
+import MessageBoxForNonLogInUser from "@/components/creators/components/BlurBox/components/MessageBoxForNonLogInUser";
 import {
 	StyledBlurBox,
 	StyledBlurContainerBox,
@@ -16,7 +16,11 @@ function BlurBox(props: Props) {
 		<StyledBlurBox>
 			<StyledBlurContainerBox>
 				<StyledBlurInnerBox>
-					{jwtPayload && jwtPayload.memberType === "CREATOR" ? <CreatorUser /> : <NonLogInUser />}
+					{jwtPayload && jwtPayload.memberType === "CREATOR" ? (
+						<MessageBoxForCreatorUser />
+					) : (
+						<MessageBoxForNonLogInUser />
+					)}
 				</StyledBlurInnerBox>
 			</StyledBlurContainerBox>
 		</StyledBlurBox>

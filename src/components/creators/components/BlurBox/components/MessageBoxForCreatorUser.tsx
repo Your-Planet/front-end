@@ -5,7 +5,7 @@ import { grey } from "@mui/material/colors";
 
 type Props = {};
 
-function CreatorUser({}: Props) {
+function MessageBoxForCreatorUser({}: Props) {
 	return (
 		<>
 			<StyledTypographyBox>
@@ -33,4 +33,4 @@ function CreatorUser({}: Props) {
 	);
 }
 
-export default CreatorUser;
+export default MessageBoxForCreatorUser;

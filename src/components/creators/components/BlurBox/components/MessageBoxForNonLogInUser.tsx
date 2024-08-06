@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 
 type Props = {};
 
-function NonLogInUser({}: Props) {
+function MessageBoxForNonLogInUser({}: Props) {
 	const router = useRouter();
 
 	const handleClickLogin = () => {
@@ -48,4 +48,4 @@ function NonLogInUser({}: Props) {
 	);
 }
 
-export default NonLogInUser;
+export default MessageBoxForNonLogInUser;
