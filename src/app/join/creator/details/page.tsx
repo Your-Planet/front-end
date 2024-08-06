@@ -27,7 +27,7 @@ async function JoinCreatorDetailsPage(props: PageProps) {
 	const { accessToken, expiresInSeconds } = await authorizeInstagram(code);
 
 	return (
-		<CookieSetter name={COOKIE.instagramAccessToken} value={accessToken} expiresAt={expiresInSeconds}>
+		<CookieSetter name={COOKIE.instagramAccessToken} value={accessToken} options={{ atExpires: expiresInSeconds }}>
 			<JoinCreatorFormView />
 		</CookieSetter>
 	);
