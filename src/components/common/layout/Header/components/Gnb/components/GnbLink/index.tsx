@@ -8,20 +8,24 @@ import { usePathname } from "next/navigation";
 
 export interface GnbLinkProps {
 	page: PageAttributes;
+	exception?: PageAttributes[];
 }
 
 function GnbLink(props: GnbLinkProps) {
-	const { page } = props;
+	const { page, exception } = props;
 
 	const { label } = page;
 
 	const href = getIaPath(page);
 	const pathname = usePathname();
 	const selected = pathname === href;
+	const exceptionSelected = exception
+		? exception.reduce((acc, cur) => (getIaPath(cur) === pathname ? true : acc || false), false)
+		: false;
 
 	return (
-		<StyledBox selected={selected}>
-			<StyledLink selected={selected} href={href}>
+		<StyledBox selected={selected || exceptionSelected}>
+			<StyledLink selected={selected || exceptionSelected} href={href}>
 				{label}
 			</StyledLink>
 		</StyledBox>

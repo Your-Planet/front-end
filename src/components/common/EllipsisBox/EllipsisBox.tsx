@@ -5,7 +5,7 @@ import { ReactNode } from "react";
 export interface EllipsisBoxProps {
 	sx?: Omit<
 		SxProps,
-		"overflow" | "overflowX" | "overflowY" | "textOverflow" | "display" | "-webkit-line-clamp" | "-webkit-box-orient"
+		"overflow" | "overflowX" | "overflowY" | "textOverflow" | "display" | "WebkitLineClamp" | "WebkitBoxOrient"
 	>;
 	line: number;
 	children: ReactNode | ReactNode[];
@@ -21,8 +21,8 @@ function EllipsisBox(props: EllipsisBoxProps) {
 				overflow: "hidden",
 				textOverflow: "ellipsis",
 				display: "-webkit-box",
-				"-webkit-box-orient": "vertical",
-				"-webkit-line-clamp": line.toString(),
+				WebkitBoxOrient: "vertical",
+				WebkitLineClamp: line.toString(),
 			}}
 		>
 			{children}

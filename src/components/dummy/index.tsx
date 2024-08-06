@@ -25,7 +25,7 @@ function DummyPageView({}: Props) {
 			<StyledContainerBox>
 				<BlurBox />
 				<Box display="flex" gap="1rem" flexWrap="wrap">
-					{[...Array(16)].map((_, index) => (
+					{[...Array(8)].map((_, index) => (
 						<CreatorCard
 							key={index}
 							profile={dummyProfile}

@@ -1,7 +1,9 @@
+import DummyPageView from "@/components/dummy";
+
 type Props = {};
 
 function DummyNonLoginPage({}: Props) {
-	return <div>DummyNonLoginPage</div>;
+	return <DummyPageView />;
 }
 
 export default DummyNonLoginPage;
