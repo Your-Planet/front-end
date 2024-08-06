@@ -1,3 +1,3 @@
 export const HTTP_HEADER = {
-	creatorization: "X-AUTH-TOKEN",
+	authorization: "X-AUTH-TOKEN",
 };
