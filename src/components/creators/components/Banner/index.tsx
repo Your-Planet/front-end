@@ -1,10 +1,10 @@
 import {
 	StyledAnimatedBoxInBanner,
 	StyledBoxInBanner,
+	StyledTypographyAnimatedBoxInBanner,
 	StyledTypographyBoxInBanner,
 } from "@/components/creators/components/Banner/defines/styles";
 import { Box, Typography } from "@mui/material";
-import { StyledTypographyAnimatedBoxInBanner } from "./defines/styles";
 
 function Banner() {
 	return (
