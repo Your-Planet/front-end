@@ -5,10 +5,12 @@ import { IA } from "@/defines/ia/constants";
 import useMutationPostProfile from "@/hooks/queries/studio/useMutationPostProfile";
 import { handleCommonError } from "@/utils/error";
 import { getIaPath } from "@/utils/ia";
+import { enqueueClosableSnackbar } from "@/utils/snackbar";
 import { useRouter } from "next/navigation";
 import { enqueueSnackbar } from "notistack";
 import { FormEventHandler } from "react";
 import { useFormContext } from "react-hook-form";
+import { FieldErrors } from "react-hook-form/dist/types/errors";
 
 export interface UseSaveStudioProfile {
 	isSaving: boolean;
@@ -31,7 +33,7 @@ export default function useSaveStudioProfile(): UseSaveStudioProfile {
 		router.push(getIaPath(IA.studio.price));
 	};
 
-	const handleStudioProfileFormSubmit: FormEventHandler = handleSubmit(async (data) => {
+	const handleFormValid = async (data: StudioProfileForm) => {
 		const portfoliosToPortfolioIds = (portfolios: InstagramMedia[]) => {
 			return portfolios.map(({ id }) => id);
 		};
@@ -49,7 +51,19 @@ export default function useSaveStudioProfile(): UseSaveStudioProfile {
 		} catch (e) {
 			handleCommonError(e);
 		}
-	});
+	};
+
+	const handleFormInvalid = async (errors: FieldErrors<StudioProfileForm>) => {
+		if (errors.profileImage) {
+			enqueueClosableSnackbar({
+				message: errors.profileImage.message,
+				variant: "error",
+				autoHideDuration: null,
+			});
+		}
+	};
+
+	const handleStudioProfileFormSubmit: FormEventHandler = handleSubmit(handleFormValid, handleFormInvalid);
 
 	return {
 		isSaving,

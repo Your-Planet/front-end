@@ -1,25 +1,16 @@
 import { CreatorDetailResponse } from "@/apis/member";
-import { StudioProfile } from "@/apis/studio";
 import CreatorCard from "@/components/common/CreatorCard";
-import { STUDIO_PROFILE_FORM_LENGTH } from "@/components/studio/StudioProfileView/defines/constants";
-import { StudioProfileForm } from "@/components/studio/StudioProfileView/defines/types";
+import useRenderProfileImage from "@/components/studio/StudioProfileView/components/StudioProfilePreview/components/card/StudioProfileCardPreview/hooks/useRenderProfileImage";
+import useWatchProfile from "@/components/studio/StudioProfileView/components/StudioProfilePreview/components/card/StudioProfileCardPreview/hooks/useWatchProfile";
 import useLoadStudioProfile from "@/components/studio/StudioProfileView/hooks/useLoadStudioProfile";
-import { categoryToCategories } from "@/components/studio/StudioProfileView/utils";
 import { useMemberDetailContext } from "@/providers/MemberDetailProvider";
-import { useFormContext } from "react-hook-form";
 
 const BUTTON_TOOLTIP_MESSAGE = "미리보기에서는 지원하지 않는 기능입니다.";
 
 function StudioProfileCardPreview() {
-	const { watch } = useFormContext<StudioProfileForm>();
+	const profile = useWatchProfile();
 
-	const { name, description, category } = watch();
-
-	const profile: Omit<StudioProfile, "portfolios"> = {
-		name: name.substring(0, STUDIO_PROFILE_FORM_LENGTH.name.max),
-		description: description.substring(0, STUDIO_PROFILE_FORM_LENGTH.description.max),
-		categories: categoryToCategories(category).slice(0, STUDIO_PROFILE_FORM_LENGTH.category.max),
-	};
+	const renderProfileImage = useRenderProfileImage();
 
 	const { isLoading: isLoadingProfile } = useLoadStudioProfile();
 
@@ -31,6 +22,7 @@ function StudioProfileCardPreview() {
 		<CreatorCard
 			profile={profile}
 			instagramUsername={memberInfo?.instagramUsername || ""}
+			renderProfileImage={renderProfileImage}
 			buttonEvent={{
 				project: {
 					tooltip: BUTTON_TOOLTIP_MESSAGE,

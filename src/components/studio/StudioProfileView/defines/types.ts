@@ -6,6 +6,8 @@ export type Portfolio = {
 	link: string;
 };
 
-export interface StudioProfileForm extends Pick<StudioProfile, "name" | "description" | "portfolios"> {
+export interface StudioProfileForm
+	extends Pick<StudioProfile, "name" | "description" | "portfolios" | "profileImageUrl"> {
 	category: Record<InstatoonCategoryType, boolean>;
+	profileImage: File | string | null;
 }
