@@ -8,15 +8,14 @@ import { memo, ReactNode } from "react";
 export interface CookieSetterProps {
 	name: string;
 	value: string;
-	expiresAt?: number;
 	options?: CookieOptions;
 	children: ReactNode | ReactNode[];
 }
 
 function CookieSetter(props: CookieSetterProps) {
-	const { name, value, expiresAt, options, children } = props;
+	const { name, value, options, children } = props;
 
-	setCookie(name, value, expiresAt, options);
+	setCookie(name, value, options);
 
 	return <>{children}</>;
 }
