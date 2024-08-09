@@ -1,6 +1,6 @@
 import { COOKIE } from "@/defines/cookie/constants";
 import { getJwtPayload } from "@/utils/auth";
-import { getFallbackUrl, getIaObject, getIsAccessiblePage } from "@/utils/ia";
+import { getFallbackURL, getIaObject, getPageAccessibleType } from "@/utils/ia";
 import { NextRequest, NextResponse } from "next/server";
 
 export const middleware = (request: NextRequest) => {
@@ -20,9 +20,12 @@ export const middleware = (request: NextRequest) => {
 		return response;
 	}
 
-	if (!getIsAccessiblePage(currentIa, jwtPayload)) {
-		const fallbackUrl = getFallbackUrl(currentIa, jwtPayload);
-		return NextResponse.redirect(new URL(fallbackUrl, request.url));
+	// TODO @김현규 access config에 따른 fallback URL 설정하는 부분 리팩토링 필요 (인자 정리)
+	const pageAccessibleType = getPageAccessibleType(currentIa, jwtPayload);
+
+	if (pageAccessibleType !== "accessible") {
+		const fallbackURL = getFallbackURL(request, currentIa, pageAccessibleType, jwtPayload);
+		return NextResponse.redirect(new URL(fallbackURL, request.url));
 	}
 
 	return response;

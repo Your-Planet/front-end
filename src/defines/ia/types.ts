@@ -111,3 +111,5 @@ type PageAccessDisallowedMemberTypes = {
 type PageAccessFallbackUrl =
 	| string
 	| ((globalIa: GlobalIa, accessConfig: PageAccessConfig, jwtPayload: AccessTokenPayload | null) => string);
+
+export type PageAccessibleType = "accessible" | "needLogin" | "inaccessibleOnLoggedIn" | "unauthorizedMember";

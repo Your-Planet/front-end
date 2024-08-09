@@ -1,7 +1,9 @@
 import { IA } from "@/defines/ia/constants";
-import { PageAccessConfig, PageAttributes } from "@/defines/ia/types";
+import { PageAccessConfig, PageAccessibleType, PageAttributes } from "@/defines/ia/types";
 import { AccessTokenPayload } from "@/defines/jwt/types";
+import { MemberType } from "@/defines/member/types";
 import { findObjectPath, getObjectAtPath } from "@/utils/object";
+import { NextRequest } from "next/server";
 
 // @ts-ignore
 export const getIaPath = (page: PageAttributes) => {
@@ -13,43 +15,64 @@ export const getIaObject = (path: string): PageAttributes => {
 	return getObjectAtPath(IA, path.substring(1), "/");
 };
 
-const getIsAccessibleAllowedOnLogin = (
+const getPageAccessibleTypeOnLoggedIn = (
 	{ allowedMemberTypes, disallowedMemberTypes }: PageAccessConfig,
-	jwtPayload: AccessTokenPayload | null,
-) => {
-	if (!jwtPayload) return false;
-
-	const { memberType } = jwtPayload;
-
+	memberType: MemberType,
+): PageAccessibleType => {
 	const isNotAllowed = allowedMemberTypes && !allowedMemberTypes.includes(memberType);
 	const isDisallowed = disallowedMemberTypes && disallowedMemberTypes.includes(memberType);
 
-	return !(isNotAllowed || isDisallowed);
+	if (isNotAllowed || isDisallowed) return "unauthorizedMember";
+	return "accessible";
 };
 
-export const getIsAccessiblePage = (currentIa: PageAttributes, jwtPayload: AccessTokenPayload | null) => {
+export const getPageAccessibleType = (
+	currentIa: PageAttributes,
+	jwtPayload: AccessTokenPayload | null,
+): PageAccessibleType => {
 	const { accessConfig } = currentIa;
 
-	if (!accessConfig) return true;
+	if (!accessConfig) return "accessible";
 
 	const { disallowedOnLogin } = accessConfig;
 
-	if (disallowedOnLogin) return !jwtPayload;
+	if (disallowedOnLogin) {
+		return jwtPayload ? "inaccessibleOnLoggedIn" : "accessible";
+	}
 
-	return getIsAccessibleAllowedOnLogin(accessConfig, jwtPayload);
+	if (!jwtPayload) return "needLogin";
+
+	return getPageAccessibleTypeOnLoggedIn(accessConfig, jwtPayload.memberType);
 };
 
-export const getFallbackUrl = (currentIa: PageAttributes, jwtPayload: AccessTokenPayload | null) => {
-	// TODO @김현규 기본 fallbackUrl 변경
-	const DEFAULT_FALLBACK_URL = "/403";
-
+export const getFallbackURL = (
+	request: NextRequest,
+	currentIa: PageAttributes,
+	pageAccessibleType: PageAccessibleType,
+	jwtPayload: AccessTokenPayload | null,
+) => {
+	const { nextUrl } = request;
 	const { accessConfig } = currentIa;
 
-	if (!accessConfig) return DEFAULT_FALLBACK_URL;
+	const redirectURL = `${nextUrl.pathname}${nextUrl.search}`;
+
+	if (!accessConfig) return redirectURL;
 
 	const { fallbackUrl } = accessConfig;
 
-	if (!fallbackUrl) return DEFAULT_FALLBACK_URL;
+	if (fallbackUrl) {
+		return typeof fallbackUrl === "function" ? fallbackUrl(IA, accessConfig, jwtPayload) : fallbackUrl;
+	}
 
-	return typeof fallbackUrl === "function" ? fallbackUrl(IA, accessConfig, jwtPayload) : fallbackUrl;
+	switch (pageAccessibleType) {
+		case "needLogin":
+			return `${getIaPath(IA.login)}?redirect=${encodeURIComponent(redirectURL)}`;
+		case "unauthorizedMember":
+			// TODO @김현규 접근 권한 없음 페이지
+			return "/403";
+		case "inaccessibleOnLoggedIn":
+			return getIaPath(IA);
+		default:
+			return redirectURL;
+	}
 };
