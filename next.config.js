@@ -1,9 +1,11 @@
 /** @type {import('next').NextConfig} */
 
+const EC2_SERVER_URL = "http://ec2-15-164-160-23.ap-northeast-2.compute.amazonaws.com:8080";
+
 const SERVER_URL_BY_ENVIRONMENT = {
-	development: "http://localhost:8080",
+	development: EC2_SERVER_URL,
 	test: "http://localhost:8080",
-	production: "https://port-0-back-end-1efqtf2dlr6ithdn.sel5.cloudtype.app",
+	production: EC2_SERVER_URL,
 };
 
 const nextConfig = {

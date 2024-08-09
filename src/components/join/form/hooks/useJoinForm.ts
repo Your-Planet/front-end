@@ -1,4 +1,4 @@
-import { JoinResponse } from "@/apis/member";
+import { JoinResponse } from "@/apis/auth";
 import { ResponseEntity } from "@/defines/apis/types";
 import { IA } from "@/defines/ia/constants";
 import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";

@@ -9,18 +9,21 @@ import { JOIN_SPONSOR_FORM_FIELD_LENGTH } from "@/defines/forms/join/sponsor/con
 import { JoinSponsorForm } from "@/defines/forms/join/sponsor/types";
 import { GenderType, SubscriptionPathType } from "@/defines/member/types";
 import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";
-import useMutationPostSponsorJoin from "@/hooks/queries/member/useMutationPostSponsorJoin";
+import useOpen from "@/hooks/common/useOpen";
+import useMutationPostSponsorJoin from "@/hooks/queries/auth/useMutationPostSponsorJoin";
 import { getObjectAtPath } from "@/utils/object";
 import { getEmailValidateRule, getLengthErrorMessage } from "@/utils/react-hook-form/rule";
 import { isNumber } from "@/utils/string";
 import { LoadingButton } from "@mui/lab";
 import { Box, FormControl, FormHelperText } from "@mui/material";
-import { FormEventHandler } from "react";
+import { FormEventHandler, KeyboardEventHandler } from "react";
 import { useDaumPostcodePopup } from "react-daum-postcode";
 import { postcodeScriptUrl } from "react-daum-postcode/lib/loadPostcode";
 import { FormProvider, useForm } from "react-hook-form";
 
 function JoinSponsorFormView() {
+	const { opened: popupOpened, handleOpen: openPopup, handleClose: closePopup } = useOpen(false);
+
 	const openPostcodePopup = useDaumPostcodePopup(postcodeScriptUrl);
 
 	const form = useForm<JoinSponsorForm>({
@@ -82,15 +85,31 @@ function JoinSponsorFormView() {
 		},
 	);
 
-	const handleClickSearchAddress = () => {
+	const openAddressPopup = () => {
+		if (popupOpened) return;
+
+		openPopup();
+
 		openPostcodePopup({
 			onComplete({ address }) {
 				setValue("businessAddress.base", address);
 			},
 			onClose() {
 				trigger("businessAddress.base");
+				closePopup();
 			},
 		});
+	};
+
+	const handleClickSearchAddress = () => {
+		openAddressPopup();
+	};
+
+	const handleKeyDownSearchAddress: KeyboardEventHandler = (e) => {
+		if (e.code === "Enter") {
+			e.preventDefault();
+			openAddressPopup();
+		}
 	};
 
 	const addressErrorMessage = getObjectAtPath(errors, "businessAddress.base")?.message ?? " ";
@@ -131,6 +150,7 @@ function JoinSponsorFormView() {
 						}}
 						placeholder="숫자만 입력하세요"
 						fullWidth
+						validator={isNumber}
 						type="tel"
 					/>
 
@@ -163,6 +183,7 @@ function JoinSponsorFormView() {
 								inputProps={{ readOnly: true }}
 								hideErrorMessage
 								onClick={handleClickSearchAddress}
+								onKeyDown={handleKeyDownSearchAddress}
 							/>
 							<TextField
 								formName="businessAddress.detail"

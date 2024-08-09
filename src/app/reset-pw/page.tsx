@@ -1,6 +1,6 @@
 "use client";
 
-import { ResetPasswordRequest } from "@/apis/member/models/reset-pw";
+import { ResetPasswordRequest } from "@/apis/auth/models/reset-pw";
 import ResetPasswordView from "@/components/reset-pw";
 import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";
 import { useRouter } from "next/navigation";

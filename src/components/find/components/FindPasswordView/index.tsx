@@ -7,7 +7,7 @@ import { StyledFormInFind } from "@/components/find/components/defines/styles";
 import { ValidateMemberForm } from "@/defines/forms/find/password/types";
 import { IA } from "@/defines/ia/constants";
 import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";
-import useMutationPostPasswordFind from "@/hooks/queries/member/useMutationPostValidateMember";
+import useMutationPostPasswordFind from "@/hooks/queries/auth/useMutationPostValidateMember";
 import { getIaPath } from "@/utils/ia";
 import { getEmailValidateRule, getMinLengthRule } from "@/utils/react-hook-form/rule";
 import { isNumber } from "@/utils/string";
