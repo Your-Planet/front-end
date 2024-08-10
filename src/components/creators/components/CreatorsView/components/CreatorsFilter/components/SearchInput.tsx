@@ -1,10 +1,14 @@
 "use client";
 
+import { GetCreatorsRequest } from "@/apis/studio";
 import {
 	KEYWORD_TYPE_BOX_WIDTH,
 	KEYWORD_TYPE_LABEL,
 } from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/constants";
-import { KeywordType } from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/type";
+import {
+	CreatorsKeywordType,
+	DefaultCreatorsKeywordType,
+} from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/type";
 import useRouterPushWithParams from "@/components/creators/hooks/useRouterPushWithParams";
 import { useCreatorsContext } from "@/components/creators/provider/CreatorsProvider";
 import SearchIcon from "@mui/icons-material/Search";
@@ -18,8 +22,8 @@ function SearchInput({}: Props) {
 	const { handleClickSearch } = useCreatorsContext();
 	const routerPushWithParams = useRouterPushWithParams();
 	const searchParams = useSearchParams();
-	const [keywordType, setKeywordType] = useState<KeywordType>(
-		(searchParams.get("keywordType") ?? "toonName") as KeywordType,
+	const [creatorsKeywordType, setKeywordType] = useState<CreatorsKeywordType>(
+		(searchParams.get("creatorsKeywordType") ?? DefaultCreatorsKeywordType) as CreatorsKeywordType,
 	);
 	const [keyword, setKeyword] = useState<string>("");
 
@@ -27,18 +31,22 @@ function SearchInput({}: Props) {
 		const categories = searchParams.get("categories");
 		const minPrice = parseInt(searchParams.get("min") ?? "0", 10);
 		const maxPrice = parseInt(searchParams.get("max") ?? "0", 10);
+		const pageNumber = parseInt(searchParams.get("pageNumber") ?? "0", 10);
+		const pageSize = parseInt(searchParams.get("pageSize") ?? "0", 10);
 
 		return {
 			...(categories && { categories }),
-			...(keywordType && { keywordType }),
+			...(creatorsKeywordType && { creatorsKeywordType }),
 			...(keyword && { keyword }),
 			...(minPrice && { minPrice }),
 			...(maxPrice && { maxPrice }),
-		};
+			...(pageNumber && { pageNumber }),
+			...(pageSize && { pageSize }),
+		} as GetCreatorsRequest;
 	};
 
 	const handleSelectChange = (event: SelectChangeEvent) => {
-		setKeywordType(event.target.value as KeywordType);
+		setKeywordType(event.target.value as CreatorsKeywordType);
 	};
 
 	const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -51,13 +59,13 @@ function SearchInput({}: Props) {
 		}
 
 		if (event.key === "Enter" && event.code === "Enter") {
-			routerPushWithParams(["keywordType", "keyword"], [keywordType, keyword]);
+			routerPushWithParams(["creatorsKeywordType", "keyword"], [creatorsKeywordType, keyword]);
 			handleClickSearch(getSearchParams());
 		}
 	};
 
 	const handleClickSearchIcon = () => {
-		routerPushWithParams(["keywordType", "keyword"], [keywordType, keyword]);
+		routerPushWithParams(["creatorsKeywordType", "keyword"], [creatorsKeywordType, keyword]);
 		handleClickSearch(getSearchParams());
 	};
 
@@ -68,7 +76,7 @@ function SearchInput({}: Props) {
 			}}
 		>
 			<Select
-				value={keywordType}
+				value={creatorsKeywordType}
 				size="small"
 				displayEmpty
 				sx={{
@@ -78,8 +86,8 @@ function SearchInput({}: Props) {
 				}}
 				onChange={handleSelectChange}
 			>
-				{Object.entries(KEYWORD_TYPE_LABEL).map(([keywordType, label]) => (
-					<MenuItem key={keywordType} value={keywordType}>
+				{Object.entries(KEYWORD_TYPE_LABEL).map(([creatorsKeywordType, label]) => (
+					<MenuItem key={creatorsKeywordType} value={creatorsKeywordType}>
 						{label}
 					</MenuItem>
 				))}

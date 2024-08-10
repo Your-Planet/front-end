@@ -10,7 +10,7 @@ import { Box, MenuItem, Select } from "@mui/material";
 type Props = {};
 
 function CreatorsView({}: Props) {
-	const { creatorsData, isLoading } = useCreatorsContext();
+	const { creatorsResponse, isLoading } = useCreatorsContext();
 
 	return (
 		<Box display="flex" gap="3rem" flexDirection="column">
@@ -36,7 +36,7 @@ function CreatorsView({}: Props) {
 					{isLoading ? (
 						<Box>Loading...</Box>
 					) : (
-						creatorsData?.content?.map((res) => (
+						creatorsResponse?.content?.map((res) => (
 							<Box key={res.id}>
 								<Box>{res.categories}</Box>
 								<Box>{res.description}</Box>

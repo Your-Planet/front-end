@@ -3,7 +3,7 @@ import { CreatorsProvider } from "@/components/creators/provider/CreatorsProvide
 
 function CreatorsPage() {
 	return (
-		<CreatorsProvider initialParams={{}}>
+		<CreatorsProvider>
 			<CreatorsPageView />
 		</CreatorsProvider>
 	);

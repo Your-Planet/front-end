@@ -9,7 +9,7 @@ export const QUERY_KEY = deepFreeze({
 		all: () => ["studio"] as const,
 		profile: () => [...QUERY_KEY.studio.all(), "profile"] as const,
 		price: () => [...QUERY_KEY.studio.all(), "price"] as const,
-		creators: () => [...QUERY_KEY.studio.all(), "creators"] as const,
+		creators: (req?: object) => [...QUERY_KEY.studio.all(), "creators", req] as const,
 	},
 	instagram: {
 		all: () => ["instagram"] as const,

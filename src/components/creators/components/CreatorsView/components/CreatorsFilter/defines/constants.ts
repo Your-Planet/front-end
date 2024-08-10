@@ -1,5 +1,5 @@
 import {
-	KeywordType,
+	CreatorsKeywordType,
 	SortByType,
 } from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/type";
 
@@ -8,7 +8,7 @@ export const BUDGET_SELECT_BOX_WIDTH = 100;
 export const KEYWORD_TYPE_BOX_WIDTH = 150;
 export const SORT_BY_BOX_WIDTH = 140;
 
-export const KEYWORD_TYPE_LABEL: Record<KeywordType, string> = {
+export const KEYWORD_TYPE_LABEL: Record<CreatorsKeywordType, string> = {
 	toonName: "인스타툰 이름",
 	instagramUsername: "인스타그램 계정",
 	description: "인스타툰 소개",
