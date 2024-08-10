@@ -2,8 +2,8 @@
 
 import { GetCreatorsRequest } from "@/apis/studio";
 import {
+	CREATORS_KEYWORD_TYPE,
 	KEYWORD_TYPE_BOX_WIDTH,
-	KEYWORD_TYPE_LABEL,
 } from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/constants";
 import {
 	CreatorsKeywordType,
@@ -89,7 +89,7 @@ function SearchInput({}: Props) {
 				}}
 				onChange={handleSelectChange}
 			>
-				{Object.entries(KEYWORD_TYPE_LABEL).map(([keywordType, label]) => (
+				{Object.entries(CREATORS_KEYWORD_TYPE).map(([keywordType, label]) => (
 					<MenuItem key={keywordType} value={keywordType}>
 						{label}
 					</MenuItem>
