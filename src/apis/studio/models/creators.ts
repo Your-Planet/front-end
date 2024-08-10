@@ -5,6 +5,7 @@ export interface Pageable {
 	pageNumber?: number;
 	pageSize?: number;
 }
+
 export interface GetCreatorsRequest {
 	categories?: string;
 	keywordType?: CreatorsKeywordType;
