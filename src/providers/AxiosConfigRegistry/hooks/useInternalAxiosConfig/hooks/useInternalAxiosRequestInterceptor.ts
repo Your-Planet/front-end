@@ -1,5 +1,5 @@
 import { REFRESH_TOKEN_URL } from "@/apis/auth/request";
-import { HTTP_HEADER } from "@/defines/apis/constants";
+import { HTTP_HEADER_KEY } from "@/defines/apis/constants";
 import { COOKIE } from "@/defines/cookie/constants";
 import { AxiosInterceptorCallbacks } from "@/providers/AxiosConfigRegistry/hooks/useInternalAxiosConfig/defines/types";
 import { getCookie } from "@/utils/cookie";
@@ -22,9 +22,9 @@ export default function useInternalAxiosRequestInterceptor(): UseInternalAxiosRe
 				};
 
 				if (accessToken) {
-					newConfig.headers[HTTP_HEADER.authorization] = `Bearer ${accessToken}`;
+					newConfig.headers[HTTP_HEADER_KEY.authorization] = `Bearer ${accessToken}`;
 				} else {
-					delete newConfig.headers[HTTP_HEADER.authorization];
+					delete newConfig.headers[HTTP_HEADER_KEY.authorization];
 				}
 
 				return newConfig;
