@@ -10,7 +10,7 @@ import { JoinSponsorForm } from "@/defines/forms/join/sponsor/types";
 import { GenderType, SubscriptionPathType } from "@/defines/member/types";
 import { SESSION_STORAGE } from "@/defines/sessionStorage/constants";
 import useOpen from "@/hooks/common/useOpen";
-import useMutationPostSponsorJoin from "@/hooks/queries/member/useMutationPostSponsorJoin";
+import useMutationPostSponsorJoin from "@/hooks/queries/auth/useMutationPostSponsorJoin";
 import { getObjectAtPath } from "@/utils/object";
 import { getEmailValidateRule, getLengthErrorMessage } from "@/utils/react-hook-form/rule";
 import { isNumber } from "@/utils/string";

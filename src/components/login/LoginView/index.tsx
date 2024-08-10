@@ -5,25 +5,22 @@ import { COOKIE } from "@/defines/cookie/constants";
 import { IA } from "@/defines/ia/constants";
 import { TIME_UNIT } from "@/defines/time/constants";
 import useOpen from "@/hooks/common/useOpen";
-import useMutationPostLogin from "@/hooks/queries/member/useMutationPostLogin";
+import useMutationPostLogin from "@/hooks/queries/auth/useMutationPostLogin";
 import { getCookie, removeCookie, setCookie } from "@/utils/cookie";
 import { getIaPath } from "@/utils/ia";
 import { isEmail } from "@/utils/string";
 import { LoadingButton } from "@mui/lab";
 import { Alert, Box, Stack } from "@mui/material";
+import { JwtPayload, decode } from "jsonwebtoken";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-
-export interface LoginViewProps {}
 
 interface LoginFormInterface extends LoginForm {
 	isRemember: boolean;
 }
 
-function LoginView(props: LoginViewProps) {
-	const {} = props;
-
+function LoginView() {
 	const router = useRouter();
 	const searchParams = useSearchParams();
 
@@ -46,10 +43,18 @@ function LoginView(props: LoginViewProps) {
 	const handleFormSubmit = handleSubmit(({ isRemember, ...data }) => {
 		mutatePostLogin(data, {
 			onSuccess({ data: token }) {
-				setCookie(COOKIE.accessToken, token);
+				const { exp } = decode(token) as JwtPayload;
+
+				if (exp) {
+					setCookie(COOKIE.accessToken, token, {
+						expires: new Date(exp * TIME_UNIT.unitOfMs.asSecond),
+					});
+				}
 
 				if (isRemember) {
-					setCookie(COOKIE.rememberUserEmail, data.email, TIME_UNIT.unitOfSecond.asDay * 30);
+					setCookie(COOKIE.rememberUserEmail, data.email, {
+						atExpires: TIME_UNIT.unitOfSecond.asDay * 30,
+					});
 				} else {
 					removeCookie(COOKIE.rememberUserEmail);
 				}

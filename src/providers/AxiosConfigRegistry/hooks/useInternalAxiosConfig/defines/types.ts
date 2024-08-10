@@ -1,7 +1,16 @@
-export type AxiosInterceptorFulfilledCallback<V> = (value: V) => V | Promise<V>;
-export type AxiosInterceptorRejectedCallback = (error: any) => any;
+import { ResponseEntity } from "@/defines/apis/types";
+import { AxiosError, AxiosInstance } from "axios";
+import { MutableRefObject } from "react";
+
+export type GetAxiosInterceptorHandler<TInterceptorHandler extends Function> = (params: {
+	refreshTokenPromiseRef: MutableRefObject<Promise<void> | null>;
+	axiosInstance: AxiosInstance;
+}) => TInterceptorHandler | undefined;
+
+export type AxiosInterceptorFulfilledHandler<V> = (value: V) => V | Promise<V>;
+export type AxiosInterceptorRejectedHandler = (error: AxiosError<ResponseEntity<any>>) => any;
 
 export interface AxiosInterceptorCallbacks<V> {
-	handleFulfilled?: AxiosInterceptorFulfilledCallback<V>;
-	handleRejected?: AxiosInterceptorRejectedCallback;
+	getFulfilledHandler: GetAxiosInterceptorHandler<AxiosInterceptorFulfilledHandler<V>>;
+	getRejectedHandler: GetAxiosInterceptorHandler<AxiosInterceptorRejectedHandler>;
 }

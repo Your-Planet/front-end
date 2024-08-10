@@ -51,6 +51,8 @@ function CreatorStudioProvider({ children }: CreatorStudioProviderProps) {
 						sharedToFeed: false,
 					},
 				],
+				profileImageUrl:
+					"https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BB1qn7zw.img?w=700&h=522&m=6&x=321&y=71&s=151&d=151",
 			},
 			price: {
 				service: {

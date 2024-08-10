@@ -1,18 +1,28 @@
 import useInternalAxiosRequestInterceptor from "@/providers/AxiosConfigRegistry/hooks/useInternalAxiosConfig/hooks/useInternalAxiosRequestInterceptor";
 import useInternalAxiosResponseInterceptor from "@/providers/AxiosConfigRegistry/hooks/useInternalAxiosConfig/hooks/useInternalAxiosResponseInterceptor";
 import { AxiosInstance } from "axios";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export default function useInternalAxiosConfig(axiosInstances: AxiosInstance[]) {
-	const { handleFulfilled: handleRequestFulfilled, handleRejected: handleRequestRejected } =
+	const { getFulfilledHandler: getRequestFulfilledHandler, getRejectedHandler: getRequestRejectedHandler } =
 		useInternalAxiosRequestInterceptor();
-	const { handleFulfilled: handleResponseFulfilled, handleRejected: handleResponseRejected } =
+	const { getFulfilledHandler: getResponseFulfilledHandler, getRejectedHandler: getResponseRejectedHandler } =
 		useInternalAxiosResponseInterceptor();
+
+	const refreshTokenPromiseRef = useRef<Promise<void> | null>(null);
 
 	useEffect(() => {
 		axiosInstances.forEach((axiosInstance) => {
-			axiosInstance.interceptors.request.use(handleRequestFulfilled, handleRequestRejected);
-			axiosInstance.interceptors.response.use(handleResponseFulfilled, handleResponseRejected);
+			const getHandlerParams = { refreshTokenPromiseRef, axiosInstance };
+
+			axiosInstance.interceptors.request.use(
+				getRequestFulfilledHandler(getHandlerParams),
+				getRequestRejectedHandler(getHandlerParams),
+			);
+			axiosInstance.interceptors.response.use(
+				getResponseFulfilledHandler(getHandlerParams),
+				getResponseRejectedHandler(getHandlerParams),
+			);
 		});
 	}, [axiosInstances]);
 }

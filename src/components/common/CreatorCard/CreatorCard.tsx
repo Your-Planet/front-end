@@ -10,10 +10,12 @@ import { CREATOR_CARD_WIDTH, CreatorCardButtonEvent } from "@/components/common/
 import { CreatorCardLoadingProvider } from "@/components/common/CreatorCard/providers/CreatorCardLoadingProvider";
 import { Box, Stack } from "@mui/material";
 import { grey } from "@mui/material/colors";
+import { ReactNode } from "react";
 
 interface CreatorCardProps {
 	profile: Omit<StudioProfile, "portfolios">;
 	instagramUsername: string;
+	renderProfileImage?: (imageUrl: string) => ReactNode;
 	buttonEvent: {
 		project: CreatorCardButtonEvent;
 		detail: CreatorCardButtonEvent;
@@ -23,8 +25,9 @@ interface CreatorCardProps {
 
 function CreatorCard(props: CreatorCardProps) {
 	const {
-		profile: { name, description, categories },
+		profile: { name, description, categories, profileImageUrl },
 		instagramUsername,
+		renderProfileImage,
 		buttonEvent,
 		isLoading = false,
 	} = props;
@@ -51,7 +54,7 @@ function CreatorCard(props: CreatorCardProps) {
 					}}
 				>
 					{/*TODO @김현규 프로필 사진*/}
-					<CreatorCardProfileImageField value={""} />
+					<CreatorCardProfileImageField value={renderProfileImage?.(profileImageUrl)} />
 					<Box>
 						<CreatorCardNameField value={name} />
 						<CreatorCardInstagramUsernameField value={`@${instagramUsername}`} />

@@ -1,5 +1,5 @@
 import { API } from "@/apis";
-import { LoginRequest, LoginResponse } from "@/apis/member/models/login";
+import { LoginRequest, LoginResponse } from "@/apis/auth/models/login";
 import { ResponseEntity } from "@/defines/apis/types";
 import { UseMutationParams } from "@/defines/react-query/types";
 import { UseMutationResult, useMutation } from "@tanstack/react-query";
@@ -19,7 +19,7 @@ function useMutationPostLogin(params: UseMutationPostLoginParams): UseMutationPo
 	const { mutationOption } = params;
 
 	return useMutation({
-		mutationFn: async (req: Request) => (await API.member.login(req)).data,
+		mutationFn: async (req: Request) => (await API.auth.login(req)).data,
 		...mutationOption,
 	});
 }
