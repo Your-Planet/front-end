@@ -1,7 +1,7 @@
 import { COOKIE } from "@/defines/cookie/constants";
 import { getJwtPayload } from "@/utils/auth";
 import { getIaObject } from "@/utils/ia";
-import { createGetFallbackUrlGetter, getPageAccessibleType, MiddlewareParams } from "@/utils/middleware";
+import { createGetRedirectUrlGetter, getPageAccessibleType, MiddlewareParams } from "@/utils/middleware";
 import { NextRequest, NextResponse } from "next/server";
 
 export const middleware = (request: NextRequest) => {
@@ -30,7 +30,7 @@ export const middleware = (request: NextRequest) => {
 	const pageAccessibleType = getPageAccessibleType(middlewareParams);
 
 	if (pageAccessibleType !== "accessible") {
-		const fallbackUrl = createGetFallbackUrlGetter(middlewareParams)(pageAccessibleType);
+		const fallbackUrl = createGetRedirectUrlGetter(middlewareParams)(pageAccessibleType);
 		return NextResponse.redirect(new URL(fallbackUrl, request.url));
 	}
 

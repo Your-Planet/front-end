@@ -38,7 +38,7 @@ export const getPageAccessibleType = ({ currentIa, jwtPayload }: MiddlewareParam
 	return getPageAccessibleTypeOnLoggedIn(accessConfig, jwtPayload.memberType);
 };
 
-export const createGetFallbackUrlGetter = ({ request, currentIa, jwtPayload }: MiddlewareParams) => {
+export const createGetRedirectUrlGetter = ({ request, currentIa, jwtPayload }: MiddlewareParams) => {
 	const { nextUrl } = request;
 	const { accessConfig } = currentIa;
 
