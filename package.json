@@ -6,7 +6,9 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint"
+		"lint": "next lint",
+		"type": "tsc --noEmit",
+		"build:dry-run": "npm run type && npm run lint"
 	},
 	"dependencies": {
 		"@emotion/react": "^11.11.3",
