@@ -1,3 +1,3 @@
 export type CreatorsKeywordType = "toonName" | "instagramUsername" | "description";
-export const DefaultCreatorsKeywordType: CreatorsKeywordType = "toonName";
 export type SortByType = "popularity" | "association" | "fastest";
+export const DEFAULT_CREATORS_KEYWORD_TYPE: CreatorsKeywordType = "toonName";

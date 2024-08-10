@@ -7,7 +7,7 @@ import {
 } from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/constants";
 import {
 	CreatorsKeywordType,
-	DefaultCreatorsKeywordType,
+	DEFAULT_CREATORS_KEYWORD_TYPE,
 } from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/type";
 import useRouterPushWithParams from "@/components/creators/hooks/useRouterPushWithParams";
 import { useCreatorsContext } from "@/components/creators/provider/CreatorsProvider";
@@ -22,8 +22,8 @@ function SearchInput({}: Props) {
 	const { handleClickSearch } = useCreatorsContext();
 	const routerPushWithParams = useRouterPushWithParams();
 	const searchParams = useSearchParams();
-	const [creatorsKeywordType, setKeywordType] = useState<CreatorsKeywordType>(
-		(searchParams.get("creatorsKeywordType") ?? DefaultCreatorsKeywordType) as CreatorsKeywordType,
+	const [keywordType, setKeywordType] = useState<CreatorsKeywordType>(
+		(searchParams.get("keywordType") ?? DEFAULT_CREATORS_KEYWORD_TYPE) as CreatorsKeywordType,
 	);
 	const [keyword, setKeyword] = useState<string>("");
 
@@ -36,7 +36,7 @@ function SearchInput({}: Props) {
 
 		return {
 			...(categories && { categories }),
-			...(creatorsKeywordType && { creatorsKeywordType }),
+			...(keywordType && { keywordType }),
 			...(keyword && { keyword }),
 			...(minPrice && { minPrice }),
 			...(maxPrice && { maxPrice }),
@@ -59,13 +59,13 @@ function SearchInput({}: Props) {
 		}
 
 		if (event.key === "Enter" && event.code === "Enter") {
-			routerPushWithParams(["creatorsKeywordType", "keyword"], [creatorsKeywordType, keyword]);
+			routerPushWithParams(["keywordType", "keyword"], [keywordType, keyword]);
 			handleClickSearch(getSearchParams());
 		}
 	};
 
 	const handleClickSearchIcon = () => {
-		routerPushWithParams(["creatorsKeywordType", "keyword"], [creatorsKeywordType, keyword]);
+		routerPushWithParams(["keywordType", "keyword"], [keywordType, keyword]);
 		handleClickSearch(getSearchParams());
 	};
 
@@ -76,7 +76,7 @@ function SearchInput({}: Props) {
 			}}
 		>
 			<Select
-				value={creatorsKeywordType}
+				value={keywordType}
 				size="small"
 				displayEmpty
 				sx={{
@@ -86,8 +86,8 @@ function SearchInput({}: Props) {
 				}}
 				onChange={handleSelectChange}
 			>
-				{Object.entries(KEYWORD_TYPE_LABEL).map(([creatorsKeywordType, label]) => (
-					<MenuItem key={creatorsKeywordType} value={creatorsKeywordType}>
+				{Object.entries(KEYWORD_TYPE_LABEL).map(([keywordType, label]) => (
+					<MenuItem key={keywordType} value={keywordType}>
 						{label}
 					</MenuItem>
 				))}

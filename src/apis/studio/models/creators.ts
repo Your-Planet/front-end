@@ -3,7 +3,7 @@ import { InstatoonCategoryType } from "@/defines/instatoon-category/types";
 
 export interface GetCreatorsRequest {
 	categories?: string;
-	creatorsKeywordType?: CreatorsKeywordType;
+	keywordType?: CreatorsKeywordType;
 	keyword?: string;
 	minPrice?: number;
 	maxPrice?: number;
