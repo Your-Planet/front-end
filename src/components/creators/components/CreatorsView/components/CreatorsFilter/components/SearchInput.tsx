@@ -33,6 +33,10 @@ function SearchInput({}: Props) {
 		const maxPrice = parseInt(searchParams.get("max") ?? "0", 10);
 		const pageNumber = parseInt(searchParams.get("pageNumber") ?? "0", 10);
 		const pageSize = parseInt(searchParams.get("pageSize") ?? "0", 10);
+		const pageable = {
+			...(pageNumber && { pageNumber }),
+			...(pageSize && { pageSize }),
+		};
 
 		return {
 			...(categories && { categories }),
@@ -40,8 +44,7 @@ function SearchInput({}: Props) {
 			...(keyword && { keyword }),
 			...(minPrice && { minPrice }),
 			...(maxPrice && { maxPrice }),
-			...(pageNumber && { pageNumber }),
-			...(pageSize && { pageSize }),
+			pageable,
 		} as GetCreatorsRequest;
 	};
 
