@@ -5,7 +5,7 @@ import {
 
 export const CATEGORY_SELECT_BOX_WIDTH = 120;
 export const BUDGET_SELECT_BOX_WIDTH = 100;
-export const KEYWORD_TYPE_BOX_WIDTH = 150;
+export const CREATORS_KEYWORD_TYPE_BOX_WIDTH = 150;
 export const SORT_BY_BOX_WIDTH = 140;
 
 export const CREATORS_KEYWORD_TYPE: Record<CreatorsKeywordType, string> = {

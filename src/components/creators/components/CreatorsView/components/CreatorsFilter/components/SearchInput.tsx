@@ -3,7 +3,7 @@
 import { GetCreatorsRequest } from "@/apis/studio";
 import {
 	CREATORS_KEYWORD_TYPE,
-	KEYWORD_TYPE_BOX_WIDTH,
+	CREATORS_KEYWORD_TYPE_BOX_WIDTH,
 } from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/constants";
 import {
 	CreatorsKeywordType,
@@ -83,7 +83,7 @@ function SearchInput({}: Props) {
 				size="small"
 				displayEmpty
 				sx={{
-					minWidth: `${KEYWORD_TYPE_BOX_WIDTH}px`,
+					minWidth: `${CREATORS_KEYWORD_TYPE_BOX_WIDTH}px`,
 					borderTopRightRadius: 0,
 					borderBottomRightRadius: 0,
 				}}
