@@ -8,6 +8,10 @@ export const getIaPath = (page: PageAttributes) => {
 	return findObjectPath(IA, page) ?? "#";
 };
 
+const replaceSlugsInPath = (path: string) => {
+	return path.replace(/(?<=\/)\d+(?=\/|$)/g, "[id]");
+};
+
 export const getIaObject = (path: string): PageAttributes => {
-	return getObjectAtPath(IA, path.substring(1), "/");
+	return getObjectAtPath(IA, replaceSlugsInPath(path).substring(1), "/");
 };
