@@ -1,17 +1,17 @@
 import {
-	SearchByType,
+	CreatorsKeywordType,
 	SortByType,
 } from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/type";
 
 export const CATEGORY_SELECT_BOX_WIDTH = 120;
 export const BUDGET_SELECT_BOX_WIDTH = 100;
-export const SEARCH_BY_BOX_WIDTH = 150;
+export const CREATORS_KEYWORD_TYPE_BOX_WIDTH = 150;
 export const SORT_BY_BOX_WIDTH = 140;
 
-export const SEARCH_BY_LABEL: Record<SearchByType, string> = {
-	name: "인스타툰 이름",
-	instagramId: "인스타그램 계정",
-	introduction: "인스타툰 소개",
+export const CREATORS_KEYWORD_TYPE: Record<CreatorsKeywordType, string> = {
+	toonName: "인스타툰 이름",
+	instagramUsername: "인스타그램 계정",
+	description: "인스타툰 소개",
 };
 
 export const SORT_BY_LABEL: Record<SortByType, string> = {

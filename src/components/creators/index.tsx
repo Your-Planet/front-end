@@ -7,13 +7,10 @@ import { StyledBannerBox, StyledContainerBox, StyledInnerBox } from "@/component
 import { COOKIE } from "@/defines/cookie/constants";
 import { getCookie } from "@/utils/cookie";
 import { Box } from "@mui/material";
-import { useRef } from "react";
 
 type Props = {};
 
 function SearchPageView({}: Props) {
-	const genreTabsRef = useRef<HTMLDivElement>(null);
-
 	const accessToken = getCookie(COOKIE.accessToken);
 
 	return (

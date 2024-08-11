@@ -6,7 +6,9 @@ import SearchInput from "@/components/creators/components/CreatorsView/component
 import { Box, Button } from "@mui/material";
 import { usePathname, useRouter } from "next/navigation";
 
-function CreatorsFilter(props: {}) {
+type Props = {};
+
+function CreatorsFilter({}: Props) {
 	const router = useRouter();
 	const pathname = usePathname();
 
