@@ -22,12 +22,14 @@ function OptionFormView() {
 	const { watch } = useFormContext();
 
 	const [
+		defaultCuts,
 		refinementProvision,
 		additionalPanelProvision,
 		additionalModificationProvision,
 		postDurationExtensionProvision,
 		originFileProvision,
 	] = watch([
+		"service.defaultCuts",
 		"option.refinement.provisionType",
 		"option.additionalPanel.provisionType",
 		"option.additionalModification.provisionType",
@@ -79,6 +81,15 @@ function OptionFormView() {
 					formName="option.additionalPanel.provisionType"
 					radios={PROVISION_RADIOS}
 					row
+					rules={{
+						validate: (value) => {
+							if ((value as ProvisionType) !== "UNPROVIDED") {
+								if (defaultCuts >= STUDIO_PRICE_FORM_LIMITS.service.defaultCuts.max) {
+									return `기본 컷 수가 ${STUDIO_PRICE_FORM_LIMITS.service.defaultCuts.max}장인 경우 "${LABEL_BY_SERVICE_OPTION_TYPE.additionalPanel}" 옵션을 제공할 수 없습니다.`;
+								}
+							}
+						},
+					}}
 				/>
 				<Box display="flex" gap={1}>
 					<TextField

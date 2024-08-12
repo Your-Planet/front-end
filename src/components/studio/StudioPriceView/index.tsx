@@ -1,8 +1,6 @@
 import StudioPriceFormView from "@/components/studio/StudioPriceView/components/StudioPriceFormView";
 
-type Props = {};
-
-function StudioPriceView({}: Props) {
+function StudioPriceView() {
 	return (
 		<section>
 			<StudioPriceFormView />
