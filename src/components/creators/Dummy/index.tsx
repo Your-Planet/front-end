@@ -13,6 +13,7 @@ const dummyProfile = {
 	name: "dummy",
 	description: "dummy",
 	categories: [],
+	profileImageUrl: "",
 };
 const BUTTON_TOOLTIP_MESSAGE = "미리보기에서는 지원하지 않는 기능입니다.";
 
