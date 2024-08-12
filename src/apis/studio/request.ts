@@ -1,4 +1,6 @@
 import {
+	GetCreatorsRequest,
+	GetCreatorsResponse,
 	GetPriceRequest,
 	GetPriceResponse,
 	GetPriceTempRequest,
@@ -55,5 +57,11 @@ export class StudioApi extends BaseApi {
 
 	public postPrice: AxiosRequestYourPlanetFunction<PostPriceRequest, PostPriceResponse> = (req) => {
 		return this.axiosInstance.post(this.getUrl("/price"), req);
+	};
+	
+	public getCreators: AxiosRequestYourPlanetFunction<GetCreatorsRequest, GetCreatorsResponse> = (req) => {
+		return this.axiosInstance.get(this.getUrl("/"), {
+			params: req,
+		});
 	};
 }

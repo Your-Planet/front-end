@@ -1,43 +1,75 @@
 "use client";
 
+import { GetCreatorsRequest } from "@/apis/studio";
 import {
-	SEARCH_BY_BOX_WIDTH,
-	SEARCH_BY_LABEL,
+	CREATORS_KEYWORD_TYPE,
+	CREATORS_KEYWORD_TYPE_BOX_WIDTH,
 } from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/constants";
-import { SearchByType } from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/type";
+import {
+	CreatorsKeywordType,
+	DEFAULT_CREATORS_KEYWORD_TYPE,
+} from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/type";
 import useRouterPushWithParams from "@/components/creators/hooks/useRouterPushWithParams";
+import { useCreatorsContext } from "@/components/creators/provider/CreatorsProvider";
 import SearchIcon from "@mui/icons-material/Search";
 import { Box, IconButton, InputBase, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { useSearchParams } from "next/navigation";
-import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
+import { ChangeEvent, KeyboardEvent, useState } from "react";
 
-function SearchInput() {
+type Props = {};
+
+function SearchInput({}: Props) {
+	const { handleClickSearch } = useCreatorsContext();
 	const routerPushWithParams = useRouterPushWithParams();
 	const searchParams = useSearchParams();
-	const [searchBy, setSearchBy] = useState<string>(searchParams.get("searchBy") ?? ("name" as SearchByType));
+	const [keywordType, setKeywordType] = useState<CreatorsKeywordType>(
+		(searchParams.get("keywordType") ?? DEFAULT_CREATORS_KEYWORD_TYPE) as CreatorsKeywordType,
+	);
 	const [keyword, setKeyword] = useState<string>("");
 
-	useEffect(() => {
-		setSearchBy(searchParams.get("searchBy") ?? ("name" as SearchByType));
-		setKeyword(searchParams.get("keyword") ?? "");
-	}, [searchParams]);
+	const getSearchParams = () => {
+		const categories = searchParams.get("categories");
+		const minPrice = parseInt(searchParams.get("min") ?? "0", 10);
+		const maxPrice = parseInt(searchParams.get("max") ?? "0", 10);
+		const pageNumber = parseInt(searchParams.get("pageNumber") ?? "0", 10);
+		const pageSize = parseInt(searchParams.get("pageSize") ?? "0", 10);
+		const pageable = {
+			...(pageNumber && { pageNumber }),
+			...(pageSize && { pageSize }),
+		};
+
+		return {
+			...(categories && { categories }),
+			...(keywordType && { keywordType }),
+			...(keyword && { keyword }),
+			...(minPrice && { minPrice }),
+			...(maxPrice && { maxPrice }),
+			pageable,
+		} as GetCreatorsRequest;
+	};
 
 	const handleSelectChange = (event: SelectChangeEvent) => {
-		setSearchBy(event.target.value);
+		setKeywordType(event.target.value as CreatorsKeywordType);
 	};
 
 	const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 		setKeyword(event.target.value);
 	};
 
-	const handleInputKeyUp = (event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-		if (event.key === "Enter") {
-			routerPushWithParams(["searchBy", "keyword"], [searchBy, keyword]);
+	const handleInputKeyDown = (event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+		if (event.nativeEvent.isComposing) {
+			return;
+		}
+
+		if (event.key === "Enter" && event.code === "Enter") {
+			routerPushWithParams(["keywordType", "keyword"], [keywordType, keyword]);
+			handleClickSearch(getSearchParams());
 		}
 	};
 
 	const handleClickSearchIcon = () => {
-		routerPushWithParams(["searchBy", "keyword"], [searchBy, keyword]);
+		routerPushWithParams(["keywordType", "keyword"], [keywordType, keyword]);
+		handleClickSearch(getSearchParams());
 	};
 
 	return (
@@ -47,18 +79,18 @@ function SearchInput() {
 			}}
 		>
 			<Select
-				value={searchBy}
+				value={keywordType}
 				size="small"
 				displayEmpty
 				sx={{
-					minWidth: `${SEARCH_BY_BOX_WIDTH}px`,
+					minWidth: `${CREATORS_KEYWORD_TYPE_BOX_WIDTH}px`,
 					borderTopRightRadius: 0,
 					borderBottomRightRadius: 0,
 				}}
 				onChange={handleSelectChange}
 			>
-				{Object.entries(SEARCH_BY_LABEL).map(([searchByType, label]) => (
-					<MenuItem key={searchByType} value={searchByType}>
+				{Object.entries(CREATORS_KEYWORD_TYPE).map(([keywordType, label]) => (
+					<MenuItem key={keywordType} value={keywordType}>
 						{label}
 					</MenuItem>
 				))}
@@ -79,7 +111,7 @@ function SearchInput() {
 					value={keyword}
 					inputProps={{ style: { padding: 0 } }}
 					onChange={handleInputChange}
-					onKeyUp={handleInputKeyUp}
+					onKeyDown={handleInputKeyDown}
 				/>
 				<IconButton type="button" size="small" onClick={handleClickSearchIcon}>
 					<SearchIcon />

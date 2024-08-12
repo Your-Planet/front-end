@@ -1,3 +1,5 @@
+"use client";
+
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 
@@ -11,10 +13,18 @@ function useRouterPushWithParams() {
 			const newSearchParams = new URLSearchParams(searchParams.toString());
 
 			if (typeof filter === "string" && typeof params === "string") {
-				newSearchParams.set(filter, params);
+				if (filter !== "" && params === "") {
+					newSearchParams.delete(filter);
+				} else if (filter !== "" && params !== "") {
+					newSearchParams.set(filter, params);
+				}
 			} else {
 				for (let i = 0; i < filter.length; ++i) {
-					newSearchParams.set(filter[i], params[i]);
+					if (filter[i] !== "" && params[i] === "") {
+						newSearchParams.delete(filter[i]);
+					} else if (filter[i] !== "" && params[i] !== "") {
+						newSearchParams.set(filter[i], params[i]);
+					}
 				}
 			}
 			router.push(`${pathname}/?${newSearchParams.toString()}`, { scroll: false });
