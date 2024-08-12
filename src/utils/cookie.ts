@@ -15,11 +15,11 @@ export const getRootDomain = (url: string) => url.split(".").slice(-URL_COMMA_CO
 
 export const getCookie = (name: string) => readCookie(name) as any;
 
-export const setCookie = (name: string, value: string, atExpires?: number, options?: CookieOptions) => {
+export const setCookie = (name: string, value: string, options: CookieOptions = {}) => {
 	saveCookie(name, value, {
 		...options,
 		path: "/",
-		expires: getExpiresDate(atExpires),
+		expires: options.atExpires ? getExpiresDate(options.atExpires) : options.expires,
 		domain: options?.domain ?? getRootDomain(globalThis?.location?.hostname ?? options?.req?.headers?.host ?? ""),
 	});
 };

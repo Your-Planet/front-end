@@ -1,8 +1,9 @@
 import { CreatorCardFieldProps } from "@/components/common/CreatorCard";
 import { useCreatorCardLoadingContext } from "@/components/common/CreatorCard/providers/CreatorCardLoadingProvider";
 import { Box, Skeleton } from "@mui/material";
+import { ReactNode } from "react";
 
-type CreatorCardProfileImageFieldProps = CreatorCardFieldProps<string>;
+type CreatorCardProfileImageFieldProps = CreatorCardFieldProps<ReactNode>;
 
 function CreatorCardProfileImageField(props: CreatorCardProfileImageFieldProps) {
 	const { value } = props;

@@ -5,6 +5,8 @@ import {
 	JoinResponse,
 	LoginRequest,
 	LoginResponse,
+	RefreshTokenRequest,
+	RefreshTokenResponse,
 	ResetPasswordRequest,
 	ResetPasswordResponse,
 	ValidateMemberRequest,
@@ -13,6 +15,8 @@ import {
 import { AxiosRequestYourPlanetFunction } from "@/defines/apis/types";
 import BaseApi from "@/utils/api/BaseApi";
 
+export const REFRESH_TOKEN_URL = "/refresh-token";
+
 export class AuthApi extends BaseApi {
 	public join: AxiosRequestYourPlanetFunction<JoinRequest, JoinResponse> = (req) => {
 		return this.axiosInstance.post(this.getUrl("/join"), req);
@@ -20,6 +24,10 @@ export class AuthApi extends BaseApi {
 
 	public login: AxiosRequestYourPlanetFunction<LoginRequest, LoginResponse> = (req) => {
 		return this.axiosInstance.post(this.getUrl("/login"), req);
+	};
+
+	public refreshToken: AxiosRequestYourPlanetFunction<RefreshTokenRequest, RefreshTokenResponse> = () => {
+		return this.axiosInstance.post(this.getUrl(REFRESH_TOKEN_URL));
 	};
 
 	public findEmail: AxiosRequestYourPlanetFunction<FindEmailRequest, FindEmailResponse> = (req) => {

@@ -1,6 +1,7 @@
 import { COOKIE } from "@/defines/cookie/constants";
 import { getJwtPayload } from "@/utils/auth";
-import { getFallbackUrl, getIaObject, getIsAccessiblePage } from "@/utils/ia";
+import { getIaObject } from "@/utils/ia";
+import { createGetRedirectUrlGetter, getPageAccessibleType, MiddlewareParams } from "@/utils/middleware";
 import { NextRequest, NextResponse } from "next/server";
 
 export const middleware = (request: NextRequest) => {
@@ -11,17 +12,25 @@ export const middleware = (request: NextRequest) => {
 
 	const response = NextResponse.next();
 
-	const jwtPayload = getJwtPayload(cookies.get(COOKIE.accessToken)?.value);
-
 	const currentIa = getIaObject(pathname);
+
+	const jwtPayload = getJwtPayload(cookies.get(COOKIE.accessToken)?.value);
 
 	if (!currentIa) {
 		console.error("IA not found for pathname", pathname);
 		return response;
 	}
 
-	if (!getIsAccessiblePage(currentIa, jwtPayload)) {
-		const fallbackUrl = getFallbackUrl(currentIa, jwtPayload);
+	const middlewareParams: MiddlewareParams = {
+		request,
+		currentIa,
+		jwtPayload,
+	};
+
+	const pageAccessibleType = getPageAccessibleType(middlewareParams);
+
+	if (pageAccessibleType !== "accessible") {
+		const fallbackUrl = createGetRedirectUrlGetter(middlewareParams)(pageAccessibleType);
 		return NextResponse.redirect(new URL(fallbackUrl, request.url));
 	}
 
