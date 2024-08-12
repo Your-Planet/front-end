@@ -8,7 +8,7 @@ function Gnb() {
 	return (
 		<Box className="flex">
 			<GnbLink page={IA} />
-			<GnbLink page={IA.creators} exception={[IA.dummy, IA.dummy["non-login"]]} />
+			<GnbLink page={IA.creators} />
 		</Box>
 	);
 }

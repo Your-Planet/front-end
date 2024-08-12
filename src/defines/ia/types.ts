@@ -13,8 +13,7 @@ export type GlobalIa = PageAttributes &
 	FindIa &
 	ResetPwIa &
 	TermsIa &
-	PrivacyIa &
-	DummyIa;
+	PrivacyIa;
 
 export type Ia<PageName extends string, SubIa extends PageAttributes = PageAttributes> = PageAttributes &
 	Record<PageName, SubIa>;
@@ -27,7 +26,7 @@ type JoinIa = Ia<"join", JoinSubIa["creator"] & JoinSubIa["sponsor"] & JoinSubIa
 
 type DeletionIa = Ia<"deletion", DeletionSubIa["complete"]>;
 
-type CreatorsIa = Ia<"creators", CreatorsSubIa["[id]"]>;
+type CreatorsIa = Ia<"creators", CreatorsSubIa["[id]"] & CreatorsSubIa["creator"] & CreatorsSubIa["guest"]>;
 
 type ProjectIa = Ia<"project", ProjectSubIa["[id]"]>;
 
@@ -43,8 +42,6 @@ type TermsIa = Ia<"terms">;
 
 type PrivacyIa = Ia<"privacy">;
 
-type DummyIa = Ia<"dummy", DummySubIa["non-login"]>;
-
 type JoinSubIa = {
 	creator: Ia<"creator", Ia<"verify" | "details">>;
 	sponsor: Ia<"sponsor", Ia<"details">>;
@@ -57,6 +54,8 @@ type DeletionSubIa = {
 
 type CreatorsSubIa = {
 	["[id]"]: Ia<"[id]", Ia<"request", Ia<"step1" | "step2" | "confirm" | "complete">>>;
+	creator: Ia<"creator">;
+	guest: Ia<"guest">;
 };
 
 type ProjectSubIa = {
@@ -75,10 +74,6 @@ type UserInfoSubIa = {
 type FindSubIa = {
 	email: Ia<"email", Ia<"complete">>;
 	pw: Ia<"pw", Ia<"complete">>;
-};
-
-type DummySubIa = {
-	"non-login": Ia<"non-login">;
 };
 
 export interface PageAttributes {

@@ -75,7 +75,17 @@ export const IA = deepFreeze<GlobalIa>({
 		accessConfig: {
 			allowedOnLogin: true,
 			allowedMemberTypes: ["ADMIN", "SPONSOR"],
-			fallbackUrl: "dummy",
+			fallbackUrl(globalIa, accessConfig, jwtPayload) {
+				if (!jwtPayload) {
+					return "/creators/guest";
+				}
+
+				if (jwtPayload.memberType === "CREATOR") {
+					return "/creators/creator";
+				}
+
+				return "/403";
+			},
 		},
 
 		"[id]": {
@@ -105,6 +115,23 @@ export const IA = deepFreeze<GlobalIa>({
 					title: "프로젝트 의뢰 완료",
 					label: "프로젝트 의뢰 완료",
 				},
+			},
+		},
+
+		creator: {
+			title: "작가 찾기",
+			label: "작가 찾기",
+			accessConfig: {
+				allowedOnLogin: true,
+				allowedMemberTypes: ["ADMIN", "CREATOR"],
+			},
+		},
+
+		guest: {
+			title: "작가 찾기",
+			label: "작가 찾기",
+			accessConfig: {
+				disallowedOnLogin: true,
 			},
 		},
 	},
@@ -194,23 +221,5 @@ export const IA = deepFreeze<GlobalIa>({
 	privacy: {
 		title: "개인정보처리방침",
 		label: "개인정보처리방침",
-	},
-
-	dummy: {
-		title: "작가 유저 더미 페이지",
-		label: "작가 유저 더미 페이지",
-		accessConfig: {
-			allowedOnLogin: true,
-			allowedMemberTypes: ["ADMIN", "CREATOR"],
-			fallbackUrl: "/dummy/non-login",
-		},
-
-		"non-login": {
-			title: "비로그인 유저 더미 페이지",
-			label: "비로그인 유저 더미 페이지",
-			accessConfig: {
-				disallowedOnLogin: true,
-			},
-		},
 	},
 });
