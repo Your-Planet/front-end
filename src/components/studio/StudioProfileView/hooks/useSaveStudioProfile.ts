@@ -1,6 +1,6 @@
 import { InstagramMedia } from "@/apis/instagram";
 import { StudioProfileForm } from "@/components/studio/StudioProfileView/defines/types";
-import { categoryToCategories } from "@/components/studio/StudioProfileView/utils";
+import { categoryToCategories, getIsProfileImageTypeString } from "@/components/studio/StudioProfileView/utils";
 import { IA } from "@/defines/ia/constants";
 import useMutationPostProfile from "@/hooks/queries/studio/useMutationPostProfile";
 import { handleCommonError } from "@/utils/error";
@@ -39,12 +39,15 @@ export default function useSaveStudioProfile(): UseSaveStudioProfile {
 		};
 
 		try {
-			const { category, portfolios, ...restData } = data;
+			const { category, portfolios, profileImage, ...restData } = data;
 
 			await mutatePostProfile({
-				...restData,
-				categories: categoryToCategories(category),
-				portfolioIds: portfoliosToPortfolioIds(portfolios),
+				studioRegisterForm: {
+					...restData,
+					categories: categoryToCategories(category),
+					portfolioIds: portfoliosToPortfolioIds(portfolios),
+				},
+				profileImage: getIsProfileImageTypeString(profileImage) ? null : profileImage,
 			});
 
 			handleSaveSuccess();

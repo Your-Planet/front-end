@@ -1,3 +1,5 @@
+import { Pair } from "@/defines/pair/types";
+
 export const getObjectAtPath = <T>(obj: T, path: string, splitter = ".") => {
 	if (!path || path === splitter) return obj;
 
@@ -63,6 +65,31 @@ export const objectToFormData = (obj: object): FormData => {
 	Object.entries(obj).forEach(([k, v]) => {
 		if (v !== undefined) formData.append(k, v.toString());
 	});
+
+	return formData;
+};
+
+export const createMultipartFormData = ({
+	files,
+	jsonBody,
+}: {
+	files: Pair<(File | null)[]>;
+	jsonBody: Pair<object>;
+}) => {
+	const formData = new FormData();
+
+	files.value.forEach((file) => {
+		if (file) {
+			formData.append(files.key, file);
+		}
+	});
+
+	formData.append(
+		jsonBody.key,
+		new Blob([JSON.stringify(jsonBody.value)], {
+			type: "application/json",
+		}),
+	);
 
 	return formData;
 };
