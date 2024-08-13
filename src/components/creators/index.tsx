@@ -1,25 +1,19 @@
 "use client";
 
 import Banner from "@/components/creators/components/Banner";
-import BlurBox from "@/components/creators/components/BlurBox";
 import CreatorsView from "@/components/creators/components/CreatorsView";
 import { StyledBannerBox, StyledContainerBox, StyledInnerBox } from "@/components/creators/defines/styles";
-import { COOKIE } from "@/defines/cookie/constants";
-import { getCookie } from "@/utils/cookie";
 import { Box } from "@mui/material";
 
 type Props = {};
 
-function SearchPageView({}: Props) {
-	const accessToken = getCookie(COOKIE.accessToken);
-
+function CreatorsPageView({}: Props) {
 	return (
 		<Box width="100%">
 			<StyledBannerBox>
 				<Banner />
 			</StyledBannerBox>
 			<StyledContainerBox>
-				{!accessToken && <BlurBox />}
 				<StyledInnerBox>
 					<CreatorsView />
 				</StyledInnerBox>
@@ -28,4 +22,4 @@ function SearchPageView({}: Props) {
 	);
 }
 
-export default SearchPageView;
+export default CreatorsPageView;

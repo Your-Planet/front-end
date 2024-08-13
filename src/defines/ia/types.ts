@@ -26,7 +26,7 @@ type JoinIa = Ia<"join", JoinSubIa["creator"] & JoinSubIa["sponsor"] & JoinSubIa
 
 type DeletionIa = Ia<"deletion", DeletionSubIa["complete"]>;
 
-type CreatorsIa = Ia<"creators", CreatorsSubIa["[id]"]>;
+type CreatorsIa = Ia<"creators", CreatorsSubIa["[id]"] & CreatorsSubIa["creator"] & CreatorsSubIa["guest"]>;
 
 type ProjectIa = Ia<"project", ProjectSubIa["[id]"]>;
 
@@ -54,6 +54,8 @@ type DeletionSubIa = {
 
 type CreatorsSubIa = {
 	["[id]"]: Ia<"[id]", Ia<"request", Ia<"step1" | "step2" | "confirm" | "complete">>>;
+	creator: Ia<"creator">;
+	guest: Ia<"guest">;
 };
 
 type ProjectSubIa = {

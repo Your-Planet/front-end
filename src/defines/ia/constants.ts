@@ -1,4 +1,5 @@
 import { GlobalIa } from "@/defines/ia/types";
+import { getIaPath } from "@/utils/ia";
 import { deepFreeze } from "@/utils/object";
 
 export const IA = deepFreeze<GlobalIa>({
@@ -72,6 +73,21 @@ export const IA = deepFreeze<GlobalIa>({
 	creators: {
 		title: "작가 찾기",
 		label: "작가 찾기",
+		accessConfig: {
+			allowedOnLogin: true,
+			allowedMemberTypes: ["ADMIN", "SPONSOR"],
+			fallbackUrl(globalIa, accessConfig, jwtPayload): string {
+				if (!jwtPayload) {
+					return getIaPath(globalIa.creators.guest);
+				}
+
+				if (jwtPayload.memberType === "CREATOR") {
+					return getIaPath(globalIa.creators.creator);
+				}
+
+				return "/403";
+			},
+		},
 
 		"[id]": {
 			title: "작가 상세 보기",
@@ -100,6 +116,23 @@ export const IA = deepFreeze<GlobalIa>({
 					title: "프로젝트 의뢰 완료",
 					label: "프로젝트 의뢰 완료",
 				},
+			},
+		},
+
+		creator: {
+			title: "작가 찾기",
+			label: "작가 찾기",
+			accessConfig: {
+				allowedOnLogin: true,
+				allowedMemberTypes: ["ADMIN", "CREATOR"],
+			},
+		},
+
+		guest: {
+			title: "작가 찾기",
+			label: "작가 찾기",
+			accessConfig: {
+				disallowedOnLogin: true,
 			},
 		},
 	},
