@@ -1,4 +1,5 @@
 import { GlobalIa } from "@/defines/ia/types";
+import { getIaPath } from "@/utils/ia";
 import { deepFreeze } from "@/utils/object";
 
 export const IA = deepFreeze<GlobalIa>({
@@ -75,13 +76,13 @@ export const IA = deepFreeze<GlobalIa>({
 		accessConfig: {
 			allowedOnLogin: true,
 			allowedMemberTypes: ["ADMIN", "SPONSOR"],
-			fallbackUrl(globalIa, accessConfig, jwtPayload) {
+			fallbackUrl(globalIa, accessConfig, jwtPayload): string {
 				if (!jwtPayload) {
-					return "/creators/guest";
+					return getIaPath(globalIa.creators.guest);
 				}
 
 				if (jwtPayload.memberType === "CREATOR") {
-					return "/creators/creator";
+					return getIaPath(globalIa.creators.creator);
 				}
 
 				return "/403";
