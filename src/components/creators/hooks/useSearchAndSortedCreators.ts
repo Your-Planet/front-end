@@ -23,10 +23,11 @@ function useSearchAndSortedCreators() {
 		switch (sortType) {
 			case "popularity":
 				return sortByPopularity(creators);
-			case "association":
+			case "association": {
 				const selectedCategories = getFilteredCategoriesFromURL();
 
 				return sortByAssociation(creators, selectedCategories);
+			}
 			case "fastest":
 				return sortByFastest(creators);
 			default:
