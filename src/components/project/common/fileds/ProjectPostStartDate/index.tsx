@@ -3,17 +3,19 @@ import { PROJECT_FORM_LENGTH } from "@/defines/forms/project/constants";
 import { ProjectCommonForm, ProjectFormFieldCommonProps } from "@/defines/forms/project/types";
 import { Box, Chip } from "@mui/material";
 import { Dayjs } from "dayjs";
-import { ChangeEventHandler } from "react";
+import { ChangeEventHandler, useEffect } from "react";
 import { ArrayPath, useFieldArray, useFormContext } from "react-hook-form";
 
 export interface ProjectPostStartDateProps extends ProjectFormFieldCommonProps {
 	postStartDatesFormName: ArrayPath<ProjectCommonForm>;
 }
 
+const MAX_LENGTH = PROJECT_FORM_LENGTH.postStartDates.max;
+
 function ProjectPostStartDate(props: ProjectPostStartDateProps) {
 	const { formName, postStartDatesFormName, required, helperText } = props;
 
-	const { control } = useFormContext<ProjectCommonForm>();
+	const { control, setError, clearErrors } = useFormContext<ProjectCommonForm>();
 
 	const { fields, append, remove } = useFieldArray<ProjectCommonForm>({
 		control,
@@ -26,19 +28,28 @@ function ProjectPostStartDate(props: ProjectPostStartDateProps) {
 		return fields.find(({ date }) => date === selectedDate);
 	};
 
-	const getIsSelectedFull = () => {
-		return fields.length === PROJECT_FORM_LENGTH.postStartDates.max;
-	};
-
 	const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
 		const dayjs = e.target.value as unknown as Dayjs;
 
 		const selectedDate = dayjs.format("YYYY-MM-DD");
 
-		if (getIsAlreadySelectedDate(selectedDate) || getIsSelectedFull()) return;
+		if (getIsAlreadySelectedDate(selectedDate)) return;
 
 		append({ date: selectedDate });
 	};
+
+	const getHandleDelete = (index: number) => () => remove(index);
+
+	useEffect(() => {
+		if (fields.length > MAX_LENGTH) {
+			setError("postStartDate", {
+				type: "validate",
+				message: `최대 ${MAX_LENGTH}개까지만 선택할 수 있어요.`,
+			});
+		} else {
+			clearErrors("postStartDate");
+		}
+	}, [fields.length]);
 
 	return (
 		<Box>
@@ -66,8 +77,8 @@ function ProjectPostStartDate(props: ProjectPostStartDateProps) {
 					marginTop: "8px",
 				}}
 			>
-				{fields.map(({ id, date }) => (
-					<Chip key={id} label={date} color="primary" />
+				{fields.map(({ id, date }, i) => (
+					<Chip key={id} label={date} color="primary" variant="outlined" onDelete={getHandleDelete(i)} />
 				))}
 			</Box>
 		</Box>
