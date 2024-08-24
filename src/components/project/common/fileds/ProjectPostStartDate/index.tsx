@@ -3,7 +3,7 @@ import { PROJECT_FORM_LENGTH } from "@/defines/forms/project/constants";
 import { ProjectCommonForm, ProjectFormFieldCommonProps } from "@/defines/forms/project/types";
 import { Box, Chip } from "@mui/material";
 import { Dayjs } from "dayjs";
-import { ChangeEventHandler, useEffect } from "react";
+import { ChangeEventHandler } from "react";
 import { ArrayPath, useFieldArray, useFormContext } from "react-hook-form";
 
 export interface ProjectPostStartDateProps extends ProjectFormFieldCommonProps {
@@ -15,7 +15,12 @@ const MAX_LENGTH = PROJECT_FORM_LENGTH.postStartDates.max;
 function ProjectPostStartDate(props: ProjectPostStartDateProps) {
 	const { formName, postStartDatesFormName, required, helperText } = props;
 
-	const { control, setError, clearErrors } = useFormContext<ProjectCommonForm>();
+	const {
+		control,
+		clearErrors,
+		getValues,
+		formState: { errors },
+	} = useFormContext<ProjectCommonForm>();
 
 	const { fields, append, remove } = useFieldArray<ProjectCommonForm>({
 		control,
@@ -38,18 +43,27 @@ function ProjectPostStartDate(props: ProjectPostStartDateProps) {
 		append({ date: selectedDate });
 	};
 
-	const getHandleDelete = (index: number) => () => remove(index);
+	const validate = (value: Dayjs) => {
+		const selectedDate = value.format("YYYY-MM-DD");
 
-	useEffect(() => {
-		if (fields.length > MAX_LENGTH) {
-			setError("postStartDate", {
-				type: "validate",
-				message: `최대 ${MAX_LENGTH}개까지만 선택할 수 있어요.`,
-			});
-		} else {
+		const length = getValues("postStartDates").length + (getIsAlreadySelectedDate(selectedDate) ? 0 : 1);
+
+		if (length > MAX_LENGTH) {
+			return `최대 ${MAX_LENGTH}까지만 선택할 수 있어요.`;
+		}
+
+		return true;
+	};
+
+	const getHandleDelete = (index: number) => () => {
+		remove(index);
+
+		const { length } = getValues("postStartDates");
+
+		if (length <= MAX_LENGTH) {
 			clearErrors("postStartDate");
 		}
-	}, [fields.length]);
+	};
 
 	return (
 		<Box>
@@ -60,6 +74,7 @@ function ProjectPostStartDate(props: ProjectPostStartDateProps) {
 				helperText={helperText}
 				rules={{
 					onChange: handleChange,
+					validate,
 				}}
 				slotProps={{
 					textField: {
@@ -78,7 +93,13 @@ function ProjectPostStartDate(props: ProjectPostStartDateProps) {
 				}}
 			>
 				{fields.map(({ id, date }, i) => (
-					<Chip key={id} label={date} color="primary" variant="outlined" onDelete={getHandleDelete(i)} />
+					<Chip
+						key={id}
+						label={date}
+						color={errors.postStartDate ? "error" : "primary"}
+						variant="outlined"
+						onDelete={getHandleDelete(i)}
+					/>
 				))}
 			</Box>
 		</Box>
