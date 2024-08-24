@@ -6,8 +6,6 @@ import { FieldValues } from "react-hook-form";
 
 type TDate = dayjs.Dayjs;
 
-const EMPTY_OBJECT = {};
-
 export interface ReactHookFormDatePickerProps<TFieldValues extends FieldValues>
 	extends ReactHookFormProps<TFieldValues>,
 		Omit<DatePickerProps<TDate>, "onChange" | "label"> {
