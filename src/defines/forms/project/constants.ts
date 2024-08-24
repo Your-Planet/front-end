@@ -1,4 +1,8 @@
 export const PROJECT_FORM_LENGTH = {
+	postStartDates: {
+		min: 1,
+		max: 5,
+	},
 	campaignDescription: {
 		min: 1,
 		max: 500,
@@ -23,3 +27,5 @@ export const PROJECT_FORM_SIZE = {
 		max: 20, // MB
 	},
 };
+
+export const PROJECT_FORM_WIDTH = 520;

@@ -97,16 +97,6 @@ export const IA = deepFreeze<GlobalIa>({
 				title: "프로젝트 의뢰",
 				label: "프로젝트 의뢰",
 
-				step1: {
-					title: "작업 세부 사항",
-					label: "작업 세부 사항",
-				},
-
-				step2: {
-					title: "프로젝트 정보",
-					label: "프로젝트 정보",
-				},
-
 				confirm: {
 					title: "의뢰 내용 확인",
 					label: "의뢰 내용 확인",
