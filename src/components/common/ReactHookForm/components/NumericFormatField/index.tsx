@@ -10,7 +10,7 @@ interface CustomProps {
 	name: string;
 }
 
-export interface ReactHookFormNumericTextFieldProps<TFieldValues extends FieldValues>
+export interface ReactHookFormNumericFormatFieldProps<TFieldValues extends FieldValues>
 	extends ReactHookFormProps<TFieldValues>,
 		Omit<TextFieldProps, "onChange" | "label" | "required"> {}
 
@@ -35,8 +35,8 @@ const NumericFormatCustom = forwardRef<NumericFormatProps, CustomProps>(function
 	);
 });
 
-function ReactHookFormNumericTextField<TFieldValues extends FieldValues = FieldValues>(
-	props: ReactHookFormNumericTextFieldProps<TFieldValues>,
+function ReactHookFormNumericFormatField<TFieldValues extends FieldValues = FieldValues>(
+	props: ReactHookFormNumericFormatFieldProps<TFieldValues>,
 ) {
 	const { restProps, field, label, error, errorMessage, handleChange } = useReactHookFormControl(props);
 	const { error: errorFromProps, helperText } = props;
@@ -58,4 +58,4 @@ function ReactHookFormNumericTextField<TFieldValues extends FieldValues = FieldV
 	);
 }
 
-export default ReactHookFormNumericTextField;
+export default ReactHookFormNumericFormatField;

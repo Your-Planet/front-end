@@ -18,7 +18,7 @@ import { Box, InputAdornment, Typography } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 
 function OptionFormView() {
-	const { NumericTextField, RadioGroup } = ReactHookForm<StudioPriceForm>();
+	const { NumericFormatField, RadioGroup } = ReactHookForm<StudioPriceForm>();
 	const { watch } = useFormContext();
 
 	const [
@@ -48,7 +48,7 @@ function OptionFormView() {
 					radios={PROVISION_RADIOS}
 					row
 				/>
-				<NumericTextField
+				<NumericFormatField
 					formName="option.refinement.price"
 					label="추가 비용"
 					validator={isNumber}
@@ -81,7 +81,7 @@ function OptionFormView() {
 					row
 				/>
 				<Box display="flex" gap={1}>
-					<NumericTextField
+					<NumericFormatField
 						formName="option.additionalPanel.price"
 						label="1컷 당 추가 비용"
 						validator={isNumber}
@@ -105,7 +105,7 @@ function OptionFormView() {
 						}
 						fullWidth
 					/>
-					<NumericTextField
+					<NumericFormatField
 						formName="option.additionalPanel.workingDays"
 						label="작업 기간"
 						InputProps={{
@@ -138,7 +138,7 @@ function OptionFormView() {
 					row
 				/>
 				<Box display="flex" gap={1}>
-					<NumericTextField
+					<NumericFormatField
 						formName="option.additionalModification.price"
 						label="1회 당 추가 비용"
 						validator={isNumber}
@@ -162,7 +162,7 @@ function OptionFormView() {
 						}
 						fullWidth
 					/>
-					<NumericTextField
+					<NumericFormatField
 						formName="option.additionalModification.workingDays"
 						label="수정 횟수"
 						InputProps={{
@@ -194,7 +194,7 @@ function OptionFormView() {
 					radios={PROVISION_RADIOS}
 					row
 				/>
-				<NumericTextField
+				<NumericFormatField
 					formName="option.postDurationExtension.price"
 					label="1개월 당 추가 비용"
 					validator={isNumber}
@@ -226,7 +226,7 @@ function OptionFormView() {
 					radios={PROVISION_RADIOS}
 					row
 				/>
-				<NumericTextField
+				<NumericFormatField
 					formName="option.originFile.price"
 					label="추가 비용"
 					validator={isNumber}
