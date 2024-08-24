@@ -22,13 +22,13 @@ import { InputAdornment, Typography } from "@mui/material";
 type Props = {};
 
 function ServiceFormView({}: Props) {
-	const { TextField, Select } = ReactHookForm<StudioPriceForm>();
+	const { TextField, NumericTextField, Select } = ReactHookForm<StudioPriceForm>();
 
 	return (
 		<>
 			<Typography variant="h5">서비스</Typography>
 
-			<TextField
+			<NumericTextField
 				formName="service.price"
 				label="금액 (VAT 포함)"
 				required
@@ -41,10 +41,10 @@ function ServiceFormView({}: Props) {
 					endAdornment: <InputAdornment position="end">원</InputAdornment>,
 				}}
 			/>
-			<TextField
+			<NumericTextField
 				formName="service.workingDays"
 				label="작업 기간"
-				type="number"
+				validator={isNumber}
 				InputProps={{
 					endAdornment: <InputAdornment position="end">일</InputAdornment>,
 					inputProps: {
@@ -59,10 +59,10 @@ function ServiceFormView({}: Props) {
 				required
 				fullWidth
 			/>
-			<TextField
+			<NumericTextField
 				formName="service.defaultCuts"
 				label="기본 컷 수"
-				type="number"
+				validator={isNumber}
 				InputProps={{
 					endAdornment: <InputAdornment position="end">장</InputAdornment>,
 					inputProps: {
@@ -77,10 +77,10 @@ function ServiceFormView({}: Props) {
 				required
 				fullWidth
 			/>
-			<TextField
+			<NumericTextField
 				formName="service.modificationCount"
 				label="기본 수정 횟수"
-				type="number"
+				validator={isNumber}
 				InputProps={{
 					endAdornment: <InputAdornment position="end">회</InputAdornment>,
 					inputProps: {

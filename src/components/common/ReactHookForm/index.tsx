@@ -4,6 +4,9 @@ import ReactHookFormCheckbox, {
 import ReactHookFormDatePicker, {
 	ReactHookFormDatePickerProps,
 } from "@/components/common/ReactHookForm/components/DatePicker";
+import ReactHookFormNumericTextField, {
+	ReactHookFormNumericTextFieldProps,
+} from "@/components/common/ReactHookForm/components/NumericTextField";
 import ReactHookFormRadioGroup, {
 	ReactHookFormRadioGroupProps,
 } from "@/components/common/ReactHookForm/components/RadioGroup";
@@ -16,6 +19,7 @@ import { FieldValues } from "react-hook-form";
 
 const ReactHookForm = <TFieldValues extends FieldValues = FieldValues>(): {
 	TextField: JSXElementConstructor<ReactHookFormTextFieldProps<TFieldValues>>;
+	NumericTextField: JSXElementConstructor<ReactHookFormNumericTextFieldProps<TFieldValues>>;
 	RadioGroup: <RadioValue extends string | number>(
 		props: ReactHookFormRadioGroupProps<TFieldValues, RadioValue>,
 	) => ReactElement<ReactHookFormRadioGroupProps<TFieldValues, RadioValue>>;
@@ -29,6 +33,7 @@ const ReactHookForm = <TFieldValues extends FieldValues = FieldValues>(): {
 } => {
 	return {
 		TextField: ReactHookFormTextField<TFieldValues>,
+		NumericTextField: ReactHookFormNumericTextField<TFieldValues>,
 		RadioGroup: <RadioValue extends string | number>(props: ReactHookFormRadioGroupProps<TFieldValues, RadioValue>) =>
 			ReactHookFormRadioGroup<TFieldValues, RadioValue>(props),
 		DatePicker: ReactHookFormDatePicker<TFieldValues>,
