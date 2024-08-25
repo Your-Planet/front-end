@@ -30,7 +30,7 @@ function ProjectRequestFormProvider(props: ProjectRequestFormProviderProps) {
 			},
 			postStartDate: null,
 			postStartDates: [],
-			dueDate: "",
+			dueDate: null,
 			brandName: "",
 			campaignDescription: "",
 			referenceUrls: [],
