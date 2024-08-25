@@ -22,8 +22,8 @@ function AdditionalPanel(props: ProjectFormFieldCommonProps) {
 				추가 컷 수
 			</Typography>
 			<FormHelperText>{helperText}</FormHelperText>
-			<Box sx={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-				<Select disabled={isNegotiable} onChange={handleChangeSelect} value={count.toString()} sx={{ width: "8rem" }}>
+			<Box>
+				<Select disabled={isNegotiable} onChange={handleChangeSelect} value={count.toString()} fullWidth>
 					{/* TODO: 나은찬, 작가 별 기본 컷수 받아서 처리 */}
 					<MenuItem value={0}>추가 안함</MenuItem>
 					<MenuItem value={1}>1장</MenuItem>
