@@ -13,7 +13,7 @@ function ProjectRequestFormProvider(props: ProjectRequestFormProviderProps) {
 		mode: "all",
 		defaultValues: {
 			additionalPanel: {
-				count: undefined,
+				count: 0,
 				isNegotiable: false,
 			},
 			additionalModification: {
