@@ -18,23 +18,33 @@ export interface ReactHookFormRadioGroupProps<TFieldValues extends FieldValues, 
 		value: RadioValue;
 		label?: string;
 	}[];
+	helperText?: string;
 }
 
 function ReactHookFormRadioGroup<TFieldValues extends FieldValues, RadioValue extends string | number>(
 	props: ReactHookFormRadioGroupProps<TFieldValues, RadioValue>,
 ) {
 	const { formName, radios } = props;
-	const { restProps, field, label, error, errorMessage, handleChange } = useReactHookFormControl(props);
+	const {
+		restProps: { helperText, ...rest },
+		field,
+		label,
+		error,
+		errorMessage,
+		handleChange,
+	} = useReactHookFormControl(props);
 
 	return (
 		<FormControl error={Boolean(error)}>
 			{label && <FormLabel id={formName}>{label}</FormLabel>}
-			<RadioGroup {...restProps} {...field} aria-labelledby={formName} name={formName} onChange={handleChange}>
+			<RadioGroup {...rest} {...field} aria-labelledby={formName} name={formName} onChange={handleChange}>
 				{radios.map(({ label, value }) => (
 					<FormControlLabel key={value} value={value} control={<Radio />} label={label} />
 				))}
 			</RadioGroup>
-			{errorMessage && <FormHelperText>{errorMessage}</FormHelperText>}
+			{(helperText || errorMessage) && (
+				<FormHelperText>{errorMessage === " " ? helperText : errorMessage}</FormHelperText>
+			)}
 		</FormControl>
 	);
 }
