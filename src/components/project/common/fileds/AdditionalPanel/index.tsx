@@ -6,13 +6,13 @@ import { useFormContext } from "react-hook-form";
 function AdditionalPanel(props: ProjectFormFieldCommonProps) {
 	const { formName, helperText, required } = props;
 
-	const { watch, setValue } = useFormContext<ProjectCommonForm>();
+	const { watch } = useFormContext<ProjectCommonForm>();
 
 	const { TextField, Checkbox } = ReactHookForm<ProjectCommonForm>();
 
 	const [count, isNegotiable] = watch(["additionalPanel.count", "additionalPanel.isNegotiable"]);
 
-	const getAdditionalPanelCountItems = () => {
+	const getAdditionalPanelCount = () => {
 		// TODO: 나은찬 작가 기본 제공 컷수 파라미터 받아서 처리
 		const tempCount = 10;
 
@@ -46,7 +46,7 @@ function AdditionalPanel(props: ProjectFormFieldCommonProps) {
 					required={required}
 					helperText={helperText}
 				>
-					{getAdditionalPanelCountItems()}
+					{getAdditionalPanelCount()}
 				</TextField>
 				<Checkbox formName="additionalPanel.isNegotiable" label={"작가와 협의 할래요"} hideErrorMessage />
 			</Box>
