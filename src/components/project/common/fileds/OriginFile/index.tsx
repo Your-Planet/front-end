@@ -22,6 +22,7 @@ function OriginFile(props: ProjectFormFieldCommonProps) {
 				helperText={helperText}
 				required={required}
 				value={demandType}
+				row
 			/>
 		</Box>
 	);
