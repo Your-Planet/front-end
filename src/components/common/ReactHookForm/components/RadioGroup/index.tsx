@@ -37,7 +37,7 @@ function ReactHookFormRadioGroup<TFieldValues extends FieldValues, RadioValue ex
 	return (
 		<FormControl error={Boolean(error)}>
 			{label && <FormLabel id={formName}>{label}</FormLabel>}
-			<RadioGroup {...rest} {...field} aria-labelledby={formName} name={formName} onChange={handleChange}>
+			<RadioGroup {...rest} {...field} aria-labelledby={formName} onChange={handleChange}>
 				{radios.map(({ label, value }) => (
 					<FormControlLabel key={value} value={value} control={<Radio />} label={label} />
 				))}
