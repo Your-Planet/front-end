@@ -47,7 +47,6 @@ function AdditionalModification(props: ProjectFormFieldCommonProps) {
 				>
 					{getAdditionalModificationCount()}
 				</TextField>
-				<Checkbox formName="additionalPanel.isNegotiable" label={"작가와 협의 할래요"} hideErrorMessage />
 			</Box>
 		</Box>
 	);
