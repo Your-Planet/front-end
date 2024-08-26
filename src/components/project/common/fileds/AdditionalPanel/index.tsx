@@ -17,19 +17,19 @@ function AdditionalPanel(props: ProjectFormFieldCommonProps) {
 		const tempCount = 10;
 
 		return Array.from({ length: tempCount }, (_, i) => {
-			if (i) {
-				return (
-					<MenuItem key={i} value={i}>
-						{i}장
-					</MenuItem>
-				);
-			} else {
+			if (i === 0) {
 				return (
 					<MenuItem key={i} value={i}>
 						추가 안함
 					</MenuItem>
 				);
 			}
+
+			return (
+				<MenuItem key={i} value={i}>
+					{i}장
+				</MenuItem>
+			);
 		});
 	};
 
