@@ -3,15 +3,15 @@ import { ProjectCommonForm, ProjectFormFieldCommonProps } from "@/defines/forms/
 import { Box, MenuItem } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 
-function AdditionalModification(props: ProjectFormFieldCommonProps) {
+function PostDurationExtension(props: ProjectFormFieldCommonProps) {
 	const { formName, helperText, required } = props;
 
 	const { watch } = useFormContext<ProjectCommonForm>();
 
 	const { TextField } = ReactHookForm<ProjectCommonForm>();
 
-	const getAdditionalModificationCount = () => {
-		// TODO: 나은찬 작가 기본 수정 횟수 파라미터 받아서 처리
+	const getPostDurationExtension = () => {
+		// TODO: 나은찬 작가 기본 업로드 기간 파라미터 받아서 처리
 		const tempCount = 10;
 
 		return Array.from({ length: tempCount }, (_, i) => {
@@ -25,13 +25,13 @@ function AdditionalModification(props: ProjectFormFieldCommonProps) {
 
 			return (
 				<MenuItem key={i} value={i}>
-					{i}장
+					{i}개월
 				</MenuItem>
 			);
 		});
 	};
 
-	const count = watch("additionalModification.count");
+	const months = watch("postDurationExtension.months");
 
 	return (
 		<Box>
@@ -39,17 +39,17 @@ function AdditionalModification(props: ProjectFormFieldCommonProps) {
 				<TextField
 					select
 					fullWidth
-					label="추가 수정 횟수"
+					label="업로드 기간 연장"
 					formName={formName}
-					value={count.toString()}
+					value={months.toString()}
 					required={required}
 					helperText={helperText}
 				>
-					{getAdditionalModificationCount()}
+					{getPostDurationExtension()}
 				</TextField>
 			</Box>
 		</Box>
 	);
 }
 
-export default AdditionalModification;
+export default PostDurationExtension;

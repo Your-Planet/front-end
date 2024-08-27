@@ -4,6 +4,7 @@ import ProjectRequestFormProvider from "@/components/project/ProjectRequestFormV
 import AdditionalModification from "@/components/project/common/fields/AdditionalModification";
 import AdditionalPanel from "@/components/project/common/fields/AdditionalPanel";
 import OriginFile from "@/components/project/common/fields/OriginFile";
+import PostDurationExtension from "@/components/project/common/fields/PostDurationExtension";
 import ProjectPostStartDate from "@/components/project/common/fields/ProjectPostStartDate";
 import Refinement from "@/components/project/common/fields/Refinement";
 import { PROJECT_FORM_LENGTH, PROJECT_FORM_WIDTH } from "@/defines/forms/project/constants";
@@ -24,7 +25,7 @@ function ProjectRequestFormView() {
 					<AdditionalModification
 						formName="additionalModification"
 						// TODO: 나은찬 작가가 제공하는 기본 수정 횟수
-						helperText={`기본 수정 N회가 제공돼요.  추가할 횟수만 선택해 주세요.`}
+						helperText={`기본 수정 N회가 제공돼요. 추가할 횟수만 선택해 주세요.`}
 						required
 					/>
 
@@ -37,6 +38,12 @@ function ProjectRequestFormView() {
 					<Refinement
 						formName="refinement.demandType"
 						helperText={`원작자의 허락 없이 임의로 2차적 저작물을 작성하는 경우 2차적 저작물 작성권을 침해하게 됩니다.\n꼭 작가의 활용 동의를 받은 후 활용해 주세요.`}
+						required
+					/>
+
+					<PostDurationExtension
+						formName="postDurationExtension"
+						helperText={`기본 N개월 업로드가 보장돼요. 추가할 기간만 한 달 단위로 선택해 주세요.`}
 						required
 					/>
 
