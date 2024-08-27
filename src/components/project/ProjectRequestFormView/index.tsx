@@ -43,6 +43,7 @@ function ProjectRequestFormView() {
 
 					<PostDurationExtension
 						formName="postDurationExtension"
+						// TODO: 나은찬 작가 기본 업로드 기간 제공
 						helperText={`기본 N개월 업로드가 보장돼요. 추가할 기간만 한 달 단위로 선택해 주세요.`}
 						required
 					/>
