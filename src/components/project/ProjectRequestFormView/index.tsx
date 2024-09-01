@@ -5,6 +5,7 @@ import ProjectBrandName from "@/components/project/common/fileds/ProjectBrandNam
 import ProjectCampaignDescription from "@/components/project/common/fileds/ProjectCampaignDescription";
 import ProjectDueDate from "@/components/project/common/fileds/ProjectDueDate";
 import ProjectPostStartDate from "@/components/project/common/fileds/ProjectPostStartDate";
+import ProjectReferenceUrls from "@/components/project/common/fileds/ProjectReferenceUrls";
 import { PROJECT_FORM_LENGTH, PROJECT_FORM_WIDTH } from "@/defines/forms/project/constants";
 import { Box } from "@mui/material";
 
@@ -25,6 +26,8 @@ function ProjectRequestFormView() {
 					<ProjectBrandName formName="brandName" required />
 
 					<ProjectCampaignDescription formName="campaignDescription" required />
+
+					<ProjectReferenceUrls formName="referenceUrls" getItemFormName={(index) => `referenceUrls.${index}.url`} />
 				</Box>
 			</form>
 		</ProjectRequestFormProvider>

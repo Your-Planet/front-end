@@ -26,7 +26,7 @@ function ReactHookFormTextField<TFieldValues extends FieldValues = FieldValues>(
 				label={label}
 				onChange={handleChange}
 				error={errorFromProps ?? Boolean(error)}
-				helperText={errorMessage === " " ? helperText : errorMessage}
+				helperText={helperText && errorMessage === " " ? helperText : errorMessage}
 				InputProps={{
 					endAdornment: characterCountable && (
 						<CharacterCounter rules={rules} length={field.value.length} hasError={hasError} />
