@@ -1,12 +1,6 @@
-import { ReactHookFormProps } from "@/components/common/ReactHookForm/defines/types";
+import { DemandType } from "@/defines/forms/project/types";
+import { ProjectReferenceUrl } from "@/defines/forms/project/types/project.types.referenceUrls";
 import { Dayjs } from "dayjs";
-
-export type DemandType = "DEMANDED" | "NOT_DEMANDED";
-
-export interface ProjectFormFieldCommonProps
-	extends Pick<ReactHookFormProps<ProjectCommonForm>, "formName" | "required"> {
-	helperText?: string;
-}
 
 export interface ProjectCommonForm {
 	additionalPanel: {
@@ -30,7 +24,7 @@ export interface ProjectCommonForm {
 	dueDate: Dayjs | null;
 	brandName: string;
 	campaignDescription: string;
-	referenceUrls: string[];
+	referenceUrls: ProjectReferenceUrl[];
 	referenceFiles: File[];
 	offerPrice: number;
 	message: string;

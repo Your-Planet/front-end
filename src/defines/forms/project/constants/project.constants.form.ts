@@ -33,5 +33,3 @@ export const PROJECT_FORM_SIZE = {
 		max: 20, // MB
 	},
 };
-
-export const PROJECT_FORM_WIDTH = 520;
