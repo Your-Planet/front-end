@@ -1,10 +1,15 @@
 import ReactHookForm from "@/components/common/ReactHookForm";
+import { ReactHookFormProps } from "@/components/common/ReactHookForm/defines/types";
 import { ProjectCommonForm, ProjectFormFieldCommonProps } from "@/defines/forms/project/types";
 import { Box, MenuItem } from "@mui/material";
 import { useWatch } from "react-hook-form";
 
-function AdditionalPanel(props: ProjectFormFieldCommonProps) {
-	const { formName, helperText, required } = props;
+interface ProjectAdditionalPanelProps extends ProjectFormFieldCommonProps {
+	isNegotiableFormName: ReactHookFormProps<ProjectCommonForm>["formName"];
+}
+
+function AdditionalPanel(props: ProjectAdditionalPanelProps) {
+	const { formName, isNegotiableFormName, helperText, required } = props;
 
 	const { TextField, Checkbox } = ReactHookForm<ProjectCommonForm>();
 
@@ -32,7 +37,7 @@ function AdditionalPanel(props: ProjectFormFieldCommonProps) {
 					select
 					fullWidth
 					label="추가 컷 수"
-					formName="additionalPanel.count"
+					formName={formName}
 					disabled={isNegotiable}
 					defaultValue={count}
 					required={required}
@@ -40,7 +45,7 @@ function AdditionalPanel(props: ProjectFormFieldCommonProps) {
 				>
 					{getAdditionalPanelCount()}
 				</TextField>
-				<Checkbox formName="additionalPanel.isNegotiable" label={"작가와 협의 할래요"} hideErrorMessage />
+				<Checkbox formName={isNegotiableFormName} label={"작가와 협의 할래요"} hideErrorMessage />
 			</Box>
 		</Box>
 	);

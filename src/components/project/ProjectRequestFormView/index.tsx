@@ -12,7 +12,8 @@ function ProjectRequestFormView() {
 			<Box sx={{ width: `${PROJECT_FORM_WIDTH}px` }}>
 				<form>
 					<AdditionalPanel
-						formName="additionalPanel"
+						formName="additionalPanel.count"
+						isNegotiableFormName="additionalPanel.isNegotiable"
 						// TODO: 나은찬 작가가 제공하는 기본 컷수 넘겨주기
 						helperText={`기본 컷 수 N장이 제공돼요. 컷 수만 선택해 주세요.`}
 						required
