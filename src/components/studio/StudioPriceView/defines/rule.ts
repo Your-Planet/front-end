@@ -3,12 +3,12 @@ import { getMaxRule, getMinRule } from "@/utils/react-hook-form/rule";
 
 export const priceMinRule = getMinRule(
 	STUDIO_PRICE_FORM_LIMITS.service.price.min,
-	(min) => `최소 ${min}원 이상 입력해 주세요.`,
+	(min) => `최소 ${min.toLocaleString()}원 이상 입력해 주세요.`,
 );
 
 export const priceMaxRule = getMaxRule(
 	STUDIO_PRICE_FORM_LIMITS.service.price.max,
-	(max) => `최대 ${max}원까지 입력 가능합니다.`,
+	(max) => `최대 ${max.toLocaleString()}원까지 입력 가능합니다.`,
 );
 
 export const workingDaysMinRule = getMinRule(
