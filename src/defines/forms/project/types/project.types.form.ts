@@ -1,4 +1,5 @@
 import { DemandType } from "@/defines/forms/project/types";
+import { ProjectTypesPostStartDate } from "@/defines/forms/project/types/project.types.postStartDates";
 import { ProjectReferenceUrl } from "@/defines/forms/project/types/project.types.referenceUrls";
 import { Dayjs } from "dayjs";
 
@@ -20,7 +21,7 @@ export interface ProjectCommonForm {
 		months: number;
 	};
 	postStartDate: Dayjs | null;
-	postStartDates: { date: string }[];
+	postStartDates: ProjectTypesPostStartDate[];
 	dueDate: Dayjs | null;
 	brandName: string;
 	campaignDescription: string;
