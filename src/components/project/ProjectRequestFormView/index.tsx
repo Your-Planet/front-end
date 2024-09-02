@@ -21,7 +21,7 @@ function ProjectRequestFormView() {
 					/>
 
 					<AdditionalModification
-						formName="additionalModification"
+						formName="additionalModification.count"
 						// TODO: 나은찬 작가가 제공하는 기본 수정 횟수
 						helperText={`기본 수정 N회가 제공돼요.  추가할 횟수만 선택해 주세요.`}
 						required

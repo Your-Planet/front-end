@@ -32,7 +32,7 @@ function AdditionalModification(props: ProjectFormFieldCommonProps) {
 					select
 					fullWidth
 					label="추가 수정 횟수"
-					formName="additionalModification.count"
+					formName={formName}
 					defaultValue={count}
 					required={required}
 					helperText={helperText}
