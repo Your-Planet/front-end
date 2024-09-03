@@ -1,7 +1,14 @@
+import { ReactHookFormProps } from "@/components/common/ReactHookForm/defines/types";
+import { Dayjs } from "dayjs";
+
 export type DemandType = "DEMANDED" | "NOT_DEMANDED";
 
-// 프로젝트 의뢰
-export interface ProjectRequestForm {
+export interface ProjectFormFieldCommonProps
+	extends Pick<ReactHookFormProps<ProjectCommonForm>, "formName" | "required"> {
+	helperText?: string;
+}
+
+export interface ProjectCommonForm {
 	additionalPanel: {
 		count: number;
 		isNegotiable: boolean;
@@ -18,7 +25,8 @@ export interface ProjectRequestForm {
 	postDurationExtension: {
 		months: number;
 	};
-	postStartDates: string[];
+	postStartDate: Dayjs | null;
+	postStartDates: { date: string }[];
 	dueDate: string;
 	brandName: string;
 	campaignDescription: string;
@@ -27,6 +35,25 @@ export interface ProjectRequestForm {
 	offerPrice: number;
 	message: string;
 }
+
+// 프로젝트 의뢰
+export type ProjectRequestForm = Pick<
+	ProjectCommonForm,
+	| "additionalPanel"
+	| "additionalModification"
+	| "originFile"
+	| "refinement"
+	| "postDurationExtension"
+	| "postStartDate"
+	| "postStartDates"
+	| "dueDate"
+	| "brandName"
+	| "campaignDescription"
+	| "referenceUrls"
+	| "referenceFiles"
+	| "offerPrice"
+	| "message"
+>;
 
 // TODO 추가 예정
 // 프로젝트 자세히 보기

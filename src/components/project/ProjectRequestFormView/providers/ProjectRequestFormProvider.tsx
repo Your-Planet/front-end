@@ -28,6 +28,7 @@ function ProjectRequestFormProvider(props: ProjectRequestFormProviderProps) {
 			postDurationExtension: {
 				months: 0,
 			},
+			postStartDate: null,
 			postStartDates: [],
 			dueDate: "",
 			brandName: "",

@@ -53,7 +53,7 @@ type DeletionSubIa = {
 };
 
 type CreatorsSubIa = {
-	["[id]"]: Ia<"[id]", Ia<"request", Ia<"step1" | "step2" | "confirm" | "complete">>>;
+	["[id]"]: Ia<"[id]", Ia<"request", Ia<"confirm" | "complete">>>;
 	creator: Ia<"creator">;
 	guest: Ia<"guest">;
 };

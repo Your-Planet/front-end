@@ -8,21 +8,31 @@ type TDate = dayjs.Dayjs;
 
 export interface ReactHookFormDatePickerProps<TFieldValues extends FieldValues>
 	extends ReactHookFormProps<TFieldValues>,
-		Omit<DatePickerProps<TDate>, "onChange" | "label"> {}
+		Omit<DatePickerProps<TDate>, "onChange" | "label"> {
+	helperText?: string;
+}
 function ReactHookFormDatePicker<TFieldValues extends FieldValues = FieldValues>(
 	props: ReactHookFormDatePickerProps<TFieldValues>,
 ) {
-	const { restProps, field, label, error, errorMessage } = useReactHookFormControl(props);
+	const {
+		restProps: { slotProps: { textField = {}, ...restSlotProps } = {}, helperText, ...rest },
+		field,
+		label,
+		error,
+		errorMessage,
+	} = useReactHookFormControl(props);
 
 	return (
 		<DatePicker<TDate>
-			{...restProps}
+			{...rest}
 			{...field}
 			label={label}
 			slotProps={{
+				...restSlotProps,
 				textField: {
+					...textField,
 					error: Boolean(error),
-					helperText: errorMessage,
+					helperText: errorMessage === " " ? helperText : errorMessage,
 				},
 			}}
 			format="YYYY/MM/DD"
