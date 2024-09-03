@@ -1,5 +1,5 @@
 import ReactHookForm from "@/components/common/ReactHookForm";
-import { DEMAND_RADIOS } from "@/components/project/common/fileds/defines/constants";
+import { DEMAND_RADIOS } from "@/defines/forms/project/constants";
 import { DemandType, ProjectCommonForm, ProjectFormFieldCommonProps } from "@/defines/forms/project/types";
 import { Box } from "@mui/material";
 import { useFormContext } from "react-hook-form";
