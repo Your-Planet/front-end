@@ -1,6 +1,7 @@
 "use client";
 
 import ProjectRequestFormProvider from "@/components/project/ProjectRequestFormView/providers/ProjectRequestFormProvider";
+import AdditionalPanel from "@/components/project/common/fileds/AdditionalPanel";
 import ProjectBrandName from "@/components/project/common/fileds/ProjectBrandName";
 import ProjectCampaignDescription from "@/components/project/common/fileds/ProjectCampaignDescription";
 import ProjectDueDate from "@/components/project/common/fileds/ProjectDueDate";
@@ -12,7 +13,23 @@ function ProjectRequestFormView() {
 	return (
 		<ProjectRequestFormProvider>
 			<form>
-				<Box sx={{ width: `${PROJECT_FORM_WIDTH}px`, display: "flex", flexDirection: "column", gap: "32px" }}>
+				<Box
+					sx={{
+						width: `${PROJECT_FORM_WIDTH}px`,
+						display: "flex",
+						flexDirection: "column",
+						gap: "32px",
+						paddingY: "2rem",
+					}}
+				>
+					<AdditionalPanel
+						formName="additionalPanel.count"
+						isNegotiableFormName="additionalPanel.isNegotiable"
+						// TODO: 나은찬 작가가 제공하는 기본 컷수 넘겨주기
+						helperText={`기본 컷 수 N장이 제공돼요. 컷 수만 선택해 주세요.`}
+						required
+					/>
+
 					<ProjectPostStartDate
 						formName="postStartDate"
 						postStartDatesFormName="postStartDates"
