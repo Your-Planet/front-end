@@ -1,17 +1,17 @@
 import ReactHookForm from "@/components/common/ReactHookForm";
-import { DEMAND_RADIOS } from "@/components/project/common/fileds/defines/constants";
+import { DEMAND_RADIOS } from "@/defines/forms/project/constants";
 import { DemandType, ProjectCommonForm, ProjectFormFieldCommonProps } from "@/defines/forms/project/types";
 import { Box } from "@mui/material";
-import { useFormContext } from "react-hook-form";
+import { useWatch } from "react-hook-form";
 
 function OriginFile(props: ProjectFormFieldCommonProps) {
 	const { formName, helperText, required } = props;
 
-	const { watch } = useFormContext<ProjectCommonForm>();
-
 	const { RadioGroup } = ReactHookForm<ProjectCommonForm>();
 
-	const demandType = watch("originFile.demandType");
+	const demandType = useWatch<ProjectCommonForm>({
+		name: "originFile.demandType",
+	});
 
 	return (
 		<Box>

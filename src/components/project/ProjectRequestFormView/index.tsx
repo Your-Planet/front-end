@@ -5,7 +5,6 @@ import AdditionalModification from "@/components/project/common/fileds/Additiona
 import AdditionalPanel from "@/components/project/common/fileds/AdditionalPanel";
 import OriginFile from "@/components/project/common/fileds/OriginFile";
 import ProjectPostStartDate from "@/components/project/common/fileds/ProjectPostStartDate";
-import Refinement from "@/components/project/common/fileds/Refinement";
 import { PROJECT_FORM_LENGTH, PROJECT_FORM_WIDTH } from "@/defines/forms/project/constants";
 import { Box } from "@mui/material";
 
@@ -15,14 +14,15 @@ function ProjectRequestFormView() {
 			<Box sx={{ width: `${PROJECT_FORM_WIDTH}px` }}>
 				<form>
 					<AdditionalPanel
-						formName="additionalPanel"
+						formName="additionalPanel.count"
+						isNegotiableFormName="additionalPanel.isNegotiable"
 						// TODO: 나은찬 작가가 제공하는 기본 컷수 넘겨주기
 						helperText={`기본 컷 수 N장이 제공돼요. 컷 수만 선택해 주세요.`}
 						required
 					/>
 
 					<AdditionalModification
-						formName="additionalModification"
+						formName="additionalModification.count"
 						// TODO: 나은찬 작가가 제공하는 기본 수정 횟수
 						helperText={`기본 수정 N회가 제공돼요.  추가할 횟수만 선택해 주세요.`}
 						required
@@ -31,12 +31,6 @@ function ProjectRequestFormView() {
 					<OriginFile
 						formName="originFile.demandType"
 						helperText="요청 시 최종 작업물의 원본 파일을 받을 수 있어요."
-						required
-					/>
-
-					<Refinement
-						formName="refinement.demandType"
-						helperText={`원작자의 허락 없이 임의로 2차적 저작물을 작성하는 경우 2차적 저작물 작성권을 침해하게 됩니다.\n꼭 작가의 활용 동의를 받은 후 활용해 주세요.`}
 						required
 					/>
 
