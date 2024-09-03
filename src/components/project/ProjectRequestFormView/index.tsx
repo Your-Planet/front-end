@@ -1,11 +1,11 @@
 "use client";
 
 import ProjectRequestFormProvider from "@/components/project/ProjectRequestFormView/providers/ProjectRequestFormProvider";
-import AdditionalModification from "@/components/project/common/fields/AdditionalModification";
-import AdditionalPanel from "@/components/project/common/fields/AdditionalPanel";
-import OriginFile from "@/components/project/common/fields/OriginFile";
-import ProjectPostStartDate from "@/components/project/common/fields/ProjectPostStartDate";
-import Refinement from "@/components/project/common/fields/Refinement";
+import AdditionalModification from "@/components/project/common/fileds/AdditionalModification";
+import AdditionalPanel from "@/components/project/common/fileds/AdditionalPanel";
+import OriginFile from "@/components/project/common/fileds/OriginFile";
+import ProjectPostStartDate from "@/components/project/common/fileds/ProjectPostStartDate";
+import Refinement from "@/components/project/common/fileds/Refinement";
 import { PROJECT_FORM_LENGTH, PROJECT_FORM_WIDTH } from "@/defines/forms/project/constants";
 import { Box } from "@mui/material";
 
