@@ -3,6 +3,7 @@
 import ProjectRequestFormProvider from "@/components/project/ProjectRequestFormView/providers/ProjectRequestFormProvider";
 import AdditionalModification from "@/components/project/common/fileds/AdditionalModification";
 import AdditionalPanel from "@/components/project/common/fileds/AdditionalPanel";
+import OriginFile from "@/components/project/common/fileds/OriginFile";
 import ProjectBrandName from "@/components/project/common/fileds/ProjectBrandName";
 import ProjectCampaignDescription from "@/components/project/common/fileds/ProjectCampaignDescription";
 import ProjectDueDate from "@/components/project/common/fileds/ProjectDueDate";
@@ -35,6 +36,12 @@ function ProjectRequestFormView() {
 						formName="additionalModification.count"
 						// TODO: 나은찬 작가가 제공하는 기본 수정 횟수
 						helperText={`기본 수정 N회가 제공돼요.  추가할 횟수만 선택해 주세요.`}
+						required
+					/>
+
+					<OriginFile
+						formName="originFile.demandType"
+						helperText="요청 시 최종 작업물의 원본 파일을 받을 수 있어요."
 						required
 					/>
 
