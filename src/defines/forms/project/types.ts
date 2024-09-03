@@ -27,7 +27,7 @@ export interface ProjectCommonForm {
 	};
 	postStartDate: Dayjs | null;
 	postStartDates: { date: string }[];
-	dueDate: string;
+	dueDate: Dayjs | null;
 	brandName: string;
 	campaignDescription: string;
 	referenceUrls: string[];
