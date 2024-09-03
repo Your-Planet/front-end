@@ -5,6 +5,7 @@ import { IA } from "@/defines/ia/constants";
 import { useAuthContext } from "@/providers/AuthProvider";
 import { Box } from "@mui/material";
 import { usePathname, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 function GlobalMenu() {
 	const { jwtPayload } = useAuthContext();
@@ -12,6 +13,8 @@ function GlobalMenu() {
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
 	const currentPathWithQuery = `${pathname}?${searchParams.toString()}`;
+
+	useEffect(() => {}, [jwtPayload]);
 
 	return (
 		<Box>
