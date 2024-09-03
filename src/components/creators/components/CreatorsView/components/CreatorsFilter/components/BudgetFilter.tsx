@@ -8,6 +8,7 @@ import {
 	StyledSwapHorizRounded,
 	StyledTextFieldInBudgetFilter,
 } from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/styles";
+import { useCreatorsSearchParams } from "@/components/creators/hooks/useCreatorsSearchParams";
 import useRouterPushWithParams from "@/components/creators/hooks/useRouterPushWithParams";
 import useOpen from "@/hooks/common/useOpen";
 import { isNumber } from "@/utils/string";
@@ -20,15 +21,16 @@ type Props = {};
 
 function BudgetFilter({}: Props) {
 	const routerPushWithParams = useRouterPushWithParams();
+	const { getMinValueFromURL, getMaxValueFromURL } = useCreatorsSearchParams();
 	const searchParams = useSearchParams();
 	const { opened, handleOpen, handleClose } = useOpen(false);
-	const [minValue, setMinValue] = useState<number>(parseInt(searchParams.get("min") ?? "0", 10));
-	const [maxValue, setMaxValue] = useState<number>(parseInt(searchParams.get("max") ?? "0", 10));
+	const [minValue, setMinValue] = useState<Number>(getMinValueFromURL());
+	const [maxValue, setMaxValue] = useState<Number>(getMaxValueFromURL());
 	const [isError, setIsError] = useState<boolean>(maxValue < minValue);
 
 	useEffect(() => {
-		setMinValue(Number(searchParams.get("min")) ?? 0);
-		setMaxValue(Number(searchParams.get("max")) ?? 0);
+		setMinValue(getMinValueFromURL());
+		setMaxValue(getMaxValueFromURL());
 		setIsError(false);
 	}, [searchParams]);
 
