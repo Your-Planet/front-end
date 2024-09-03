@@ -1,19 +1,15 @@
 "use client";
 
+import { useCreatorsSearchParams } from "@/components/creators/hooks/useCreatorsSearchParams";
 import useRouterPushWithParams from "@/components/creators/hooks/useRouterPushWithParams";
 import { INSTATOON_CATEGORY_NAME_BY_TYPE } from "@/defines/instatoon-category/constants";
 import { InstatoonCategoryType } from "@/defines/instatoon-category/types";
 import { Box, Chip } from "@mui/material";
-import { useSearchParams } from "next/navigation";
 
 function AppliedFilterChip(props: {}) {
 	const routerPushWithParams = useRouterPushWithParams();
-	const searchParams = useSearchParams();
-	const selectedCategories =
-		searchParams
-			.get("categories")
-			?.split(",")
-			.filter((category) => category) ?? [];
+	const { getFilteredCategoriesFromURL } = useCreatorsSearchParams();
+	const selectedCategories = getFilteredCategoriesFromURL();
 
 	const handleDelete = (deletedCategory: string) => {
 		const categories = selectedCategories?.filter((category) => category !== deletedCategory).join(",");

@@ -3,24 +3,24 @@
 import { StudioProfile } from "@/apis/studio";
 import CreatorCard from "@/components/common/CreatorCard";
 import AppliedFilterChip from "@/components/creators/components/CreatorsView/components/AppliedFilterChip";
-import SearchFilter from "@/components/creators/components/CreatorsView/components/CreatorsFilter";
+import CreatorsFilter from "@/components/creators/components/CreatorsView/components/CreatorsFilter";
 import Header from "@/components/creators/components/CreatorsView/components/Header";
-import SortSection from "@/components/creators/components/CreatorsView/components/SortSection";
-import { useCreatorsContext } from "@/components/creators/provider/CreatorsProvider";
+import SortDropdown from "@/components/creators/components/CreatorsView/components/SortDropdown";
+import useSearchAndSortedCreators from "@/components/creators/hooks/useSearchAndSortedCreators";
 import { InstatoonCategoryType } from "@/defines/instatoon-category/types";
 import { Box, MenuItem, Select } from "@mui/material";
 
 type Props = {};
 
 function CreatorsView({}: Props) {
-	const { creatorsResponse, isLoading } = useCreatorsContext();
+	const { sortedCreators, isLoading, handleSearchCreators, setSortType } = useSearchAndSortedCreators();
 
 	return (
 		<Box display="flex" gap="3rem" flexDirection="column">
 			<Header />
 			<Box display="flex" gap="1rem" flexDirection="column">
 				<Box display="flex" justifyContent="space-between" alignItems="center">
-					<SearchFilter />
+					<CreatorsFilter handleSearchCreators={handleSearchCreators} />
 
 					<Box display="flex" gap="1rem">
 						{/* TODO: @나은찬 컴포넌트화 */}
@@ -30,7 +30,7 @@ function CreatorsView({}: Props) {
 							<MenuItem value="dummy3">80</MenuItem>
 							<MenuItem value="dummy4">100</MenuItem>
 						</Select>
-						<SortSection />
+						<SortDropdown setSortType={setSortType} />
 					</Box>
 				</Box>
 				<AppliedFilterChip />
@@ -45,7 +45,7 @@ function CreatorsView({}: Props) {
 					{isLoading ? (
 						<Box>Loading...</Box>
 					) : (
-						creatorsResponse?.content?.map((creator) => {
+						sortedCreators?.map((creator) => {
 							const { name, categories, description, id, instagramUsername } = creator;
 							const profile: Omit<StudioProfile, "portfolios"> = {
 								name,

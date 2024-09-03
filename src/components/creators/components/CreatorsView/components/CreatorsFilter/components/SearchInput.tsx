@@ -1,52 +1,23 @@
 "use client";
 
-import { GetCreatorsRequest } from "@/apis/studio";
+import { SearchCreatorsProps } from "@/components/creators/components/CreatorsView/components/CreatorsFilter";
 import {
 	CREATORS_KEYWORD_TYPE,
 	CREATORS_KEYWORD_TYPE_BOX_WIDTH,
 } from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/constants";
-import {
-	CreatorsKeywordType,
-	DEFAULT_CREATORS_KEYWORD_TYPE,
-} from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/type";
+import { CreatorsKeywordType } from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/type";
+import { useCreatorsSearchParams } from "@/components/creators/hooks/useCreatorsSearchParams";
 import useRouterPushWithParams from "@/components/creators/hooks/useRouterPushWithParams";
-import { useCreatorsContext } from "@/components/creators/provider/CreatorsProvider";
-import SearchIcon from "@mui/icons-material/Search";
-import { Box, IconButton, InputBase, MenuItem, Select, SelectChangeEvent } from "@mui/material";
-import { useSearchParams } from "next/navigation";
+
+import { Box, InputBase, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { ChangeEvent, KeyboardEvent, useState } from "react";
 
-type Props = {};
-
-function SearchInput({}: Props) {
-	const { handleClickSearch } = useCreatorsContext();
+function SearchInput(props: SearchCreatorsProps) {
+	const { handleSearchCreators } = props;
+	const { getKeywordType, getCreatorsParamsFromURL } = useCreatorsSearchParams();
 	const routerPushWithParams = useRouterPushWithParams();
-	const searchParams = useSearchParams();
-	const [keywordType, setKeywordType] = useState<CreatorsKeywordType>(
-		(searchParams.get("keywordType") ?? DEFAULT_CREATORS_KEYWORD_TYPE) as CreatorsKeywordType,
-	);
+	const [keywordType, setKeywordType] = useState<CreatorsKeywordType>(getKeywordType());
 	const [keyword, setKeyword] = useState<string>("");
-
-	const getSearchParams = () => {
-		const categories = searchParams.get("categories");
-		const minPrice = parseInt(searchParams.get("min") ?? "0", 10);
-		const maxPrice = parseInt(searchParams.get("max") ?? "0", 10);
-		const pageNumber = parseInt(searchParams.get("pageNumber") ?? "0", 10);
-		const pageSize = parseInt(searchParams.get("pageSize") ?? "0", 10);
-		const pageable = {
-			...(pageNumber && { pageNumber }),
-			...(pageSize && { pageSize }),
-		};
-
-		return {
-			...(categories && { categories }),
-			...(keywordType && { keywordType }),
-			...(keyword && { keyword }),
-			...(minPrice && { minPrice }),
-			...(maxPrice && { maxPrice }),
-			pageable,
-		} as GetCreatorsRequest;
-	};
 
 	const handleSelectChange = (event: SelectChangeEvent) => {
 		setKeywordType(event.target.value as CreatorsKeywordType);
@@ -63,13 +34,8 @@ function SearchInput({}: Props) {
 
 		if (event.key === "Enter" && event.code === "Enter") {
 			routerPushWithParams(["keywordType", "keyword"], [keywordType, keyword]);
-			handleClickSearch(getSearchParams());
+			handleSearchCreators({ ...getCreatorsParamsFromURL(), keywordType, keyword });
 		}
-	};
-
-	const handleClickSearchIcon = () => {
-		routerPushWithParams(["keywordType", "keyword"], [keywordType, keyword]);
-		handleClickSearch(getSearchParams());
 	};
 
 	return (
@@ -113,9 +79,6 @@ function SearchInput({}: Props) {
 					onChange={handleInputChange}
 					onKeyDown={handleInputKeyDown}
 				/>
-				<IconButton type="button" size="small" onClick={handleClickSearchIcon}>
-					<SearchIcon />
-				</IconButton>
 			</Box>
 		</Box>
 	);
