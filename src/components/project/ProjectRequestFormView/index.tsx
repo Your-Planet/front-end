@@ -1,6 +1,7 @@
 "use client";
 
 import ProjectRequestFormProvider from "@/components/project/ProjectRequestFormView/providers/ProjectRequestFormProvider";
+import ProjectBrandName from "@/components/project/common/fileds/ProjectBrandName";
 import ProjectDueDate from "@/components/project/common/fileds/ProjectDueDate";
 import ProjectPostStartDate from "@/components/project/common/fileds/ProjectPostStartDate";
 import { PROJECT_FORM_LENGTH, PROJECT_FORM_WIDTH } from "@/defines/forms/project/constants";
@@ -9,8 +10,8 @@ import { Box } from "@mui/material";
 function ProjectRequestFormView() {
 	return (
 		<ProjectRequestFormProvider>
-			<Box sx={{ width: `${PROJECT_FORM_WIDTH}px` }}>
-				<form>
+			<form>
+				<Box sx={{ width: `${PROJECT_FORM_WIDTH}px`, display: "flex", flexDirection: "column", gap: "32px" }}>
 					<ProjectPostStartDate
 						formName="postStartDate"
 						postStartDatesFormName="postStartDates"
@@ -19,8 +20,10 @@ function ProjectRequestFormView() {
 					/>
 
 					<ProjectDueDate formName="dueDate" helperText="최종 산출물을 수령해야 하는 날짜를 알려주세요." required />
-				</form>
-			</Box>
+
+					<ProjectBrandName formName="brandName" required />
+				</Box>
+			</form>
 		</ProjectRequestFormProvider>
 	);
 }
