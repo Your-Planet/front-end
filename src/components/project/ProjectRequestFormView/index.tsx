@@ -2,6 +2,7 @@
 
 import ProjectRequestFormProvider from "@/components/project/ProjectRequestFormView/providers/ProjectRequestFormProvider";
 import ProjectBrandName from "@/components/project/common/fileds/ProjectBrandName";
+import ProjectCampaignDescription from "@/components/project/common/fileds/ProjectCampaignDescription";
 import ProjectDueDate from "@/components/project/common/fileds/ProjectDueDate";
 import ProjectPostStartDate from "@/components/project/common/fileds/ProjectPostStartDate";
 import { PROJECT_FORM_LENGTH, PROJECT_FORM_WIDTH } from "@/defines/forms/project/constants";
@@ -22,6 +23,8 @@ function ProjectRequestFormView() {
 					<ProjectDueDate formName="dueDate" helperText="최종 산출물을 수령해야 하는 날짜를 알려주세요." required />
 
 					<ProjectBrandName formName="brandName" required />
+
+					<ProjectCampaignDescription formName="campaignDescription" required />
 				</Box>
 			</form>
 		</ProjectRequestFormProvider>
