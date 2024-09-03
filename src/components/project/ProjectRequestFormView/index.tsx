@@ -1,12 +1,12 @@
 "use client";
 
 import ProjectRequestFormProvider from "@/components/project/ProjectRequestFormView/providers/ProjectRequestFormProvider";
-import AdditionalModification from "@/components/project/common/fields/AdditionalModification";
-import AdditionalPanel from "@/components/project/common/fields/AdditionalPanel";
-import OriginFile from "@/components/project/common/fields/OriginFile";
 import PostDurationExtension from "@/components/project/common/fields/PostDurationExtension";
-import ProjectPostStartDate from "@/components/project/common/fields/ProjectPostStartDate";
-import Refinement from "@/components/project/common/fields/Refinement";
+import AdditionalModification from "@/components/project/common/fileds/AdditionalModification";
+import AdditionalPanel from "@/components/project/common/fileds/AdditionalPanel";
+import OriginFile from "@/components/project/common/fileds/OriginFile";
+import ProjectPostStartDate from "@/components/project/common/fileds/ProjectPostStartDate";
+import Refinement from "@/components/project/common/fileds/Refinement";
 import { PROJECT_FORM_LENGTH, PROJECT_FORM_WIDTH } from "@/defines/forms/project/constants";
 import { Box } from "@mui/material";
 
@@ -16,14 +16,15 @@ function ProjectRequestFormView() {
 			<Box sx={{ width: `${PROJECT_FORM_WIDTH}px` }}>
 				<form>
 					<AdditionalPanel
-						formName="additionalPanel"
+						formName="additionalPanel.count"
+						isNegotiableFormName="additionalPanel.isNegotiable"
 						// TODO: 나은찬 작가가 제공하는 기본 컷수 넘겨주기
 						helperText={`기본 컷 수 N장이 제공돼요. 컷 수만 선택해 주세요.`}
 						required
 					/>
 
 					<AdditionalModification
-						formName="additionalModification"
+						formName="additionalModification.count"
 						// TODO: 나은찬 작가가 제공하는 기본 수정 횟수
 						helperText={`기본 수정 N회가 제공돼요. 추가할 횟수만 선택해 주세요.`}
 						required

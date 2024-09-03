@@ -1,22 +1,22 @@
 import ReactHookForm from "@/components/common/ReactHookForm";
-import { DEMAND_RADIOS } from "@/components/project/common/fields/defines/constants";
+import { DEMAND_RADIOS } from "@/defines/forms/project/constants";
 import { DemandType, ProjectCommonForm, ProjectFormFieldCommonProps } from "@/defines/forms/project/types";
 import { Box } from "@mui/material";
-import { useFormContext } from "react-hook-form";
+import { useWatch } from "react-hook-form";
 
-function OriginFile(props: ProjectFormFieldCommonProps) {
+function Refinement(props: ProjectFormFieldCommonProps) {
 	const { formName, helperText, required } = props;
-
-	const { watch } = useFormContext<ProjectCommonForm>();
 
 	const { RadioGroup } = ReactHookForm<ProjectCommonForm>();
 
-	const demandType = watch("originFile.demandType");
+	const demandType = useWatch<ProjectCommonForm>({
+		name: "refinement.demandType",
+	});
 
 	return (
 		<Box>
 			<RadioGroup<DemandType>
-				label="원본 파일"
+				label="2차 활용"
 				formName={formName}
 				radios={DEMAND_RADIOS}
 				helperText={helperText}
@@ -28,4 +28,4 @@ function OriginFile(props: ProjectFormFieldCommonProps) {
 	);
 }
 
-export default OriginFile;
+export default Refinement;
