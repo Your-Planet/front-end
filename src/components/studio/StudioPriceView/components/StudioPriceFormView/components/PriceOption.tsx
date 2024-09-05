@@ -49,6 +49,7 @@ function OptionFormView() {
 					row
 				/>
 				<TextField
+					numericFormat
 					formName="option.refinement.price"
 					label="추가 비용"
 					validator={isNumber}
@@ -82,6 +83,7 @@ function OptionFormView() {
 				/>
 				<Box display="flex" gap={1}>
 					<TextField
+						numericFormat
 						formName="option.additionalPanel.price"
 						label="1컷 당 추가 비용"
 						validator={isNumber}
@@ -106,9 +108,9 @@ function OptionFormView() {
 						fullWidth
 					/>
 					<TextField
+						numericFormat
 						formName="option.additionalPanel.workingDays"
 						label="작업 기간"
-						type="number"
 						InputProps={{
 							endAdornment: <InputAdornment position="end">일</InputAdornment>,
 							inputProps: {
@@ -140,6 +142,7 @@ function OptionFormView() {
 				/>
 				<Box display="flex" gap={1}>
 					<TextField
+						numericFormat
 						formName="option.additionalModification.price"
 						label="1회 당 추가 비용"
 						validator={isNumber}
@@ -164,9 +167,9 @@ function OptionFormView() {
 						fullWidth
 					/>
 					<TextField
+						numericFormat
 						formName="option.additionalModification.workingDays"
 						label="수정 횟수"
-						type="number"
 						InputProps={{
 							endAdornment: <InputAdornment position="end">회</InputAdornment>,
 							inputProps: {
@@ -197,6 +200,7 @@ function OptionFormView() {
 					row
 				/>
 				<TextField
+					numericFormat
 					formName="option.postDurationExtension.price"
 					label="1개월 당 추가 비용"
 					validator={isNumber}
@@ -229,6 +233,7 @@ function OptionFormView() {
 					row
 				/>
 				<TextField
+					numericFormat
 					formName="option.originFile.price"
 					label="추가 비용"
 					validator={isNumber}
