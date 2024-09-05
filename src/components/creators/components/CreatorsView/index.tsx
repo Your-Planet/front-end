@@ -2,6 +2,7 @@
 
 import { StudioProfile } from "@/apis/studio";
 import CreatorCard from "@/components/common/CreatorCard";
+import ProfileImage from "@/components/common/profile-image/ProfileImage";
 import AppliedFilterChip from "@/components/creators/components/CreatorsView/components/AppliedFilterChip";
 import CreatorsFilter from "@/components/creators/components/CreatorsView/components/CreatorsFilter";
 import Header from "@/components/creators/components/CreatorsView/components/Header";
@@ -46,18 +47,21 @@ function CreatorsView({}: Props) {
 						<Box>Loading...</Box>
 					) : (
 						sortedCreators?.map((creator) => {
-							const { name, categories, description, id, instagramUsername } = creator;
+							const { name, categories, description, id, instagramUsername, profileImageUrl } = creator;
 							const profile: Omit<StudioProfile, "portfolios"> = {
 								name,
 								description,
+								profileImageUrl,
 								categories: categories.map((category) => category as InstatoonCategoryType),
-								profileImageUrl: "",
 							};
+
+							const renderProfileImage = (profileImageUrl: string) => <ProfileImage src={profileImageUrl} />;
 
 							return (
 								<CreatorCard
 									key={id}
 									profile={profile}
+									renderProfileImage={renderProfileImage}
 									instagramUsername={instagramUsername}
 									buttonEvent={{ detail: {}, project: {} }}
 								/>

@@ -22,6 +22,7 @@ export interface CreatorsResponse {
 	instagramUsername: string;
 	categories: InstatoonCategoryType[];
 	pageable: Pageable;
+	profileImageUrl: string;
 }
 
 export interface GetCreatorsResponse extends CreatorsResponse {
