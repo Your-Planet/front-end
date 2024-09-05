@@ -1,10 +1,10 @@
 "use client";
 
 import ProjectRequestFormProvider from "@/components/project/ProjectRequestFormView/providers/ProjectRequestFormProvider";
-import PostDurationExtension from "@/components/project/common/fields/PostDurationExtension";
 import AdditionalModification from "@/components/project/common/fileds/AdditionalModification";
 import AdditionalPanel from "@/components/project/common/fileds/AdditionalPanel";
 import OriginFile from "@/components/project/common/fileds/OriginFile";
+import PostDurationExtension from "@/components/project/common/fileds/PostDurationExtension";
 import ProjectBrandName from "@/components/project/common/fileds/ProjectBrandName";
 import ProjectCampaignDescription from "@/components/project/common/fileds/ProjectCampaignDescription";
 import ProjectDueDate from "@/components/project/common/fileds/ProjectDueDate";
@@ -54,7 +54,7 @@ function ProjectRequestFormView() {
 					/>
 
 					<PostDurationExtension
-						formName="postDurationExtension"
+						formName="postDurationExtension.months"
 						// TODO: 나은찬 작가 기본 업로드 기간 제공
 						helperText={`기본 N개월 업로드가 보장돼요. 추가할 기간만 한 달 단위로 선택해 주세요.`}
 						required
