@@ -1,6 +1,6 @@
 import ReactHookForm from "@/components/common/ReactHookForm";
 import { ReactHookFormProps } from "@/components/common/ReactHookForm/defines/types";
-import { getMenuItems } from "@/components/project/common/fileds/utils";
+import MenuItem from "@/components/project/common/fileds/MenuItem";
 import { ProjectCommonForm, ProjectFormFieldCommonProps } from "@/defines/forms/project/types";
 import { Box } from "@mui/material";
 import { useWatch } from "react-hook-form";
@@ -33,7 +33,7 @@ function AdditionalPanel(props: ProjectAdditionalPanelProps) {
 				>
 					{
 						// TODO: 나은찬 작가 기본 제공 컷수 파라미터 받아서 처리
-						getMenuItems(10, "장")
+						<MenuItem count={10} endAdornment="장" />
 					}
 				</TextField>
 				<Checkbox formName={isNegotiableFormName} label={"작가와 협의 할래요"} hideErrorMessage />
