@@ -3,7 +3,7 @@ import { ProjectCommonForm, ProjectFormFieldCommonProps } from "@/defines/forms/
 import { Box, MenuItem } from "@mui/material";
 import { useWatch } from "react-hook-form";
 
-function AdditionalModification(props: ProjectFormFieldCommonProps) {
+function ProjectAdditionalModification(props: ProjectFormFieldCommonProps) {
 	const { formName, helperText, required } = props;
 
 	const { TextField } = ReactHookForm<ProjectCommonForm>();
@@ -44,4 +44,4 @@ function AdditionalModification(props: ProjectFormFieldCommonProps) {
 	);
 }
 
-export default AdditionalModification;
+export default ProjectAdditionalModification;

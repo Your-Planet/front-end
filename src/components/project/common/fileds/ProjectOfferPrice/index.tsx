@@ -3,7 +3,7 @@ import { ProjectCommonForm, ProjectFormFieldCommonProps } from "@/defines/forms/
 import { isNumber } from "@/utils/string";
 import { InputAdornment } from "@mui/material";
 
-function OfferPrice(props: ProjectFormFieldCommonProps) {
+function ProjectOfferPrice(props: ProjectFormFieldCommonProps) {
 	const { formName, required } = props;
 
 	const { TextField } = ReactHookForm<ProjectCommonForm>();
@@ -22,4 +22,4 @@ function OfferPrice(props: ProjectFormFieldCommonProps) {
 	);
 }
 
-export default OfferPrice;
+export default ProjectOfferPrice;

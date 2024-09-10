@@ -8,7 +8,7 @@ interface ProjectAdditionalPanelProps extends ProjectFormFieldCommonProps {
 	isNegotiableFormName: ReactHookFormProps<ProjectCommonForm>["formName"];
 }
 
-function AdditionalPanel(props: ProjectAdditionalPanelProps) {
+function ProjectAdditionalPanel(props: ProjectAdditionalPanelProps) {
 	const { formName, isNegotiableFormName, helperText, required } = props;
 
 	const { TextField, Checkbox } = ReactHookForm<ProjectCommonForm>();
@@ -51,4 +51,4 @@ function AdditionalPanel(props: ProjectAdditionalPanelProps) {
 	);
 }
 
-export default AdditionalPanel;
+export default ProjectAdditionalPanel;
