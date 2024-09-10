@@ -35,7 +35,7 @@ function ProjectRequestFormProvider(props: ProjectRequestFormProviderProps) {
 			campaignDescription: "",
 			referenceUrls: [],
 			referenceFiles: [],
-			offerPrice: undefined,
+			offerPrice: 0,
 			message: "",
 		},
 	});

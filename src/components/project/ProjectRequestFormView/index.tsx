@@ -3,6 +3,7 @@
 import ProjectRequestFormProvider from "@/components/project/ProjectRequestFormView/providers/ProjectRequestFormProvider";
 import AdditionalModification from "@/components/project/common/fileds/AdditionalModification";
 import AdditionalPanel from "@/components/project/common/fileds/AdditionalPanel";
+import OfferPrice from "@/components/project/common/fileds/OfferPrice";
 import OriginFile from "@/components/project/common/fileds/OriginFile";
 import PostDurationExtension from "@/components/project/common/fileds/PostDurationExtension";
 import ProjectBrandName from "@/components/project/common/fileds/ProjectBrandName";
@@ -72,6 +73,8 @@ function ProjectRequestFormView() {
 					<ProjectBrandName formName="brandName" required />
 
 					<ProjectCampaignDescription formName="campaignDescription" required />
+
+					<OfferPrice formName="offerPrice" required />
 				</Box>
 			</form>
 		</ProjectRequestFormProvider>
