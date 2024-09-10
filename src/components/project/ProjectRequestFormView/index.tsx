@@ -1,6 +1,7 @@
 "use client";
 
 import ProjectRequestFormProvider from "@/components/project/ProjectRequestFormView/providers/ProjectRequestFormProvider";
+import OfferPrice from "@/components/project/common/fields/OfferPrice";
 import AdditionalModification from "@/components/project/common/fileds/AdditionalModification";
 import AdditionalPanel from "@/components/project/common/fileds/AdditionalPanel";
 import OriginFile from "@/components/project/common/fileds/OriginFile";
@@ -51,6 +52,8 @@ function ProjectRequestFormView() {
 						helperText={`원작자의 허락 없이 임의로 2차적 저작물을 작성하는 경우 2차적 저작물 작성권을 침해하게 됩니다.\n꼭 작가의 활용 동의를 받은 후 활용해 주세요.`}
 						required
 					/>
+
+					<OfferPrice formName="offerPrice" required />
 
 					<ProjectPostStartDate
 						formName="postStartDate"
