@@ -17,6 +17,7 @@ function OfferPrice(props: ProjectFormFieldCommonProps) {
 				endAdornment: <InputAdornment position="end">원</InputAdornment>,
 			}}
 			required={required}
+			numericFormat
 		/>
 	);
 }
