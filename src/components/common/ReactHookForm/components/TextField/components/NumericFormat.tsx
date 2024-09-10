@@ -22,6 +22,7 @@ export const NumericFormatInput = forwardRef<NumericFormatProps, NumericProps>(
 						},
 					});
 				}}
+				inputMode="decimal"
 				thousandSeparator
 				valueIsNumericString
 			/>
