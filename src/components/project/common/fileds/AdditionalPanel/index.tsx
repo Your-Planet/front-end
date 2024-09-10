@@ -1,7 +1,8 @@
 import ReactHookForm from "@/components/common/ReactHookForm";
 import { ReactHookFormProps } from "@/components/common/ReactHookForm/defines/types";
+import MenuItem from "@/components/project/common/fileds/MenuItem";
 import { ProjectCommonForm, ProjectFormFieldCommonProps } from "@/defines/forms/project/types";
-import { Box, MenuItem } from "@mui/material";
+import { Box } from "@mui/material";
 import { useWatch } from "react-hook-form";
 
 interface ProjectAdditionalPanelProps extends ProjectFormFieldCommonProps {
@@ -17,19 +18,6 @@ function AdditionalPanel(props: ProjectAdditionalPanelProps) {
 		name: ["additionalPanel.count", "additionalPanel.isNegotiable"],
 	});
 
-	const getAdditionalPanelCount = () => {
-		// TODO: 나은찬 작가 기본 제공 컷수 파라미터 받아서 처리
-		const tempCount = 10;
-
-		return Array.from({ length: tempCount }, (_, i) => {
-			return (
-				<MenuItem key={i} value={i}>
-					{i === 0 ? "추가 안함" : `${i}장`}
-				</MenuItem>
-			);
-		});
-	};
-
 	return (
 		<Box>
 			<Box>
@@ -43,7 +31,10 @@ function AdditionalPanel(props: ProjectAdditionalPanelProps) {
 					required={required}
 					helperText={helperText}
 				>
-					{getAdditionalPanelCount()}
+					{
+						// TODO: 나은찬 작가 기본 제공 컷수 파라미터 받아서 처리
+						<MenuItem count={10} endAdornment="장" />
+					}
 				</TextField>
 				<Checkbox formName={isNegotiableFormName} label={"작가와 협의 할래요"} hideErrorMessage />
 			</Box>
