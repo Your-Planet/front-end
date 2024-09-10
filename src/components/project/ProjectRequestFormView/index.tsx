@@ -1,9 +1,9 @@
 "use client";
 
 import ProjectRequestFormProvider from "@/components/project/ProjectRequestFormView/providers/ProjectRequestFormProvider";
-import OfferPrice from "@/components/project/common/fields/OfferPrice";
 import AdditionalModification from "@/components/project/common/fileds/AdditionalModification";
 import AdditionalPanel from "@/components/project/common/fileds/AdditionalPanel";
+import OfferPrice from "@/components/project/common/fileds/OfferPrice";
 import OriginFile from "@/components/project/common/fileds/OriginFile";
 import ProjectBrandName from "@/components/project/common/fileds/ProjectBrandName";
 import ProjectCampaignDescription from "@/components/project/common/fileds/ProjectCampaignDescription";
