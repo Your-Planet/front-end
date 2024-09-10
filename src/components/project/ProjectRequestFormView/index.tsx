@@ -1,6 +1,7 @@
 "use client";
 
 import ProjectRequestFormProvider from "@/components/project/ProjectRequestFormView/providers/ProjectRequestFormProvider";
+import ProjectPostDurationExtension from "@/components/project/common/fileds/PostDurationExtension";
 import ProjectAdditionalModification from "@/components/project/common/fileds/ProjectAdditionalModification";
 import ProjectAdditionalPanel from "@/components/project/common/fileds/ProjectAdditionalPanel";
 import ProjectBrandName from "@/components/project/common/fileds/ProjectBrandName";
@@ -38,7 +39,7 @@ function ProjectRequestFormView() {
 					<ProjectAdditionalModification
 						formName="additionalModification.count"
 						// TODO: 나은찬 작가가 제공하는 기본 수정 횟수
-						helperText={`기본 수정 N회가 제공돼요.  추가할 횟수만 선택해 주세요.`}
+						helperText={`기본 수정 N회가 제공돼요. 추가할 횟수만 선택해 주세요.`}
 						required
 					/>
 
@@ -51,6 +52,13 @@ function ProjectRequestFormView() {
 					<ProjectRefinement
 						formName="refinement.demandType"
 						helperText={`원작자의 허락 없이 임의로 2차적 저작물을 작성하는 경우 2차적 저작물 작성권을 침해하게 됩니다.\n꼭 작가의 활용 동의를 받은 후 활용해 주세요.`}
+						required
+					/>
+
+					<ProjectPostDurationExtension
+						formName="postDurationExtension.months"
+						// TODO: 나은찬 작가 기본 업로드 기간 제공
+						helperText={`기본 N개월 업로드가 보장돼요. 추가할 기간만 한 달 단위로 선택해 주세요.`}
 						required
 					/>
 
