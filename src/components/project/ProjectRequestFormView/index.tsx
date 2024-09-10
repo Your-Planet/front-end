@@ -53,8 +53,6 @@ function ProjectRequestFormView() {
 						required
 					/>
 
-					<OfferPrice formName="offerPrice" required />
-
 					<ProjectPostStartDate
 						formName="postStartDate"
 						postStartDatesFormName="postStartDates"
@@ -67,6 +65,8 @@ function ProjectRequestFormView() {
 					<ProjectBrandName formName="brandName" required />
 
 					<ProjectCampaignDescription formName="campaignDescription" required />
+
+					<OfferPrice formName="offerPrice" required />
 				</Box>
 			</form>
 		</ProjectRequestFormProvider>
