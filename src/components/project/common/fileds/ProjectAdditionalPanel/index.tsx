@@ -1,6 +1,6 @@
 import ReactHookForm from "@/components/common/ReactHookForm";
 import { ReactHookFormProps } from "@/components/common/ReactHookForm/defines/types";
-import MenuItem from "@/components/project/common/fileds/MenuItem";
+import MenuItem from "@/components/project/common/fileds/ProjectMenuItem";
 import { ProjectCommonForm, ProjectFormFieldCommonProps } from "@/defines/forms/project/types";
 import { Box } from "@mui/material";
 import { useWatch } from "react-hook-form";
