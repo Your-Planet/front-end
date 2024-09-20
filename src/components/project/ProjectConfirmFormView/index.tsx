@@ -15,6 +15,7 @@ function ProjectConfirmFormView() {
 			}}
 		>
 			<ProjectTextField label="광고주명" text="마이 플래닛" />
+			<ProjectTextField label="브랜드명" text="유어 플래닛" />
 		</Box>
 	);
 }
