@@ -16,6 +16,7 @@ function ProjectConfirmFormView() {
 		>
 			<ProjectTextField label="광고주명" text="마이 플래닛" />
 			<ProjectTextField label="브랜드명" text="유어 플래닛" />
+			<ProjectTextField label="최종 컷 수" text="총 6컷 (기본 3컷 + 추가 3컷)" />
 		</Box>
 	);
 }
