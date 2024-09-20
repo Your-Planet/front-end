@@ -1,7 +1,6 @@
 "use client";
 
 import ProjectRequestFormProvider from "@/components/project/ProjectRequestFormView/providers/ProjectRequestFormProvider";
-import ProjectPostDurationExtension from "@/components/project/common/fileds/PostDurationExtension";
 import ProjectAdditionalModification from "@/components/project/common/fileds/ProjectAdditionalModification";
 import ProjectAdditionalPanel from "@/components/project/common/fileds/ProjectAdditionalPanel";
 import ProjectBrandName from "@/components/project/common/fileds/ProjectBrandName";
@@ -10,6 +9,7 @@ import ProjectDueDate from "@/components/project/common/fileds/ProjectDueDate";
 import ProjectMessage from "@/components/project/common/fileds/ProjectMessage";
 import ProjectOfferPrice from "@/components/project/common/fileds/ProjectOfferPrice";
 import ProjectOriginFile from "@/components/project/common/fileds/ProjectOriginFile";
+import ProjectPostDurationExtension from "@/components/project/common/fileds/ProjectPostDurationExtension";
 import ProjectPostStartDate from "@/components/project/common/fileds/ProjectPostStartDate";
 import ProjectRefinement from "@/components/project/common/fileds/ProjectRefinement";
 import { PROJECT_FORM_LENGTH, PROJECT_FORM_WIDTH } from "@/defines/forms/project/constants";

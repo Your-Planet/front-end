@@ -1,4 +1,4 @@
-import { MenuItem as MuiMenuItem } from "@mui/material";
+import { MenuItem } from "@mui/material";
 
 // TODO @나은찬, need to refactor, type? count?
 type Props = {
@@ -6,18 +6,18 @@ type Props = {
 	endAdornment?: string;
 };
 
-function MenuItem(props: Props) {
+function ProjectMenuItem(props: Props) {
 	const { count, endAdornment } = props;
 
 	return (
 		<>
 			{Array.from({ length: count }, (_, i) => (
-				<MuiMenuItem key={i} value={i}>
+				<MenuItem key={i} value={i}>
 					{i === 0 ? "추가 안함" : `${i}${endAdornment}`}
-				</MuiMenuItem>
+				</MenuItem>
 			))}
 		</>
 	);
 }
 
-export default MenuItem;
+export default ProjectMenuItem;
