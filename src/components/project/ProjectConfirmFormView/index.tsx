@@ -1,4 +1,4 @@
-import ProjectTextField from "@/components/project/common/fileds/ProjectTextField";
+import ProjectSponsorName from "@/components/project/common/fileds/ProjectSponsorName";
 import { PROJECT_FORM_WIDTH } from "@/defines/forms/project/constants";
 import { Box } from "@mui/material";
 
@@ -14,7 +14,7 @@ function ProjectConfirmFormView() {
 				paddingY: "2rem",
 			}}
 		>
-			<ProjectTextField label="광고주명" text="마이 플래닛" />
+			<ProjectSponsorName />
 		</Box>
 	);
 }
