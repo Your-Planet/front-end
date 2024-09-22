@@ -9,6 +9,7 @@ import PostDurationExtension from "@/components/project/common/fileds/PostDurati
 import ProjectBrandName from "@/components/project/common/fileds/ProjectBrandName";
 import ProjectCampaignDescription from "@/components/project/common/fileds/ProjectCampaignDescription";
 import ProjectDueDate from "@/components/project/common/fileds/ProjectDueDate";
+import ProjectMessage from "@/components/project/common/fileds/ProjectMessage";
 import ProjectPostStartDate from "@/components/project/common/fileds/ProjectPostStartDate";
 import Refinement from "@/components/project/common/fileds/Refinement";
 import { PROJECT_FORM_LENGTH, PROJECT_FORM_WIDTH } from "@/defines/forms/project/constants";
@@ -75,6 +76,8 @@ function ProjectRequestFormView() {
 					<ProjectCampaignDescription formName="campaignDescription" required />
 
 					<OfferPrice formName="offerPrice" required />
+
+					<ProjectMessage formName="message" />
 				</Box>
 			</form>
 		</ProjectRequestFormProvider>
