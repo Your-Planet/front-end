@@ -1,17 +1,17 @@
 "use client";
 
 import ProjectRequestFormProvider from "@/components/project/ProjectRequestFormView/providers/ProjectRequestFormProvider";
-import AdditionalModification from "@/components/project/common/fileds/AdditionalModification";
-import AdditionalPanel from "@/components/project/common/fileds/AdditionalPanel";
-import OfferPrice from "@/components/project/common/fileds/OfferPrice";
-import OriginFile from "@/components/project/common/fileds/OriginFile";
-import PostDurationExtension from "@/components/project/common/fileds/PostDurationExtension";
+import ProjectAdditionalModification from "@/components/project/common/fileds/ProjectAdditionalModification";
+import ProjectAdditionalPanel from "@/components/project/common/fileds/ProjectAdditionalPanel";
 import ProjectBrandName from "@/components/project/common/fileds/ProjectBrandName";
 import ProjectCampaignDescription from "@/components/project/common/fileds/ProjectCampaignDescription";
 import ProjectDueDate from "@/components/project/common/fileds/ProjectDueDate";
 import ProjectMessage from "@/components/project/common/fileds/ProjectMessage";
+import ProjectOfferPrice from "@/components/project/common/fileds/ProjectOfferPrice";
+import ProjectOriginFile from "@/components/project/common/fileds/ProjectOriginFile";
+import ProjectPostDurationExtension from "@/components/project/common/fileds/ProjectPostDurationExtension";
 import ProjectPostStartDate from "@/components/project/common/fileds/ProjectPostStartDate";
-import Refinement from "@/components/project/common/fileds/Refinement";
+import ProjectRefinement from "@/components/project/common/fileds/ProjectRefinement";
 import { PROJECT_FORM_LENGTH, PROJECT_FORM_WIDTH } from "@/defines/forms/project/constants";
 import { Box } from "@mui/material";
 
@@ -28,7 +28,7 @@ function ProjectRequestFormView() {
 						paddingY: "2rem",
 					}}
 				>
-					<AdditionalPanel
+					<ProjectAdditionalPanel
 						formName="additionalPanel.count"
 						isNegotiableFormName="additionalPanel.isNegotiable"
 						// TODO: 나은찬 작가가 제공하는 기본 컷수 넘겨주기
@@ -36,26 +36,26 @@ function ProjectRequestFormView() {
 						required
 					/>
 
-					<AdditionalModification
+					<ProjectAdditionalModification
 						formName="additionalModification.count"
 						// TODO: 나은찬 작가가 제공하는 기본 수정 횟수
 						helperText={`기본 수정 N회가 제공돼요. 추가할 횟수만 선택해 주세요.`}
 						required
 					/>
 
-					<OriginFile
+					<ProjectOriginFile
 						formName="originFile.demandType"
 						helperText="요청 시 최종 작업물의 원본 파일을 받을 수 있어요."
 						required
 					/>
 
-					<Refinement
+					<ProjectRefinement
 						formName="refinement.demandType"
 						helperText={`원작자의 허락 없이 임의로 2차적 저작물을 작성하는 경우 2차적 저작물 작성권을 침해하게 됩니다.\n꼭 작가의 활용 동의를 받은 후 활용해 주세요.`}
 						required
 					/>
 
-					<PostDurationExtension
+					<ProjectPostDurationExtension
 						formName="postDurationExtension.months"
 						// TODO: 나은찬 작가 기본 업로드 기간 제공
 						helperText={`기본 N개월 업로드가 보장돼요. 추가할 기간만 한 달 단위로 선택해 주세요.`}
@@ -75,7 +75,7 @@ function ProjectRequestFormView() {
 
 					<ProjectCampaignDescription formName="campaignDescription" required />
 
-					<OfferPrice formName="offerPrice" required />
+					<ProjectOfferPrice formName="offerPrice" required />
 
 					<ProjectMessage formName="message" />
 				</Box>

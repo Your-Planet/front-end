@@ -1,6 +1,6 @@
 import ReactHookForm from "@/components/common/ReactHookForm";
 import { ReactHookFormProps } from "@/components/common/ReactHookForm/defines/types";
-import MenuItem from "@/components/project/common/fileds/MenuItem";
+import MenuItem from "@/components/project/common/fileds/ProjectMenuItem";
 import { ProjectCommonForm, ProjectFormFieldCommonProps } from "@/defines/forms/project/types";
 import { Box } from "@mui/material";
 import { useWatch } from "react-hook-form";
@@ -9,7 +9,7 @@ interface ProjectAdditionalPanelProps extends ProjectFormFieldCommonProps {
 	isNegotiableFormName: ReactHookFormProps<ProjectCommonForm>["formName"];
 }
 
-function AdditionalPanel(props: ProjectAdditionalPanelProps) {
+function ProjectAdditionalPanel(props: ProjectAdditionalPanelProps) {
 	const { formName, isNegotiableFormName, helperText, required } = props;
 
 	const { TextField, Checkbox } = ReactHookForm<ProjectCommonForm>();
@@ -42,4 +42,4 @@ function AdditionalPanel(props: ProjectAdditionalPanelProps) {
 	);
 }
 
-export default AdditionalPanel;
+export default ProjectAdditionalPanel;

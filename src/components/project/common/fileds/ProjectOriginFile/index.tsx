@@ -4,7 +4,7 @@ import { DemandType, ProjectCommonForm, ProjectFormFieldCommonProps } from "@/de
 import { Box } from "@mui/material";
 import { useWatch } from "react-hook-form";
 
-function OriginFile(props: ProjectFormFieldCommonProps) {
+function ProjectOriginFile(props: ProjectFormFieldCommonProps) {
 	const { formName, helperText, required } = props;
 
 	const { RadioGroup } = ReactHookForm<ProjectCommonForm>();
@@ -28,4 +28,4 @@ function OriginFile(props: ProjectFormFieldCommonProps) {
 	);
 }
 
-export default OriginFile;
+export default ProjectOriginFile;
