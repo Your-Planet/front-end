@@ -1,3 +1,6 @@
+"use client";
+
+import ProjectBrandName from "@/components/project/common/fileds/ProjectBrandName";
 import ProjectSponsorName from "@/components/project/common/fileds/ProjectSponsorName";
 import { PROJECT_FORM_WIDTH } from "@/defines/forms/project/constants";
 import { Box } from "@mui/material";
@@ -15,6 +18,7 @@ function ProjectConfirmFormView() {
 			}}
 		>
 			<ProjectSponsorName />
+			<ProjectBrandName formName="brandName" readOnly />
 		</Box>
 	);
 }

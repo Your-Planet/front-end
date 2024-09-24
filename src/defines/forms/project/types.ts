@@ -6,6 +6,7 @@ export type DemandType = "DEMANDED" | "NOT_DEMANDED";
 export interface ProjectFormFieldCommonProps
 	extends Pick<ReactHookFormProps<ProjectCommonForm>, "formName" | "required"> {
 	helperText?: string;
+	readOnly?: boolean;
 }
 
 export interface ProjectCommonForm {
