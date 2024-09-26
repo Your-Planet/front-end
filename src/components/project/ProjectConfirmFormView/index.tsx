@@ -17,7 +17,7 @@ function ProjectConfirmFormView() {
 				paddingY: "2rem",
 			}}
 		>
-			<ProjectSponsorName />
+			<ProjectSponsorName formName="sponsorName" />
 			<ProjectBrandName formName="brandName" readOnly />
 		</Box>
 	);

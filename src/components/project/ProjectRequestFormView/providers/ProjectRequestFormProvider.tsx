@@ -37,6 +37,7 @@ function ProjectRequestFormProvider(props: ProjectRequestFormProviderProps) {
 			referenceFiles: [],
 			offerPrice: 0,
 			message: "",
+			sponsorName: "",
 		},
 	});
 

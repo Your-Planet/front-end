@@ -27,7 +27,7 @@ function ProjectBrandName(props: ProjectBrandNameProps) {
 			}}
 			placeholder={getMaxLengthPlaceholder(max)}
 			InputProps={{ readOnly }}
-			defaultValue={readOnly ?? getValues(formName)}
+			{...(readOnly && { value: getValues(formName) })}
 			fullWidth
 		/>
 	);
