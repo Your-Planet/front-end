@@ -17,11 +17,7 @@ function ProjectConfirmFormView() {
 				paddingY: "2rem",
 			}}
 		>
-<<<<<<< HEAD
 			<ProjectSponsorName formName="sponsorName" />
-=======
-			<ProjectSponsorName />
->>>>>>> origin/YP-493
 			<ProjectBrandName formName="brandName" readOnly />
 		</Box>
 	);
