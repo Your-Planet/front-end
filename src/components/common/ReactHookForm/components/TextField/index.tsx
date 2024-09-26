@@ -15,8 +15,15 @@ export interface ReactHookFormTextFieldProps<TFieldValues extends FieldValues>
 function ReactHookFormTextField<TFieldValues extends FieldValues = FieldValues>(
 	props: ReactHookFormTextFieldProps<TFieldValues>,
 ) {
-	const { restProps, field, label, error, errorMessage, handleChange } = useReactHookFormControl(props);
-	const { error: errorFromProps, helperText, characterCountable, numericFormat, rules } = props;
+	const {
+		restProps: { characterCountable, numericFormat, ...restProps },
+		field,
+		label,
+		error,
+		errorMessage,
+		handleChange,
+	} = useReactHookFormControl(props);
+	const { error: errorFromProps, helperText, rules } = props;
 	const { InputProps } = restProps;
 
 	const hasError = Boolean(error);
