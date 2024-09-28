@@ -20,7 +20,7 @@ function ProjectConfirmFormView() {
 		>
 			<ProjectSponsorName formName="sponsorName" />
 			<ProjectBrandName formName="brandName" readOnly />
-			<ProjectFinalCuts formName="additionalPanel.count" />
+			<ProjectFinalCuts formName="finalCuts" />
 		</Box>
 	);
 }
