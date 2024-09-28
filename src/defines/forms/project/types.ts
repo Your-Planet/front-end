@@ -37,6 +37,7 @@ export interface ProjectCommonForm {
 	message: string;
 	sponsorName: string;
 	finalCuts: number;
+	finalModification: number;
 }
 
 // 프로젝트 의뢰 및 요약
@@ -58,6 +59,7 @@ export type ProjectRequestForm = Pick<
 	| "message"
 	| "sponsorName"
 	| "finalCuts"
+	| "finalModification"
 >;
 
 // TODO 추가 예정

@@ -22,7 +22,7 @@ function ProjectConfirmFormView() {
 			<ProjectSponsorName formName="sponsorName" />
 			<ProjectBrandName formName="brandName" readOnly />
 			<ProjectFinalCuts formName="finalCuts" />
-			<ProjectFinalModification formName="additionalModification" />
+			<ProjectFinalModification formName="finalModification" />
 		</Box>
 	);
 }
