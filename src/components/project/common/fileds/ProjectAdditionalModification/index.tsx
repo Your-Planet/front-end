@@ -1,5 +1,5 @@
 import ReactHookForm from "@/components/common/ReactHookForm";
-import MenuItem from "@/components/project/common/fileds/ProjectMenuItem";
+import { getMenuItems } from "@/components/project/common/utils";
 import { ProjectCommonForm, ProjectFormFieldCommonProps } from "@/defines/forms/project/types";
 import { Box } from "@mui/material";
 import { useWatch } from "react-hook-form";
@@ -27,7 +27,7 @@ function ProjectAdditionalModification(props: ProjectFormFieldCommonProps) {
 				>
 					{
 						// TODO: 나은찬 작가 기본 수정 횟수 파라미터 받아서 처리
-						<MenuItem count={10} endAdornment="회" />
+						getMenuItems(10, "회")
 					}
 				</TextField>
 			</Box>
