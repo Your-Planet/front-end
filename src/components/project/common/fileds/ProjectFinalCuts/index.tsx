@@ -2,9 +2,9 @@ import ReactHookForm from "@/components/common/ReactHookForm";
 import { ProjectCommonForm, ProjectFormFieldCommonProps } from "@/defines/forms/project/types";
 import { useFormContext } from "react-hook-form";
 
-export interface ProjectBrandNameProps extends ProjectFormFieldCommonProps {}
+export interface ProjectFinalCutsProps extends ProjectFormFieldCommonProps {}
 
-function ProjectFinalCuts(props: ProjectBrandNameProps) {
+function ProjectFinalCuts(props: ProjectFinalCutsProps) {
 	const { formName } = props;
 	const { TextField } = ReactHookForm<ProjectCommonForm>();
 	const { getValues } = useFormContext<ProjectCommonForm>();
