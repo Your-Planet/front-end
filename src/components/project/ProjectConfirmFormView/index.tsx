@@ -1,7 +1,7 @@
 "use client";
 
 import ProjectBrandName from "@/components/project/common/fileds/ProjectBrandName";
-import ProjectFinalCuts from "@/components/project/common/fileds/ProjectFinalCuts";
+import ProjectFinalPanel from "@/components/project/common/fileds/ProjectFinalPanel";
 import ProjectSponsorName from "@/components/project/common/fileds/ProjectSponsorName";
 import { PROJECT_FORM_WIDTH } from "@/defines/forms/project/constants";
 import { Box } from "@mui/material";
@@ -20,7 +20,7 @@ function ProjectConfirmFormView() {
 		>
 			<ProjectSponsorName formName="sponsorName" />
 			<ProjectBrandName formName="brandName" readOnly />
-			<ProjectFinalCuts formName="finalCuts" />
+			<ProjectFinalPanel formName="finalPanel" />
 		</Box>
 	);
 }
