@@ -6,7 +6,7 @@ import { getMaxLengthPlaceholder, getMaxLengthRule } from "@/utils/react-hook-fo
 const { max } = PROJECT_FORM_LENGTH.message;
 
 function ProjectMessage(props: ProjectFormFieldCommonProps) {
-	const { formName, helperText } = props;
+	const { formName, helperText, readOnly } = props;
 
 	const { TextField } = ReactHookForm<ProjectCommonForm>();
 
@@ -23,6 +23,7 @@ function ProjectMessage(props: ProjectFormFieldCommonProps) {
 			rows={10}
 			characterCountable
 			helperText={helperText}
+			InputProps={{ readOnly }}
 		/>
 	);
 }

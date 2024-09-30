@@ -3,6 +3,7 @@
 import ProjectBrandName from "@/components/project/common/fileds/ProjectBrandName";
 import ProjectFinalCuts from "@/components/project/common/fileds/ProjectFinalCuts";
 import ProjectFinalModification from "@/components/project/common/fileds/ProjectFinalModification";
+import ProjectMessage from "@/components/project/common/fileds/ProjectMessage";
 import ProjectSponsorName from "@/components/project/common/fileds/ProjectSponsorName";
 import { PROJECT_FORM_WIDTH } from "@/defines/forms/project/constants";
 import { Box } from "@mui/material";
@@ -23,6 +24,7 @@ function ProjectConfirmFormView() {
 			<ProjectBrandName formName="brandName" readOnly />
 			<ProjectFinalCuts formName="finalCuts" />
 			<ProjectFinalModification formName="finalModification" />
+			<ProjectMessage formName="message" readOnly />
 		</Box>
 	);
 }
