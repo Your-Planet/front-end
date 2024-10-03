@@ -75,10 +75,10 @@ function ReactHookFormFileDropzone<TFieldValues extends FieldValues>(
 								/>
 							</Box>
 
-							<List>
+							<List sx={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
 								{acceptedFiles.map((file) => (
 									// @ts-ignore
-									<ListItem key={file.path}>
+									<ListItem key={file.path} sx={{ padding: 0, width: "inherit" }}>
 										<Chip label={file.name} color="primary" variant="outlined" onDelete={() => {}} />
 									</ListItem>
 								))}
