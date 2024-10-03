@@ -8,7 +8,7 @@ function ProjectReferenceFiles(props: ProjectReferenceFilesProps) {
 
 	const { FileDropzone } = ReactHookForm<ProjectCommonForm>();
 
-	return <FileDropzone formName={formName} helperText={helperText} label="안녕" required={required} />;
+	return <FileDropzone formName={formName} helperText={helperText} label="참고 자료" required={required} />;
 }
 
 export default ProjectReferenceFiles;
