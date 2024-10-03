@@ -6,7 +6,7 @@ import {
 	checkValidSameCharContinuity,
 	checkValidSequenceContinuity,
 } from "@/utils/password";
-import { isEmail } from "@/utils/string";
+import { isEmail, isUrl } from "@/utils/string";
 import { Message } from "react-hook-form";
 
 export const getMaxLengthPlaceholder = (maxLength: number) => `${maxLength}자까지 입력 가능합니다.`;
@@ -77,5 +77,12 @@ export const getPasswordConfirmValidateRule = (password: string) => ({
 	validate: (value: string) => {
 		if (!password || !value || value === password) return true;
 		return "비밀번호가 일치하지 않습니다.";
+	},
+});
+
+export const getUrlValidateRule = () => ({
+	validate: (value: string) => {
+		if (!value || isUrl(value)) return true;
+		return "URL 형식이 유효하지 않습니다.";
 	},
 });
