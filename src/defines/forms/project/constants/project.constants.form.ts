@@ -1,4 +1,5 @@
-import { ProjectCommonForm } from "@/defines/forms/project/types";
+import { DemandType, ProjectCommonForm } from "@/defines/forms/project/types";
+import { deepFreeze } from "@/utils/object";
 
 export const PROJECT_FORM_LENGTH = {
 	postStartDates: {
@@ -33,3 +34,15 @@ export const PROJECT_FORM_SIZE = {
 		max: 20, // MB
 	},
 };
+
+export const PROJECT_FORM_WIDTH = 520;
+
+export const LABEL_BY_DEMAND_TYPE: Record<DemandType, string> = deepFreeze({
+	NOT_DEMANDED: "미요청",
+	DEMANDED: "요청",
+});
+
+export const DEMAND_RADIOS: { value: DemandType; label: string }[] = Object.keys(LABEL_BY_DEMAND_TYPE).map((key) => ({
+	value: key as DemandType,
+	label: LABEL_BY_DEMAND_TYPE[key as DemandType],
+}));
