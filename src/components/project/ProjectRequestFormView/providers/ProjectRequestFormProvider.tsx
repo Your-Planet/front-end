@@ -14,7 +14,7 @@ function ProjectRequestFormProvider(props: ProjectRequestFormProviderProps) {
 		mode: "all",
 		defaultValues: {
 			additionalPanel: {
-				count: undefined,
+				count: 0,
 				isNegotiable: false,
 			},
 			additionalModification: {
@@ -36,7 +36,7 @@ function ProjectRequestFormProvider(props: ProjectRequestFormProviderProps) {
 			campaignDescription: "",
 			referenceUrls: [DEFAULT_PROJECT_REFERENCE_URL],
 			referenceFiles: [],
-			offerPrice: undefined,
+			offerPrice: 0,
 			message: "",
 		},
 	});

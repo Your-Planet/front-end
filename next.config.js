@@ -25,6 +25,11 @@ const nextConfig = {
 				hostname: "www.instagram.com",
 				pathname: "/p/**",
 			},
+			{
+				protocol: "http",
+				hostname: "ec2-15-164-160-23.ap-northeast-2.compute.amazonaws.com",
+				pathname: "/files/**",
+			},
 		],
 	},
 };
