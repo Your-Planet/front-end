@@ -1,5 +1,6 @@
 import ReactHookForm from "@/components/common/ReactHookForm";
 import { ProjectCommonForm, ProjectFormFieldCommonProps } from "@/defines/forms/project/types";
+import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 
 export interface ProjectFinalModificationProps extends ProjectFormFieldCommonProps {}
@@ -14,7 +15,9 @@ function ProjectFinalModification(props: ProjectFinalModificationProps) {
 	const finalModification = defaultModification + additionalModification;
 	const value = `총 ${finalModification}회 (기본 ${defaultModification}회 + 추가 ${additionalModification}회)`;
 
-	setValue(formName, value);
+	useEffect(() => {
+		setValue(formName, value);
+	}, []);
 
 	return <TextField formName={formName} label="최종 수정 횟수" InputProps={{ readOnly: true }} />;
 }
