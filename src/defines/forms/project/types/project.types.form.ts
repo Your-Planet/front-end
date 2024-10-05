@@ -1,13 +1,7 @@
-import { ReactHookFormProps } from "@/components/common/ReactHookForm/defines/types";
+import { DemandType } from "@/defines/forms/project/types";
+import { ProjectTypesPostStartDate } from "@/defines/forms/project/types/project.types.postStartDates";
+import { ProjectReferenceUrl } from "@/defines/forms/project/types/project.types.referenceUrls";
 import { Dayjs } from "dayjs";
-
-export type DemandType = "DEMANDED" | "NOT_DEMANDED";
-
-export interface ProjectFormFieldCommonProps
-	extends Pick<ReactHookFormProps<ProjectCommonForm>, "formName" | "required"> {
-	helperText?: string;
-	readOnly?: boolean;
-}
 
 export interface ProjectCommonForm {
 	additionalPanel: {
@@ -27,16 +21,16 @@ export interface ProjectCommonForm {
 		months: number;
 	};
 	postStartDate: Dayjs | null;
-	postStartDates: { date: string }[];
+	postStartDates: ProjectTypesPostStartDate[];
 	dueDate: Dayjs | null;
 	brandName: string;
 	campaignDescription: string;
-	referenceUrls: string[];
+	referenceUrls: ProjectReferenceUrl[];
 	referenceFiles: File[];
 	offerPrice: number;
 	message: string;
 	sponsorName: string;
-	finalCuts: number;
+	finalPanel: number;
 	finalModification: number;
 }
 
@@ -58,7 +52,7 @@ export type ProjectRequestForm = Pick<
 	| "offerPrice"
 	| "message"
 	| "sponsorName"
-	| "finalCuts"
+	| "finalPanel"
 	| "finalModification"
 >;
 

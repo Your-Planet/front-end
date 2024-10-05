@@ -35,8 +35,6 @@ export const PROJECT_FORM_SIZE = {
 	},
 };
 
-export const PROJECT_FORM_WIDTH = 520;
-
 export const LABEL_BY_DEMAND_TYPE: Record<DemandType, string> = deepFreeze({
 	NOT_DEMANDED: "미요청",
 	DEMANDED: "요청",
