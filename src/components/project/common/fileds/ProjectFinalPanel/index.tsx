@@ -1,5 +1,6 @@
 import ReactHookForm from "@/components/common/ReactHookForm";
 import { ProjectCommonForm, ProjectFormFieldCommonProps } from "@/defines/forms/project/types";
+import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 
 export interface ProjectFinalCutsProps extends ProjectFormFieldCommonProps {}
@@ -14,7 +15,9 @@ function ProjectFinalPanel(props: ProjectFinalCutsProps) {
 	const finalPanel = defaultCuts + additionalCuts;
 	const value = `총 ${finalPanel}컷 (기본 ${defaultCuts}컷 + 추가 ${additionalCuts}컷)`;
 
-	setValue(formName, value);
+	useEffect(() => {
+		setValue(formName, value);
+	}, []);
 
 	return <TextField formName={formName} label="최종 컷 수" InputProps={{ readOnly: true }} />;
 }
