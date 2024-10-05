@@ -10,6 +10,7 @@ import ProjectOfferPrice from "@/components/project/common/fileds/ProjectOfferPr
 import ProjectOriginFile from "@/components/project/common/fileds/ProjectOriginFile";
 import ProjectPostDurationExtension from "@/components/project/common/fileds/ProjectPostDurationExtension";
 import ProjectPostStartDate from "@/components/project/common/fileds/ProjectPostStartDate";
+import ProjectReferenceUrls from "@/components/project/common/fileds/ProjectReferenceUrls";
 import ProjectRefinement from "@/components/project/common/fileds/ProjectRefinement";
 import { PROJECT_FORM_LENGTH, PROJECT_FORM_WIDTH } from "@/defines/forms/project/constants";
 import { Box } from "@mui/material";
@@ -62,7 +63,6 @@ function ProjectRequestFormView() {
 
 				<ProjectPostStartDate
 					formName="postStartDate"
-					postStartDatesFormName="postStartDates"
 					helperText={`특정 날짜를 지정하거나, 아직 날짜가 정해지지 않은 경우 최대 ${PROJECT_FORM_LENGTH.postStartDates.max}개의 날짜를 제시할 수 있어요.`}
 					required
 				/>
@@ -72,6 +72,8 @@ function ProjectRequestFormView() {
 				<ProjectBrandName formName="brandName" required />
 
 				<ProjectCampaignDescription formName="campaignDescription" required />
+
+				<ProjectReferenceUrls formName="referenceUrls" getItemFormName={(index) => `referenceUrls.${index}.url`} />
 
 				<ProjectOfferPrice formName="offerPrice" required />
 
