@@ -8,7 +8,7 @@ export interface ProjectBrandNameProps extends ProjectFormFieldCommonProps {}
 const { min, max } = PROJECT_FORM_LENGTH.brandName;
 
 function ProjectBrandName(props: ProjectBrandNameProps) {
-	const { formName, required, helperText } = props;
+	const { formName, required, helperText, readOnly } = props;
 
 	const { TextField } = ReactHookForm<ProjectCommonForm>();
 
@@ -23,6 +23,7 @@ function ProjectBrandName(props: ProjectBrandNameProps) {
 				...getMinLengthRule(min),
 			}}
 			placeholder={getMaxLengthPlaceholder(max)}
+			InputProps={{ readOnly }}
 			fullWidth
 		/>
 	);
