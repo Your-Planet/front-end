@@ -2,7 +2,6 @@ import ReactHookForm from "@/components/common/ReactHookForm";
 import { PROJECT_FORM_LENGTH } from "@/defines/forms/project/constants";
 import { ProjectCommonForm, ProjectFormFieldCommonProps } from "@/defines/forms/project/types";
 import { getMaxLengthPlaceholder, getMaxLengthRule, getMinLengthRule } from "@/utils/react-hook-form/rule";
-import { useFormContext } from "react-hook-form";
 
 export interface ProjectBrandNameProps extends ProjectFormFieldCommonProps {}
 
@@ -12,8 +11,6 @@ function ProjectBrandName(props: ProjectBrandNameProps) {
 	const { formName, required, helperText, readOnly } = props;
 
 	const { TextField } = ReactHookForm<ProjectCommonForm>();
-
-	const { getValues } = useFormContext<ProjectCommonForm>();
 
 	return (
 		<TextField
@@ -27,7 +24,6 @@ function ProjectBrandName(props: ProjectBrandNameProps) {
 			}}
 			placeholder={getMaxLengthPlaceholder(max)}
 			InputProps={{ readOnly }}
-			{...(readOnly && { value: getValues(formName) })}
 			fullWidth
 		/>
 	);

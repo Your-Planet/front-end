@@ -4,16 +4,14 @@ import { ProjectCommonForm, ProjectFormFieldCommonProps } from "@/defines/forms/
 import { Box, Chip } from "@mui/material";
 import { Dayjs } from "dayjs";
 import { ChangeEventHandler, useEffect } from "react";
-import { ArrayPath, useFieldArray, useFormContext } from "react-hook-form";
+import { useFieldArray, useFormContext } from "react-hook-form";
 
-export interface ProjectPostStartDateProps extends ProjectFormFieldCommonProps {
-	postStartDatesFormName: ArrayPath<ProjectCommonForm>;
-}
+export interface ProjectPostStartDateProps extends ProjectFormFieldCommonProps<"postStartDate"> {}
 
 const { min, max } = PROJECT_FORM_LENGTH.postStartDates;
 
 function ProjectPostStartDate(props: ProjectPostStartDateProps) {
-	const { formName, postStartDatesFormName, required, helperText } = props;
+	const { formName, required, helperText } = props;
 
 	const {
 		control,
@@ -23,9 +21,9 @@ function ProjectPostStartDate(props: ProjectPostStartDateProps) {
 		register,
 	} = useFormContext<ProjectCommonForm>();
 
-	const { fields, append, remove } = useFieldArray<ProjectCommonForm>({
+	const { fields, append, remove } = useFieldArray<ProjectCommonForm, "postStartDates">({
 		control,
-		name: postStartDatesFormName,
+		name: "postStartDates",
 	});
 
 	register("postStartDates", {
