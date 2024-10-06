@@ -5,6 +5,7 @@ export interface CreatorStudioRequest {
 }
 
 export interface CreatorStudioResponse {
+	instagramUsername: string;
 	profile: StudioProfile;
 	price: PricelessStudioPrice;
 }
