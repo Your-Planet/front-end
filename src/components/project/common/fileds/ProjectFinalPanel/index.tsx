@@ -17,7 +17,7 @@ function ProjectFinalPanel(props: ProjectFinalCutsProps) {
 
 	useEffect(() => {
 		setValue(formName, value);
-	}, []);
+	}, [value]);
 
 	return <TextField formName={formName} label="최종 컷 수" InputProps={{ readOnly: true }} />;
 }
