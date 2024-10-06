@@ -6,11 +6,7 @@ import CreatorServiceOptionSection from "@/components/creators/CreatorDetailView
 import CreatorStudioProvider from "@/components/creators/CreatorDetailView/providers/CreatorStudioProvider";
 import { Box } from "@mui/material";
 
-export interface CreatorDetailViewProps {}
-
-function CreatorDetailView(props: CreatorDetailViewProps) {
-	const {} = props;
-
+function CreatorDetailView() {
 	return (
 		<CreatorStudioProvider>
 			<Box

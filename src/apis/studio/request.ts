@@ -14,6 +14,7 @@ import {
 	PostProfileRequest,
 	PostProfileResponse,
 } from "@/apis/studio/models";
+import { CreatorStudioRequest, CreatorStudioResponse } from "@/apis/studio/models/studio";
 import { HTTP_HEADERS } from "@/defines/apis/constants";
 import { AxiosRequestYourPlanetFunction } from "@/defines/apis/types";
 import BaseApi from "@/utils/api/BaseApi";
@@ -62,6 +63,12 @@ export class StudioApi extends BaseApi {
 	public getCreators: AxiosRequestYourPlanetFunction<GetCreatorsRequest, GetCreatorsResponse> = (req) => {
 		return this.axiosInstance.get(this.getUrl("/"), {
 			params: req,
+		});
+	};
+
+	public getCreatorStudio: AxiosRequestYourPlanetFunction<CreatorStudioRequest, CreatorStudioResponse> = (req) => {
+		return this.axiosInstance.get(this.getUrl("/"), {
+			url: req.id.toString(),
 		});
 	};
 }
