@@ -1,13 +1,13 @@
 "use client";
 
-import { CATEGORY_SELECT_BOX_WIDTH } from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/constants";
-import { useCreatorsSearchParams } from "@/components/creators/hooks/useCreatorsSearchParams";
-import useRouterPushWithParams from "@/components/creators/hooks/useRouterPushWithParams";
+import { CATEGORY_SELECT_BOX_WIDTH } from "@/components/creators/CreatorsSearchView/components/CreatorsView/CreatorsFilter/defines/constants";
+import { useCreatorsSearchParams } from "@/components/creators/CreatorsSearchView/hooks/useCreatorsSearchParams";
+import useRouterPushWithParams from "@/components/creators/CreatorsSearchView/hooks/useRouterPushWithParams";
 import { INSTATOON_CATEGORY_NAME_BY_TYPE } from "@/defines/instatoon-category/constants";
 import { InstatoonCategoryType } from "@/defines/instatoon-category/types";
 import { Checkbox, FormControl, InputLabel, ListItemText, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 
-function CategoryFilter(props: {}) {
+function CategoryFilter() {
 	const routerPushWithParams = useRouterPushWithParams();
 	const { getFilteredCategoriesFromURL } = useCreatorsSearchParams();
 	const selectedCategories = getFilteredCategoriesFromURL();

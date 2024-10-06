@@ -1,15 +1,15 @@
 "use client";
 
-import { BUDGET_SELECT_BOX_WIDTH } from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/constants";
+import { BUDGET_SELECT_BOX_WIDTH } from "@/components/creators/CreatorsSearchView/components/CreatorsView/CreatorsFilter/defines/constants";
 import {
 	StyledBoxInBudgetFilter,
 	StyledFormHelperText,
 	StyledInfoOutlinedIcon,
 	StyledSwapHorizRounded,
 	StyledTextFieldInBudgetFilter,
-} from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/styles";
-import { useCreatorsSearchParams } from "@/components/creators/hooks/useCreatorsSearchParams";
-import useRouterPushWithParams from "@/components/creators/hooks/useRouterPushWithParams";
+} from "@/components/creators/CreatorsSearchView/components/CreatorsView/CreatorsFilter/defines/styles";
+import { useCreatorsSearchParams } from "@/components/creators/CreatorsSearchView/hooks/useCreatorsSearchParams";
+import useRouterPushWithParams from "@/components/creators/CreatorsSearchView/hooks/useRouterPushWithParams";
 import useOpen from "@/hooks/common/useOpen";
 import { isNumber } from "@/utils/string";
 import { Box, Button, FormControl, InputLabel, MenuItem, Select, Typography } from "@mui/material";

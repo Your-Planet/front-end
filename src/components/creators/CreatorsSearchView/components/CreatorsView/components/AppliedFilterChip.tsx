@@ -1,12 +1,12 @@
 "use client";
 
-import { useCreatorsSearchParams } from "@/components/creators/hooks/useCreatorsSearchParams";
-import useRouterPushWithParams from "@/components/creators/hooks/useRouterPushWithParams";
+import { useCreatorsSearchParams } from "@/components/creators/CreatorsSearchView/hooks/useCreatorsSearchParams";
+import useRouterPushWithParams from "@/components/creators/CreatorsSearchView/hooks/useRouterPushWithParams";
 import { INSTATOON_CATEGORY_NAME_BY_TYPE } from "@/defines/instatoon-category/constants";
 import { InstatoonCategoryType } from "@/defines/instatoon-category/types";
 import { Box, Chip } from "@mui/material";
 
-function AppliedFilterChip(props: {}) {
+function AppliedFilterChip() {
 	const routerPushWithParams = useRouterPushWithParams();
 	const { getFilteredCategoriesFromURL } = useCreatorsSearchParams();
 	const selectedCategories = getFilteredCategoriesFromURL();

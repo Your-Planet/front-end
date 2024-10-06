@@ -3,10 +3,10 @@
 import {
 	SORT_BY_BOX_WIDTH,
 	SORT_BY_LABEL,
-} from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/constants";
-import { SortByType } from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/type";
-import { useCreatorsSearchParams } from "@/components/creators/hooks/useCreatorsSearchParams";
-import useRouterPushWithParams from "@/components/creators/hooks/useRouterPushWithParams";
+} from "@/components/creators/CreatorsSearchView/components/CreatorsView/CreatorsFilter/defines/constants";
+import { SortByType } from "@/components/creators/CreatorsSearchView/components/CreatorsView/CreatorsFilter/defines/type";
+import { useCreatorsSearchParams } from "@/components/creators/CreatorsSearchView/hooks/useCreatorsSearchParams";
+import useRouterPushWithParams from "@/components/creators/CreatorsSearchView/hooks/useRouterPushWithParams";
 import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { SetStateAction } from "react";
 

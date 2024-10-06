@@ -4,7 +4,7 @@ import {
 	CreatorsKeywordType,
 	DEFAULT_CREATORS_KEYWORD_TYPE,
 	SortByType,
-} from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/type";
+} from "@/components/creators/CreatorsSearchView/components/CreatorsView/CreatorsFilter/defines/type";
 import { InstatoonCategoryType } from "@/defines/instatoon-category/types";
 import { useSearchParams } from "next/navigation";
 

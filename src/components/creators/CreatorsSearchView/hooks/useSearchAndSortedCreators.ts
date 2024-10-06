@@ -1,7 +1,7 @@
 import { GetCreatorsRequest } from "@/apis/studio/models/creators";
-import { SortByType } from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/type";
-import { useCreatorsSearchParams } from "@/components/creators/hooks/useCreatorsSearchParams";
-import { sortByAssociation, sortByFastest, sortByPopularity } from "@/components/creators/utils";
+import { SortByType } from "@/components/creators/CreatorsSearchView/components/CreatorsView/CreatorsFilter/defines/type";
+import { useCreatorsSearchParams } from "@/components/creators/CreatorsSearchView/hooks/useCreatorsSearchParams";
+import { sortByAssociation, sortByFastest, sortByPopularity } from "@/components/creators/CreatorsSearchView/utils";
 import useQueryGetCreators from "@/hooks/queries/studio/useQueryGetCreators";
 import { useSearchParams } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";

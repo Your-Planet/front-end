@@ -1,4 +1,4 @@
-import { TYPOGRAPHY_BOX_WIDTH } from "@/components/creators/components/BlurBox/defines/constants";
+import { TYPOGRAPHY_BOX_WIDTH } from "@/components/creators/CreatorsSearchView/components/BlurBox/defines/constants";
 import { Box, styled } from "@mui/material";
 
 export const StyledBlurBox = styled(Box)`
@@ -20,7 +20,7 @@ export const StyledBlurContainerBox = styled(Box)`
 	background-color: white;
 	padding: 2rem;
 	border-radius: 0.375rem;
-	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
 `;
 
 export const StyledBlurInnerBox = styled(Box)`

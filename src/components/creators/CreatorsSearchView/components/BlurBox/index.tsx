@@ -1,15 +1,13 @@
-import MessageBoxForCreatorUser from "@/components/creators/components/BlurBox/components/MessageBoxForCreatorUser";
-import MessageBoxForNonLogInUser from "@/components/creators/components/BlurBox/components/MessageBoxForNonLogInUser";
+import MessageBoxForCreatorUser from "@/components/creators/CreatorsSearchView/components/BlurBox/components/MessageBoxForCreatorUser";
+import MessageBoxForNonLogInUser from "@/components/creators/CreatorsSearchView/components/BlurBox/components/MessageBoxForNonLogInUser";
 import {
 	StyledBlurBox,
 	StyledBlurContainerBox,
 	StyledBlurInnerBox,
-} from "@/components/creators/components/BlurBox/defines/styles";
+} from "@/components/creators/CreatorsSearchView/components/BlurBox/defines/styles";
 import { useAuthContext } from "@/providers/AuthProvider/components/AuthClientProvider";
 
-type Props = {};
-
-function BlurBox(props: Props) {
+function BlurBox() {
 	const { jwtPayload } = useAuthContext();
 
 	return (

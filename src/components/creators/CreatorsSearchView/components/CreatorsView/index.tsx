@@ -3,11 +3,11 @@
 import { StudioProfile } from "@/apis/studio";
 import CreatorCard from "@/components/common/CreatorCard";
 import ProfileImage from "@/components/common/profile-image/ProfileImage";
-import AppliedFilterChip from "@/components/creators/components/CreatorsView/components/AppliedFilterChip";
-import CreatorsFilter from "@/components/creators/components/CreatorsView/components/CreatorsFilter";
-import Header from "@/components/creators/components/CreatorsView/components/Header";
-import SortDropdown from "@/components/creators/components/CreatorsView/components/SortDropdown";
-import useSearchAndSortedCreators from "@/components/creators/hooks/useSearchAndSortedCreators";
+import AppliedFilterChip from "@/components/creators/CreatorsSearchView/components/CreatorsView/components/AppliedFilterChip";
+import Header from "@/components/creators/CreatorsSearchView/components/CreatorsView/components/Header";
+import SortDropdown from "@/components/creators/CreatorsSearchView/components/CreatorsView/components/SortDropdown";
+import CreatorsFilter from "@/components/creators/CreatorsSearchView/components/CreatorsView/CreatorsFilter";
+import useSearchAndSortedCreators from "@/components/creators/CreatorsSearchView/hooks/useSearchAndSortedCreators";
 import { InstatoonCategoryType } from "@/defines/instatoon-category/types";
 import { Box, MenuItem, Select } from "@mui/material";
 

@@ -1,5 +1,8 @@
-import { TYPOGRAPHY_BOX_WIDTH } from "@/components/creators/components/BlurBox/defines/constants";
-import { StyledButtonBoxInBlurBox, StyledTypographyBox } from "@/components/creators/components/BlurBox/defines/styles";
+import { TYPOGRAPHY_BOX_WIDTH } from "@/components/creators/CreatorsSearchView/components/BlurBox/defines/constants";
+import {
+	StyledButtonBoxInBlurBox,
+	StyledTypographyBox,
+} from "@/components/creators/CreatorsSearchView/components/BlurBox/defines/styles";
 import { IA } from "@/defines/ia/constants";
 import { getIaPath } from "@/utils/ia";
 import { Button, Typography } from "@mui/material";

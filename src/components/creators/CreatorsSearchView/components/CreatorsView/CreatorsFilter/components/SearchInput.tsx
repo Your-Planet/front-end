@@ -1,13 +1,13 @@
 "use client";
 
-import { SearchCreatorsProps } from "@/components/creators/components/CreatorsView/components/CreatorsFilter";
+import { SearchCreatorsProps } from "@/components/creators/CreatorsSearchView/components/CreatorsView/CreatorsFilter";
 import {
 	CREATORS_KEYWORD_TYPE,
 	CREATORS_KEYWORD_TYPE_BOX_WIDTH,
-} from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/constants";
-import { CreatorsKeywordType } from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/type";
-import { useCreatorsSearchParams } from "@/components/creators/hooks/useCreatorsSearchParams";
-import useRouterPushWithParams from "@/components/creators/hooks/useRouterPushWithParams";
+} from "@/components/creators/CreatorsSearchView/components/CreatorsView/CreatorsFilter/defines/constants";
+import { CreatorsKeywordType } from "@/components/creators/CreatorsSearchView/components/CreatorsView/CreatorsFilter/defines/type";
+import { useCreatorsSearchParams } from "@/components/creators/CreatorsSearchView/hooks/useCreatorsSearchParams";
+import useRouterPushWithParams from "@/components/creators/CreatorsSearchView/hooks/useRouterPushWithParams";
 
 import { Box, InputBase, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { ChangeEvent, KeyboardEvent, useState } from "react";

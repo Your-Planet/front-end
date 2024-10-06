@@ -1,10 +1,10 @@
 "use client";
 
 import { GetCreatorsRequest } from "@/apis/studio";
-import BudgetFilter from "@/components/creators/components/CreatorsView/components/CreatorsFilter/components/BudgetFilter";
-import CategoryFilter from "@/components/creators/components/CreatorsView/components/CreatorsFilter/components/CategoryFilter";
-import SearchInput from "@/components/creators/components/CreatorsView/components/CreatorsFilter/components/SearchInput";
-import { useCreatorsSearchParams } from "@/components/creators/hooks/useCreatorsSearchParams";
+import BudgetFilter from "@/components/creators/CreatorsSearchView/components/CreatorsView/CreatorsFilter/components/BudgetFilter";
+import CategoryFilter from "@/components/creators/CreatorsSearchView/components/CreatorsView/CreatorsFilter/components/CategoryFilter";
+import SearchInput from "@/components/creators/CreatorsSearchView/components/CreatorsView/CreatorsFilter/components/SearchInput";
+import { useCreatorsSearchParams } from "@/components/creators/CreatorsSearchView/hooks/useCreatorsSearchParams";
 import { Box, Button } from "@mui/material";
 import { usePathname, useRouter } from "next/navigation";
 

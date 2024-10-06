@@ -1,7 +1,7 @@
-import CreatorsPageView from "@/components/creators";
+import CreatorsSearchView from "@/components/creators/CreatorsSearchView";
 
 function CreatorsPage() {
-	return <CreatorsPageView />;
+	return <CreatorsSearchView />;
 }
 
 export default CreatorsPage;

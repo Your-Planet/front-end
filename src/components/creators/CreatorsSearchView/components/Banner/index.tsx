@@ -3,7 +3,7 @@ import {
 	StyledBoxInBanner,
 	StyledTypographyAnimatedBoxInBanner,
 	StyledTypographyBoxInBanner,
-} from "@/components/creators/components/Banner/defines/styles";
+} from "@/components/creators/CreatorsSearchView/components/Banner/defines/styles";
 import { Box, Typography } from "@mui/material";
 
 function Banner() {
