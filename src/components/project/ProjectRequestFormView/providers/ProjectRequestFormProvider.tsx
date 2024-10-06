@@ -1,3 +1,4 @@
+import { DEFAULT_PROJECT_REFERENCE_URL } from "@/defines/forms/project/constants";
 import { ProjectRequestForm } from "@/defines/forms/project/types";
 import { ReactNode } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -33,13 +34,13 @@ function ProjectRequestFormProvider(props: ProjectRequestFormProviderProps) {
 			dueDate: null,
 			brandName: "",
 			campaignDescription: "",
-			referenceUrls: [],
+			referenceUrls: [DEFAULT_PROJECT_REFERENCE_URL],
 			referenceFiles: [],
 			offerPrice: 0,
 			message: "",
 			sponsorName: "",
-			finalCuts: 0,
-			finalModification: 0,
+			finalPanelCount: 0,
+			finalModificationCount: 0,
 		},
 	});
 

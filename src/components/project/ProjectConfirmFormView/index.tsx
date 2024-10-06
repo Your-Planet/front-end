@@ -1,8 +1,8 @@
 "use client";
 
 import ProjectBrandName from "@/components/project/common/fileds/ProjectBrandName";
-import ProjectFinalCuts from "@/components/project/common/fileds/ProjectFinalCuts";
-import ProjectFinalModification from "@/components/project/common/fileds/ProjectFinalModification";
+import ProjectFinalModificationCount from "@/components/project/common/fileds/ProjectFinalModificationCount";
+import ProjectFinalPanelCount from "@/components/project/common/fileds/ProjectFinalPanelCount";
 import ProjectMessage from "@/components/project/common/fileds/ProjectMessage";
 import ProjectSponsorName from "@/components/project/common/fileds/ProjectSponsorName";
 import { PROJECT_FORM_WIDTH } from "@/defines/forms/project/constants";
@@ -22,8 +22,8 @@ function ProjectConfirmFormView() {
 		>
 			<ProjectSponsorName formName="sponsorName" />
 			<ProjectBrandName formName="brandName" readOnly />
-			<ProjectFinalCuts formName="finalCuts" />
-			<ProjectFinalModification formName="finalModification" />
+			<ProjectFinalPanelCount formName="finalPanelCount" />
+			<ProjectFinalModificationCount formName="finalModificationCount" />
 			<ProjectMessage formName="message" readOnly />
 		</Box>
 	);
