@@ -21,8 +21,8 @@ function ProjectConfirmFormView() {
 		>
 			<ProjectSponsorName formName="sponsorName" />
 			<ProjectBrandName formName="brandName" readOnly />
-			<ProjectFinalPanelCount formName="finalPanel" />
-			<ProjectFinalModificationCount formName="finalModification" />
+			<ProjectFinalPanelCount formName="finalPanelCount" />
+			<ProjectFinalModificationCount formName="finalModificationCount" />
 		</Box>
 	);
 }
