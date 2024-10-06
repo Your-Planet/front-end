@@ -1,3 +1,4 @@
+import { CreatorStudioRequest } from "@/apis/studio/models/studio";
 import { deepFreeze } from "@/utils/object";
 
 export const QUERY_KEY = deepFreeze({
@@ -10,7 +11,7 @@ export const QUERY_KEY = deepFreeze({
 		profile: () => [...QUERY_KEY.studio.all(), "profile"] as const,
 		price: () => [...QUERY_KEY.studio.all(), "price"] as const,
 		creators: (req?: object) => [...QUERY_KEY.studio.all(), "creators", req] as const,
-		creatorStudio: (req: object) => [...QUERY_KEY.studio.all(), "creatorStudio", req] as const,
+		creatorStudio: (req: CreatorStudioRequest) => [...QUERY_KEY.studio.all(), "creatorStudio", req] as const,
 	},
 	instagram: {
 		all: () => ["instagram"] as const,
