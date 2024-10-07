@@ -1,4 +1,5 @@
-import { useCreatorStudio } from "@/components/creators/CreatorDetailView/providers/CreatorStudioProvider";
+import useCreatorStudio from "@/components/creators/CreatorDetailView/hooks/useCreatorStudio";
+import useLoadingCreatorStudio from "@/components/creators/CreatorDetailView/hooks/useLoadingCreatorStudio";
 import { styled } from "@mui/material";
 import { blue } from "@mui/material/colors";
 
@@ -15,9 +16,10 @@ const StyledLink = styled("a")`
 
 function CreatorIntroductionInstagramUsername() {
 	const studio = useCreatorStudio();
+	const isLoading = useLoadingCreatorStudio();
 
 	// TODO @김현규 스켈레톤 UI
-	if (!studio) {
+	if (isLoading) {
 		return <>로딩중</>;
 	}
 
