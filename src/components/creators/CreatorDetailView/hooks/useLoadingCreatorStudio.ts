@@ -12,5 +12,5 @@ export default function useLoadingCreatorStudio() {
 		queryKey: QUERY_KEY.studio.creatorStudio({ id }),
 	});
 
-	return Boolean(fetchingCount && studio);
+	return Boolean(fetchingCount || !studio);
 }
