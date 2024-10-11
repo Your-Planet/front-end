@@ -1,23 +1,28 @@
-import { Box } from "@mui/material";
+import ProfileImage from "@/components/common/profile-image/ProfileImage";
+import useCreatorStudio from "@/components/creators/CreatorDetailView/hooks/useCreatorStudio";
+import useLoadingCreatorStudio from "@/components/creators/CreatorDetailView/hooks/useLoadingCreatorStudio";
+import { Skeleton } from "@mui/material";
 
 const IMAGE_SIZE = 144;
 
-/* TODO @김현규 프로필 사진 */
 function CreatorIntroductionProfileImage() {
-	return (
-		<Box
-			sx={{
-				width: IMAGE_SIZE,
-				height: IMAGE_SIZE,
-				borderRadius: "50%",
+	const studio = useCreatorStudio();
+	const isLoading = useLoadingCreatorStudio();
 
-				// TODO @김현규 프로필 이미지 노출 시 삭제
-				background: "lightgray",
-			}}
-		>
-			<></>
-		</Box>
-	);
+	if (isLoading) {
+		return (
+			<Skeleton
+				variant="rounded"
+				width={IMAGE_SIZE}
+				height={IMAGE_SIZE}
+				sx={{
+					borderRadius: "8px",
+				}}
+			/>
+		);
+	}
+
+	return <ProfileImage src={studio.profile.profileImageUrl} size={IMAGE_SIZE} />;
 }
 
 export default CreatorIntroductionProfileImage;

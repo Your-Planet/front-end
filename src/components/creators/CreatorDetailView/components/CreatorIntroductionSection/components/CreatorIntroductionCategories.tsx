@@ -1,7 +1,7 @@
 import CategoryChip from "@/components/common/CategoryChip";
 import useCreatorStudio from "@/components/creators/CreatorDetailView/hooks/useCreatorStudio";
 import useLoadingCreatorStudio from "@/components/creators/CreatorDetailView/hooks/useLoadingCreatorStudio";
-import { styled } from "@mui/material";
+import { Skeleton, styled } from "@mui/material";
 
 const StyledCategoryList = styled("ul")`
 	display: flex;
@@ -13,18 +13,19 @@ function CreatorIntroductionCategories() {
 	const studio = useCreatorStudio();
 	const isLoading = useLoadingCreatorStudio();
 
-	// TODO @김현규 스켈레톤 UI
-	if (isLoading) {
-		return <>로딩중</>;
-	}
-
 	return (
 		<StyledCategoryList>
-			{studio.profile.categories.map((categoryType) => (
-				<li key={categoryType}>
-					<CategoryChip categoryType={categoryType} />
-				</li>
-			))}
+			{isLoading
+				? Array.from({ length: 3 }).map((_, i) => (
+						<li key={i}>
+							<Skeleton variant="rounded" width={40} height={16} />
+						</li>
+					))
+				: studio.profile.categories.map((categoryType) => (
+						<li key={categoryType}>
+							<CategoryChip categoryType={categoryType} />
+						</li>
+					))}
 		</StyledCategoryList>
 	);
 }
