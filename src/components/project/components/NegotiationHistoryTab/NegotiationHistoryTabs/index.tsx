@@ -18,8 +18,6 @@ function NegotiationHistoryTabs(props: NegotiationHistoryTabProps) {
 			{negotiationProgressEntries.map(([negotiationProgress, label], index) => (
 				<Fragment key={negotiationProgress}>
 					<NegotiationHistoryTab
-						size="small"
-						height="2rem"
 						text={label}
 						disabled={currentNegotiationProgress !== negotiationProgress}
 						variant={currentNegotiationProgress === negotiationProgress ? "contained" : "outlined"}

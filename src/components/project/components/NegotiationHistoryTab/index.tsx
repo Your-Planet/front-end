@@ -1,24 +1,24 @@
+import { PROJECT_TAB_HEIGHT, PROJECT_TAB_WIDTH } from "@/defines/forms/project/constants";
 import { Button, ButtonOwnProps } from "@mui/material";
 
 interface NegotiationHistoryTabProps extends ButtonOwnProps {
 	text: string;
-	height?: string;
 }
 
 function NegotiationHistoryTab(props: NegotiationHistoryTabProps) {
-	const { variant = "outlined", disabled = false, color, size, text, height } = props;
+	const { variant = "outlined", disabled = false, text } = props;
 
 	return (
 		<Button
 			variant={variant}
 			disabled={disabled}
-			color={color}
-			size={size}
+			size="small"
 			disableTouchRipple
 			disableRipple
 			sx={{
 				cursor: "default",
-				maxHeight: height,
+				width: `${PROJECT_TAB_WIDTH}px`,
+				height: `${PROJECT_TAB_HEIGHT}px`,
 				fontWeight: "bold",
 				"&:active": {
 					transform: "none",
