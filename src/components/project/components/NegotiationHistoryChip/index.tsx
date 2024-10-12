@@ -1,7 +1,4 @@
-import {
-	PROJECT_TAB_HEIGHT as PROJECT_CHIP_HEIGHT,
-	PROJECT_TAB_WIDTH as PROJECT_CHIP_WIDTH,
-} from "@/defines/forms/project/constants";
+import { PROJECT_CHIP_HEIGHT, PROJECT_CHIP_WIDTH } from "@/defines/forms/project/constants";
 import { Chip, ChipOwnProps } from "@mui/material";
 
 interface NegotiationChipProps extends ChipOwnProps {}
