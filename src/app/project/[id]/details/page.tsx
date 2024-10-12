@@ -1,5 +1,7 @@
+import ProjectDetailsView from "@/components/project/ProjectDetailsView/index";
+
 function ProjectDetailsPage() {
-	return <div>ProjectDetailsPage</div>;
+	return <ProjectDetailsView />;
 }
 
 export default ProjectDetailsPage;
