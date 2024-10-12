@@ -1,4 +1,4 @@
-import NegotiationHistoryTab from "@/components/project/common/Tab/NegotiationHistoryTabs";
+import NegotiationHistoryTab from "@/components/project/components/Tab/NegotiationHistoryTabs";
 import { Box } from "@mui/material";
 
 function ProjectDetailsView() {

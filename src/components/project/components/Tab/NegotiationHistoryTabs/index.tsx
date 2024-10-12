@@ -1,4 +1,4 @@
-import Tab from "@/components/project/common/Tab";
+import Tab from "@/components/project/components/Tab";
 import { NEGOTIATION_PROGRESS_TYPE } from "@/defines/forms/project/constants/project.constants.details";
 import { NegotiationProgressType } from "@/defines/forms/project/types";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
