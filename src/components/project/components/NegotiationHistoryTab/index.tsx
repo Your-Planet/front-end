@@ -1,11 +1,11 @@
 import { Button, ButtonOwnProps } from "@mui/material";
 
-interface TabProps extends ButtonOwnProps {
+interface NegotiationHistoryTabProps extends ButtonOwnProps {
 	text: string;
 	height?: string;
 }
 
-function Tab(props: TabProps) {
+function NegotiationHistoryTab(props: NegotiationHistoryTabProps) {
 	const { variant = "outlined", disabled = false, color, size, text, height } = props;
 
 	return (
@@ -30,4 +30,4 @@ function Tab(props: TabProps) {
 	);
 }
 
-export default Tab;
+export default NegotiationHistoryTab;

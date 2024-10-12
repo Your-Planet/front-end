@@ -1,4 +1,4 @@
-import Tab from "@/components/project/components/Tab";
+import NegotiationHistoryTab from "@/components/project/components/NegotiationHistoryTab";
 import { NEGOTIATION_PROGRESS_TYPE } from "@/defines/forms/project/constants/project.constants.details";
 import { NegotiationProgressType } from "@/defines/forms/project/types";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
@@ -9,7 +9,7 @@ type NegotiationHistoryTabProps = {
 	currentNegotiationProgress?: NegotiationProgressType;
 };
 
-function NegotiationHistoryTab(props: NegotiationHistoryTabProps) {
+function NegotiationHistoryTabs(props: NegotiationHistoryTabProps) {
 	const { currentNegotiationProgress } = props;
 	const negotiationProgressEntries = Object.entries(NEGOTIATION_PROGRESS_TYPE);
 
@@ -17,7 +17,7 @@ function NegotiationHistoryTab(props: NegotiationHistoryTabProps) {
 		<Box sx={{ display: "flex", alignItems: "center" }}>
 			{negotiationProgressEntries.map(([negotiationProgress, label], index) => (
 				<Fragment key={negotiationProgress}>
-					<Tab
+					<NegotiationHistoryTab
 						size="small"
 						height="2rem"
 						text={label}
@@ -31,4 +31,4 @@ function NegotiationHistoryTab(props: NegotiationHistoryTabProps) {
 	);
 }
 
-export default NegotiationHistoryTab;
+export default NegotiationHistoryTabs;
