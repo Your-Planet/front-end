@@ -1,4 +1,4 @@
-import { PROJECT_TAB_HEIGHT, PROJECT_TAB_WIDTH } from "@/defines/forms/project/constants";
+import { PROJECT_HISTORY_CHIP_HEIGHT, PROJECT_HISTORY_CHIP_WIDTH } from "@/defines/forms/project/constants";
 import { Chip, ChipOwnProps } from "@mui/material";
 
 interface NegotiationHistoryStepBarProps extends ChipOwnProps {
@@ -19,8 +19,8 @@ function NegotiationHistoryStepBar(props: NegotiationHistoryStepBarProps) {
 			size="small"
 			sx={{
 				cursor: "default",
-				width: `${PROJECT_TAB_WIDTH}px`,
-				height: `${PROJECT_TAB_HEIGHT}px`,
+				width: `${PROJECT_HISTORY_CHIP_WIDTH}px`,
+				height: `${PROJECT_HISTORY_CHIP_HEIGHT}px`,
 				fontWeight: "bold",
 				borderRadius: 1,
 			}}
