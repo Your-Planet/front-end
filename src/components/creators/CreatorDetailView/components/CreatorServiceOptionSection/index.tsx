@@ -3,7 +3,7 @@ import CreatorServiceOptionList from "@/components/creators/CreatorDetailView/co
 import useCreatorStudio from "@/components/creators/CreatorDetailView/hooks/useCreatorStudio";
 import useLoadingCreatorStudio from "@/components/creators/CreatorDetailView/hooks/useLoadingCreatorStudio";
 import { LABEL_BY_POST_DURATION_MONTH_TYPE, LABEL_BY_SERVICE_OPTION_TYPE } from "@/defines/price/constants";
-import { styled } from "@mui/material";
+import { Box, Skeleton, styled } from "@mui/material";
 
 const StyledSection = styled("section")`
 	display: flex;
@@ -17,7 +17,15 @@ function CreatorServiceOptionSection() {
 
 	// TODO @김현규 스켈레톤 UI
 	if (isLoading) {
-		return <>로딩중</>;
+		return (
+			<StyledSection>
+				<Box width="100%">
+					<Skeleton width="220px" variant="text" sx={{ fontSize: 32 }} />
+					<Skeleton width="160px" variant="text" sx={{ fontSize: 24 }} />
+					<Skeleton width="120px" variant="text" sx={{ fontSize: 24 }} />
+				</Box>
+			</StyledSection>
+		);
 	}
 
 	const {
