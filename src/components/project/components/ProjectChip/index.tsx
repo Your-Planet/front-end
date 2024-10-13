@@ -3,7 +3,7 @@ import { Chip, ChipOwnProps } from "@mui/material";
 
 interface NegotiationChipProps extends ChipOwnProps {}
 
-function NegotiationHistoryChip(props: NegotiationChipProps) {
+function ProjectChip(props: NegotiationChipProps) {
 	const { disabled = false, color, label } = props;
 
 	return (
@@ -17,4 +17,4 @@ function NegotiationHistoryChip(props: NegotiationChipProps) {
 	);
 }
 
-export default NegotiationHistoryChip;
+export default ProjectChip;
