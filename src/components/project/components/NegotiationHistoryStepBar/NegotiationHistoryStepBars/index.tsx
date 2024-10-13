@@ -1,15 +1,15 @@
-import NegotiationHistoryTab from "@/components/project/components/NegotiationHistoryTab";
+import NegotiationHistoryStepBar from "@/components/project/components/NegotiationHistoryStepBar";
 import { NEGOTIATION_PROGRESS_TYPE } from "@/defines/forms/project/constants/project.constants.details";
 import { NegotiationProgressType } from "@/defines/forms/project/types";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import { Box } from "@mui/material";
 import { Fragment } from "react";
 
-type NegotiationHistoryTabProps = {
+type NegotiationHistoryStepBarsProps = {
 	currentNegotiationProgress?: NegotiationProgressType;
 };
 
-function NegotiationHistoryTabs(props: NegotiationHistoryTabProps) {
+function NegotiationHistoryStepBars(props: NegotiationHistoryStepBarsProps) {
 	const { currentNegotiationProgress } = props;
 	const negotiationProgressEntries = Object.entries(NEGOTIATION_PROGRESS_TYPE);
 
@@ -17,10 +17,10 @@ function NegotiationHistoryTabs(props: NegotiationHistoryTabProps) {
 		<Box sx={{ display: "flex", alignItems: "center" }}>
 			{negotiationProgressEntries.map(([negotiationProgress, label], index) => (
 				<Fragment key={negotiationProgress}>
-					<NegotiationHistoryTab
-						text={label}
+					<NegotiationHistoryStepBar
+						label={label}
 						disabled={currentNegotiationProgress !== negotiationProgress}
-						variant={currentNegotiationProgress === negotiationProgress ? "contained" : "outlined"}
+						isCurrentStep={currentNegotiationProgress === negotiationProgress}
 					/>
 					{index < negotiationProgressEntries.length - 1 && <ChevronRightRoundedIcon color="disabled" />}
 				</Fragment>
@@ -29,4 +29,4 @@ function NegotiationHistoryTabs(props: NegotiationHistoryTabProps) {
 	);
 }
 
-export default NegotiationHistoryTabs;
+export default NegotiationHistoryStepBars;
