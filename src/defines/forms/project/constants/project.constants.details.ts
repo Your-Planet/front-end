@@ -1,7 +1,7 @@
 import { ColorType, NegotiationProgressType, ProjectStatusType } from "@/defines/forms/project/types";
 import { deepFreeze } from "@/utils/object";
 
-export const NEGOTIATION_PROGRESS_TYPE: Record<NegotiationProgressType, string> = deepFreeze({
+export const LABEL_BY_NEGOTIATION_PROGRESS: Record<NegotiationProgressType, string> = deepFreeze({
 	IN_REVIEW: "검토 중",
 	IN_NEGOTIATION: "협상 중",
 	IN_PROGRESS: "진행 중",
