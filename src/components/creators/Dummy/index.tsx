@@ -1,9 +1,9 @@
 "use client";
 
 import CreatorCard from "@/components/common/CreatorCard";
-import Banner from "@/components/creators/components/Banner";
-import BlurBox from "@/components/creators/components/BlurBox";
-import { StyledBannerBox, StyledContainerBox } from "@/components/creators/defines/styles";
+import Banner from "@/components/creators/CreatorsSearchView/components/Banner";
+import BlurBox from "@/components/creators/CreatorsSearchView/components/BlurBox";
+import { StyledBannerBox, StyledContainerBox } from "@/components/creators/CreatorsSearchView/defines/styles";
 import { Box } from "@mui/material";
 
 type Props = {};

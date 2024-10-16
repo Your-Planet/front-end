@@ -1,8 +1,13 @@
 export interface StudioPrice {
 	service: DefaultService;
-	option: Record<ServiceOptionTypeByWorkingDays["withWorkingDays"], ProvidingServiceWithWorkingDays> &
-		Record<ServiceOptionTypeByWorkingDays["withoutWorkingDays"], ProvidingServiceWithWorkingDays>;
+	option: StudioPriceOption;
 }
+
+export type StudioPriceOption = Record<
+	ServiceOptionTypeByWorkingDays["withWorkingDays"],
+	ProvidingServiceWithWorkingDays
+> &
+	Record<ServiceOptionTypeByWorkingDays["withoutWorkingDays"], ProvidingServiceWithoutWorkingDays>;
 
 export interface PostPriceTempRequest extends StudioPrice {}
 
@@ -28,6 +33,8 @@ export interface ProvidingService {
 	provisionType: ProvisionType;
 	price: number;
 }
+
+export type ProvidingServiceWithoutWorkingDays = ProvidingService;
 
 export interface ProvidingServiceWithWorkingDays extends ProvidingService {
 	workingDays: number;

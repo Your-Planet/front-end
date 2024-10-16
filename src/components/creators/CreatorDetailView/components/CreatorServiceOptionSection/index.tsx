@@ -1,6 +1,7 @@
 import { ProvisionType, ServiceOptionType } from "@/apis/studio";
 import CreatorServiceOptionList from "@/components/creators/CreatorDetailView/components/CreatorServiceOptionSection/components/CreatorServiceOptionList";
-import { useCreatorStudio } from "@/components/creators/CreatorDetailView/providers/CreatorStudioProvider";
+import useCreatorStudio from "@/components/creators/CreatorDetailView/hooks/useCreatorStudio";
+import useLoadingCreatorStudio from "@/components/creators/CreatorDetailView/hooks/useLoadingCreatorStudio";
 import { LABEL_BY_POST_DURATION_MONTH_TYPE, LABEL_BY_SERVICE_OPTION_TYPE } from "@/defines/price/constants";
 import { styled } from "@mui/material";
 
@@ -12,9 +13,10 @@ const StyledSection = styled("section")`
 
 function CreatorServiceOptionSection() {
 	const studio = useCreatorStudio();
+	const isLoading = useLoadingCreatorStudio();
 
 	// TODO @김현규 스켈레톤 UI
-	if (!studio) {
+	if (isLoading) {
 		return <>로딩중</>;
 	}
 
