@@ -9,4 +9,5 @@ export interface ProjectFormFieldCommonProps<
 > extends Pick<ReactHookFormProps<ProjectCommonForm>, "required"> {
 	formName: THookFormName;
 	helperText?: string;
+	readOnly?: boolean;
 }

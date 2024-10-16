@@ -29,9 +29,12 @@ export interface ProjectCommonForm {
 	referenceFiles: File[];
 	offerPrice: number;
 	message: string;
+	sponsorName: string;
+	finalPanelCount: number;
+	finalModificationCount: number;
 }
 
-// 프로젝트 의뢰
+// 프로젝트 의뢰 및 요약
 export type ProjectRequestForm = Pick<
 	ProjectCommonForm,
 	| "additionalPanel"
@@ -48,6 +51,9 @@ export type ProjectRequestForm = Pick<
 	| "referenceFiles"
 	| "offerPrice"
 	| "message"
+	| "sponsorName"
+	| "finalPanelCount"
+	| "finalModificationCount"
 >;
 
 // TODO 추가 예정
