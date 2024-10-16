@@ -39,7 +39,8 @@ function ProjectRequestFormProvider(props: ProjectRequestFormProviderProps) {
 			offerPrice: 0,
 			message: "",
 			sponsorName: "",
-			finalPanel: 0,
+			finalPanelCount: 0,
+			finalModificationCount: 0,
 		},
 	});
 

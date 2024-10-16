@@ -1,7 +1,8 @@
 "use client";
 
 import ProjectBrandName from "@/components/project/common/fileds/ProjectBrandName";
-import ProjectFinalPanel from "@/components/project/common/fileds/ProjectFinalPanel";
+import ProjectFinalModificationCount from "@/components/project/common/fileds/ProjectFinalModificationCount";
+import ProjectFinalPanelCount from "@/components/project/common/fileds/ProjectFinalPanelCount";
 import ProjectSponsorName from "@/components/project/common/fileds/ProjectSponsorName";
 import { PROJECT_FORM_WIDTH } from "@/defines/forms/project/constants";
 import { Box } from "@mui/material";
@@ -20,7 +21,8 @@ function ProjectConfirmFormView() {
 		>
 			<ProjectSponsorName formName="sponsorName" />
 			<ProjectBrandName formName="brandName" readOnly />
-			<ProjectFinalPanel formName="finalPanel" />
+			<ProjectFinalPanelCount formName="finalPanelCount" />
+			<ProjectFinalModificationCount formName="finalModificationCount" />
 		</Box>
 	);
 }
