@@ -10,6 +10,7 @@ import ProjectOfferPrice from "@/components/project/common/fileds/ProjectOfferPr
 import ProjectOriginFile from "@/components/project/common/fileds/ProjectOriginFile";
 import ProjectPostDurationExtension from "@/components/project/common/fileds/ProjectPostDurationExtension";
 import ProjectPostStartDate from "@/components/project/common/fileds/ProjectPostStartDate";
+import ProjectReferenceFiles from "@/components/project/common/fileds/ProjectReferenceFiles";
 import ProjectReferenceUrls from "@/components/project/common/fileds/ProjectReferenceUrls";
 import ProjectRefinement from "@/components/project/common/fileds/ProjectRefinement";
 import { PROJECT_FORM_LENGTH, PROJECT_FORM_WIDTH } from "@/defines/forms/project/constants";
@@ -74,6 +75,8 @@ function ProjectRequestFormView() {
 				<ProjectCampaignDescription formName="campaignDescription" required />
 
 				<ProjectReferenceUrls formName="referenceUrls" getItemFormName={(index) => `referenceUrls.${index}.url`} />
+
+				<ProjectReferenceFiles formName="referenceFiles" />
 
 				<ProjectOfferPrice formName="offerPrice" required />
 
