@@ -1,6 +1,6 @@
 import { ProvisionType, ServiceOptionType } from "@/apis/studio";
-import CreatorServiceOptionList from "@/components/creators/CreatorDetailView/components/CreatorServiceOptionSection/components/CreatorServiceOptionList";
-import { useCreatorStudio } from "@/components/creators/CreatorDetailView/providers/CreatorStudioProvider";
+import CreatorServiceOptionList from "@/components/creators/CreatorDetailsView/components/CreatorServiceOptionSection/components/CreatorServiceOptionList";
+import { useCreatorStudio } from "@/components/creators/CreatorDetailsView/providers/CreatorStudioProvider";
 import { LABEL_BY_POST_DURATION_MONTH_TYPE, LABEL_BY_SERVICE_OPTION_TYPE } from "@/defines/price/constants";
 import { styled } from "@mui/material";
 

@@ -68,7 +68,7 @@ function CreatorsView({}: Props) {
 									buttonEvent={{
 										detail: {
 											tooltip: "자세히 보기",
-											onClick: () => router.push(`/creators/${id}/details`),
+											onClick: () => router.push(`/creators/${id}`),
 										},
 										project: {
 											tooltip: "프로젝트 의뢰하기",

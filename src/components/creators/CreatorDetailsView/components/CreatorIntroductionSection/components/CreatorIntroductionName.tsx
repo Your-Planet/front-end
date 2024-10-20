@@ -1,4 +1,4 @@
-import { useCreatorStudio } from "@/components/creators/CreatorDetailView/providers/CreatorStudioProvider";
+import { useCreatorStudio } from "@/components/creators/CreatorDetailsView/providers/CreatorStudioProvider";
 import { Typography } from "@mui/material";
 
 function CreatorIntroductionName() {
