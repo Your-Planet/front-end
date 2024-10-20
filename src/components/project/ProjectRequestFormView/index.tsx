@@ -14,7 +14,7 @@ import ProjectReferenceFiles from "@/components/project/common/fileds/ProjectRef
 import ProjectReferenceUrls from "@/components/project/common/fileds/ProjectReferenceUrls";
 import ProjectRefinement from "@/components/project/common/fileds/ProjectRefinement";
 import { PROJECT_FORM_LENGTH, PROJECT_FORM_WIDTH } from "@/defines/forms/project/constants";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 function ProjectRequestFormView() {
 	return (
@@ -28,6 +28,17 @@ function ProjectRequestFormView() {
 					paddingY: "2rem",
 				}}
 			>
+				<Typography variant="h4" fontWeight="bold">
+					프로젝트 의뢰
+				</Typography>
+				<Box>
+					<Typography variant="body1" fontWeight="bold">
+						1. 프로젝트 요청 사항
+					</Typography>
+					<Typography variant="caption" color="grey">
+						크리에이터에게 요청할 사항이 있으면 입력해주세요.
+					</Typography>
+				</Box>
 				<ProjectAdditionalPanel
 					formName="additionalPanel.count"
 					isNegotiableFormName="additionalPanel.isNegotiable"
@@ -61,6 +72,15 @@ function ProjectRequestFormView() {
 					helperText={`기본 N개월 업로드가 보장돼요. 추가할 기간만 한 달 단위로 선택해 주세요.`}
 					required
 				/>
+
+				<Box>
+					<Typography variant="body1" fontWeight="bold">
+						2. 프로젝트 정보 입력
+					</Typography>
+					<Typography variant="caption" color="grey">
+						브랜드와 캠페인에 대한 상세한 정보를 입력해 주세요.
+					</Typography>
+				</Box>
 
 				<ProjectPostStartDate
 					formName="postStartDate"
