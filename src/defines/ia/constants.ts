@@ -76,7 +76,7 @@ export const IA = deepFreeze<GlobalIa>({
 		accessConfig: {
 			allowedOnLogin: true,
 			allowedMemberTypes: ["ADMIN", "SPONSOR"],
-			fallbackUrl(globalIa, accessConfig, jwtPayload): string {
+			fallbackUrl(globalIa, _, jwtPayload): string {
 				if (!jwtPayload) {
 					return getIaPath(globalIa.creators.guest);
 				}
@@ -92,6 +92,21 @@ export const IA = deepFreeze<GlobalIa>({
 		"[id]": {
 			title: "작가 상세 보기",
 			label: "작가 상세 보기",
+			accessConfig: {
+				allowedOnLogin: true,
+				allowedMemberTypes: ["ADMIN", "SPONSOR"],
+				fallbackUrl(globalIa, _, jwtPayload): string {
+					if (!jwtPayload) {
+						return getIaPath(globalIa.creators.guest);
+					}
+
+					if (jwtPayload.memberType === "CREATOR") {
+						return getIaPath(globalIa.creators.creator);
+					}
+
+					return "/403";
+				},
+			},
 
 			request: {
 				title: "프로젝트 의뢰",
