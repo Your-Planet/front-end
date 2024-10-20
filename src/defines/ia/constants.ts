@@ -127,7 +127,7 @@ export const IA = deepFreeze<GlobalIa>({
 		},
 	},
 
-	project: {
+	projects: {
 		title: "나의 프로젝트",
 		label: "나의 프로젝트",
 		accessConfig: {

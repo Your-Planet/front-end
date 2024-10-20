@@ -7,7 +7,7 @@ export type GlobalIa = PageAttributes &
 	JoinIa &
 	DeletionIa &
 	CreatorsIa &
-	ProjectIa &
+	ProjectsIa &
 	StudioIa &
 	UserInfoIa &
 	FindIa &
@@ -28,7 +28,7 @@ type DeletionIa = Ia<"deletion", DeletionSubIa["complete"]>;
 
 type CreatorsIa = Ia<"creators", CreatorsSubIa["[id]"] & CreatorsSubIa["creator"] & CreatorsSubIa["guest"]>;
 
-type ProjectIa = Ia<"project", ProjectSubIa["[id]"]>;
+type ProjectsIa = Ia<"projects", ProjectsSubIa["[id]"]>;
 
 type StudioIa = Ia<"studio", StudioSubIa["profile"] & StudioSubIa["price"]>;
 
@@ -58,7 +58,7 @@ type CreatorsSubIa = {
 	guest: Ia<"guest">;
 };
 
-type ProjectSubIa = {
+type ProjectsSubIa = {
 	["[id]"]: Ia<"[id]">;
 };
 
