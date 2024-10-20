@@ -127,13 +127,21 @@ export const IA = deepFreeze<GlobalIa>({
 		},
 	},
 
-	project: {
-		title: "프로젝트 의뢰",
-		label: "프로젝트 의뢰",
+	projects: {
+		title: "나의 프로젝트",
+		label: "나의 프로젝트",
+		accessConfig: {
+			allowedOnLogin: true,
+			allowedMemberTypes: ["CREATOR", "SPONSOR"],
+		},
 
 		"[id]": {
 			title: "프로젝트 상세",
 			label: "프로젝트 상세",
+			accessConfig: {
+				allowedOnLogin: true,
+				allowedMemberTypes: ["CREATOR", "SPONSOR"],
+			},
 		},
 	},
 
