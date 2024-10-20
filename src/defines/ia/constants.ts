@@ -111,6 +111,21 @@ export const IA = deepFreeze<GlobalIa>({
 			request: {
 				title: "프로젝트 의뢰",
 				label: "프로젝트 의뢰",
+				accessConfig: {
+					allowedOnLogin: true,
+					allowedMemberTypes: ["ADMIN", "SPONSOR"],
+					fallbackUrl(globalIa, _, jwtPayload): string {
+						if (!jwtPayload) {
+							return getIaPath(globalIa.creators.guest);
+						}
+
+						if (jwtPayload.memberType === "CREATOR") {
+							return getIaPath(globalIa.creators.creator);
+						}
+
+						return "/403";
+					},
+				},
 
 				confirm: {
 					title: "의뢰 내용 확인",
