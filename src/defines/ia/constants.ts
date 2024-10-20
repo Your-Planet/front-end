@@ -132,7 +132,7 @@ export const IA = deepFreeze<GlobalIa>({
 		label: "나의 프로젝트",
 		accessConfig: {
 			allowedOnLogin: true,
-			allowedMemberTypes: ["CREATOR"],
+			allowedMemberTypes: ["CREATOR", "SPONSOR"],
 		},
 
 		"[id]": {
@@ -140,7 +140,7 @@ export const IA = deepFreeze<GlobalIa>({
 			label: "프로젝트 상세",
 			accessConfig: {
 				allowedOnLogin: true,
-				allowedMemberTypes: ["CREATOR"],
+				allowedMemberTypes: ["CREATOR", "SPONSOR"],
 			},
 		},
 	},
