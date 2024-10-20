@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { NumericFormat, NumericFormatProps } from "react-number-format";
+import { NumberFormatValues, NumericFormat, NumericFormatProps } from "react-number-format";
 
 export interface NumericProps {
 	onChange: (event: { target: { name: string; value: string } }) => void;
@@ -9,22 +9,27 @@ export interface NumericProps {
 export const NumericFormatInput = forwardRef<NumericFormatProps, NumericProps>(
 	function NumericFormatCustom(props, ref) {
 		const { onChange, name, ...other } = props;
+		const handleValueChange = (values: NumberFormatValues) => {
+			const { value } = values;
+
+			onChange({
+				target: {
+					name,
+					value: Number(value).toString(),
+				},
+			});
+		};
 
 		return (
 			<NumericFormat
 				{...other}
 				getInputRef={ref}
-				onValueChange={(values) => {
-					onChange({
-						target: {
-							name,
-							value: values.value,
-						},
-					});
-				}}
+				onValueChange={handleValueChange}
 				inputMode="decimal"
 				thousandSeparator
-				valueIsNumericString
+				allowNegative={false}
+				placeholder="0"
+				value=""
 			/>
 		);
 	},
