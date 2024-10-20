@@ -10,11 +10,13 @@ import SortDropdown from "@/components/creators/components/CreatorsView/componen
 import useSearchAndSortedCreators from "@/components/creators/hooks/useSearchAndSortedCreators";
 import { InstatoonCategoryType } from "@/defines/instatoon-category/types";
 import { Box, MenuItem, Select } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
 function CreatorsView({}: Props) {
 	const { sortedCreators, isLoading, handleSearchCreators, setSortType } = useSearchAndSortedCreators();
+	const router = useRouter();
 
 	return (
 		<Box display="flex" gap="3rem" flexDirection="column">
@@ -63,7 +65,16 @@ function CreatorsView({}: Props) {
 									profile={profile}
 									renderProfileImage={renderProfileImage}
 									instagramUsername={instagramUsername}
-									buttonEvent={{ detail: {}, project: {} }}
+									buttonEvent={{
+										detail: {
+											tooltip: "자세히 보기",
+											onClick: () => router.push(`/creators/${id}/details`),
+										},
+										project: {
+											tooltip: "프로젝트 의뢰하기",
+											onClick: () => router.push(`/creators/${id}/request`),
+										},
+									}}
 								/>
 							);
 						})
