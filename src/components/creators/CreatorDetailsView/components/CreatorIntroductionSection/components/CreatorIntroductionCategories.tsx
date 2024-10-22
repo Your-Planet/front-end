@@ -1,5 +1,5 @@
 import CategoryChip from "@/components/common/CategoryChip";
-import { useCreatorStudio } from "@/components/creators/CreatorDetailView/providers/CreatorStudioProvider";
+import { useCreatorStudio } from "@/components/creators/CreatorDetailsView/providers/CreatorStudioProvider";
 import { styled } from "@mui/material";
 
 const StyledCategoryList = styled("ul")`

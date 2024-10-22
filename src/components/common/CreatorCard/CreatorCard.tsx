@@ -53,7 +53,6 @@ function CreatorCard(props: CreatorCardProps) {
 						height: "fit-content",
 					}}
 				>
-					{/*TODO @김현규 프로필 사진*/}
 					<CreatorCardProfileImageField value={renderProfileImage?.(profileImageUrl)} />
 					<Box>
 						<CreatorCardNameField value={name} />

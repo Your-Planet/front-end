@@ -1,5 +1,5 @@
 import InstagramMediaCard from "@/components/common/InstagramMediaCard";
-import { useCreatorStudio } from "@/components/creators/CreatorDetailView/providers/CreatorStudioProvider";
+import { useCreatorStudio } from "@/components/creators/CreatorDetailsView/providers/CreatorStudioProvider";
 import { styled } from "@mui/material";
 
 const StyledSection = styled("section")`
