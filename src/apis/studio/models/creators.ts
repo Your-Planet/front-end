@@ -1,4 +1,4 @@
-import { CreatorsKeywordType } from "@/components/creators/components/CreatorsView/components/CreatorsFilter/defines/type";
+import { CreatorsKeywordType } from "@/components/creators/CreatorsSearchView/components/CreatorsView/CreatorsFilter/defines/type";
 import { InstatoonCategoryType } from "@/defines/instatoon-category/types";
 
 export interface Pageable {
