@@ -30,7 +30,8 @@ export interface ProjectCommonForm {
 	offerPrice: number;
 	message: string;
 	sponsorName: string;
-	finalPanel: number;
+	finalPanelCount: number;
+	finalModificationCount: number;
 }
 
 // 프로젝트 의뢰 및 요약
@@ -51,7 +52,8 @@ export type ProjectRequestForm = Pick<
 	| "offerPrice"
 	| "message"
 	| "sponsorName"
-	| "finalPanel"
+	| "finalPanelCount"
+	| "finalModificationCount"
 >;
 
 // TODO 추가 예정

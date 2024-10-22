@@ -3,9 +3,9 @@ import { ProjectCommonForm, ProjectFormFieldCommonProps } from "@/defines/forms/
 import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 
-export interface ProjectFinalCutsProps extends ProjectFormFieldCommonProps {}
+export interface ProjectFinalPanelCountProps extends ProjectFormFieldCommonProps {}
 
-function ProjectFinalPanel(props: ProjectFinalCutsProps) {
+function ProjectFinalPanelCount(props: ProjectFinalPanelCountProps) {
 	const { formName } = props;
 	const { TextField } = ReactHookForm<ProjectCommonForm>();
 	const { getValues, setValue } = useFormContext<ProjectCommonForm>();
@@ -22,4 +22,4 @@ function ProjectFinalPanel(props: ProjectFinalCutsProps) {
 	return <TextField formName={formName} label="최종 컷 수" InputProps={{ readOnly: true }} />;
 }
 
-export default ProjectFinalPanel;
+export default ProjectFinalPanelCount;
